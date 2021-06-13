@@ -19,13 +19,7 @@
     "plugin:react/recommended"
   ],
   "settings": {
-    "react": { "version": "detect" },
-    "import/resolver": {
-      "node": {
-        "paths": ["."],
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
-    }
+    "react": { "version": "detect" }
   },
   "rules": {
     "semi": ["error", "never"],
@@ -41,5 +35,11 @@
       "extends": "plugin:react-hooks/recommended"
     }
   ],
-  "ignorePatterns": ["node_modules", "dist", "vite.config.ts"]
+  "ignorePatterns": [
+    "node_modules",
+    "dist",
+    "vite.config.ts",
+    "*.html",
+    "*.css*"
+  ]
 }
