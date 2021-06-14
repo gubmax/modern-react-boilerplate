@@ -27,6 +27,7 @@
     "jsx-quotes": ["error", "prefer-double"],
     "object-curly-spacing": ["error", "always"],
     "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
     "prettier/prettier": "error"
   },
   "overrides": [
