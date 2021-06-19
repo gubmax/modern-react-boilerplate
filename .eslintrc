@@ -40,7 +40,6 @@
     "node_modules",
     "dist",
     "vite.config.ts",
-    "*.html",
-    "*.css*"
+    "*.html"
   ]
 }

@@ -6,7 +6,7 @@ import * as s from './Wrapper.css'
 
 const Wrapper: FC<WrapperProps> = ({
   as: Tag = 'div',
-  className = '',
+  className,
   style,
   children,
   noPadding,
