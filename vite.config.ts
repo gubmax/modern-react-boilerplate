@@ -1,16 +1,16 @@
 import path from 'path'
-import { defineConfig } from 'vite'
+import { UserConfigFn } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
-import eslint from '@rollup/plugin-eslint'
 
-// https://vitejs.dev/config/
-export default ({ mode }) => {
+/**
+ * @link https://vitejs.dev/config/
+ */
+const config: UserConfigFn = ({ mode }) => {
   const preactMode = mode === 'preact'
 
-  return defineConfig({
+  return {
     plugins: [
-      { ...eslint({ throwOnError: true }), enforce: 'pre', apply: 'build' },
       reactRefresh(),
       vanillaExtractPlugin(),
     ],
@@ -33,5 +33,7 @@ export default ({ mode }) => {
           jsxInject: 'import React from "react"',
         }),
     },
-  })
+  }
 }
+
+export default config
