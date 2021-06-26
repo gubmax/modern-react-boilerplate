@@ -31,6 +31,9 @@ const config: UserConfigFn = ({ mode }) => {
           jsxInject: 'import React from "react"',
         }),
     },
+    build: {
+      minify: false
+    }
   }
 }
 

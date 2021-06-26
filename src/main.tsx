@@ -1,10 +1,10 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom'
+import { hydrateRoot } from 'react-dom'
 
 import { App } from 'src/components/layout'
 
 const container = document.getElementById('root') || document.body
-const root = createRoot(container)
+const root = hydrateRoot(container)
 
 root.render(
   <StrictMode>
