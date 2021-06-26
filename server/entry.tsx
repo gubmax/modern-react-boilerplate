@@ -1,11 +1,5 @@
-import { StrictMode } from 'react'
+import { App } from 'src/components/layout/App'
 
-import { App } from 'src/components/layout'
-
-const entry = (
-  <StrictMode>
-    <App />
-  </StrictMode>
-)
+const entry = <App />
 
 export default entry

@@ -11,7 +11,7 @@
   },
   "author": "Maksim Gubyshev <gubyshev@gmail.com> (https://github.com/gubmax)",
   "scripts": {
-    "dev": " ts-node server/main",
+    "dev": "ts-node server/main",
     "debug": "ts-node --inspect-brk server/main",
     "build": "tsc && npm run build:client && npm run build:server",
     "build:preact": "tsc && npm run build:client --mode preact && npm run build:server",
@@ -24,6 +24,7 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
+    "@emotion/react": "^11.4.0",
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
@@ -34,6 +35,7 @@
     "serve-static": "^1.14.1"
   },
   "devDependencies": {
+    "@emotion/eslint-plugin": "^11.2.0",
     "@types/compression": "^1.7.0",
     "@types/node": "^15.12.4",
     "@types/node-fetch": "^2.5.10",

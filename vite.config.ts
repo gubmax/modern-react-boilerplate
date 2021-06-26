@@ -28,7 +28,8 @@ const config: UserConfigFn = ({ mode }) => {
           jsxFragment: 'Fragment',
           jsxInject: 'import { h, Fragment } from "preact"',
         } : {
-          jsxInject: 'import React from "react"',
+          jsxFactory: 'jsx',
+          jsxInject: 'import { jsx } from "@emotion/react"',
         }),
     },
     build: {
