@@ -1,7 +1,6 @@
 import path from 'path'
 import { UserConfigFn } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
-import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 
 /**
  * @link https://vitejs.dev/config/
@@ -12,7 +11,6 @@ const config: UserConfigFn = ({ mode }) => {
   return {
     plugins: [
       reactRefresh(),
-      vanillaExtractPlugin(),
     ],
     resolve: {
       alias: {
