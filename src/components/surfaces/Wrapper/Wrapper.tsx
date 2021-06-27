@@ -1,12 +1,13 @@
 import { FC } from 'react'
 
-import { cn, noop } from 'src/helpers'
+import { noop } from 'src/helpers'
 import { WrapperProps } from './Wrapper.types'
-import * as s from './Wrapper.css'
+
+import s from './Wrapper.styles'
 
 const Wrapper: FC<WrapperProps> = ({
   as: Tag = 'div',
-  className,
+  className = '',
   style,
   children,
   noPadding,
@@ -15,8 +16,8 @@ const Wrapper: FC<WrapperProps> = ({
 }) => {
   return (
     <Tag
-      className={cn(s.wrapper, !noPadding && s.padding, className)}
-      style={style}
+      css={[s.wrapper, !noPadding && s.padding, style]}
+      className={className}
       onClick={onClick}
       onKeyPress={onClick}
       {...rest}

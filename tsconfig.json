@@ -1,24 +1,26 @@
 {
+  "ts-node": {"files": true, "transpileOnly": true},
+  "include": ["./src", "./server"],
   "compilerOptions": {
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
     "skipLibCheck": false,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
+    "module": "CommonJS",
     "moduleResolution": "Node",
-    "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
+    "types": ["react/next", "react-dom/next"],
     "baseUrl": ".",
     "paths": {
       "src/*": ["src/*"],
-      "server/*": ["server/*"],
+      "server/*": ["server/*"]
     }
-  },
-  "include": ["./src", "./server"]
+  }
 }

@@ -1,17 +1,16 @@
-import { FC, lazy, Suspense } from 'react'
+import { FC, StrictMode } from 'react'
+import { Global } from '@emotion/react'
 
-import { Wrapper } from 'src/components/surfaces'
+import { Main } from 'src/components/layout/Main'
 
-const Lazy = lazy(() => import('../Lazy/Lazy'))
+import s from './App.styles'
 
 const App: FC = () => {
   return (
-    <Wrapper>
-      <p>Hello!</p>
-      <Suspense fallback={<p>Loading...</p>}>
-        <Lazy />
-      </Suspense>
-    </Wrapper>
+    <StrictMode>
+      <Global styles={s} />
+      <Main />
+    </StrictMode>
   )
 }
 

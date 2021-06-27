@@ -1,11 +1,12 @@
-import { StrictMode } from 'react'
-import { render } from 'react-dom'
+import { createRoot, hydrateRoot } from 'react-dom'
 
-import { App } from 'src/components/layout'
+import { App } from 'src/components/layout/App'
 
-render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-  document.getElementById('root'),
-)
+const container = document.getElementById('root') || document.body
+// TODO: Remove ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+const initRoot = import.meta.hot ? createRoot : hydrateRoot
+const root = initRoot(container)
+
+root.render(<App />)
