@@ -9,13 +9,12 @@
   "author": "Maksim Gubyshev <gubyshev@gmail.com> (https://github.com/gubmax)",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "build:preact": "tsc && vite build --mode preact",
+    "build": "vite build",
+    "build:preact": "vite build --mode preact",
     "serve": "vite preview",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --ext .ts,.tsx",
-    "prepare": "husky install",
-    "pre-commit": "lint-staged"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@vanilla-extract/css": "^1.0.0",
@@ -40,8 +39,5 @@
     "prettier": "^2.3.1",
     "typescript": "^4.3.4",
     "vite": "^2.3.8"
-  },
-  "lint-staged": {
-    "(src|server)/**/*.{ts,tsx}": "npm run lint -- --fix"
   }
 }
