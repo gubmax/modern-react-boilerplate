@@ -1,13 +1,13 @@
 import express, { Express } from 'express'
+import { InlineConfig } from 'vite'
 
 import { ENV_PROD } from './env'
-import { devRender, render } from './render'
+import { handleEntry, handleDevEntry } from './handleEntry'
 import { resolveApp } from './helpers'
 
-const VITE_SERVER_CONFIG = {
-  root: process.cwd(),
+const VITE_SERVER_CONFIG: InlineConfig = {
   server: {
-    middlewareMode: true,
+    middlewareMode: 'ssr',
     watch: {
       usePolling: true,
       interval: 500,
@@ -24,7 +24,7 @@ export async function bootstrap(): Promise<Express> {
 
     app.use(compression())
     app.use(serve(resolveApp('dist/client'), { index: false }))
-    app.use('*', render)
+    app.use('*', handleEntry)
     return app
   }
 
@@ -32,7 +32,7 @@ export async function bootstrap(): Promise<Express> {
   const devServer = await vite.createServer(VITE_SERVER_CONFIG)
 
   app.use(devServer.middlewares)
-  app.use('*', devRender(devServer))
+  app.use('*', handleDevEntry(devServer))
 
   return app
 }

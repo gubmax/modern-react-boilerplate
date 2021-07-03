@@ -9,10 +9,10 @@ import { pipeToNodeWritable } from 'react-dom/server'
 
 import { resolveApp } from './helpers/resolveApp'
 
-function writeTemplate(template: string, entry: JSX.Element, res: Response) {
+function writeTemplate(template: string, appHtml: JSX.Element, res: Response) {
   let didError = false
 
-  const { startWriting } = pipeToNodeWritable(entry, res, {
+  const { startWriting } = pipeToNodeWritable(appHtml, res, {
     onReadyToStream() {
       res.statusCode = didError ? 500 : 200
       res.setHeader('Content-type', 'text/html')
@@ -29,12 +29,13 @@ function writeTemplate(template: string, entry: JSX.Element, res: Response) {
   })
 }
 
-export function render(req: Request, res: Response): void {
+export function handleEntry(req: Request, res: Response): void {
   const exec = async () => {
     const template = readFileSync(resolveApp('dist/client/index.html'), 'utf-8')
-    const { default: entry } = await import(resolveApp('dist/server/entry'))
+    const { default: render } = await import(resolveApp('dist/server/render'))
+    const appHtml = render(req.originalUrl)
 
-    writeTemplate(template, entry, res)
+    writeTemplate(template, appHtml, res)
   }
 
   try {
@@ -45,16 +46,17 @@ export function render(req: Request, res: Response): void {
   }
 }
 
-export function devRender(devServer: ViteDevServer): (req: Request, res: Response) => void {
+export function handleDevEntry(devServer: ViteDevServer): (req: Request, res: Response) => void {
   return (req: Request, res: Response) => {
     const exec = async () => {
       const url = req.originalUrl
 
       const html = readFileSync(resolveApp('index.html'), 'utf-8')
       const template = await devServer.transformIndexHtml(url, html)
-      const { entry } = await devServer.ssrLoadModule('server/entry')
+      const { default: render } = await devServer.ssrLoadModule('server/render')
+      const appHtml = render(url)
 
-      writeTemplate(template, entry, res)
+      writeTemplate(template, appHtml, res)
     }
 
     try {

@@ -1,4 +1,5 @@
 import { createRoot, hydrateRoot } from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 import { App } from 'src/components/layout/App'
 
@@ -9,4 +10,8 @@ const container = document.getElementById('root') || document.body
 const initRoot = import.meta.hot ? createRoot : hydrateRoot
 const root = initRoot(container)
 
-root.render(<App />)
+root.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+)

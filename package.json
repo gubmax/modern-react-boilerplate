@@ -15,7 +15,7 @@
     "debug": "ts-node --inspect-brk server/main",
     "build": "npm run build:client && npm run build:server",
     "build:client": "vite build --outDir dist/client",
-    "build:server": "vite build --ssr server/entry --outDir dist/server",
+    "build:server": "vite build --ssr server/render --outDir dist/server",
     "serve": "cross-env NODE_ENV=production ts-node server/main",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --ext .ts,.tsx",
@@ -25,10 +25,13 @@
     "@emotion/react": "^11.4.0",
     "compression": "^1.7.4",
     "express": "^4.17.1",
+    "history": "^5.0.0",
     "node-fetch": "^2.6.1",
     "npm": "^7.19.0",
     "react": "18.0.0-alpha-73ffce1b6-20210624",
     "react-dom": "18.0.0-alpha-73ffce1b6-20210624",
+    "react-router": "^6.0.0-beta.0",
+    "react-router-dom": "^6.0.0-beta.0",
     "serve-static": "^1.14.1"
   },
   "devDependencies": {

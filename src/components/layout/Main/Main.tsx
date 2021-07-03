@@ -1,16 +1,16 @@
-import { FC, lazy, Suspense } from 'react'
+import { FC } from 'react'
+import { useRoutes } from 'react-router-dom'
 
+import { Header } from 'src/components/layout/Header'
 import { Wrapper } from 'src/components/surfaces/Wrapper'
-
-const Lazy = lazy(() => import('src/components/layout/Lazy/Lazy'))
+import { ROUTES } from './Main.constants'
 
 const Main: FC = () => {
+  const element = useRoutes(ROUTES)
   return (
-    <Wrapper>
-      <p>Hello!</p>
-      <Suspense fallback={<p>Loading...</p>}>
-        <Lazy />
-      </Suspense>
+    <Wrapper as="main">
+      <Header />
+      {element}
     </Wrapper>
   )
 }
