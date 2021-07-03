@@ -1,7 +1,6 @@
-import { HTMLAttributes } from 'react'
-import { StyledProps, AsProp } from 'src/types'
+import { StyledProps, AsProp, RefProp } from 'src/types'
 
-export interface WrapperProps extends StyledProps, AsProp, Omit<HTMLAttributes<unknown>, 'style'> {
+export interface WrapperProps extends StyledProps, AsProp<'div' | 'main'>, RefProp<HTMLDivElement> {
   noPadding?: boolean
   onClick?(): void
 }

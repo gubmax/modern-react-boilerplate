@@ -1,13 +1,10 @@
-import { forwardRef, ForwardRefRenderFunction } from 'react'
+import { FC } from 'react'
 
 import { AnchorProps } from './Anchor.types'
 import s from './Anchor.styles'
 
-const Anchor: ForwardRefRenderFunction<HTMLAnchorElement, AnchorProps> = (
-  { style, ...rest },
-  ref,
-) => {
-  return <a css={[s.link, style]} ref={ref} {...rest} />
+const Anchor: FC<AnchorProps> = ({ style, innerRef, ...rest }) => {
+  return <a css={[s.link, style]} ref={innerRef} {...rest} />
 }
 
-export default forwardRef(Anchor)
+export default Anchor

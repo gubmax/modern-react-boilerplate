@@ -11,6 +11,7 @@ const Wrapper: FC<WrapperProps> = ({
   style,
   children,
   noPadding,
+  innerRef,
   onClick = noop,
   ...rest
 }) => {
@@ -20,6 +21,7 @@ const Wrapper: FC<WrapperProps> = ({
       className={className}
       onClick={onClick}
       onKeyPress={onClick}
+      ref={innerRef}
       {...rest}
     >
       {children}
