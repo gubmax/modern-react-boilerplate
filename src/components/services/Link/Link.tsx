@@ -5,7 +5,7 @@ import { A } from 'src/components/typography/Anchor'
 import { noop } from 'src/helpers'
 import { LinkProps } from './Link.types'
 
-const Link: FC<LinkProps> = ({ to, style, onClick = noop, ...rest }) => {
+const Link: FC<LinkProps> = ({ to, onClick = noop, ...rest }) => {
   const navigate = useNavigate()
 
   const handleClick = (event: MouseEvent<HTMLAnchorElement>): void => {
@@ -14,7 +14,7 @@ const Link: FC<LinkProps> = ({ to, style, onClick = noop, ...rest }) => {
     navigate(to)
   }
 
-  return <A css={style} href={to} onClick={handleClick} {...rest} />
+  return <A href={to} onClick={handleClick} {...rest} />
 }
 
 export default Link

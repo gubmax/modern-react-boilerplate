@@ -1,10 +1,11 @@
 import { FC } from 'react'
 
+import { cn } from 'src/helpers'
 import { AnchorProps } from './Anchor.types'
-import s from './Anchor.styles'
+import { link } from './Anchor.css'
 
-const Anchor: FC<AnchorProps> = ({ style, innerRef, ...rest }) => {
-  return <a css={[s.link, style]} ref={innerRef} {...rest} />
+const Anchor: FC<AnchorProps> = ({ className, innerRef, ...rest }) => {
+  return <a className={cn(link, className)} ref={innerRef} {...rest} />
 }
 
 export default Anchor

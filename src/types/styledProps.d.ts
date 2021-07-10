@@ -1,6 +1,6 @@
-import { CSSObject } from '@emotion/react'
+import { CSSProperties } from 'react'
 
 export interface StyledProps {
   className?: string
-  style?: CSSObject
+  style?: CSSProperties
 }

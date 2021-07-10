@@ -11,7 +11,7 @@
     "project": ["./tsconfig.json"],
     "ecmaFeatures": { "jsx": true }
   },
-  "plugins": ["prettier", "@emotion"],
+  "plugins": ["prettier"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",

@@ -1,8 +1,8 @@
 import express, { Express } from 'express'
 import { InlineConfig } from 'vite'
 
-import { ENV_PROD } from './env'
-import { handleEntry, handleDevEntry } from './handleEntry'
+import { prerenderDevMiddleware, prerenderMiddleware } from './middlewares/prerender'
+import { ENV_PROD } from './constants'
 import { resolveApp } from './helpers'
 
 const VITE_SERVER_CONFIG: InlineConfig = {
@@ -24,7 +24,7 @@ export async function bootstrap(): Promise<Express> {
 
     app.use(compression())
     app.use(serve(resolveApp('dist/client'), { index: false }))
-    app.use('*', handleEntry)
+    app.use('*', prerenderMiddleware)
     return app
   }
 
@@ -32,7 +32,7 @@ export async function bootstrap(): Promise<Express> {
   const devServer = await vite.createServer(VITE_SERVER_CONFIG)
 
   app.use(devServer.middlewares)
-  app.use('*', handleDevEntry(devServer))
+  app.use('*', prerenderDevMiddleware(devServer))
 
   return app
 }

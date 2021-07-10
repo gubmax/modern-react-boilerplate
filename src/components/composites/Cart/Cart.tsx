@@ -1,9 +1,9 @@
 import { FC } from 'react'
 
-import s from './Cart.styles'
+import * as s from './Cart.css'
 
 const Cart: FC = () => {
-  return <section css={s.text}>I&apos;am lazy</section>
+  return <section className={s.text}>I&apos;am lazy</section>
 }
 
 export default Cart

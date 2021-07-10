@@ -1,28 +1,27 @@
 import path from 'path'
-import { UserConfigFn } from 'vite'
+import { UserConfig } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 
 /**
  * @link https://vitejs.dev/config/
  */
-const config: UserConfigFn = ({ mode }) => {
-  return {
-    plugins: [
-      reactRefresh(),
-    ],
-    resolve: {
-      alias: {
-        src: path.resolve(__dirname, '/src'),
-        server: path.resolve(__dirname, '/server'),
-      },
+const config: UserConfig = {
+  plugins: [
+    reactRefresh(),
+    vanillaExtractPlugin(),
+  ],
+  resolve: {
+    alias: {
+      src: path.resolve(__dirname, '/src'),
+      server: path.resolve(__dirname, '/server'),
     },
-    esbuild: {
-      jsxFactory: 'jsx',
-      jsxInject: 'import { jsx } from "@emotion/react"',
-    },
-    build: {
-      minify: false
-    }
+  },
+  esbuild: {
+    jsxInject: 'import React from "react"',
+  },
+  build: {
+    minify: false
   }
 }
 
