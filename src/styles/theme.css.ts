@@ -19,16 +19,16 @@ export const cssCommonVars = createGlobalTheme(':root', {
 
 export const cssThemeVars = createThemeContract({
   color: {
-    primary: null,
-    secondary: null,
-    accent: null,
-    accentLight: null,
-    bg0: null,
-    bg1: null,
-    surface0: null,
-    surface1: null,
-    border: null,
-    borderLight: null,
+    primary: '',
+    secondary: '',
+    accent: '',
+    accentLight: '',
+    bg0: '',
+    bg1: '',
+    surface0: '',
+    surface1: '',
+    border: '',
+    borderLight: '',
   },
 })
 

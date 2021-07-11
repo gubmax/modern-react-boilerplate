@@ -1,4 +1,5 @@
 import { globalStyle } from '@vanilla-extract/css'
+
 import { cssThemeVars, darkThemeVars, ligthThemeVars } from './theme.css'
 
 globalStyle('body', {

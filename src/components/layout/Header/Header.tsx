@@ -1,15 +1,22 @@
 import { FC } from 'react'
+import { useLocation, useNavigate } from 'react-router'
 
-import { Link } from 'src/components/services/Link'
-import { PageRoutes } from 'src/infra/http'
+import { List } from 'src/components/surfaces/List'
+import { IW } from 'src/components/inputs/InteractiveWrapper'
+import { ROUTES } from './Header.constants'
 
 const Header: FC = () => {
+  const { pathname } = useLocation()
+  const navigate = useNavigate()
+
   return (
-    <nav>
-      <Link to={PageRoutes.ROOT}>Home</Link>
-      <br />
-      <Link to={PageRoutes.CART}>Cart</Link>
-    </nav>
+    <List as="ul">
+      {ROUTES.map(({ to, text }) => (
+        <IW key={to} as="li" active={to === pathname} onClick={() => navigate(to)}>
+          {text}
+        </IW>
+      ))}
+    </List>
   )
 }
 

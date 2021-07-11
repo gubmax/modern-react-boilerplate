@@ -2,8 +2,7 @@ import fetch from 'node-fetch'
 
 import { ENV_TEST, SERVER_PORT } from './constants'
 import { bootstrap } from './bootstrap'
-
-global.fetch = fetch
+;(global.fetch as unknown) = fetch
 
 if (!ENV_TEST) {
   void bootstrap().then((app) => {
