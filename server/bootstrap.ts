@@ -1,19 +1,8 @@
 import express, { Express } from 'express'
-import { InlineConfig } from 'vite'
 
 import { prerenderDevMiddleware, prerenderMiddleware } from './middlewares/prerender'
-import { ENV_PROD } from './constants'
+import { ENV_PROD, VITE_SERVER_CONFIG } from './constants'
 import { resolveApp } from './helpers'
-
-const VITE_SERVER_CONFIG: InlineConfig = {
-  server: {
-    middlewareMode: 'ssr',
-    watch: {
-      usePolling: true,
-      interval: 500,
-    },
-  },
-}
 
 export async function bootstrap(): Promise<Express> {
   const app = express()

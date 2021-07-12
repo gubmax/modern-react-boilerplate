@@ -1,10 +1,10 @@
 import { PartialRouteObject } from 'react-router'
 
-import { HomePage } from 'src/components/pages/HomePage'
+import { AboutPage } from 'src/components/pages/AboutPage'
 import { CartPage } from 'src/components/pages/CartPage'
 import { PageRoutes } from 'src/infra/http'
 
 export const ROUTES: PartialRouteObject[] = [
-  { path: PageRoutes.ROOT, element: <HomePage /> },
+  { path: PageRoutes.ROOT, element: <AboutPage /> },
   { path: PageRoutes.CART, element: <CartPage /> },
 ]

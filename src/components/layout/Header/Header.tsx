@@ -1,22 +1,18 @@
 import { FC } from 'react'
-import { useLocation, useNavigate } from 'react-router'
 
-import { List } from 'src/components/surfaces/List'
-import { IW } from 'src/components/inputs/InteractiveWrapper'
-import { ROUTES } from './Header.constants'
+import { A } from 'src/components/typography/Anchor'
+import { H2 } from 'src/components/typography/Heading'
+import { LINK_REPO } from './Header.constants'
+import * as s from './Header.css'
 
 const Header: FC = () => {
-  const { pathname } = useLocation()
-  const navigate = useNavigate()
-
   return (
-    <List as="ul">
-      {ROUTES.map(({ to, text }) => (
-        <IW key={to} as="li" active={to === pathname} onClick={() => navigate(to)}>
-          {text}
-        </IW>
-      ))}
-    </List>
+    <div className={s.wrapper}>
+      <H2 className={s.logoWrapper}>🦥 Modern React Boilerplate</H2>
+      <A href={LINK_REPO} className={s.repoLink} target="_blank" rel="noreferrer noopener">
+        GitHub
+      </A>
+    </div>
   )
 }
 
