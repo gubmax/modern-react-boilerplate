@@ -1,7 +1,9 @@
 import { FC } from 'react'
 
+import { H1 } from 'src/components/typography/Heading'
+
 const AboutPage: FC = () => {
-  return <h2>About Page</h2>
+  return <H1>About</H1>
 }
 
 export default AboutPage

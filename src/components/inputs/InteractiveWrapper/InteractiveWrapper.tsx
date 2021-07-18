@@ -6,10 +6,15 @@ import { Wrapper } from 'src/components/surfaces/Wrapper'
 import { InteractiveWrapperProps } from './InteractiveWrapper.types'
 import * as s from './InteractiveWrapper.css'
 
-const InteractiveWrapper: FC<InteractiveWrapperProps> = ({ active, children, ...rest }) => {
+const InteractiveWrapper: FC<InteractiveWrapperProps> = ({
+  active,
+  children,
+  className,
+  ...rest
+}) => {
   return (
     <Wrapper
-      className={cn(rippleEffect, s.wrapper, active && s.active)}
+      className={cn(rippleEffect, s.wrapper, active && s.active, className)}
       role="link"
       tabIndex={0}
       {...rest}
