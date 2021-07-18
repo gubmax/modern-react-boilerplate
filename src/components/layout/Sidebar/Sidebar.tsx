@@ -13,8 +13,16 @@ const Sidebar: FC = () => {
   return (
     <aside className={s.wrapper}>
       <List as="ul">
-        {ROUTES.map(({ to, text }) => (
-          <IW key={to} as="li" active={to === pathname} onClick={() => navigate(to)}>
+        {ROUTES.map(({ to, icon, text }) => (
+          <IW
+            key={to}
+            as="li"
+            className={s.listItem}
+            active={to === pathname}
+            noPadding
+            onClick={() => navigate(to)}
+          >
+            <i className={s.routeIcon}>{icon}</i>
             {text}
           </IW>
         ))}
