@@ -8,7 +8,7 @@ import * as s from './Header.css'
 const Header: FC = () => {
   return (
     <div className={s.wrapper}>
-      <H2 className={s.logoWrapper}>🦥 Modern React Boilerplate</H2>
+      <H2 className={s.logoWrapper}>🌀 Modern React Boilerplate</H2>
       <A href={LINK_REPO} className={s.repoLink} target="_blank" rel="noreferrer noopener">
         GitHub
       </A>

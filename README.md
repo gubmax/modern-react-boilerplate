@@ -1,4 +1,4 @@
-# Modern React Boilerplate 🦥
+# 🌀 Modern React Boilerplate
 
 This project is boilerplate for starting modern React web app.
 
