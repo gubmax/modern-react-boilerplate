@@ -1,7 +1,7 @@
 import { hydrateRoot } from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 
-import { App } from 'src/components/layout/App'
+import { App } from 'src/components/layout'
 import reportWebVitals from './reportWebVitals'
 
 const container = document.getElementById('root') || document.body

@@ -1,1 +1,1 @@
-export { resolveApp } from './resolveApp'
+export * from './resolveApp'

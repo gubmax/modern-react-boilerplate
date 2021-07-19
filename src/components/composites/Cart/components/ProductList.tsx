@@ -1,6 +1,6 @@
 import { FC, useContext } from 'react'
 
-import { List } from 'src/components/surfaces/List'
+import { List } from 'src/components/surfaces'
 import { StyledProps } from 'src/types'
 import { CartContext } from '../Cart.provider'
 import { ProductItem } from './ProductItem'

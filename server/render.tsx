@@ -1,6 +1,6 @@
 import { StaticRouter } from 'react-router-dom/server'
 
-import { App } from 'src/components/layout/App'
+import { App } from 'src/components/layout'
 
 function render(url: string): JSX.Element {
   return (

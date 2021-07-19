@@ -1,8 +1,8 @@
 import { FC, useContext } from 'react'
 
-import { H2, H3 } from 'src/components/typography/Heading'
-import ProductList from './components/ProductList'
 import { useObservableState } from 'src/hooks'
+import { H2, H3 } from 'src/components/typography'
+import { ProductList } from './components'
 import { CartContext, provideCartContext } from './Cart.provider'
 import * as s from './Cart.css'
 

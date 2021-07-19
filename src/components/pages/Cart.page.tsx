@@ -1,6 +1,6 @@
 import { lazy, FC, Suspense } from 'react'
 
-import { H1, H2 } from 'src/components/typography/Heading'
+import { H1, H2 } from 'src/components/typography'
 
 const Cart = lazy(() => import('src/components/composites/Cart/chunk-cart'))
 

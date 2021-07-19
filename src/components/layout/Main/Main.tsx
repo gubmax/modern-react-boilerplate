@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { useRoutes } from 'react-router-dom'
 
-import { Header } from 'src/components/layout/Header'
-import { Sidebar } from 'src/components/layout/Sidebar'
+import { Header } from '../Header'
+import { Sidebar } from '../Sidebar'
 import { ROUTES } from './Main.constants'
 import * as s from './Main.css'
 

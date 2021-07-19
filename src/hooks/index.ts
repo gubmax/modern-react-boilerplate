@@ -1,1 +1,1 @@
-export { useObservableState } from './useObservableState'
+export * from './useObservableState'

@@ -1,8 +1,8 @@
 import { FC } from 'react'
 
 import { cn } from 'src/helpers'
+import { Wrapper } from 'src/components/surfaces'
 import { rippleEffect } from 'src/styles/rippleEffect.css'
-import { Wrapper } from 'src/components/surfaces/Wrapper'
 import { InteractiveWrapperProps } from './InteractiveWrapper.types'
 import * as s from './InteractiveWrapper.css'
 

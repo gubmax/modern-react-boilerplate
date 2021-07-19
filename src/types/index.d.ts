@@ -1,3 +1,3 @@
-export type { AsProp } from './asProp'
-export type { RefProp } from './refProp'
-export type { StyledProps } from './styledProps'
+export * from './asProp'
+export * from './refProp'
+export * from './styledProps'

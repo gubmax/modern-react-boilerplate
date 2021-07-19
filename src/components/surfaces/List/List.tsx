@@ -1,7 +1,7 @@
 import { FC, Children } from 'react'
 
-import { Wrapper } from 'src/components/surfaces/Wrapper'
-import { Divider } from 'src/components/surfaces/Divider'
+import { Divider } from '../Divider'
+import { Wrapper } from '../Wrapper'
 import { ListProps } from './List.types'
 import * as s from './List.css'
 

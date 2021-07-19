@@ -1,1 +1,1 @@
-export { prerenderDevMiddleware, prerenderMiddleware } from './prerender'
+export * from './prerender'

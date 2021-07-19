@@ -1,1 +1,1 @@
-export { PageRoutes } from './constants'
+export * from './constants'

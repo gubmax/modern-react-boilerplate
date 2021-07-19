@@ -1,7 +1,6 @@
 import { FC } from 'react'
 
-import { A } from 'src/components/typography/Anchor'
-import { H2 } from 'src/components/typography/Heading'
+import { H2, A } from 'src/components/typography'
 import { LINK_REPO } from './Header.constants'
 import * as s from './Header.css'
 

@@ -1,9 +1,8 @@
 import { FC, useCallback, useContext } from 'react'
 
-import { RoundedButton } from 'src/components/inputs/RoundedButton'
-import { H3 } from 'src/components/typography/Heading'
-import { Button } from 'src/components/inputs/Button'
-import { Wrapper } from 'src/components/surfaces/Wrapper'
+import { Button, RoundedButton } from 'src/components/inputs'
+import { Wrapper } from 'src/components/surfaces'
+import { H3 } from 'src/components/typography'
 import { CartContext } from '../../Cart.provider'
 import { ProductItemProps } from './ProductItem.types'
 import * as s from './ProductItem.css'

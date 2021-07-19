@@ -1,7 +1,6 @@
 import { FC, StrictMode } from 'react'
 
-import { Main } from 'src/components/layout/Main'
-
+import { Main } from '../Main'
 import './App.css'
 
 const App: FC = () => {

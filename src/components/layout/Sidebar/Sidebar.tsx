@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { IW } from 'src/components/inputs/InteractiveWrapper'
-import { List } from 'src/components/surfaces/List'
+import { IW } from 'src/components/inputs'
+import { List } from 'src/components/surfaces'
 import { ROUTES } from './Sidebar.constants'
 import * as s from './Sidebar.css'
 

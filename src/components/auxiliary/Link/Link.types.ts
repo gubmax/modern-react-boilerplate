@@ -1,4 +1,4 @@
-import { AnchorProps } from 'src/components/typography/Anchor/Anchor.types'
+import { AnchorProps } from 'src/components/typography'
 import { PageRoutes } from 'src/infra/http'
 import { RefProp } from 'src/types'
 
