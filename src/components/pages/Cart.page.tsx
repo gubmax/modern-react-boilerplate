@@ -3,7 +3,7 @@ import { lazy, FC, Suspense } from 'react'
 import { H1, H2 } from 'src/components/typography'
 import { MOCK_PRODUCTS } from './products.mock'
 
-const Cart = lazy(() => import('src/components/composites/Cart/chunk-cart'))
+const Cart = lazy(() => import('src/components/composites/Cart/cart.chunk'))
 
 const CartPage: FC = () => {
   return (
