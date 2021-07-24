@@ -1,12 +1,15 @@
-import { createContext } from 'react'
-
-import { provideContext } from 'src/utils'
+import { providerFactory } from 'src/utils'
+import { Product } from './models'
 import { CartService } from './services'
-import { MOCK_PRODUCTS } from './products.mock'
 
-const providedValue = {
-  cartService: new CartService(MOCK_PRODUCTS),
+interface Props {
+  goods?: Product[]
 }
 
-export const CartContext = createContext(providedValue)
-export const provideCartContext = provideContext(CartContext, providedValue)
+interface Deps {
+  cartService: CartService
+}
+
+export const [provide, useDeps] = providerFactory<Deps, Props>(({ goods }) => ({
+  cartService: new CartService(goods),
+}))

@@ -7,8 +7,8 @@ export class CartService {
   goods$: BehaviorSubject<Product[]>
   totalPrice = 0
 
-  constructor(initialGoods: Product[]) {
-    this.goods$ = new BehaviorSubject(initialGoods)
+  constructor(goods: Product[] = []) {
+    this.goods$ = new BehaviorSubject(goods)
     this.goods$.subscribe(() => this.updateTotalPrice())
     this.updateTotalPrice()
     autobind(this)

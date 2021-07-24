@@ -1,16 +1,16 @@
-import { FC, useCallback, useContext } from 'react'
+import { FC, useCallback } from 'react'
 
 import { Button, RoundedButton } from 'src/components/inputs'
 import { Wrapper } from 'src/components/surfaces'
 import { H3 } from 'src/components/typography'
-import { CartContext } from '../../Cart.provider'
+import { useDeps } from '../../Cart.provider'
 import { ProductItemProps } from './ProductItem.types'
 import * as s from './ProductItem.css'
 
 const ProductItem: FC<ProductItemProps> = ({ product: { id, icon, title, price, amount } }) => {
   const {
     cartService: { setAmount, remove },
-  } = useContext(CartContext)
+  } = useDeps()
 
   const increase = useCallback(() => setAmount(id, amount + 1), [amount, id, setAmount])
   const decrease = useCallback(() => setAmount(id, amount - 1), [amount, id, setAmount])

@@ -1,12 +1,12 @@
-import { FC, useContext } from 'react'
+import { FC } from 'react'
 
 import { List } from 'src/components/surfaces'
 import { StyledProps } from 'src/types'
-import { CartContext } from '../Cart.provider'
+import { useDeps } from '../Cart.provider'
 import { ProductItem } from './ProductItem'
 
 const ProductList: FC<StyledProps> = ({ ...rest }) => {
-  const { cartService } = useContext(CartContext)
+  const { cartService } = useDeps()
 
   return (
     <List {...rest}>

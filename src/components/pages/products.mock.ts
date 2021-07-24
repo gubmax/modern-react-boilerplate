@@ -1,4 +1,4 @@
-import { Product } from './models'
+import { Product } from 'src/components/composites/Cart/models'
 
 export const MOCK_PRODUCTS: Product[] = [
   {

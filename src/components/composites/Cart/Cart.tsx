@@ -1,15 +1,15 @@
-import { FC, useContext } from 'react'
+import { FC } from 'react'
 
 import { useObservableState } from 'src/hooks'
 import { H2, H3 } from 'src/components/typography'
 import { ProductList } from './components'
-import { CartContext, provideCartContext } from './Cart.provider'
+import { provide, useDeps } from './Cart.provider'
 import * as s from './Cart.css'
 
 const Cart: FC = () => {
   const {
     cartService: { goods$, goods, totalPrice },
-  } = useContext(CartContext)
+  } = useDeps()
 
   useObservableState(goods$)
 
@@ -30,4 +30,4 @@ const Cart: FC = () => {
   )
 }
 
-export default provideCartContext(Cart)
+export default provide(Cart)

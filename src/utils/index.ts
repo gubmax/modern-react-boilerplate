@@ -1,1 +1,1 @@
-export * from './provideContext'
+export * from './providerFactory'
