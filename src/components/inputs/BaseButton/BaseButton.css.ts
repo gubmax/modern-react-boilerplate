@@ -1,21 +1,25 @@
-import { style } from '@vanilla-extract/css'
+import { composeStyles, style } from '@vanilla-extract/css'
 
-import { cssThemeVars } from 'src/styles'
+import { cssThemeVars, gridAtom } from 'src/styles'
 
-export const btn = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRadius: '20px',
-  borderWidth: 0,
-  cursor: 'pointer',
-  fontFamily: 'inherit',
-  fontWeight: 500,
-  height: '3rem',
-  minWidth: '10rem',
-  outline: 'none',
-  padding: `0 ${cssThemeVars.color.primary}`,
-})
+export const btn = composeStyles(
+  gridAtom({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }),
+  style({
+    borderRadius: '20px',
+    borderWidth: 0,
+    cursor: 'pointer',
+    fontFamily: 'inherit',
+    fontWeight: 500,
+    height: '3rem',
+    minWidth: '10rem',
+    outline: 'none',
+    padding: `0 ${cssThemeVars.color.primary}`,
+  }),
+)
 
 export const defaultStyle = style({
   background: 'transparent',

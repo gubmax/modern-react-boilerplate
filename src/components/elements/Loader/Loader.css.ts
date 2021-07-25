@@ -1,6 +1,6 @@
 import { style, keyframes, composeStyles } from '@vanilla-extract/css'
 
-import { cssThemeVars } from 'src/styles'
+import { cssThemeVars, gridAtom } from 'src/styles'
 
 const borderRadius = style({
   borderRadius: '50%',
@@ -27,8 +27,10 @@ export const spinner = composeStyles(
 
 export const loader = composeStyles(
   borderRadius,
-  style({
+  gridAtom({
     display: 'flex',
+  }),
+  style({
     transform: 'translateZ(0)',
   }),
 )

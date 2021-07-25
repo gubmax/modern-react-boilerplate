@@ -1,17 +1,21 @@
-import { style } from '@vanilla-extract/css'
-import { cssCommonVars } from 'src/styles'
+import { composeStyles, style } from '@vanilla-extract/css'
+import { cssCommonVars, gridAtom } from 'src/styles'
 
-export const wrapper = style({
-  gridArea: 'header',
-  display: 'flex',
-  alignItems: 'center',
-  padding: cssCommonVars.space.primary,
-})
+export const wrapper = composeStyles(
+  gridAtom({
+    display: 'flex',
+    alignItems: 'center',
+  }),
+  style({
+    gridArea: 'header',
+    padding: cssCommonVars.space.primary,
+  }),
+)
 
 export const logoWrapper = style({
   marginBottom: 0,
 })
 
-export const repoLink = style({
+export const repoLink = gridAtom({
   marginLeft: 'auto',
 })
