@@ -32,6 +32,6 @@ export const primaryStyle = style({
   color: cssThemeVars.color.surface0,
 
   ':after': {
-    background: 'rgba(255, 255, 255, .12)',
+    background: 'rgba(255, 255, 255, 0.25)',
   },
 })

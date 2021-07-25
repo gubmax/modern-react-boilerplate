@@ -44,3 +44,7 @@ export const counter = style({
 export const marginLeft = style({
   marginLeft: 'auto',
 })
+
+export const deleteButton = style({
+  marginRight: cssCommonVars.space.secondary,
+})

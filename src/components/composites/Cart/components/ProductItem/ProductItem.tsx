@@ -25,7 +25,9 @@ const ProductItem: FC<ProductItemProps> = ({ product: { id, icon, title, price, 
           <span className={s.price}>${price * amount}</span>
         </div>
         <div className={s.wrapper}>
-          <Button onClick={removeItem}>Delete</Button>
+          <Button className={s.deleteButton} onClick={removeItem}>
+            Delete
+          </Button>
           <RoundedButton className={s.marginLeft} primary onClick={decrease}>
             -
           </RoundedButton>
