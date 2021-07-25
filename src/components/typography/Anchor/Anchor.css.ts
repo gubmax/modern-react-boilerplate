@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
-import { cssThemeVars } from 'src/styles'
+import { theme } from 'src/styles'
 
 export const link = style({
-  borderBottom: `1px dashed ${cssThemeVars.color.primary}`,
+  borderBottom: `1px dashed ${theme.color.primary}`,
 })

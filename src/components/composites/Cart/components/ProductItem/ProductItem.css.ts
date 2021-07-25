@@ -1,6 +1,6 @@
 import { composeStyles, style } from '@vanilla-extract/css'
 
-import { cssCommonVars, cssThemeVars, gridAtom } from 'src/styles'
+import { vars, theme, gridAtom } from 'src/styles'
 
 export const wrapper = gridAtom({
   display: 'flex',
@@ -24,8 +24,8 @@ export const imageBox = composeStyles(
     height: '8rem',
     fontSize: '5rem',
     borderRadius: '12px',
-    marginRight: cssCommonVars.space.primary,
-    backgroundColor: cssThemeVars.color.bg0,
+    marginRight: vars.space.primary,
+    backgroundColor: theme.color.bg0,
     userSelect: 'none',
   }),
 )
@@ -36,7 +36,7 @@ export const price = composeStyles(
   }),
   style({
     minWidth: '3.5rem',
-    fontSize: cssCommonVars.fontSize.h3,
+    fontSize: vars.fontSize.h3,
     fontWeight: 500,
     textAlign: 'end',
   }),
@@ -49,7 +49,7 @@ export const counter = composeStyles(
   style({
     width: '2.5rem',
     textAlign: 'center',
-    fontSize: cssCommonVars.fontSize.h3,
+    fontSize: vars.fontSize.h3,
   }),
 )
 
@@ -62,6 +62,6 @@ export const deleteButton = composeStyles(
     alignItems: 'center',
   }),
   style({
-    marginRight: cssCommonVars.space.secondary,
+    marginRight: vars.space.secondary,
   }),
 )

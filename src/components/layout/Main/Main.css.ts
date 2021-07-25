@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css'
-import { cssCommonVars } from 'src/styles'
+import { vars } from 'src/styles'
 
 export const page = style({
   display: 'grid',
@@ -14,5 +14,5 @@ export const page = style({
 
 export const main = style({
   gridArea: 'main',
-  padding: `0 ${cssCommonVars.space.primary} ${cssCommonVars.space.secondary}`,
+  padding: `0 ${vars.space.primary} ${vars.space.secondary}`,
 })

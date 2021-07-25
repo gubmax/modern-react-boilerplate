@@ -1,13 +1,14 @@
 import { style } from '@vanilla-extract/css'
-import { cssThemeVars } from './theme.css'
 
-export const rippleEffect = style({
+import { theme } from '../vars.css'
+
+export const focusStyle = style({
   position: 'relative',
   overflow: 'hidden',
   zIndex: 0,
 
   ':after': {
-    background: cssThemeVars.color.accentLight,
+    background: theme.color.accentLight,
     borderRadius: '50%',
     content: '""',
     display: 'block',

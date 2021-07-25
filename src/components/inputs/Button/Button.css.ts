@@ -1,9 +1,9 @@
 import { style } from '@vanilla-extract/css'
 
-import { cssCommonVars } from 'src/styles'
+import { vars } from 'src/styles'
 
 export const wrapper = style({
-  fontSize: cssCommonVars.fontSize.accent,
+  fontSize: vars.fontSize.accent,
 })
 
 export const large = style({

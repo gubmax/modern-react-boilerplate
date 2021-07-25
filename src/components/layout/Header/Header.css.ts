@@ -1,5 +1,5 @@
 import { composeStyles, style } from '@vanilla-extract/css'
-import { cssCommonVars, gridAtom } from 'src/styles'
+import { vars, gridAtom } from 'src/styles'
 
 export const wrapper = composeStyles(
   gridAtom({
@@ -8,7 +8,7 @@ export const wrapper = composeStyles(
   }),
   style({
     gridArea: 'header',
-    padding: cssCommonVars.space.primary,
+    padding: vars.space.primary,
   }),
 )
 

@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { App } from 'src/components/layout'
 import reportWebVitals from './reportWebVitals'
+import 'src/styles/global.css'
 
 const container = document.getElementById('root') || document.body
 const root = hydrateRoot(container)

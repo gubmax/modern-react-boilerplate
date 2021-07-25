@@ -1,6 +1,6 @@
 import { style, keyframes, composeStyles } from '@vanilla-extract/css'
 
-import { cssThemeVars, gridAtom } from 'src/styles'
+import { theme, gridAtom } from 'src/styles'
 
 const borderRadius = style({
   borderRadius: '50%',
@@ -20,7 +20,7 @@ export const spinner = composeStyles(
     margin: 'auto',
     borderWidth: '3px',
     borderStyle: 'solid',
-    borderColor: `transparent ${cssThemeVars.color.accent}`,
+    borderColor: `transparent ${theme.color.accent}`,
     animation: `${spin} 0.65s infinite linear`,
   }),
 )
@@ -42,6 +42,6 @@ export const spinnerSmall = style({
 })
 
 export const spinnerSecondary = style({
-  borderRightColor: cssThemeVars.color.bg0,
-  borderLeftColor: cssThemeVars.color.bg1,
+  borderRightColor: theme.color.bg0,
+  borderLeftColor: theme.color.bg1,
 })

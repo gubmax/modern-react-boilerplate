@@ -1,6 +1,6 @@
 import { composeStyles, style } from '@vanilla-extract/css'
 
-import { cssThemeVars, gridAtom } from 'src/styles'
+import { theme, gridAtom } from 'src/styles'
 
 export const btn = composeStyles(
   gridAtom({
@@ -17,23 +17,23 @@ export const btn = composeStyles(
     height: '3rem',
     minWidth: '10rem',
     outline: 'none',
-    padding: `0 ${cssThemeVars.color.primary}`,
+    padding: `0 ${theme.color.primary}`,
   }),
 )
 
 export const defaultStyle = style({
   background: 'transparent',
-  border: `1px solid ${cssThemeVars.color.accent}`,
-  color: cssThemeVars.color.accent,
+  border: `1px solid ${theme.color.accent}`,
+  color: theme.color.accent,
 
   ':focus': {
-    color: cssThemeVars.color.accent,
+    color: theme.color.accent,
   },
 })
 
 export const primaryStyle = style({
-  background: cssThemeVars.color.accent,
-  color: cssThemeVars.color.surface0,
+  background: theme.color.accent,
+  color: theme.color.surface0,
 
   ':after': {
     background: 'rgba(255, 255, 255, 0.25)',

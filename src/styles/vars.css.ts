@@ -1,6 +1,6 @@
 import { createThemeContract, assignVars, createGlobalTheme } from '@vanilla-extract/css'
 
-export const cssCommonVars = createGlobalTheme(':root', {
+export const vars = createGlobalTheme(':root', {
   fontSize: {
     primary: '1rem',
     accent: '1.10rem',
@@ -17,7 +17,7 @@ export const cssCommonVars = createGlobalTheme(':root', {
   },
 })
 
-export const cssThemeVars = createThemeContract({
+export const theme = createThemeContract({
   color: {
     primary: '',
     secondary: '',
@@ -32,7 +32,7 @@ export const cssThemeVars = createThemeContract({
   },
 })
 
-export const ligthThemeVars = assignVars(cssThemeVars, {
+export const ligthTheme = assignVars(theme, {
   color: {
     primary: 'rgb(64, 64, 64)',
     secondary: 'rgb(118, 118, 118)',
@@ -47,7 +47,7 @@ export const ligthThemeVars = assignVars(cssThemeVars, {
   },
 })
 
-export const darkThemeVars = assignVars(cssThemeVars, {
+export const darkTheme = assignVars(theme, {
   color: {
     primary: 'rgb(224, 224, 224)',
     secondary: 'rgb(64, 64, 64)',

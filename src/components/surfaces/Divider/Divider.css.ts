@@ -1,8 +1,8 @@
 import { style } from '@vanilla-extract/css'
-import { cssThemeVars } from 'src/styles'
+import { theme } from 'src/styles'
 
 export const divider = style({
   height: '1px',
-  background: cssThemeVars.color.borderLight,
+  background: theme.color.borderLight,
   borderWidth: 0,
 })

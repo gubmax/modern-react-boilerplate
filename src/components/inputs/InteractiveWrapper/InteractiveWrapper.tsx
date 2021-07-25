@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { cn } from 'src/helpers'
 import { Wrapper } from 'src/components/surfaces'
-import { rippleEffect } from 'src/styles/rippleEffect.css'
+import { focusStyle } from 'src/styles'
 import { InteractiveWrapperProps } from './InteractiveWrapper.types'
 import * as s from './InteractiveWrapper.css'
 
@@ -14,7 +14,7 @@ const InteractiveWrapper: FC<InteractiveWrapperProps> = ({
 }) => {
   return (
     <Wrapper
-      className={cn(rippleEffect, s.wrapper, active && s.active, className)}
+      className={cn(focusStyle, s.wrapper, active && s.active, className)}
       role="link"
       tabIndex={0}
       {...rest}
