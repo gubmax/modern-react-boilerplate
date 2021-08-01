@@ -8,7 +8,7 @@ import { writeTemplate } from './writeTemplate'
 import type { PreloadUrls } from './types'
 import { collectCss, injectCss } from './css'
 
-export function prerenderMiddleware(req: Request, res: Response): void {
+export function prerender(req: Request, res: Response): void {
   const exec = async () => {
     const template = readFileSync(resolveApp('dist/client/index.html'), 'utf-8')
 
@@ -29,9 +29,7 @@ export function prerenderMiddleware(req: Request, res: Response): void {
   }
 }
 
-export function prerenderDevMiddleware(
-  devServer: ViteDevServer,
-): (req: Request, res: Response) => void {
+export function prerenderDev(devServer: ViteDevServer): (req: Request, res: Response) => void {
   return (req: Request, res: Response) => {
     const visitedModules = new Set<string>()
     const preloadUrls: PreloadUrls = {
