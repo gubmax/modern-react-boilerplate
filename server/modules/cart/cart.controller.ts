@@ -1,31 +1,31 @@
 import { RequestHandler } from 'express'
 
-import { JSONPatchOperations } from '../../utils/jsonPatch'
+import { JSONPatchOperations, UpdateAmountBody, UpdateAmountPaths } from 'shared/infra/http'
 import { CartService } from './cart.service'
-import { UpdateAmountBody } from './cart.types'
 
-class CartController {
+export class CartController {
   cartService: CartService
 
-  constructor() {
-    this.cartService = new CartService()
+  constructor({ cartService }: { cartService: CartService }) {
+    this.cartService = cartService
   }
 
-  updateAmount: RequestHandler<never, void, UpdateAmountBody> = ({ body }, res) => {
+  updateAmount: RequestHandler<never, string, UpdateAmountBody> = ({ body }, res) => {
+    const { op, path, value } = body
     try {
-      if (body.op === JSONPatchOperations.replace) {
-        if (body.path === '/increase') {
-          this.cartService.increaseAmount(body.value?.id || '')
-        } else if (body.path === '/decrease') {
-          this.cartService.decreaseAmount(body.value?.id || '')
+      if (op === JSONPatchOperations.replace) {
+        if (path === UpdateAmountPaths.increase) {
+          this.cartService.increaseAmount(value?.id || '')
+        } else if (path === UpdateAmountPaths.decrease) {
+          this.cartService.decreaseAmount(value?.id || '')
         }
+
+        return res.status(200).json('success')
       }
 
-      res.sendStatus(200)
+      throw Error('Unexpected operation')
     } catch (error: unknown) {
-      res.sendStatus(500)
+      res.status(500).json('failure')
     }
   }
 }
-
-export default new CartController()

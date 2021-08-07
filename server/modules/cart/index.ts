@@ -1,1 +1,1 @@
-export { default as cartRouter } from './cart.router'
+export { cartRouter } from './cart.router'

@@ -1,6 +1,10 @@
 {
-  "ts-node": {"files": true, "transpileOnly": true},
-  "include": ["./src", "./server"],
+  "ts-node": {
+    "files": true,
+    "transpileOnly": true,
+    "require": ["tsconfig-paths/register"]
+  },
+  "include": ["./src", "./server", "./shared"],
   "compilerOptions": {
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -19,7 +23,8 @@
     "baseUrl": ".",
     "paths": {
       "src/*": ["src/*"],
-      "server/*": ["server/*"]
+      "server/*": ["server/*"],
+      "shared/*": ["shared/*"]
     }
   }
 }

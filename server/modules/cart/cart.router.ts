@@ -1,9 +1,8 @@
 import { Router } from 'express'
 
-import { default as CartController } from './cart.controller'
+import { updateAmountInit } from 'shared/infra/http'
+import { cartProvider } from './cart.provider'
 
-const cartRouter = Router()
+export const cartRouter = Router()
 
-cartRouter.patch('/cart/amount', CartController.updateAmount)
-
-export default cartRouter
+cartRouter.patch(updateAmountInit.input, cartProvider.updateAmount)

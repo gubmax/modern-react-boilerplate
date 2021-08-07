@@ -10,7 +10,7 @@ const CartPage: FC = () => {
     <>
       <H1>Shopping Cart</H1>
       <Suspense fallback={<H2>⏳ Loading...</H2>}>
-        <Cart goods={MOCK_PRODUCTS} />
+        <Cart products={MOCK_PRODUCTS} />
       </Suspense>
     </>
   )

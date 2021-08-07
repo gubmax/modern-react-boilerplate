@@ -11,10 +11,10 @@ export const listItem = style({
 })
 
 export const routeIcon = style({
-  width: '16px',
+  width: '1.5rem',
   padding: '4px',
   display: 'inline-block',
-  marginRight: '8px',
+  marginRight: '1rem',
   fontSize: vars.fontSize.accent,
   textAlign: 'center',
 })

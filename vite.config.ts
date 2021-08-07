@@ -15,6 +15,7 @@ const config: UserConfig = {
     alias: {
       src: path.resolve(__dirname, '/src'),
       server: path.resolve(__dirname, '/server'),
+      shared: path.resolve(__dirname, '/shared'),
     },
   },
   esbuild: {

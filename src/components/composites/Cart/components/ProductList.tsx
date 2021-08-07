@@ -2,15 +2,15 @@ import { FC } from 'react'
 
 import { List } from 'src/components/surfaces'
 import { StyledProps } from 'src/types'
-import { useDeps } from '../Cart.provider'
+import { useCartDeps } from '../Cart.provider'
 import { ProductItem } from './ProductItem'
 
 const ProductList: FC<StyledProps> = ({ ...rest }) => {
-  const { cartService } = useDeps()
+  const { cartModel } = useCartDeps()
 
   return (
     <List {...rest}>
-      {cartService.goods.map((product) => (
+      {cartModel.products.map((product) => (
         <ProductItem key={product.id} product={product} />
       ))}
     </List>
