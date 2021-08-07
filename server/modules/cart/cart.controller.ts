@@ -1,31 +1,30 @@
-import { RequestHandler } from 'express'
+import { Body, Controller, Inject, NotImplementedException, Patch } from '@nestjs/common'
 
-import { JSONPatchOperations, UpdateAmountBody, UpdateAmountPaths } from 'shared/infra/http'
+import {
+  ApiRoutes,
+  JSONPatchOperations,
+  UpdateAmountDto,
+  UpdateAmountPaths,
+} from 'shared/infra/http'
 import { CartService } from './cart.service'
 
+@Controller()
 export class CartController {
-  cartService: CartService
+  constructor(@Inject(CartService) private readonly cartService: CartService) {}
 
-  constructor({ cartService }: { cartService: CartService }) {
-    this.cartService = cartService
-  }
+  @Patch(ApiRoutes.CART_AMOUNT)
+  updateAmount(@Body() { op, path, value }: UpdateAmountDto): Error | Record<never, unknown> {
+    if (op === JSONPatchOperations.replace) {
+      const { id = '' } = value || {}
 
-  updateAmount: RequestHandler<never, string, UpdateAmountBody> = ({ body }, res) => {
-    const { op, path, value } = body
-    try {
-      if (op === JSONPatchOperations.replace) {
-        if (path === UpdateAmountPaths.increase) {
-          this.cartService.increaseAmount(value?.id || '')
-        } else if (path === UpdateAmountPaths.decrease) {
-          this.cartService.decreaseAmount(value?.id || '')
-        }
+      ;({
+        [UpdateAmountPaths.increase]: () => this.cartService.increaseAmount(id),
+        [UpdateAmountPaths.decrease]: () => this.cartService.decreaseAmount(id),
+      }[path]())
 
-        return res.status(200).json('success')
-      }
-
-      throw Error('Unexpected operation')
-    } catch (error: unknown) {
-      res.status(500).json('failure')
+      return {}
     }
+
+    throw new NotImplementedException('Unexpected operation')
   }
 }

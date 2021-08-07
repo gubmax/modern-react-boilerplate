@@ -1,32 +1,32 @@
-import express, { Express } from 'express'
-import { json } from 'body-parser'
+import { NestFactory } from '@nestjs/core'
+import { NestExpressApplication } from '@nestjs/platform-express'
+import { ConfigService } from '@nestjs/config'
+import compression from 'compression'
+import serve from 'serve-static'
 
-import { prerenderDev, prerender } from './middlewares'
-import { ENV_PROD, VITE_SERVER_CONFIG } from './constants'
 import { resolveApp } from './helpers'
-import { useRouter } from './router'
+import { AppModule } from './modules'
+import { RenderService } from './modules/render'
 
-export async function bootstrap(): Promise<Express> {
-  const server = express()
+export async function bootstrap(): Promise<void> {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule)
 
-  server.use(json())
+  const config = app.get(ConfigService)
+  const isProdEnv = config.get<boolean>('isProdEnv')
+  const port = config.get<number>('port') || NaN
 
-  if (ENV_PROD) {
-    const { default: compression } = await import('compression')
-    const { default: serve } = await import('serve-static')
+  if (isProdEnv) {
+    app.use(compression())
+    app.use(serve(resolveApp('dist/client'), { index: false }))
 
-    server.use(compression())
-    server.use(serve(resolveApp('dist/client'), { index: false }))
-    useRouter(server, prerender)
-
-    return server
+    await app.listen(port)
+    return
   }
 
-  const vite = await import('vite')
-  const devServer = await vite.createServer(VITE_SERVER_CONFIG)
+  const render = app.get(RenderService)
+  await render.setupDevServer(app)
 
-  server.use(devServer.middlewares)
-  useRouter(server, prerenderDev(devServer))
+  await app.listen(port)
 
-  return server
+  console.log(`\nServer is started at http://localhost:${port}\n`)
 }

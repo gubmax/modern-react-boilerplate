@@ -11,5 +11,6 @@ export enum HttpRequestMethods {
 }
 
 export enum ApiRoutes {
+  RENDER = '*',
   CART_AMOUNT = '/api/cart/amount',
 }

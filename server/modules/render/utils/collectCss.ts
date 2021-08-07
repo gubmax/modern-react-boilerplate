@@ -1,6 +1,6 @@
 import { ModuleNode } from 'vite'
 
-import type { PreloadUrls } from './types'
+import type { PreloadUrls } from '../types'
 
 export function collectCss(
   mod: ModuleNode | undefined,
@@ -18,17 +18,4 @@ export function collectCss(
   mod.importedModules.forEach((dep) => {
     collectCss(dep, preloadUrls, visitedModules)
   })
-}
-
-export function injectCss(template: string, preloadUrls: PreloadUrls): string {
-  let css = ''
-
-  preloadUrls.css.forEach((url) => {
-    css += `<link rel="stylesheet" href="${url}" type="text/css">`
-  })
-
-  if (!css) return template
-
-  const searchValue = '<!--external-resources-->'
-  return template.replace(searchValue, `${searchValue}${css}`)
 }
