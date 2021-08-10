@@ -1,14 +1,33 @@
 import fetch from 'node-fetch'
 
+import { watch } from 'scripts/watch'
 import { CONFIG_ENV } from './config'
 import { bootstrap } from './bootstrap'
+import { resolveApp } from './helpers'
 
 // Fetch
 ;(global.fetch as unknown) = fetch
 
 // Bootstrap
 if (!CONFIG_ENV.isTestEnv) {
-  void bootstrap()
+  void (async () => {
+    let app = await bootstrap()
+
+    // Watch
+    if (!CONFIG_ENV.isProdEnv) {
+      const dispose = async () => {
+        console.log('Restarting server...')
+        return app.close()
+      }
+
+      const accept = async () => {
+        const { bootstrap } = await import('./bootstrap')
+        app = await bootstrap()
+      }
+
+      watch({ paths: resolveApp('server'), dispose, accept })
+    }
+  })()
 }
 
 // For tests

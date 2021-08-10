@@ -4,7 +4,7 @@
     "transpileOnly": true,
     "require": ["tsconfig-paths/register"]
   },
-  "include": ["./src", "./server", "./shared"],
+  "include": ["./src", "./server", "./scripts", "./shared"],
   "compilerOptions": {
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],

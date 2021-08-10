@@ -8,7 +8,7 @@ import { resolveApp } from './helpers'
 import { AppModule } from './modules'
 import { RenderService } from './modules/render'
 
-export async function bootstrap(): Promise<void> {
+export async function bootstrap(): Promise<NestExpressApplication> {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
 
   const config = app.get(ConfigService)
@@ -20,7 +20,7 @@ export async function bootstrap(): Promise<void> {
     app.use(serve(resolveApp('dist/client'), { index: false }))
 
     await app.listen(port)
-    return
+    return app
   }
 
   const render = app.get(RenderService)
@@ -28,5 +28,7 @@ export async function bootstrap(): Promise<void> {
 
   await app.listen(port)
 
-  console.log(`\nServer is started at http://localhost:${port}\n`)
+  console.log(`Server is started at http://localhost:${port}`)
+
+  return app
 }
