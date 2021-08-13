@@ -1,6 +1,7 @@
 import fetch from 'node-fetch'
 
 import { watch } from 'scripts/watch'
+import { LoggerService, LOGGER_SERVICE } from './modules/logger'
 import { CONFIG_ENV } from './config'
 import { bootstrap } from './bootstrap'
 import { resolveApp } from './helpers'
@@ -16,7 +17,7 @@ if (!CONFIG_ENV.isTestEnv) {
     // Watch
     if (!CONFIG_ENV.isProdEnv) {
       const dispose = async () => {
-        console.log('Restarting server...')
+        app.get<LoggerService>(LOGGER_SERVICE).warn('Restarting server...')
         return app.close()
       }
 

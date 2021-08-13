@@ -7,13 +7,13 @@ import serve from 'serve-static'
 import { resolveApp } from './helpers'
 import { AppModule } from './modules'
 import { RenderService } from './modules/render'
-import { LoggerService } from './modules/logger'
+import { LoggerService, LOGGER_SERVICE } from './modules/logger'
 
 export async function bootstrap(): Promise<NestExpressApplication> {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, { logger: false })
 
   // Logger
-  const logger = app.get(LoggerService)
+  const logger = app.get<LoggerService>(LOGGER_SERVICE)
   app.useLogger(logger)
 
   // Config
@@ -36,7 +36,7 @@ export async function bootstrap(): Promise<NestExpressApplication> {
   await render.setupDevServer(app)
 
   await app.listen(port)
-  logger.log(`Server is started at http://localhost:${port}`)
+  logger.log(`You can now view app in the browser at http://localhost:${port}`)
 
   return app
 }
