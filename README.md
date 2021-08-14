@@ -17,3 +17,7 @@ Build for production.
 
 ### `npm run serve`
 Locally preview production build.
+
+## Docs
+- [Conventional Commits](https://www.conventionalcommits.org)
+- [JSON Patch](https://datatracker.ietf.org/doc/html/rfc6902)
