@@ -4,7 +4,12 @@
     "transpileOnly": true,
     "require": ["tsconfig-paths/register"]
   },
-  "include": ["./src", "./server", "./scripts", "./shared"],
+  "include": [
+    "./src",
+    "./server",
+    "./scripts",
+    "./shared",
+  ],
   "compilerOptions": {
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -21,11 +26,6 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "types": ["react/next", "react-dom/next"],
-    "baseUrl": ".",
-    "paths": {
-      "src/*": ["src/*"],
-      "server/*": ["server/*"],
-      "shared/*": ["shared/*"]
-    }
+    "baseUrl": "."
   }
 }

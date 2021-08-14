@@ -39,6 +39,8 @@
   "ignorePatterns": [
     "node_modules",
     "dist",
+    "lint-staged.config.js",
+    "prettier.config.js",
     "vite.config.ts",
     "*.html"
   ]
