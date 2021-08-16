@@ -1,9 +1,10 @@
 import { readFileSync } from 'fs'
-import { ImATeapotException, Injectable } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import { NestExpressApplication } from '@nestjs/platform-express'
 import type { Request, Response } from 'express'
 import { createServer, ViteDevServer } from 'vite'
 
+import { InternalServerException } from 'shared/domain/exceptions'
 import { resolveApp } from 'server/helpers'
 import type { render as Render } from 'server/render'
 import { CONFIG_VITE_DEV_SERVER } from 'server/config'
@@ -52,7 +53,7 @@ export class RenderService {
     const { devServer } = this
 
     if (!devServer) {
-      throw new ImATeapotException('Vite dev server has not been initialized')
+      throw new InternalServerException('Vite dev server has not been initialized')
     }
 
     const url = req.originalUrl

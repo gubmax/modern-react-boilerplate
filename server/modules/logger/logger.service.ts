@@ -3,6 +3,7 @@ import { LoggerService as NestLoggerService, Inject } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 
 import { prettifier } from './prettifier'
+import { HttpExceptionImpl } from 'shared/domain/exceptions'
 
 export class LoggerService implements NestLoggerService {
   protected readonly logger: Logger
@@ -31,11 +32,13 @@ export class LoggerService implements NestLoggerService {
     this.logger.warn(message)
   }
 
-  error(error: Error): void {
-    this.logger.error(error, error.message)
+  error(error: HttpExceptionImpl): void {
+    const { type, description, stack } = error
+    this.logger.error(error, error.message, { type, description, stack })
   }
 
-  fatal(error: Error): void {
-    this.logger.fatal(error, error.message)
+  fatal(error: HttpExceptionImpl): void {
+    const { type, description, stack } = error
+    this.logger.error(error, error.message, { type, description, stack })
   }
 }

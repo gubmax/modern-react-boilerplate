@@ -1,8 +1,9 @@
-import { Catch, ArgumentsHost, HttpStatus, LoggerService } from '@nestjs/common'
+import { Catch, ArgumentsHost, HttpStatus } from '@nestjs/common'
 import { BaseExceptionFilter } from '@nestjs/core'
 import { Response } from 'express'
 
-import { HttpExceptionImpl } from 'shared/domain/exceptions'
+import { LoggerService } from 'server/modules/logger'
+import { HttpExceptionImpl, InternalServerException } from 'shared/domain/exceptions'
 
 @Catch()
 export class AllExceptionsFilter extends BaseExceptionFilter {
@@ -10,14 +11,14 @@ export class AllExceptionsFilter extends BaseExceptionFilter {
     super()
   }
 
-  catch(exception: Error, host: ArgumentsHost): void {
+  catch(error: Error, host: ArgumentsHost): void {
     const ctx = host.switchToHttp()
     const res = ctx.getResponse<Response>()
 
-    const status =
-      exception instanceof HttpExceptionImpl ? exception.status : HttpStatus.INTERNAL_SERVER_ERROR
+    const exception =
+      error instanceof HttpExceptionImpl ? error : new InternalServerException(error.message)
 
     this.logger.error(exception)
-    res.status(status).send(JSON.stringify(exception))
+    res.status(exception.status).send(JSON.stringify(exception))
   }
 }
