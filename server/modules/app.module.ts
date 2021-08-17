@@ -1,5 +1,6 @@
-import { Module } from '@nestjs/common'
+import { MiddlewareConsumer, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
+import { RequestLoggerMiddleware } from 'server/common/middlewares'
 import { CONFIG_ENV } from 'server/config'
 
 import { CartModule } from './cart'
@@ -17,4 +18,8 @@ import { RenderModule } from './render'
     RenderModule,
   ],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer): void {
+    consumer.apply(RequestLoggerMiddleware).forRoutes('*')
+  }
+}
