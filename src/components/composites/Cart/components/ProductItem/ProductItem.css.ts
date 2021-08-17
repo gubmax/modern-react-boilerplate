@@ -6,11 +6,14 @@ export const wrapper = gridAtom({
   display: 'flex',
 })
 
-export const body = gridAtom({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-})
+export const body = composeStyles(
+  gridAtom({
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  }),
+  style({ width: '100%' }),
+)
 
 export const imageBox = composeStyles(
   gridAtom({
