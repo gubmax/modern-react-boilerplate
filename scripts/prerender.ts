@@ -6,17 +6,18 @@ import { renderToString } from 'react-dom/server'
 import { cyan, dim, green } from 'chalk'
 
 import { CONFIG_STATIC_ROUTES } from 'server/config'
-import { resolveApp } from 'server/helpers'
 import { renderClient as RenderClient } from 'server/renderClient'
-
-const PATH_CLIENT = 'dist/client'
-const PATH_INDEX_HTML = resolveApp('dist/client/index.html')
-const PATH_PROD_RENDER = resolveApp('dist/server/renderClient')
+import {
+  PATH_RESOLVED_DIST_RENDER,
+  PATH_RESOLVED_DIST_INDEX_HTML,
+  PATH_RESOLVED_DIST_CLIENT,
+  PATH_DIST_CLIENT,
+} from 'server/common/constants'
 
 void (async () => {
-  const template = readFileSync(PATH_INDEX_HTML, 'utf-8')
+  const template = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
 
-  const { renderClient } = (await import(PATH_PROD_RENDER)) as {
+  const { renderClient } = (await import(PATH_RESOLVED_DIST_RENDER)) as {
     renderClient: typeof RenderClient
   }
 
@@ -29,10 +30,10 @@ void (async () => {
     const html = template.replace('<!--root-html-->', appHtml)
 
     const fileName = `${CONFIG_STATIC_ROUTES[route]}.html`
-    const filePath = `${resolveApp(PATH_CLIENT)}/${fileName}`
+    const filePath = `${PATH_RESOLVED_DIST_CLIENT}/${fileName}`
 
-    writeFileSync(resolveApp(filePath), html)
+    writeFileSync(filePath, html)
 
-    console.log(`${dim(`${PATH_CLIENT}/`)}${green(fileName)}`)
+    console.log(`${dim(`${PATH_DIST_CLIENT}/`)}${green(fileName)}`)
   }
 })()

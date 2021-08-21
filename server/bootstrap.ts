@@ -4,11 +4,11 @@ import { ConfigService } from '@nestjs/config'
 import compression from 'compression'
 import serve from 'serve-static'
 
-import { resolveApp } from './helpers'
 import { AppModule } from './modules'
 import { RenderService } from './modules/render'
 import { LoggerService, LOGGER_SERVICE } from './modules/logger'
 import { AllExceptionsFilter } from './common/filters'
+import { PATH_RESOLVED_DIST_CLIENT } from './common/constants'
 
 export async function bootstrap(): Promise<NestExpressApplication> {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, { logger: false })
@@ -28,7 +28,7 @@ export async function bootstrap(): Promise<NestExpressApplication> {
   // Production
   if (isProdEnv) {
     app.use(compression())
-    app.use(serve(resolveApp('dist/client'), { index: false }))
+    app.use(serve(PATH_RESOLVED_DIST_CLIENT, { index: false }))
 
     await app.listen(port)
     return app

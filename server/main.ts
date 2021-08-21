@@ -1,10 +1,10 @@
 import fetch from 'node-fetch'
 
 import { watch } from 'scripts/watch'
+import { PATH_RESOLVED_SERVER } from './common/constants'
 import { LoggerService, LOGGER_SERVICE } from './modules/logger'
 import { CONFIG_ENV } from './config'
 import { bootstrap } from './bootstrap'
-import { resolveApp } from './helpers'
 
 // Fetch
 ;(global.fetch as unknown) = fetch
@@ -26,7 +26,7 @@ if (!CONFIG_ENV.isTestEnv) {
         app = await bootstrap()
       }
 
-      watch({ paths: resolveApp('server'), dispose, accept })
+      watch({ paths: PATH_RESOLVED_SERVER, dispose, accept })
     }
   })()
 }
