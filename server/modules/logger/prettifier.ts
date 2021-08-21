@@ -17,17 +17,17 @@ interface InputData {
 
 export function prettifier(): (inputData: InputData) => string {
   return function ({ status, time, level, msg, stack, type, description }: InputData): string {
-    const { grey, bold, cyan } = chalk
+    const { dim, bold, cyan } = chalk
 
     const levelText = levelByNumber[level]
     const colorFn = chalk[colorByType[levelText]]
     const prettyLevel = colorFn(levelText)
-    const prettyTime = grey(new Date(time).toLocaleTimeString())
+    const prettyTime = dim(new Date(time).toLocaleTimeString())
 
     // Errors
     if (type && description && stack) {
       const label = bold(colorFn('[server]'))
-      const prettyType = grey(type)
+      const prettyType = dim(type)
       const prettyDesc = colorFn(`${status} (${description}):`)
 
       let stackStr = ''

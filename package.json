@@ -13,9 +13,10 @@
   "scripts": {
     "dev": "ts-node server/main",
     "debug": "ts-node --inspect-brk server/main",
-    "build": "npm run build:client && npm run build:server",
+    "build": "npm run build:client && npm run build:server && npm run prerender",
     "build:client": "vite build --outDir dist/client",
-    "build:server": "vite build --ssr server/render --outDir dist/server",
+    "build:server": "vite build --ssr server/renderClient --outDir dist/server",
+    "prerender": "ts-node scripts/prerender",
     "serve": "cross-env NODE_ENV=production ts-node server/main",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --ext .ts,.tsx",

@@ -1,5 +1,6 @@
 import { hydrateRoot } from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
+
 import { App } from './components/layout'
 import { reportWebVitals } from './infra/http'
 import './styles/global.css'
