@@ -1,14 +1,14 @@
-import { composeStyles, style } from '@vanilla-extract/css'
+import { style } from '@vanilla-extract/css'
 
 import { theme, gridAtom } from 'src/styles'
 
-export const btn = composeStyles(
+export const btn = style([
   gridAtom({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   }),
-  style({
+  {
     borderRadius: '20px',
     borderWidth: 0,
     cursor: 'pointer',
@@ -18,8 +18,8 @@ export const btn = composeStyles(
     minWidth: '10rem',
     outline: 'none',
     padding: `0 ${theme.color.primary}`,
-  }),
-)
+  },
+])
 
 export const defaultStyle = style({
   background: 'transparent',
