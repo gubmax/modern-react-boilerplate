@@ -13,19 +13,22 @@ const Sidebar: FC = () => {
   return (
     <aside className={s.wrapper}>
       <List as="ul">
-        {ROUTES.map(({ to, icon, text }) => (
-          <IW
-            key={to}
-            as="li"
-            className={s.listItem}
-            active={to === pathname}
-            noPadding
-            onClick={() => navigate(to)}
-          >
-            <i className={s.routeIcon}>{icon}</i>
-            {text}
-          </IW>
-        ))}
+        {ROUTES.map(({ to, icon: Icon, text }) => {
+          const active = to === pathname
+          return (
+            <IW
+              key={to}
+              as="li"
+              className={s.listItem}
+              active={active}
+              noPadding
+              onClick={() => navigate(to)}
+            >
+              <Icon className={s.routeIcon} active={active} />
+              {text}
+            </IW>
+          )
+        })}
       </List>
     </aside>
   )

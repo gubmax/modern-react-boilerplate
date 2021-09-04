@@ -1,7 +1,9 @@
 import { FC } from 'react'
 
+import { IconSizes } from 'src/hocs'
 import { useObservableState } from 'src/hooks'
 import { H2, H3 } from 'src/components/typography'
+import { EmptyShoppingCartIcon } from 'src/components/icons'
 import { ProductList } from './components'
 import { provide, useCartDeps } from './Cart.provider'
 import * as s from './Cart.css'
@@ -17,7 +19,7 @@ const Cart: FC = () => {
     <ProductList className={s.list} />
   ) : (
     <div className={s.emptyCartBox}>
-      <i className={s.cartIcon}>🛒</i>
+      <EmptyShoppingCartIcon className={s.cartIcon} size={IconSizes.HUGE} />
       <H2>Your cart is empty</H2>
     </div>
   )

@@ -16,6 +16,5 @@ export const emptyCartBox = style({
 })
 
 export const cartIcon = style({
-  fontSize: '8rem',
   userSelect: 'none',
 })

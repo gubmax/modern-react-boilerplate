@@ -7,14 +7,11 @@ export const wrapper = style({
 })
 
 export const listItem = style({
-  padding: `8px ${vars.space.primary}`,
+  display: 'flex',
+  alignItems: 'center',
+  padding: `11px ${vars.space.primary}`,
 })
 
 export const routeIcon = style({
-  width: '1.5rem',
-  padding: '4px',
-  display: 'inline-block',
-  marginRight: '1rem',
-  fontSize: vars.fontSize.accent,
-  textAlign: 'center',
+  marginRight: vars.space.secondary,
 })
