@@ -7,7 +7,7 @@ export const wrapper = style({
 })
 
 export const list = style({
-  marginBottom: vars.space.secondary,
+  marginBottom: vars.space.s2,
 })
 
 export const emptyCartBox = style({

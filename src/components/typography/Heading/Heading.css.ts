@@ -2,13 +2,13 @@ import { style } from '@vanilla-extract/css'
 import { vars } from 'src/styles'
 
 export const h1 = style({
-  marginBottom: vars.space.primary,
+  marginBottom: vars.space.s3,
   fontSize: vars.fontSize.h1,
   fontWeight: 'bold',
 })
 
 export const h2 = style({
-  marginBottom: vars.space.secondary,
+  marginBottom: vars.space.s2,
   fontSize: vars.fontSize.h2,
   fontWeight: 'bold',
 })

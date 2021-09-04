@@ -8,5 +8,5 @@ export const wrapper = style({
 })
 
 export const padding = style({
-  padding: `${vars.space.secondary} ${vars.space.primary}`,
+  padding: `${vars.space.s2} ${vars.space.s3}`,
 })

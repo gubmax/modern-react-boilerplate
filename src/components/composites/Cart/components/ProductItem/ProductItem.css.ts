@@ -27,7 +27,7 @@ export const imageBox = composeStyles(
     height: '8rem',
     fontSize: '5rem',
     borderRadius: '12px',
-    marginRight: vars.space.primary,
+    marginRight: vars.space.s3,
     backgroundColor: theme.color.bg0,
     userSelect: 'none',
   }),
@@ -65,6 +65,6 @@ export const deleteButton = composeStyles(
     alignItems: 'center',
   }),
   style({
-    marginRight: vars.space.secondary,
+    marginRight: vars.space.s2,
   }),
 )

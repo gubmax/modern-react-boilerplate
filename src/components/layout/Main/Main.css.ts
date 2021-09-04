@@ -14,5 +14,5 @@ export const page = style({
 
 export const main = style({
   gridArea: 'main',
-  padding: `0 ${vars.space.primary} ${vars.space.secondary}`,
+  padding: `0 ${vars.space.s3} ${vars.space.s2}`,
 })

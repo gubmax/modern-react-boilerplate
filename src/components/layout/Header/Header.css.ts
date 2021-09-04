@@ -8,7 +8,7 @@ export const wrapper = composeStyles(
   }),
   style({
     gridArea: 'header',
-    padding: vars.space.primary,
+    padding: vars.space.s3,
   }),
 )
 

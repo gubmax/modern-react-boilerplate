@@ -11,8 +11,9 @@ export const vars = createGlobalTheme(':root', {
     h3: '1.25rem',
   },
   space: {
-    primary: '1.5rem',
-    secondary: '1.15rem',
+    s1: '1rem',
+    s2: '1.15rem',
+    s3: '1.5rem',
   },
   borderRadius: {
     primary: '20px',
