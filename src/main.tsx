@@ -3,6 +3,8 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { App } from './components/layout'
 import { reportWebVitals } from './infra/http'
+
+import './styles/common.css'
 import './styles/global.css'
 
 // Bootstrap
