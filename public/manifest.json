@@ -1,0 +1,26 @@
+{
+  "background_color": "#4050b5",
+  "description": "This project is boilerplate for starting modern React web app",
+  "display": "minimal-ui",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "name": "Modern React Boilerplate",
+  "short_name": "Boilerplate",
+  "start_url": ".",
+  "theme_color": "#4050b5"
+}

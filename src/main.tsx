@@ -1,4 +1,5 @@
 import { hydrateRoot } from 'react-dom'
+import { registerSW } from 'virtual:pwa-register'
 
 import { App } from './components/layout'
 import { BrowserRouter } from './components/auxiliary'
@@ -27,6 +28,9 @@ root.render(
     <App serverSideProps={serverSideProps} />
   </BrowserRouter>,
 )
+
+// Service Worker
+registerSW()
 
 // Web Vitals
 if (process.env.NODE_ENV === 'production') {
