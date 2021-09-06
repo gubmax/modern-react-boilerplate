@@ -7,7 +7,11 @@ import { matchPath } from 'react-router'
 
 import { InternalServerException } from 'shared/domain/exceptions'
 import type { renderClient as RenderClient } from 'server/renderClient'
-import { CONFIG_STATIC_ROUTES, CONFIG_VITE_DEV_SERVER } from 'server/config'
+import {
+  CONFIG_GENERATED_ROUTES,
+  CONFIG_STATIC_ROUTES,
+  CONFIG_VITE_DEV_SERVER,
+} from 'server/config'
 import { collectCss, injectCss, writeTemplate } from './utils'
 import type { PreloadUrls } from './types'
 import { PageRoutes } from 'src/infra/http'
@@ -16,13 +20,33 @@ import {
   PATH_RESOLVED_DIST_INDEX_HTML,
   PATH_RESOLVED_DEV_INDEX_HTML,
   PATH_RENDER,
-  PATH_CLIENT_APP_MODULE,
   PATH_RESOLVED_DIST_CLIENT,
+  PATH_CLIENT_APP_MODULE,
+  PATH_RESOLVED_CLIENT_PAGES,
 } from 'server/common/constants'
+import { ServerSideProps } from 'src/contexts'
 
 @Injectable()
 export class RenderService {
   private devServer?: ViteDevServer
+
+  async fetchPageData(url: string): Promise<ServerSideProps> {
+    const pageName = CONFIG_GENERATED_ROUTES[url]
+
+    if (!pageName) return {}
+
+    const { getServerSideProps } = (await import(`${PATH_RESOLVED_CLIENT_PAGES}/${pageName}`)) as {
+      getServerSideProps?: () => Promise<ServerSideProps>
+    }
+
+    if (!getServerSideProps) {
+      throw new InternalServerException(
+        `Function "getServerSideProps" not found for page "${pageName}"`,
+      )
+    }
+
+    return getServerSideProps()
+  }
 
   /**
    * Production render function.
@@ -38,14 +62,15 @@ export class RenderService {
 
     // Render template
 
+    const serverSideProps = await this.fetchPageData(req.url)
+
     const template = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
     const { renderClient } = (await import(PATH_RESOLVED_DIST_RENDER)) as {
       renderClient: typeof RenderClient
     }
 
-    const appHtml = renderClient(req.url)
-
-    writeTemplate(template, appHtml, res)
+    const appHtml = renderClient(req.url, serverSideProps)
+    writeTemplate(template, appHtml, res, serverSideProps)
   }
 
   /**
@@ -68,7 +93,7 @@ export class RenderService {
       throw new InternalServerException('Vite dev server has not been initialized')
     }
 
-    const url = req.originalUrl
+    const { url } = req
     const visitedModules = new Set<string>()
     const preloadUrls: PreloadUrls = {
       css: new Set<string>(),
@@ -78,14 +103,15 @@ export class RenderService {
       const html = readFileSync(PATH_RESOLVED_DEV_INDEX_HTML, 'utf-8')
       let template = await devServer.transformIndexHtml(url, html)
 
-      const mod = await devServer.moduleGraph.getModuleByUrl(PATH_CLIENT_APP_MODULE)
+      const mod = await devServer.moduleGraph.getModuleByUrl(`/${PATH_CLIENT_APP_MODULE}`)
       collectCss(mod, preloadUrls, visitedModules)
       template = injectCss(template, preloadUrls)
 
       const renderModule = await devServer.ssrLoadModule(PATH_RENDER)
-      const appHtml = (renderModule.renderClient as typeof RenderClient)(url)
+      const serverSideProps = await this.fetchPageData(url)
+      const appHtml = (renderModule.renderClient as typeof RenderClient)(url, serverSideProps)
 
-      writeTemplate(template, appHtml, res)
+      writeTemplate(template, appHtml, res, serverSideProps)
     } catch (error: unknown) {
       if (error instanceof Error) {
         devServer.ssrFixStacktrace(error)

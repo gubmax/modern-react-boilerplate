@@ -1,5 +1,5 @@
 export enum HttpRequestMethods {
-  // GET = 'GET',
+  GET = 'GET',
   // HEAD = 'HEAD',
   // POST = 'POST',
   // PUT = 'PUT',
@@ -12,5 +12,6 @@ export enum HttpRequestMethods {
 
 export enum ApiRoutes {
   RENDER = '*',
+  CART_PRODUCTS = '/api/cart/products',
   CART_AMOUNT = '/api/cart/amount',
 }

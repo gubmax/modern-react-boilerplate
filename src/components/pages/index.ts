@@ -1,2 +1,2 @@
-export { default as AboutPage } from './About.page'
-export { default as CartPage } from './Cart.page'
+export { AboutPage } from './About'
+export { CartPage } from './Cart'

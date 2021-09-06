@@ -7,7 +7,7 @@ export enum UpdateAmountPaths {
   decrease = '/decrease',
 }
 
-export type UpdateAmountDto = JSONPatch<
+export type UpdateAmountBody = JSONPatch<
   { id: string },
   JSONPatchOperations.replace,
   UpdateAmountPaths,

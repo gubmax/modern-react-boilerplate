@@ -17,8 +17,6 @@ export class CartModel {
       this.updateTotalPrice()
     })
 
-    this.updateTotalPrice()
-
     autobind(this)
   }
 

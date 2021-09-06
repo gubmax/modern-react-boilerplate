@@ -3,4 +3,5 @@ export const CONFIG_ENV = {
   isProdEnv: process.env.NODE_ENV === 'production',
   logLevel: process.env.LOG_LEVEL || 'trace',
   port: (process.env.PORT && parseInt(process.env.PORT, 10)) || 3000,
+  host: process.env.HOST || 'http://localhost:3000',
 }

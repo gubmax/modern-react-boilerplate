@@ -1,7 +1,9 @@
+import { BehaviorSubject } from 'rxjs'
+
 import { HttpRequestResponse, HttpRequestBody, HttpRequestInit } from 'shared/infra/http'
 import { httpRequest } from 'src/infra/http'
 
-enum Statuses {
+export enum Statuses {
   IDLE = 'idle',
   LOADING = 'loading',
   SUCCESS = 'success',
@@ -13,35 +15,53 @@ type Action<R extends HttpRequestResponse> =
   | { type: Statuses.SUCCESS; payload: R }
   | { type: Statuses.FAILURE; payload: unknown }
 
+interface State<T extends unknown> {
+  status: Statuses
+  loading: boolean
+  response?: T
+  error?: unknown
+}
+
 export abstract class QueryImpl<
   R extends HttpRequestResponse = HttpRequestResponse,
   B extends HttpRequestBody = never,
 > {
-  status: Statuses = Statuses.IDLE
+  state$ = new BehaviorSubject<State<R>>({
+    status: Statuses.IDLE,
+    loading: false,
+  })
+
   abstract readonly init: HttpRequestInit
-  loading = false
-  response?: R
-  error?: unknown
+
+  get state(): State<R> {
+    return this.state$.getValue()
+  }
 
   private reduce(action: Action<R>): void {
     switch (action.type) {
       case Statuses.LOADING:
-        this.status = Statuses.LOADING
-        this.loading = true
-        this.response = undefined
-        this.error = undefined
+        this.state$.next({
+          status: Statuses.LOADING,
+          loading: true,
+          response: undefined,
+          error: undefined,
+        })
         break
 
       case Statuses.SUCCESS:
-        this.status = Statuses.SUCCESS
-        this.loading = false
-        this.response = action.payload
+        this.state$.next({
+          status: Statuses.SUCCESS,
+          loading: false,
+          response: action.payload,
+        })
         break
 
       case Statuses.FAILURE:
-        this.status = Statuses.FAILURE
-        this.loading = false
-        this.error = action.payload
+        this.state$.next({
+          status: Statuses.FAILURE,
+          loading: false,
+          error: action.payload,
+        })
         break
     }
   }

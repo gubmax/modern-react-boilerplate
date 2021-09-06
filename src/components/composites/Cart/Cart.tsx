@@ -2,18 +2,22 @@ import { FC } from 'react'
 
 import { IconSizes } from 'src/hocs'
 import { useObservableState } from 'src/hooks'
+import { LoadingProp } from 'src/types'
 import { H2, H3 } from 'src/components/typography'
 import { EmptyShoppingCartIcon } from 'src/components/icons'
 import { ProductList } from './components'
+import { CartSkeleton } from './skeleton'
 import { provide, useCartDeps } from './Cart.provider'
 import * as s from './Cart.css'
 
-const Cart: FC = () => {
+const Cart: FC<LoadingProp> = ({ loading }) => {
   const {
     cartModel: { products$, products, totalPrice },
   } = useCartDeps()
 
   useObservableState(products$)
+
+  if (loading) return <CartSkeleton />
 
   const listTemplate = products.length ? (
     <ProductList className={s.list} />

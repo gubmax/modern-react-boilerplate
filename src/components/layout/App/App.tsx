@@ -1,11 +1,15 @@
 import { FC, StrictMode } from 'react'
 
+import { ServerSidePropsContext } from 'src/contexts'
 import { Main } from '../Main'
+import { AppProps } from './App.types'
 
-const App: FC = () => {
+const App: FC<AppProps> = ({ serverSideProps = {} }) => {
   return (
     <StrictMode>
-      <Main />
+      <ServerSidePropsContext.Provider value={serverSideProps}>
+        <Main />
+      </ServerSidePropsContext.Provider>
     </StrictMode>
   )
 }
