@@ -5,10 +5,7 @@ export const CONFIG_VITE_DEV_SERVER: InlineConfig = {
   clearScreen: false,
   plugins: [vanillaExtractPlugin()],
   server: {
+    fs: { strict: true },
     middlewareMode: 'ssr',
-    watch: {
-      usePolling: true,
-      interval: 500,
-    },
   },
 }
