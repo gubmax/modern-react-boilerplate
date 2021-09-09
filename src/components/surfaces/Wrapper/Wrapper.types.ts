@@ -2,7 +2,7 @@ import { HTMLAttributes } from 'react'
 import { StyledProps, AsProp, RefProp } from 'src/types'
 
 type WrapperHtmlElements = HTMLDivElement & HTMLUListElement & HTMLLIElement
-type WrapperTags = 'div' | 'main' | 'ul' | 'li'
+type WrapperTags = 'div' | 'main' | 'ul' | 'li' | 'section'
 
 export interface WrapperProps
   extends StyledProps,

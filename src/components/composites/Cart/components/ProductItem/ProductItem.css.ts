@@ -4,11 +4,12 @@ import { vars, theme, gridAtom } from 'src/styles'
 
 export const wrapper = gridAtom({ display: 'flex' })
 
+export const footer = style([wrapper, { marginTop: 'auto' }])
+
 export const body = style([
   gridAtom({
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
   }),
   { width: '100%' },
 ])

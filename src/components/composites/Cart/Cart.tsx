@@ -6,7 +6,7 @@ import { LoadingProp } from 'src/types'
 import { H2, H3 } from 'src/components/typography'
 import { EmptyShoppingCartIcon } from 'src/components/icons'
 import { ProductList } from './components'
-import { CartSkeleton } from './skeleton'
+import { CartSkeleton } from './Cart.skeleton'
 import { provide, useCartDeps } from './Cart.provider'
 import * as s from './Cart.css'
 
