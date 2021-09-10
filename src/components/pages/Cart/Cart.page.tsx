@@ -1,6 +1,6 @@
 import { lazy, FC, Suspense } from 'react'
 
-import { Loader } from 'src/components/elements'
+import { PageLoader } from 'src/components/layout'
 import { H1 } from 'src/components/typography'
 import { useServerSideProps, useServerSidePropsLoader } from 'src/hooks'
 import { getServerSideProps } from './Cart.server'
@@ -14,7 +14,7 @@ const CartPage: FC = () => {
   return (
     <>
       <H1>Shopping Cart</H1>
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<PageLoader />}>
         <Cart loading={loading} products={res?.products || products} />
       </Suspense>
     </>
