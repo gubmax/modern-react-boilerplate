@@ -1,3 +1,4 @@
+export * from './useDocumentTitle'
 export * from './useHistory'
 export * from './useObservableState'
 export * from './useServerSideProps'
