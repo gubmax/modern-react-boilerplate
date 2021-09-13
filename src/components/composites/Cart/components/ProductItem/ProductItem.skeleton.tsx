@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { Skeleton } from 'src/components/elements'
+import { Skeleton } from 'src/components/auxiliary'
 import { Wrapper } from 'src/components/surfaces'
 import * as s from './ProductItem.css'
 

@@ -1,2 +1,3 @@
-export { AboutPage } from './About'
-export { CartPage } from './Cart'
+export * from './About'
+export * from './Cart'
+export * from './Settings'

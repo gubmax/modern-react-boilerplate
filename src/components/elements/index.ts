@@ -1,2 +1,3 @@
+export * from './LinkToRepo'
 export * from './Loader'
-export * from './Skeleton'
+export * from './Logo'

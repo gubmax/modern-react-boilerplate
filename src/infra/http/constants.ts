@@ -6,4 +6,5 @@ export enum PageRoutes {
   ROOT = '/',
   ABOUT = '/about',
   CART = '/cart',
+  SETTINGS = '/settings',
 }

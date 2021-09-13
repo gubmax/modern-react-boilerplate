@@ -12,7 +12,17 @@ export const page = style({
   minHeight: '100vh',
 })
 
+export const header = style({
+  gridArea: 'header',
+  padding: vars.space.s3,
+})
+
 export const main = style({
   gridArea: 'main',
   padding: `0 ${vars.space.s3} ${vars.space.s2}`,
+})
+
+export const sidebar = style({
+  gridArea: 'aside',
+  padding: `0 ${vars.space.s3} ${vars.space.s3}`,
 })

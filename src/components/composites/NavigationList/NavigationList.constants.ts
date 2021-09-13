@@ -2,7 +2,7 @@ import { ElementType } from 'react'
 
 import { IconProps } from 'src/hocs'
 import { PageRoutes } from 'src/infra/http'
-import { InfoIcon, ShoppingCardIcon } from 'src/components/icons'
+import { InfoIcon, SettingsIcon, ShoppingCardIcon } from 'src/components/icons'
 
 export const ROUTES: Array<{
   to: PageRoutes
@@ -11,4 +11,5 @@ export const ROUTES: Array<{
 }> = [
   { to: PageRoutes.ROOT, icon: InfoIcon, text: 'About' },
   { to: PageRoutes.CART, icon: ShoppingCardIcon, text: 'Shopping Cart' },
+  { to: PageRoutes.SETTINGS, icon: SettingsIcon, text: 'Settings' },
 ]
