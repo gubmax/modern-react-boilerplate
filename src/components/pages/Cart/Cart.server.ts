@@ -1,4 +1,4 @@
-import { GetProductsResponse } from 'shared/infra/http'
+import { GetProductsResponse } from 'shared/http'
 import { GetProductsQuery } from 'src/infra/http/queries'
 
 export function getServerSideProps(): Promise<GetProductsResponse> {

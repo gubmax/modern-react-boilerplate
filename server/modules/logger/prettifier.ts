@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-import { HttpExceptions, HttpStatus } from 'shared/domain/exceptions'
+import { HttpExceptions, HttpStatus } from 'shared/exceptions'
 import { levelByNumber, colorByType, LogLevelWeights } from './logger.constants'
 
 interface InputData {

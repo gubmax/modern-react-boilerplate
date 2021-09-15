@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 
-import { InternalServerException } from 'shared/domain/exceptions'
+import { BadRequestException } from 'shared/exceptions'
 
 @Injectable()
 export class CartService {
@@ -10,7 +10,7 @@ export class CartService {
     const nextAmount = (this.amount[id] || 0) + 1
 
     if (nextAmount > 5) {
-      throw new InternalServerException('You can order no more than 5 items at a time')
+      throw new BadRequestException('You can order no more than 5 items at a time')
     }
 
     this.amount[id] = nextAmount

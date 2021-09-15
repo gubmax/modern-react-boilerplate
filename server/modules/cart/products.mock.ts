@@ -1,6 +1,6 @@
-import { Product } from 'src/domain/entities'
+import { ProductDto } from 'shared/http'
 
-export const MOCK_PRODUCTS: Product[] = [
+export const MOCK_PRODUCTS: ProductDto[] = [
   {
     id: '1',
     icon: '🖥',

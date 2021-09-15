@@ -1,6 +1,6 @@
 import { FatalException } from 'src/domain/exceptions'
 
-import { HttpRequestBody, HttpRequestInit, HttpRequestResponse } from 'shared/infra/http'
+import { HttpRequestBody, HttpRequestInit, HttpRequestResponse } from 'shared/http'
 import { HEADERS_DEFAULT } from './constants'
 
 /**

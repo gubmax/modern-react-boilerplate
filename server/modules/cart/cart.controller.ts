@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Inject, Patch } from '@nestjs/common'
-import { InternalServerException } from 'shared/domain/exceptions'
+import { BadRequestException } from 'shared/exceptions'
 
 import {
   ApiRoutes,
@@ -7,7 +7,7 @@ import {
   JSONPatchOperations,
   UpdateAmountBody,
   UpdateAmountPaths,
-} from 'shared/infra/http'
+} from 'shared/http'
 import { CartService } from './cart.service'
 import { MOCK_PRODUCTS } from './products.mock'
 
@@ -23,7 +23,7 @@ export class CartController {
   @Patch(ApiRoutes.CART_AMOUNT)
   updateAmount(@Body() { op, path, value }: UpdateAmountBody): Error | void {
     if (op !== JSONPatchOperations.replace) {
-      throw new InternalServerException('Unexpected operation')
+      throw new BadRequestException('Unexpected operation')
     }
 
     const { id = '' } = value || {}

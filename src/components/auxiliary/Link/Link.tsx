@@ -2,7 +2,7 @@ import { FC, MouseEvent } from 'react'
 import { useNavigate } from 'react-router'
 
 import { A } from 'src/components/typography'
-import { noop } from 'src/helpers'
+import { noop } from 'src/common/helpers'
 import { LinkProps } from './Link.types'
 
 const Link: FC<LinkProps> = ({ to, onClick = noop, ...rest }) => {

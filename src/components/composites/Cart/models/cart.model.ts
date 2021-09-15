@@ -1,10 +1,10 @@
 import { BehaviorSubject } from 'rxjs'
 
-import { autobind } from 'src/helpers'
-import { Product } from 'src/domain/entities'
-import { CartService } from 'src/domain/services'
-import { JSONPatchOperations, UpdateAmountPaths } from 'shared/infra/http'
+import { autobind } from 'src/common/helpers'
+import { JSONPatchOperations, UpdateAmountPaths } from 'shared/http'
 import { updateAmountQuery } from 'src/infra/http/queries'
+import { Product } from '../domain/entities'
+import { CartService } from '../domain/services'
 
 export class CartModel {
   products$: BehaviorSubject<Product[]>

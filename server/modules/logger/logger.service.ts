@@ -3,7 +3,7 @@ import { LoggerService as NestLoggerService, Inject } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 
 import { prettifier } from './prettifier'
-import { HttpExceptionImpl } from 'shared/domain/exceptions'
+import { HttpExceptionImpl } from 'shared/exceptions'
 
 export class LoggerService implements NestLoggerService {
   protected readonly logger: Logger

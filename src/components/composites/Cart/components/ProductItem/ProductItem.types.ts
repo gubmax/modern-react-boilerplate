@@ -1,4 +1,4 @@
-import { Product } from 'src/domain/entities'
+import { Product } from '../../domain/entities'
 
 export interface ProductItemProps {
   product: Product

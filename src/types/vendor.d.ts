@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
 
-import { ServerSideProps } from 'src/contexts'
+import { ServerSideProps } from 'src/common/contexts'
 
 declare global {
   interface Window {

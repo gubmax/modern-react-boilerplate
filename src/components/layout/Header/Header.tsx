@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { cn } from 'src/helpers'
+import { cn } from 'src/common/helpers'
 import { H2, A } from 'src/components/typography'
 import { StyledProps } from 'src/types'
 import { LINK_REPO } from './Header.constants'

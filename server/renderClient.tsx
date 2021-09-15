@@ -1,7 +1,7 @@
 import { StaticRouter } from 'react-router-dom/server'
 
 import { App } from 'src/components/layout'
-import { ServerSideProps } from 'src/contexts'
+import { ServerSideProps } from 'src/common/contexts'
 
 export function renderClient(url: string, serverSideProps?: ServerSideProps): JSX.Element {
   return (

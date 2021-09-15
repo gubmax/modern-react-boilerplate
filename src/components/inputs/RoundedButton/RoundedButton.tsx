@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { cn } from 'src/helpers'
+import { cn } from 'src/common/helpers'
 import { BaseButton, BaseButtonProps } from '../BaseButton'
 import * as s from './RoundedButton.css'
 

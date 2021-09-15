@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 import { H1 } from 'src/components/typography'
-import { useDocumentTitle } from 'src/hooks'
+import { useDocumentTitle } from 'src/common/hooks'
 
 const PAGE_TITLE = 'Settings'
 

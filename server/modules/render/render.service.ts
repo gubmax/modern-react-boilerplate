@@ -5,7 +5,7 @@ import type { Request, Response } from 'express'
 import { createServer, ViteDevServer } from 'vite'
 import { matchPath } from 'react-router'
 
-import { InternalServerException } from 'shared/domain/exceptions'
+import { InternalServerException } from 'shared/exceptions'
 import type { renderClient as RenderClient } from 'server/renderClient'
 import {
   CONFIG_GENERATED_ROUTES,
@@ -15,6 +15,7 @@ import {
 import { collectCss, injectCss, writeTemplate } from './utils'
 import type { PreloadUrls } from './types'
 import { PageRoutes } from 'src/infra/http'
+import { ServerSideProps } from 'src/common/contexts'
 import {
   PATH_RESOLVED_DIST_RENDER,
   PATH_RESOLVED_DIST_INDEX_HTML,
@@ -24,7 +25,6 @@ import {
   PATH_CLIENT_APP_MODULE,
   PATH_RESOLVED_CLIENT_PAGES,
 } from 'server/common/constants'
-import { ServerSideProps } from 'src/contexts'
 
 @Injectable()
 export class RenderService {

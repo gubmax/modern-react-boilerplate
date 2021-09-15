@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs'
 
-import { HttpRequestResponse, HttpRequestBody, HttpRequestInit } from 'shared/infra/http'
+import { HttpRequestResponse, HttpRequestBody, HttpRequestInit } from 'shared/http'
 import { httpRequest } from 'src/infra/http'
 
 export enum Statuses {

@@ -3,7 +3,7 @@ import { BaseExceptionFilter } from '@nestjs/core'
 import { Response } from 'express'
 
 import { LoggerService } from 'server/modules/logger'
-import { HttpExceptionImpl, InternalServerException } from 'shared/domain/exceptions'
+import { HttpExceptionImpl, InternalServerException } from 'shared/exceptions'
 
 @Catch()
 export class AllExceptionsFilter extends BaseExceptionFilter {

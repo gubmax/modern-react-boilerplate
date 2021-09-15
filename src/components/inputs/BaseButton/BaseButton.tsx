@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { cn } from 'src/helpers'
+import { cn } from 'src/common/helpers'
 import { focusStyle } from 'src/styles'
 import { BaseButtonProps } from './BaseButton.types'
 import * as s from './BaseButton.css'

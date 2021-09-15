@@ -3,7 +3,7 @@ import { registerSW } from 'virtual:pwa-register'
 
 import { App } from './components/layout'
 import { BrowserRouter } from './components/auxiliary'
-import { ServerSideProps } from './contexts'
+import { ServerSideProps } from './common/contexts'
 import { reportWebVitals } from './infra/http'
 
 import './styles/common.css'

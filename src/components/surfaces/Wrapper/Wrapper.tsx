@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { cn, noop } from 'src/helpers'
+import { cn, noop } from 'src/common/helpers'
 import { WrapperProps } from './Wrapper.types'
 import * as s from './Wrapper.css'
 

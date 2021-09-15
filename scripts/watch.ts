@@ -1,6 +1,6 @@
 import chokidar, { WatchOptions } from 'chokidar'
 
-import { noop } from 'src/helpers'
+import { noop } from 'src/common/helpers'
 
 interface WatchProp {
   paths: string | ReadonlyArray<string>

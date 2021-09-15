@@ -1,6 +1,6 @@
 import { QueryImpl } from 'src/utils'
 
-import { UpdateAmountBody, updateAmountInit } from 'shared/infra/http'
+import { UpdateAmountBody, updateAmountInit } from 'shared/http'
 
 class UpdateAmountQuery extends QueryImpl<void, UpdateAmountBody> {
   init = updateAmountInit

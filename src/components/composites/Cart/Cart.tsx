@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
-import { IconSizes } from 'src/hocs'
-import { useObservableState } from 'src/hooks'
+import { IconSizes } from 'src/common/hocs'
+import { useObservableState } from 'src/common/hooks'
 import { LoadingProp } from 'src/types'
 import { H2, H3 } from 'src/components/typography'
 import { EmptyShoppingCartIcon } from 'src/components/icons'

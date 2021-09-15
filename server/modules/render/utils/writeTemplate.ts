@@ -1,7 +1,7 @@
 import type { Response } from 'express'
 // @ts-expect-error: TODO: Add type
 import { pipeToNodeWritable } from 'react-dom/server'
-import { ServerSideProps } from 'src/contexts'
+import { ServerSideProps } from 'src/common/contexts'
 
 const SAFE_pipeToNodeWritable = pipeToNodeWritable as (
   appHtml: JSX.Element,

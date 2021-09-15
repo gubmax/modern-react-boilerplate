@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { useDocumentTitle } from 'src/hooks'
+import { useDocumentTitle } from 'src/common/hooks'
 import { H1 } from 'src/components/typography'
 
 const PAGE_TITLE = 'About'

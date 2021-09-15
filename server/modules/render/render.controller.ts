@@ -2,7 +2,7 @@ import { Controller, Get, Inject, Req, Res } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { Request, Response } from 'express'
 
-import { ApiRoutes } from 'shared/infra/http'
+import { ApiRoutes } from 'shared/http'
 import { RenderService } from './render.service'
 
 @Controller(ApiRoutes.RENDER)

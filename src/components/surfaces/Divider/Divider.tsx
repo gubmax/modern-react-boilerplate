@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { cn } from 'src/helpers'
+import { cn } from 'src/common/helpers'
 import { StyledProps } from 'src/types'
 import * as s from './Divider.css'
 

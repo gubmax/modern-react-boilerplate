@@ -1,6 +1,6 @@
 import { ElementType } from 'react'
 
-import { IconProps } from 'src/hocs'
+import { IconProps } from 'src/common/hocs'
 import { PageRoutes } from 'src/infra/http'
 import { InfoIcon, SettingsIcon, ShoppingCardIcon } from 'src/components/icons'
 

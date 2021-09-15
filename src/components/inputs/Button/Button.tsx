@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { cn, noop } from 'src/helpers'
+import { cn, noop } from 'src/common/helpers'
 import { Loader } from 'src/components/elements'
 import { BaseButton } from '../BaseButton'
 import { ButtonProps } from './Button.types'

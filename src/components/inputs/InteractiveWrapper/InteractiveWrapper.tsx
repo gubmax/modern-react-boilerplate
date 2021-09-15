@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { cn } from 'src/helpers'
+import { cn } from 'src/common/helpers'
 import { Wrapper } from 'src/components/surfaces'
 import { focusStyle } from 'src/styles'
 import { InteractiveWrapperProps } from './InteractiveWrapper.types'

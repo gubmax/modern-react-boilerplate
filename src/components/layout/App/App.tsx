@@ -1,6 +1,6 @@
 import { FC, StrictMode } from 'react'
 
-import { ServerSidePropsContext } from 'src/contexts'
+import { ServerSidePropsContext } from 'src/common/contexts'
 import { Main } from '../Main'
 import { AppProps } from './App.types'
 
