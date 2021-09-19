@@ -1,7 +1,6 @@
-import { QueryImpl } from 'src/utils'
-
 import { getProductsInit, GetProductsResponse } from 'shared/http'
+import { HttpQueryModel } from 'src/models'
 
-export class GetProductsQuery extends QueryImpl<GetProductsResponse> {
+export class GetProductsQuery extends HttpQueryModel<GetProductsResponse> {
   init = getProductsInit
 }
