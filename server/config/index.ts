@@ -1,4 +1,4 @@
 export * from './env.config'
-export * from './generatedRoutes.config'
-export * from './staticRoutes.config'
+export * from './ssrRoutes.config'
+export * from './ssgRoutes.config'
 export * from './viteDevServer.config'

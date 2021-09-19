@@ -7,14 +7,9 @@ import { matchPath } from 'react-router'
 
 import { InternalServerException } from 'shared/exceptions'
 import type { renderClient as RenderClient } from 'server/renderClient'
-import {
-  CONFIG_GENERATED_ROUTES,
-  CONFIG_STATIC_ROUTES,
-  CONFIG_VITE_DEV_SERVER,
-} from 'server/config'
+import { CONFIG_SSR_ROUTES, CONFIG_SSG_ROUTES, CONFIG_VITE_DEV_SERVER } from 'server/config'
 import { collectCss, injectCss, writeTemplate } from './utils'
 import type { PreloadUrls } from './types'
-import { PageRoutes } from 'src/infra/http'
 import { ServerSideProps } from 'src/common/contexts'
 import {
   PATH_RESOLVED_DIST_RENDER,
@@ -31,7 +26,7 @@ export class RenderService {
   private devServer?: ViteDevServer
 
   async fetchPageData(url: string): Promise<ServerSideProps> {
-    const pageName = CONFIG_GENERATED_ROUTES[url]
+    const pageName = CONFIG_SSR_ROUTES[url]
 
     if (!pageName) return {}
 
@@ -53,10 +48,9 @@ export class RenderService {
    */
   async render(req: Request, res: Response): Promise<void> {
     // Send pre-rendered template
-    for (const route in CONFIG_STATIC_ROUTES) {
+    for (const route in CONFIG_SSG_ROUTES) {
       if (matchPath(route, req.url)) {
-        const fileName = route === '/' ? PageRoutes.ABOUT : route
-        return res.sendFile(`${PATH_RESOLVED_DIST_CLIENT}${fileName}.html`)
+        return res.sendFile(`${PATH_RESOLVED_DIST_CLIENT}/${CONFIG_SSG_ROUTES[route]}.html`)
       }
     }
 

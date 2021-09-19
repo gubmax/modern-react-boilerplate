@@ -12,8 +12,12 @@ html:focus-within {
   box-sizing: border-box;
 }
 
-body {
+body,
+#root {
   min-height: 100vh;
+}
+
+body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;

@@ -1,6 +1,6 @@
-import { createAtomicStyles, createAtomsFn } from '@vanilla-extract/sprinkles'
+import { defineProperties, createSprinkles } from '@vanilla-extract/sprinkles'
 
-const gridStyles = createAtomicStyles({
+const gridStyles = defineProperties({
   properties: {
     display: ['flex', 'inline-flex'],
     flexDirection: ['column', 'row'],
@@ -15,4 +15,4 @@ const gridStyles = createAtomicStyles({
   },
 })
 
-export const gridAtom = createAtomsFn(gridStyles)
+export const gridAtom = createSprinkles(gridStyles)
