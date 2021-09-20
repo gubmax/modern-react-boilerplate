@@ -17,7 +17,8 @@ import {
 void (async () => {
   const template = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
 
-  const { renderClient } = (await import(PATH_RESOLVED_DIST_RENDER)) as {
+  const renderModulePath = PATH_RESOLVED_DIST_RENDER
+  const { renderClient } = (await import(renderModulePath)) as {
     renderClient: typeof RenderClient
   }
 

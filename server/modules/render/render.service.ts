@@ -30,7 +30,8 @@ export class RenderService {
 
     if (!pageName) return {}
 
-    const { getServerSideProps } = (await import(`${PATH_RESOLVED_CLIENT_PAGES}/${pageName}`)) as {
+    const pageModulePath = PATH_RESOLVED_CLIENT_PAGES
+    const { getServerSideProps } = (await import(`${pageModulePath}/${pageName}`)) as {
       getServerSideProps?: () => Promise<ServerSideProps>
     }
 
@@ -59,7 +60,8 @@ export class RenderService {
     const serverSideProps = await this.fetchPageData(req.url)
 
     const template = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
-    const { renderClient } = (await import(PATH_RESOLVED_DIST_RENDER)) as {
+    const renderModulePath = PATH_RESOLVED_DIST_RENDER
+    const { renderClient } = (await import(renderModulePath)) as {
       renderClient: typeof RenderClient
     }
 

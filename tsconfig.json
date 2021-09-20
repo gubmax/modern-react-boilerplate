@@ -2,6 +2,7 @@
   "ts-node": {
     "files": true,
     "transpileOnly": true,
+    "transpiler": "ts-node/transpilers/swc-experimental",
     "require": ["tsconfig-paths/register"]
   },
   "include": [
@@ -23,6 +24,7 @@
     "module": "CommonJS",
     "moduleResolution": "Node",
     "isolatedModules": true,
+    "emitDecoratorMetadata": true,
     "noEmit": true,
     "jsx": "react-jsx",
     "types": [
