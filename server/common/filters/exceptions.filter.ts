@@ -16,7 +16,9 @@ export class AllExceptionsFilter extends BaseExceptionFilter {
     const res = ctx.getResponse<Response>()
 
     const exception =
-      error instanceof HttpExceptionImpl ? error : new InternalServerException(error.message)
+      error instanceof HttpExceptionImpl
+        ? error
+        : new InternalServerException(error.message, error.stack)
 
     this.logger.error(exception)
     res.status(exception.status).send(JSON.stringify(exception))
