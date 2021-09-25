@@ -5,8 +5,12 @@ import { StyledProps } from 'src/types'
 import { HeadingProps } from './Heading.types'
 import { HeadingTags, stylesByTag } from './Heading.constants'
 
-const Heading: FC<HeadingProps> = ({ as: Tag, className, children }) => {
-  return <Tag className={cn(stylesByTag.get(Tag), className)}>{children}</Tag>
+const Heading: FC<HeadingProps> = ({ as: Tag, className, style, children }) => {
+  return (
+    <Tag className={cn(stylesByTag.get(Tag), className)} style={style}>
+      {children}
+    </Tag>
+  )
 }
 
 export const H1: FC<StyledProps> = ({ ...props }) => <Heading {...props} as={HeadingTags.H1} />
