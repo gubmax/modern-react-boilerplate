@@ -1,9 +1,9 @@
-import { QueryStatuses } from './Query.constants'
+import { QueryStatuses } from './query.constants'
 
 export interface QueryState<T extends unknown> {
   status: QueryStatuses
   loading: boolean
-  value?: T
+  response?: T
   error?: unknown
 }
 

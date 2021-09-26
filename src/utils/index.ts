@@ -1,1 +1,1 @@
-export * from './providerFactory'
+export * from './ioc'

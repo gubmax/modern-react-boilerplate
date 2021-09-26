@@ -1,3 +1,3 @@
-export * from './Query'
-export * from './Query.constants'
-export * from './Query.types'
+export * from './query'
+export * from './query.constants'
+export * from './query.types'

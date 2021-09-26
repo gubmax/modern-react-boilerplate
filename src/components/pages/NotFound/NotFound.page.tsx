@@ -2,8 +2,7 @@ import { FC } from 'react'
 
 import { useDocumentTitle } from 'src/common/hooks'
 import { NotFoundBlock } from 'src/components/composites'
-
-const PAGE_TITLE = 'Page Not Found'
+import { PAGE_TITLE } from './NotFound.constants'
 
 const NotFoundPage: FC = () => {
   useDocumentTitle(PAGE_TITLE)

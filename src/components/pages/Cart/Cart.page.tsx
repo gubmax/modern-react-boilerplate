@@ -1,31 +1,34 @@
 import { lazy, FC, Suspense } from 'react'
 
+import {
+  useDocumentTitle,
+  useObservableState,
+  useServerSideProps,
+  useServerSidePropsQueryLoader,
+} from 'src/common/hooks'
 import { PageLoader } from 'src/components/composites'
 import { H1 } from 'src/components/typography'
-import { useDocumentTitle, useServerSideProps, useServerSidePropsLoader } from 'src/common/hooks'
-import { provide, usePageDeps } from './Cart.provider'
+import { getServerSideProps } from './Cart.server'
+import { PAGE_TITLE } from './Cart.constants'
 
 const Cart = lazy(() => import('src/components/composites/Cart/cart.chunk'))
 
-const PAGE_TITLE = 'Shopping Cart'
-
 const CartPage: FC = () => {
   useDocumentTitle(PAGE_TITLE)
-  const { sspQueryModel } = usePageDeps()
   const { products } = useServerSideProps()
+  const sspQueryModel = useServerSidePropsQueryLoader(getServerSideProps)
+  useObservableState(sspQueryModel.state$)
 
-  useServerSidePropsLoader(sspQueryModel)
-
-  const { loading, value } = sspQueryModel.state
+  const { loading, response } = sspQueryModel.state
 
   return (
     <>
       <H1>{PAGE_TITLE}</H1>
       <Suspense fallback={<PageLoader />}>
-        <Cart loading={loading} products={value?.products || products} />
+        <Cart loading={loading} products={response?.products || products} />
       </Suspense>
     </>
   )
 }
 
-export default provide(CartPage)
+export default CartPage

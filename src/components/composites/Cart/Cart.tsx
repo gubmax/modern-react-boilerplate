@@ -1,21 +1,24 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 
 import { IconSizes } from 'src/common/hocs'
-import { useObservableState } from 'src/common/hooks'
-import { LoadingProp } from 'src/types'
+import { useInject, useObservableState } from 'src/common/hooks'
 import { H2, H3 } from 'src/components/typography'
 import { EmptyShoppingCartIcon } from 'src/components/icons'
 import { ProductList } from './components'
+import { CartModel, cartModelSymbol } from './models'
 import { CartSkeleton } from './Cart.skeleton'
-import { provide, useCartDeps } from './Cart.provider'
+import { CartProps } from './Cart.types'
 import * as s from './Cart.css'
+import './Cart.ioc'
 
-const Cart: FC<LoadingProp> = ({ loading }) => {
-  const {
-    cartModel: { products$, products, totalPrice },
-  } = useCartDeps()
+const Cart: FC<CartProps> = ({ loading, products: initialProducts }) => {
+  const { products$, products, totalPrice } = useInject<CartModel>(cartModelSymbol)
 
   useObservableState(products$)
+
+  useEffect(() => {
+    initialProducts && products$.next(initialProducts)
+  }, [initialProducts, products$])
 
   if (loading) return <CartSkeleton />
 
@@ -36,4 +39,4 @@ const Cart: FC<LoadingProp> = ({ loading }) => {
   )
 }
 
-export default provide(Cart)
+export default Cart

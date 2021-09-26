@@ -27,11 +27,12 @@
     "emitDecoratorMetadata": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": ".",
     "types": [
       "react/next",
       "react-dom/next",
       "vite-plugin-pwa/client",
-    ],
-    "baseUrl": "."
+      "reflect-metadata"
+    ]
   }
 }

@@ -1,7 +1,9 @@
+import { injectable } from 'inversify'
 import { BehaviorSubject } from 'rxjs'
 
 import { Query, QueryState, QueryStatuses } from 'src/domain/query'
 
+@injectable()
 export abstract class QueryModel<R extends unknown = unknown> {
   readonly #query = new Query<R>()
   readonly state$ = new BehaviorSubject<QueryState<R>>(this.#query.state)

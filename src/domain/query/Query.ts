@@ -1,6 +1,6 @@
 import { noop } from 'src/common/helpers'
-import { QueryStatuses } from './Query.constants'
-import { QueryAction, QueryState } from './Query.types'
+import { QueryStatuses } from './query.constants'
+import { QueryAction, QueryState } from './query.types'
 
 export class Query<R extends unknown | undefined = undefined> {
   #state: QueryState<R> = {
@@ -25,7 +25,7 @@ export class Query<R extends unknown | undefined = undefined> {
         this.state = {
           status: QueryStatuses.LOADING,
           loading: true,
-          value: undefined,
+          response: undefined,
           error: undefined,
         }
         break
@@ -34,7 +34,7 @@ export class Query<R extends unknown | undefined = undefined> {
         this.state = {
           status: QueryStatuses.SUCCESS,
           loading: false,
-          value: action.payload,
+          response: action.payload,
         }
         break
 

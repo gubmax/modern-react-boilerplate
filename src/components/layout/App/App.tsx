@@ -1,7 +1,9 @@
 import { FC, StrictMode } from 'react'
 import { useRoutes } from 'react-router'
+import 'reflect-metadata'
 
-import { ServerSidePropsContext } from 'src/common/contexts'
+import { IocContainerContext, ServerSidePropsContext } from 'src/common/contexts'
+import { iocContainer } from 'src/utils'
 import { ROUTES } from './App.constants'
 import { AppProps } from './App.types'
 
@@ -10,9 +12,11 @@ const App: FC<AppProps> = ({ serverSideProps = {} }) => {
 
   return (
     <StrictMode>
-      <ServerSidePropsContext.Provider value={serverSideProps}>
-        {element}
-      </ServerSidePropsContext.Provider>
+      <IocContainerContext.Provider value={iocContainer}>
+        <ServerSidePropsContext.Provider value={serverSideProps}>
+          {element}
+        </ServerSidePropsContext.Provider>
+      </IocContainerContext.Provider>
     </StrictMode>
   )
 }
