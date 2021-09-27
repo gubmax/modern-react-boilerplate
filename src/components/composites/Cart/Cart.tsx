@@ -1,7 +1,7 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 
 import { IconSizes } from 'src/common/hocs'
-import { useInject, useObservableState } from 'src/common/hooks'
+import { useInit, useInject, useObservableState } from 'src/common/hooks'
 import { H2, H3 } from 'src/components/typography'
 import { EmptyShoppingCartIcon } from 'src/components/icons'
 import { ProductList } from './components'
@@ -14,11 +14,9 @@ import './Cart.ioc'
 const Cart: FC<CartProps> = ({ loading, products: initialProducts }) => {
   const { products$, products, totalPrice } = useInject<CartModel>(cartModelSymbol)
 
-  useObservableState(products$)
+  useInit(() => initialProducts && products$.next(initialProducts))
 
-  useEffect(() => {
-    initialProducts && products$.next(initialProducts)
-  }, [initialProducts, products$])
+  useObservableState(products$)
 
   if (loading) return <CartSkeleton />
 
