@@ -57,15 +57,16 @@ export class RenderService {
 
     // Render template
 
-    const serverSideProps = await this.fetchPageData(req.url)
+    const renderModulePath = PATH_RESOLVED_DIST_RENDER
+
+    const [serverSideProps, { renderClient }] = await Promise.all([
+      this.fetchPageData(req.url),
+      import(renderModulePath) as Promise<{ renderClient: typeof RenderClient }>,
+    ])
 
     const template = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
-    const renderModulePath = PATH_RESOLVED_DIST_RENDER
-    const { renderClient } = (await import(renderModulePath)) as {
-      renderClient: typeof RenderClient
-    }
-
     const appHtml = renderClient(req.url, serverSideProps)
+
     writeTemplate(template, appHtml, res, serverSideProps)
   }
 
@@ -97,15 +98,21 @@ export class RenderService {
 
     try {
       const html = readFileSync(PATH_RESOLVED_DEV_INDEX_HTML, 'utf-8')
-      let template = await devServer.transformIndexHtml(url, html)
 
-      const mod = await devServer.moduleGraph.getModuleByUrl(`/${PATH_CLIENT_APP_MODULE}`)
-      collectCss(mod, preloadUrls, visitedModules)
+      const results = await Promise.all([
+        devServer.transformIndexHtml(url, html),
+        devServer.moduleGraph.getModuleByUrl(`/${PATH_CLIENT_APP_MODULE}`),
+        devServer.ssrLoadModule(PATH_RENDER) as Promise<{ renderClient: typeof RenderClient }>,
+        this.fetchPageData(url),
+      ])
+
+      const [, appModule, { renderClient }, serverSideProps] = results
+      let [template] = results
+
+      collectCss(appModule, preloadUrls, visitedModules)
       template = injectCss(template, preloadUrls)
 
-      const renderModule = await devServer.ssrLoadModule(PATH_RENDER)
-      const serverSideProps = await this.fetchPageData(url)
-      const appHtml = (renderModule.renderClient as typeof RenderClient)(url, serverSideProps)
+      const appHtml = renderClient(url, serverSideProps)
 
       writeTemplate(template, appHtml, res, serverSideProps)
     } catch (error: unknown) {
