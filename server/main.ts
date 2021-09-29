@@ -2,7 +2,7 @@ import fetch, { RequestInit } from 'node-fetch'
 
 import { watch } from 'scripts/watch'
 import { PATH_RESOLVED_SERVER } from './common/constants'
-import { LoggerService, LOGGER_SERVICE } from './modules/logger'
+import { LoggerService, loggerServiceSymbol } from './modules/logger'
 import { CONFIG_ENV } from './config'
 import { bootstrap } from './bootstrap'
 
@@ -19,7 +19,7 @@ if (!CONFIG_ENV.isTestEnv) {
     // Watch
     if (!CONFIG_ENV.isProdEnv) {
       const dispose = async () => {
-        app.get<LoggerService>(LOGGER_SERVICE).warn('Restarting server...')
+        app.get<LoggerService>(loggerServiceSymbol).warn('Restarting server...')
         return app.close()
       }
 

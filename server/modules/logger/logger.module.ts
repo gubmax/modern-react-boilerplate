@@ -2,10 +2,10 @@ import { FactoryProvider, Module } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 
 import { LoggerService } from './logger.service'
-import { LOGGER_SERVICE } from './logger.constants'
+import { loggerServiceSymbol } from './logger.constants'
 
 const LoggerValueProvider: FactoryProvider<LoggerService> = {
-  provide: LOGGER_SERVICE,
+  provide: loggerServiceSymbol,
   useFactory: (configService: ConfigService) => new LoggerService(configService),
   inject: [ConfigService],
 }

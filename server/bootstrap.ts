@@ -5,8 +5,8 @@ import compression from 'compression'
 import serve from 'serve-static'
 
 import { AppModule } from './modules'
-import { RenderService } from './modules/render'
-import { LoggerService, LOGGER_SERVICE } from './modules/logger'
+import { DevelopmentRenderService, renderServiceSymbol } from './modules/render'
+import { LoggerService, loggerServiceSymbol } from './modules/logger'
 import { AllExceptionsFilter } from './common/filters'
 import { PATH_RESOLVED_DIST_CLIENT } from './common/constants'
 
@@ -14,7 +14,7 @@ export async function bootstrap(): Promise<NestExpressApplication> {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, { logger: false })
 
   // Logger
-  const logger = app.get<LoggerService>(LOGGER_SERVICE)
+  const logger = app.get<LoggerService>(loggerServiceSymbol)
   app.useLogger(logger)
 
   // Exceptions
@@ -36,7 +36,7 @@ export async function bootstrap(): Promise<NestExpressApplication> {
 
   // Development
 
-  const render = app.get(RenderService)
+  const render = app.get<DevelopmentRenderService>(renderServiceSymbol)
   await render.setupDevServer(app)
 
   await app.listen(port)

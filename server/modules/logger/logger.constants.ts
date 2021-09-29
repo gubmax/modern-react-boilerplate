@@ -1,6 +1,6 @@
 import { ForegroundColor } from 'chalk'
 
-export const LOGGER_SERVICE = 'LOGGER_SERVICE'
+export const loggerServiceSymbol = 'LoggerService'
 
 export enum LogLevelTexts {
   TRACE = 'TRACE',
