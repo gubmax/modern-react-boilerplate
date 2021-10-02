@@ -11,10 +11,6 @@ export const serverSidePropsModelFactorySymbol = Symbol('ServerSidePropsModelFac
 
 export type { ServerSidePropsQueryModel }
 
-export interface ServerSidePropsModelConstructor {
-  new <T>(getServerSideProps: GetServerSideProps<T>): ServerSidePropsQueryModel<T>
-}
-
 export interface ServerSidePropsModelFactory {
   <T>(getServerSideProps: GetServerSideProps<T>): ServerSidePropsQueryModel<T>
 }
@@ -22,17 +18,17 @@ export interface ServerSidePropsModelFactory {
 // Module
 
 export const ServerSidePropsQueryModule = new ContainerModule((bind) => {
-  bind<ServerSidePropsQueryModel>(serverSidePropsQueryModelSymbol).toConstructor(
-    ServerSidePropsQueryModel,
-  )
+  bind<ServerSidePropsQueryModel>(serverSidePropsQueryModelSymbol).to(ServerSidePropsQueryModel)
 
   bind(serverSidePropsModelFactorySymbol).toFactory(({ container }) => {
     return <T>(getServerSideProps: GetServerSideProps<T>): ServerSidePropsQueryModel<T> => {
-      const Constructor = container.get<ServerSidePropsModelConstructor>(
+      const ServerSidePropsQueryModel = container.get<ServerSidePropsQueryModel<T>>(
         serverSidePropsQueryModelSymbol,
       )
 
-      return new Constructor(getServerSideProps)
+      ServerSidePropsQueryModel.getServerSideProps = getServerSideProps
+
+      return ServerSidePropsQueryModel
     }
   })
 })

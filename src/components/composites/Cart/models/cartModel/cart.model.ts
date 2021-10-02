@@ -1,24 +1,33 @@
 import { inject, injectable } from 'inversify'
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject, first } from 'rxjs'
 
-import { UpdateAmountQueryModel, updateAmountQueryModelSymbol } from 'src/models/queries'
-import { JSONPatchOperations, UpdateAmountPaths } from 'shared/http'
+import {
+  ServerSidePropsQueryModel,
+  serverSidePropsQueryModelSymbol,
+  UpdateAmountQueryModel,
+  updateAmountQueryModelSymbol,
+} from 'src/models/queries'
+import { GetProductsResponse, JSONPatchOperations, UpdateAmountPaths } from 'shared/http'
 import { CartService, cartServiceSymbol } from '../../domain/services'
 import { Product } from '../../domain/entities'
 
 @injectable()
 export class CartModel {
-  #updateAmountQueryModel: UpdateAmountQueryModel
-  #cartService: CartService
   products$ = new BehaviorSubject<Product[]>([])
   totalPrice = 0
 
   constructor(
-    @inject(updateAmountQueryModelSymbol) updateAmountQueryModel: UpdateAmountQueryModel,
-    @inject(cartServiceSymbol) cartService: CartService,
+    @inject(serverSidePropsQueryModelSymbol)
+    readonly serverSidePropsQueryModel: ServerSidePropsQueryModel<GetProductsResponse>,
+    @inject(updateAmountQueryModelSymbol)
+    private readonly updateAmountQueryModel: UpdateAmountQueryModel,
+    @inject(cartServiceSymbol) private readonly cartService: CartService,
   ) {
-    this.#updateAmountQueryModel = updateAmountQueryModel
-    this.#cartService = cartService
+    // Server-side props
+    serverSidePropsQueryModel.state$.subscribe(({ response: { products } = {} }) => {
+      products && this.products$.next(products)
+    })
+
     this.products$.subscribe(() => this.#updateTotalPrice())
   }
 
@@ -27,15 +36,15 @@ export class CartModel {
   }
 
   #updateTotalPrice = (): void => {
-    this.totalPrice = this.#cartService.calcTotalPrice(this.products)
+    this.totalPrice = this.cartService.calcTotalPrice(this.products)
   }
 
   add(product: Product): void {
-    this.products$.next(this.#cartService.add(this.products, product))
+    this.products$.next(this.cartService.add(this.products, product))
   }
 
   #setAmount = async (id: string, path: UpdateAmountPaths): Promise<void> => {
-    const amount = this.#cartService.getAmount(this.products, id)
+    const amount = this.cartService.getAmount(this.products, id)
 
     if (amount === undefined) return
 
@@ -44,13 +53,13 @@ export class CartModel {
       [UpdateAmountPaths.decrease]: amount - 1,
     }[path]
 
-    const nextProducts = this.#cartService.setAmount(this.products, id, nextAmount)
+    const nextProducts = this.cartService.setAmount(this.products, id, nextAmount)
 
     if (nextProducts === false) return
 
     this.products$.next([...nextProducts])
 
-    await this.#updateAmountQueryModel.send({
+    await this.updateAmountQueryModel.send({
       op: JSONPatchOperations.replace,
       path,
       value: { id },
@@ -66,6 +75,6 @@ export class CartModel {
   }
 
   remove = (id: string): void => {
-    this.products$.next(this.#cartService.remove(this.products, id))
+    this.products$.next(this.cartService.remove(this.products, id))
   }
 }
