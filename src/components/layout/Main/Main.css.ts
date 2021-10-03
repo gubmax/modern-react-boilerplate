@@ -14,7 +14,7 @@ export const page = style({
 
 export const header = style({
   gridArea: 'header',
-  padding: vars.space.s3,
+  padding: `${vars.space.s2} ${vars.space.s3}`,
 })
 
 export const main = style({

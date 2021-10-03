@@ -1,7 +1,6 @@
 import { FC, MouseEvent } from 'react'
 import { useNavigate } from 'react-router'
 
-import { A } from 'src/components/typography'
 import { noop } from 'src/common/helpers'
 import { LinkProps } from './Link.types'
 
@@ -14,7 +13,7 @@ const Link: FC<LinkProps> = ({ to, onClick = noop, ...rest }) => {
     navigate(to)
   }
 
-  return <A href={to} onClick={handleClick} {...rest} />
+  return <a href={to} onClick={handleClick} {...rest} />
 }
 
 export default Link

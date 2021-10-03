@@ -3,6 +3,9 @@ import { createThemeContract, assignVars, createGlobalTheme } from '@vanilla-ext
 export const vars = createGlobalTheme(':root', {
   fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+  colors: {
+    transparentBorder: 'rgba(0, 0, 0, 0.1)',
+  },
   fontSize: {
     primary: '1rem',
     accent: '1.10rem',
