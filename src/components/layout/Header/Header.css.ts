@@ -6,10 +6,6 @@ export const wrapper = gridAtom({
   alignItems: 'center',
 })
 
-export const logoWrapper = style({
-  marginBottom: 0,
-})
-
 export const marginLeft = style([
   {
     marginRight: vars.space.s3,
