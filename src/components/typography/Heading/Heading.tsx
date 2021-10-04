@@ -3,11 +3,12 @@ import { FC } from 'react'
 import { cn } from 'src/common/helpers'
 import { StyledProps } from 'src/types'
 import { HeadingProps } from './Heading.types'
-import { HeadingTags, stylesByTag } from './Heading.constants'
+import { HeadingTags } from './Heading.constants'
+import * as s from './Heading.css'
 
 const Heading: FC<HeadingProps> = ({ as: Tag, className, style, children }) => {
   return (
-    <Tag className={cn(stylesByTag.get(Tag), className)} style={style}>
+    <Tag className={cn(s.heading({ type: Tag }), className)} style={style}>
       {children}
     </Tag>
   )

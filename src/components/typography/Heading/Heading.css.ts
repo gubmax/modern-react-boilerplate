@@ -1,18 +1,23 @@
-import { style } from '@vanilla-extract/css'
+import { recipe } from '@vanilla-extract/recipes'
+
 import { vars } from 'src/styles'
 
-export const h1 = style({
-  marginBottom: vars.space.s3,
-  fontSize: vars.fontSize.h1,
-  fontWeight: 'bold',
-})
+export const heading = recipe({
+  base: { letterSpacing: '0.05rem' },
 
-export const h2 = style({
-  marginBottom: vars.space.s2,
-  fontSize: vars.fontSize.h2,
-  fontWeight: 'bold',
-})
-
-export const h3 = style({
-  fontSize: vars.fontSize.h3,
+  variants: {
+    type: {
+      h1: {
+        marginBottom: vars.space.s3,
+        fontSize: vars.fontSize.h1,
+        fontWeight: 'bold',
+      },
+      h2: {
+        marginBottom: vars.space.s2,
+        fontSize: vars.fontSize.h2,
+        fontWeight: 'bold',
+      },
+      h3: { fontSize: vars.fontSize.h3 },
+    },
+  },
 })
