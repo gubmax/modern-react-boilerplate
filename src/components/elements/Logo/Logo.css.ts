@@ -3,7 +3,7 @@ import { theme } from 'src/styles'
 
 export const highlight = style({
   display: 'inline-block',
-  width: '2.1rem',
+  width: '2.5rem',
   borderStyle: 'solid',
   borderColor: theme.color.accent,
   borderWidth: '0.25rem',
