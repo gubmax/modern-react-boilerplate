@@ -2,6 +2,11 @@ import { NestMiddleware, Logger } from '@nestjs/common'
 
 import { Request, Response, NextFunction } from 'express'
 
+export enum HttpLoggerMarks {
+  REQ = '$$REQ',
+  RES = '$$RES',
+}
+
 export class RequestLoggerMiddleware implements NestMiddleware {
   private logger = new Logger()
 
@@ -10,11 +15,17 @@ export class RequestLoggerMiddleware implements NestMiddleware {
     const now = Date.now()
     const url = baseUrl.length ? baseUrl : '/'
 
-    this.logger.log(`Req {${url}, ${method}}`)
+    this.logger.log({ msg: HttpLoggerMarks.REQ, url, method })
 
     res.on('close', () => {
       const { statusCode } = res
-      this.logger.log(`Res {${url}, ${method}, ${statusCode}, ${Date.now() - now}ms}`)
+      this.logger.log({
+        msg: HttpLoggerMarks.RES,
+        url,
+        method,
+        statusCode,
+        executionTime: Date.now() - now,
+      })
     })
 
     next()

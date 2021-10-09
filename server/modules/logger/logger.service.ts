@@ -5,6 +5,8 @@ import { ConfigService } from '@nestjs/config'
 import { prettifier } from './prettifier'
 import { HttpExceptionImpl } from 'shared/exceptions'
 
+type MsgData = string | { msg: string }
+
 export class LoggerService implements NestLoggerService {
   protected readonly logger: Logger
 
@@ -16,20 +18,24 @@ export class LoggerService implements NestLoggerService {
     this.logger.level = logLevel
   }
 
-  trace(message: string): void {
-    this.logger.trace(message)
+  private formatMsg(msg: MsgData): { msg: string } {
+    return typeof msg === 'string' ? { msg } : msg
   }
 
-  debug(message: string): void {
-    this.logger.debug(message)
+  trace(msg: MsgData): void {
+    this.logger.trace(this.formatMsg(msg))
   }
 
-  log(message: string): void {
-    this.logger.info(message)
+  debug(msg: MsgData): void {
+    this.logger.debug(this.formatMsg(msg))
   }
 
-  warn(message: string): void {
-    this.logger.warn(message)
+  log(msg: MsgData): void {
+    this.logger.info(this.formatMsg(msg))
+  }
+
+  warn(msg: MsgData): void {
+    this.logger.warn(this.formatMsg(msg))
   }
 
   error(error: HttpExceptionImpl): void {

@@ -1,32 +1,69 @@
 import chalk from 'chalk'
 
+import { HttpLoggerMarks } from 'server/common/middlewares'
 import { HttpExceptions, HttpStatus } from 'shared/exceptions'
 import { levelByNumber, colorByType, LogLevelWeights } from './logger.constants'
 
-interface InputData {
+interface HttpData {
+  url: string
+  method: string
+  statusCode: string
+  executionTime: number
+}
+
+interface ErrorData {
+  type: HttpExceptions
+  description: string
+  stack: string
+}
+
+interface InputData extends Partial<ErrorData & HttpData> {
   status: HttpStatus
-  level: LogLevelWeights
   time: number
+  level: LogLevelWeights
   msg: string
   pid: number
   hostname: string
-  type?: HttpExceptions
-  description?: string
-  stack?: string
 }
 
 export function prettifier(): (inputData: InputData) => string {
-  return function ({ status, time, level, msg, stack, type, description }: InputData): string {
-    const { dim, bold, cyan } = chalk
+  return function ({
+    status,
+    time,
+    level,
+    msg,
+    // error
+    type,
+    description,
+    stack,
+    // req / res
+    url,
+    method,
+    statusCode,
+    executionTime,
+  }: InputData): string {
+    const { dim, green } = chalk
 
     const levelText = levelByNumber[level]
     const colorFn = chalk[colorByType[levelText]]
     const prettyLevel = colorFn(levelText)
     const prettyTime = dim(new Date(time).toLocaleTimeString())
+    const baseStr = `${prettyTime} ${prettyLevel}`
 
-    // Errors
+    // Request
+    if (msg === HttpLoggerMarks.REQ && method && url) {
+      return `${baseStr} ${dim('<--')} ${method} xxx ${url}\n`
+    }
+
+    // Response
+    if (msg === HttpLoggerMarks.RES && method && statusCode && url && executionTime !== undefined) {
+      return `${baseStr} ${green('-->')} ${method} ${statusCode} ${url} ${dim(
+        `${executionTime}ms`,
+      )}\n`
+    }
+
+    // Error
     if (type && description && stack) {
-      const label = bold(colorFn('[server]'))
       const prettyType = dim(type)
       const prettyDesc = colorFn(`${status} (${description}):`)
 
@@ -38,11 +75,10 @@ export function prettifier(): (inputData: InputData) => string {
         })
       }
 
-      return `${prettyTime} ${label} ${prettyLevel} ${prettyType} ${prettyDesc} ${msg}\n${stackStr}`
+      return `${baseStr} ${prettyType} ${prettyDesc} ${msg}\n${stackStr}`
     }
 
     // Info
-    const label = bold(cyan('[server]'))
-    return `${prettyTime} ${label} ${prettyLevel} ${msg}\n`
+    return `${baseStr} ${msg}\n`
   }
 }
