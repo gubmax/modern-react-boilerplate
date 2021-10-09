@@ -14,6 +14,8 @@ import {
   PATH_DIST_CLIENT,
 } from 'server/common/constants'
 
+process.env.NODE_ENV = 'production'
+
 void (async () => {
   const template = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
 

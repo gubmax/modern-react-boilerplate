@@ -1,18 +1,17 @@
 import type { Response } from 'express'
 // @ts-expect-error: TODO: Add type
-import { pipeToNodeWritable } from 'react-dom/server'
+import { renderToPipeableStream as render } from 'react-dom/server'
 
 import { ServerSideProps } from 'src/common/contexts'
 
-const SAFE_pipeToNodeWritable = pipeToNodeWritable as (
-  appHtml: JSX.Element,
-  res: Response,
-  obj: {
-    onReadyToStream(): void
-    onError(): void
+const renderToPipeableStream = render as (
+  children: JSX.Element,
+  options: {
+    onCompleteShell(): void
+    onError(error: unknown): void
   },
 ) => {
-  startWriting: () => void
+  pipe: (writable: Response) => void
 }
 
 const TAG_EXTERNAL_RESOURCES = '<!--external-resources-->'
@@ -26,8 +25,8 @@ export function writeTemplate(
 ): void {
   let didError = false
 
-  const { startWriting } = SAFE_pipeToNodeWritable(appHtml, res, {
-    onReadyToStream() {
+  const stream = renderToPipeableStream(appHtml, {
+    onCompleteShell() {
       res.statusCode = didError ? 500 : 200
       res.setHeader('Content-type', 'text/html')
 
@@ -50,7 +49,7 @@ export function writeTemplate(
       const batches = template.split(TAG_ROOT_HTML)
 
       res.write(batches[0])
-      startWriting()
+      stream.pipe(res)
       res.write(batches[1])
     },
     onError() {
