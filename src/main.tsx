@@ -6,9 +6,6 @@ import { BrowserRouter } from './components/auxiliary'
 import { ServerSideProps } from './common/contexts'
 import { reportWebVitals } from './infra/http'
 
-import './styles/common.css'
-import './styles/global.css'
-
 // Server-side props
 
 let serverSideProps: ServerSideProps = {}

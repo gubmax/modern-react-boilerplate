@@ -3,8 +3,8 @@ import { ConfigService } from '@nestjs/config'
 
 import { RenderController } from './render.controller'
 import { RenderService } from './render.service'
+import { DevelopmentRenderService } from './render.development.service'
 import { renderServiceSymbol } from './render.constants'
-import { DevelopmentRenderService } from './developmentRender.service'
 
 const RenderServiceProvider: FactoryProvider<RenderService> = {
   provide: renderServiceSymbol,

@@ -14,6 +14,8 @@ import {
 
 @Injectable()
 export class RenderService {
+  template = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
+
   /**
    * Production render function.
    */
@@ -28,15 +30,13 @@ export class RenderService {
     // Render template
 
     const renderModulePath = PATH_RESOLVED_DIST_RENDER
-
     const [serverSideProps, { renderClient }] = await Promise.all([
       fetchPageProps(req.url),
       import(renderModulePath) as Promise<{ renderClient: typeof RenderClient }>,
     ])
 
-    const template = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
     const appHtml = renderClient(req.url, serverSideProps)
 
-    writeTemplate(template, appHtml, res, serverSideProps)
+    writeTemplate(this.template, appHtml, res, serverSideProps)
   }
 }

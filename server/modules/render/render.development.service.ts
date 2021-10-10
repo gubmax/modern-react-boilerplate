@@ -18,6 +18,7 @@ import { RenderService } from './render.service'
 
 @Injectable()
 export class DevelopmentRenderService implements RenderService {
+  template = ''
   private devServer?: ViteDevServer
 
   /**
@@ -49,22 +50,19 @@ export class DevelopmentRenderService implements RenderService {
     try {
       const html = readFileSync(PATH_RESOLVED_DEV_INDEX_HTML, 'utf-8')
 
-      const results = await Promise.all([
+      const [template, appModule, { renderClient }, serverSideProps] = await Promise.all([
         devServer.transformIndexHtml(url, html),
         devServer.moduleGraph.getModuleByUrl(`/${PATH_CLIENT_APP_MODULE}`),
         devServer.ssrLoadModule(PATH_RENDER) as Promise<{ renderClient: typeof RenderClient }>,
         fetchPageProps(url),
       ])
 
-      const [, appModule, { renderClient }, serverSideProps] = results
-      let [template] = results
-
       collectCss(appModule, preloadUrls, visitedModules)
-      template = injectCss(template, preloadUrls)
+      this.template = injectCss(template, preloadUrls)
 
       const appHtml = renderClient(url, serverSideProps)
 
-      writeTemplate(template, appHtml, res, serverSideProps)
+      writeTemplate(this.template, appHtml, res, serverSideProps)
     } catch (error: unknown) {
       if (error instanceof Error) {
         devServer.ssrFixStacktrace(error)
