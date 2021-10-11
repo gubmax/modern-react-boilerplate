@@ -28,13 +28,13 @@ interface InputData extends Partial<ErrorData & HttpData> {
 
 export function prettifier(): (inputData: InputData) => string {
   return function ({
-    status,
+    status = HttpStatus.INTERNAL_SERVER_ERROR,
     time,
     level,
     msg,
     // error
-    type,
-    description,
+    type = HttpExceptions.INTERNAL,
+    description = 'Uncaught error',
     stack,
     // req / res
     url,
@@ -63,7 +63,7 @@ export function prettifier(): (inputData: InputData) => string {
     }
 
     // Error
-    if (type && description && stack) {
+    if (stack) {
       const prettyType = dim(type)
       const prettyDesc = colorFn(`${status} (${description}):`)
 

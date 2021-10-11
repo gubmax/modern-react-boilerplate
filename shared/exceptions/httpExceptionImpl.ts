@@ -4,7 +4,6 @@ export class HttpExceptionImpl extends Error {
   readonly status: number
   readonly type: HttpExceptions
   readonly description: string
-  readonly message: string
   readonly stack?: string
 
   constructor(
@@ -14,11 +13,13 @@ export class HttpExceptionImpl extends Error {
     message: string,
     stack?: string,
   ) {
-    super()
+    super(message)
     this.status = status
     this.type = type
     this.description = description
-    this.message = message
-    this.stack = stack
+
+    if (stack) {
+      super.stack = stack
+    }
   }
 }
