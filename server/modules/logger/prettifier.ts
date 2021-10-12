@@ -42,7 +42,7 @@ export function prettifier(): (inputData: InputData) => string {
     statusCode,
     executionTime,
   }: InputData): string {
-    const { dim, green } = chalk
+    const { dim, green, red, yellow } = chalk
 
     const levelText = levelByNumber[level]
     const colorFn = chalk[colorByType[levelText]]
@@ -57,7 +57,10 @@ export function prettifier(): (inputData: InputData) => string {
 
     // Response
     if (msg === HttpLoggerMarks.RES && method && statusCode && url && executionTime !== undefined) {
-      return `${baseStr} ${green('-->')} ${method} ${statusCode} ${url} ${dim(
+      const code = Number(statusCode)
+      const colorFn = code >= 500 ? red : code >= 300 ? yellow : green
+
+      return `${baseStr} ${colorFn('-->')} ${method} ${statusCode} ${url} ${dim(
         `${executionTime}ms`,
       )}\n`
     }
