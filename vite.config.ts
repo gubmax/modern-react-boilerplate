@@ -12,7 +12,7 @@ import manifest from './public/manifest.json'
 const config: UserConfig = {
   plugins: [
     reactRefresh(),
-    vanillaExtractPlugin(),
+    vanillaExtractPlugin({ devStyleRuntime: 'vanilla-extract' }),
     VitePWA({ manifest, registerType: 'autoUpdate' }),
   ],
   resolve: {
