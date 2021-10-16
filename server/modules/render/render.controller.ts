@@ -1,4 +1,4 @@
-import { Controller, Get, Inject, Req, Res, UseFilters } from '@nestjs/common'
+import { Controller, Get, Inject, Req, Res } from '@nestjs/common'
 import { Request, Response } from 'express'
 
 import { ApiRoutes } from 'shared/http'

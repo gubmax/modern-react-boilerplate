@@ -1,4 +1,4 @@
-import pino, { Logger } from 'pino'
+import pino, { P } from 'pino'
 import { LoggerService as NestLoggerService, Inject } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 
@@ -8,7 +8,7 @@ import { HttpExceptionImpl } from 'shared/exceptions'
 type MsgData = string | { msg: string }
 
 export class LoggerService implements NestLoggerService {
-  protected readonly logger: Logger
+  protected readonly logger: P.Logger
 
   constructor(@Inject(ConfigService) private readonly configService: ConfigService) {
     const isProdEnv = this.configService.get<boolean>('isProdEnv')

@@ -13,7 +13,7 @@ import { useInject } from './useInject'
 import { HttpClientModel, httpClientModelSymbol } from 'src/models/http'
 import { GetServerSideProps } from 'shared/utils'
 
-export function useServerSidePropsQueryLoader<T extends unknown>(
+export function useServerSidePropsQueryLoader<T>(
   getServerSideProps: GetServerSideProps<T>,
 ): ServerSidePropsQueryModel<T> {
   const httpClient = useInject<HttpClientModel>(httpClientModelSymbol)

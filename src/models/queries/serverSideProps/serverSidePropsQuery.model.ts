@@ -6,7 +6,7 @@ import { HttpClientModel, httpClientModelSymbol } from 'src/models/http'
 import { QueryModel } from '../query.model'
 
 @injectable()
-export class ServerSidePropsQueryModel<R extends unknown = unknown> extends QueryModel<R> {
+export class ServerSidePropsQueryModel<R = unknown> extends QueryModel<R> {
   getServerSideProps?: GetServerSideProps<R>
 
   constructor(@inject(httpClientModelSymbol) private readonly httpClientModel: HttpClientModel) {

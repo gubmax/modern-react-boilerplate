@@ -6,7 +6,7 @@ import { useState } from 'react'
  * @returns Initializer result
  * @link https://reactjs.org/docs/hooks-reference.html#lazy-initial-state
  */
-export function useInit<T extends unknown>(initializer: () => T): T {
+export function useInit<T>(initializer: () => T): T {
   const [state] = useState<T>(initializer)
   return state
 }

@@ -11,7 +11,7 @@ export enum JSONPatchOperations {
  * @link https://datatracker.ietf.org/doc/html/rfc6902
  */
 export interface JSONPatch<
-  V extends unknown = unknown,
+  V,
   O extends JSONPatchOperations = JSONPatchOperations,
   P extends string = string,
   F extends string = string,

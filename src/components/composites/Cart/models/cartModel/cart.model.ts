@@ -1,5 +1,5 @@
 import { inject, injectable } from 'inversify'
-import { BehaviorSubject, first } from 'rxjs'
+import { BehaviorSubject } from 'rxjs'
 
 import {
   ServerSidePropsQueryModel,
