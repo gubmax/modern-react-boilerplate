@@ -1,6 +1,7 @@
 import { ContainerModule } from 'inversify'
+
+import { GetServerSideProps } from 'shared/utils'
 import { ServerSidePropsQueryModel } from './serverSidePropsQuery.model'
-import { GetServerSideProps } from './serverSidePropsQuery.types'
 
 // Symbols
 

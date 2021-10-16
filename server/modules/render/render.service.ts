@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs'
-import { Injectable } from '@nestjs/common'
+import { Inject, Injectable } from '@nestjs/common'
 import type { Request, Response } from 'express'
 import { matchPath } from 'react-router'
 
@@ -11,10 +11,13 @@ import {
   PATH_RESOLVED_DIST_INDEX_HTML,
   PATH_RESOLVED_DIST_CLIENT,
 } from 'server/common/constants'
+import { HttpClientService } from '../httpClient/httpClient.service'
 
 @Injectable()
 export class RenderService {
   template = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
+
+  constructor(protected readonly httpClientService: HttpClientService) {}
 
   /**
    * Production render function.
@@ -31,7 +34,7 @@ export class RenderService {
 
     const renderModulePath = PATH_RESOLVED_DIST_RENDER
     const [serverSideProps, { renderClient }] = await Promise.all([
-      fetchPageProps(req.url),
+      fetchPageProps(req.url, this.httpClientService),
       import(renderModulePath) as Promise<{ renderClient: typeof RenderClient }>,
     ])
 

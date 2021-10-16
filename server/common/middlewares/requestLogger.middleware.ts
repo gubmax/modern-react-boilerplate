@@ -1,11 +1,7 @@
 import { NestMiddleware, Logger } from '@nestjs/common'
 
 import { Request, Response, NextFunction } from 'express'
-
-export enum HttpLoggerMarks {
-  REQ = '$$REQ',
-  RES = '$$RES',
-}
+import { TransportMarks, Transports } from '../constants'
 
 export class RequestLoggerMiddleware implements NestMiddleware {
   private logger = new Logger()
@@ -15,12 +11,13 @@ export class RequestLoggerMiddleware implements NestMiddleware {
     const now = Date.now()
     const url = baseUrl.length ? baseUrl : '/'
 
-    this.logger.log({ msg: HttpLoggerMarks.REQ, url, method })
+    this.logger.log({ transport: Transports.HTTP, msg: TransportMarks.REQ, url, method })
 
     res.on('close', () => {
       const { statusCode } = res
       this.logger.log({
-        msg: HttpLoggerMarks.RES,
+        transport: Transports.HTTP,
+        msg: TransportMarks.RES,
         url,
         method,
         statusCode,

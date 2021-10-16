@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { Action } from 'history'
 
 import {
-  GetServerSideProps,
   ServerSidePropsModelFactory,
   serverSidePropsModelFactorySymbol,
   ServerSidePropsQueryModel,
@@ -11,10 +10,13 @@ import { useInit } from './useInit'
 import { useHistory } from './useHistory'
 import { useServerSideProps } from './useServerSideProps'
 import { useInject } from './useInject'
+import { HttpClientModel, httpClientModelSymbol } from 'src/models/http'
+import { GetServerSideProps } from 'shared/utils'
 
 export function useServerSidePropsQueryLoader<T extends unknown>(
   getServerSideProps: GetServerSideProps<T>,
 ): ServerSidePropsQueryModel<T> {
+  const httpClient = useInject<HttpClientModel>(httpClientModelSymbol)
   const sspQueryModelFactory = useInject<ServerSidePropsModelFactory>(
     serverSidePropsModelFactorySymbol,
   )
@@ -23,7 +25,7 @@ export function useServerSidePropsQueryLoader<T extends unknown>(
   const serverSideProps = useServerSideProps()
 
   const model = useInit(() => {
-    const sspQueryModel = sspQueryModelFactory(getServerSideProps)
+    const sspQueryModel = sspQueryModelFactory<T>(() => getServerSideProps(httpClient))
 
     const shouldShowsetInitialLoading =
       action === Action.Push ||

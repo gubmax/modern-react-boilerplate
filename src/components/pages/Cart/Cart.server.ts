@@ -1,6 +1,6 @@
 import { getProductsInit, GetProductsResponse } from 'shared/http'
-import { httpRequest } from 'src/infra/http'
+import { GetServerSideProps } from 'shared/utils'
 
-export function getServerSideProps(): Promise<GetProductsResponse> {
-  return httpRequest<GetProductsResponse>(getProductsInit)
+export const getServerSideProps: GetServerSideProps<GetProductsResponse> = (httpClient) => {
+  return httpClient.send<GetProductsResponse>(getProductsInit)
 }

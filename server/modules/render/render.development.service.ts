@@ -17,7 +17,7 @@ import type { PreloadUrls } from './types'
 import { RenderService } from './render.service'
 
 @Injectable()
-export class DevelopmentRenderService implements RenderService {
+export class DevelopmentRenderService extends RenderService {
   template = ''
   private devServer?: ViteDevServer
 
@@ -54,7 +54,7 @@ export class DevelopmentRenderService implements RenderService {
         devServer.transformIndexHtml(url, html),
         devServer.moduleGraph.getModuleByUrl(`/${PATH_CLIENT_APP_MODULE}`),
         devServer.ssrLoadModule(PATH_RENDER) as Promise<{ renderClient: typeof RenderClient }>,
-        fetchPageProps(url),
+        fetchPageProps(url, this.httpClientService),
       ])
 
       collectCss(appModule, preloadUrls, visitedModules)

@@ -1,10 +1,14 @@
 import chalk from 'chalk'
 
-import { HttpLoggerMarks } from 'server/common/middlewares'
+import { TransportMarks } from 'server/common/constants'
 import { HttpExceptions, HttpStatus } from 'shared/exceptions'
 import { levelByNumber, colorByType, LogLevelWeights } from './logger.constants'
 
-interface HttpData {
+interface Transport {
+  transport: string
+}
+
+interface HttpTransportData extends Transport {
   url: string
   method: string
   statusCode: string
@@ -17,7 +21,7 @@ interface ErrorData {
   stack: string
 }
 
-interface InputData extends Partial<ErrorData & HttpData> {
+interface InputData extends Partial<ErrorData & HttpTransportData> {
   status: HttpStatus
   time: number
   level: LogLevelWeights
@@ -27,61 +31,59 @@ interface InputData extends Partial<ErrorData & HttpData> {
 }
 
 export function prettifier(): (inputData: InputData) => string {
-  return function ({
-    status = HttpStatus.INTERNAL_SERVER_ERROR,
-    time,
-    level,
-    msg,
-    // error
-    type = HttpExceptions.INTERNAL,
-    description = 'Uncaught error',
-    stack,
-    // req / res
-    url,
-    method,
-    statusCode,
-    executionTime,
-  }: InputData): string {
-    const { dim, green, red, yellow } = chalk
+  return function (input: InputData): string {
+    const { dim, green, red, yellow, cyan } = chalk
+    const { status = HttpStatus.INTERNAL_SERVER_ERROR, time, level, msg } = input
 
     const levelText = levelByNumber[level]
-    const colorFn = chalk[colorByType[levelText]]
-    const prettyLevel = colorFn(levelText)
+    const baseColorFn = chalk[colorByType[levelText]]
+    const prettyLevel = baseColorFn(levelText)
     const prettyTime = dim(new Date(time).toLocaleTimeString())
     const baseStr = `${prettyTime} ${prettyLevel}`
+    const joinMsg = (...arr: Array<string | undefined>): string =>
+      [baseStr].concat([...arr.filter((item): item is string => !!item), '\n']).join(' ')
 
-    // Request
-    if (msg === HttpLoggerMarks.REQ && method && url) {
-      return `${baseStr} ${dim('<--')} ${method} xxx ${url}\n`
-    }
+    // Http transport
+    const marks: string[] = Object.values(TransportMarks)
+    if (marks.includes(msg)) {
+      const { transport, url, method, statusCode, executionTime } = input
+      const prettyTransport = transport ? dim(transport) : ''
 
-    // Response
-    if (msg === HttpLoggerMarks.RES && method && statusCode && url && executionTime !== undefined) {
-      const code = Number(statusCode)
-      const colorFn = code >= 500 ? red : code >= 300 ? yellow : green
+      // Request
+      const requestMarks: string[] = [TransportMarks.REQ, TransportMarks.REQ_INTERNAL]
+      if (requestMarks.includes(msg)) {
+        const colorFn = { [TransportMarks.REQ_INTERNAL]: cyan }[msg] || dim
+        return joinMsg(prettyTransport, colorFn('<--'), method, dim('xxx'), url)
+      }
 
-      return `${baseStr} ${colorFn('-->')} ${method} ${statusCode} ${url} ${dim(
-        `${executionTime}ms`,
-      )}\n`
+      // Response
+      const responseMarks: string[] = [TransportMarks.RES, TransportMarks.RES_INTERNAL]
+      if (responseMarks.includes(msg)) {
+        const code = Number(statusCode)
+        const statusColorFn = code >= 500 ? red : code >= 300 ? yellow : green
+        const colorFn = { [TransportMarks.RES_INTERNAL]: cyan }[msg] || statusColorFn
+        const ms = executionTime ? dim(`${executionTime}ms`) : ''
+
+        return joinMsg(prettyTransport, colorFn('-->'), method, statusColorFn(statusCode), url, ms)
+      }
     }
 
     // Error
-    if (stack) {
+    if (input.stack) {
+      const { type = HttpExceptions.INTERNAL, description = 'Uncaught error', stack } = input
       const prettyType = dim(type)
-      const prettyDesc = colorFn(`${status} (${description}):`)
+      const prettyDesc = baseColorFn(`${status} (${description}):`)
 
       let stackStr = ''
-      if (stack) {
-        stack.split('\n').forEach((line, index) => {
-          if (index === 0) return
-          stackStr = `${stackStr}${line}\n`
-        })
-      }
+      stack.split('\n').forEach((line, index) => {
+        if (index === 0) return
+        stackStr = `${stackStr}${line}\n`
+      })
 
-      return `${baseStr} ${prettyType} ${prettyDesc} ${msg}\n${stackStr}`
+      return joinMsg(prettyType, prettyDesc, msg).concat(stackStr)
     }
 
     // Info
-    return `${baseStr} ${msg}\n`
+    return joinMsg(msg)
   }
 }
