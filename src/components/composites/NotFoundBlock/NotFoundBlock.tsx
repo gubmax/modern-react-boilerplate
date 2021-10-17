@@ -1,16 +1,21 @@
 import { FC } from 'react'
-import { Link } from 'src/components/auxiliary'
 
+import { useLink } from 'src/common/hooks'
+import { Button } from 'src/components/inputs'
 import { H1 } from 'src/components/typography'
 import { PageRoutes } from 'src/infra/http'
 import * as s from './NotFoundBlock.css'
 
 const NotFoundBlock: FC = () => {
+  const navigate = useLink(PageRoutes.ROOT)
+
   return (
     <section className={s.wrapper}>
       <span className={s.title}>404</span>
       <H1>Page Not Found</H1>
-      <Link to={PageRoutes.ROOT}>Go home</Link>
+      <Button as="a" primary onClick={navigate}>
+        Go home
+      </Button>
     </section>
   )
 }

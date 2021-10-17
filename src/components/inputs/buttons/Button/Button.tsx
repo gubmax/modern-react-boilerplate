@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, MouseEvent } from 'react'
 
 import { cn, noop } from 'src/common/helpers'
 import { Loader } from 'src/components/elements'
@@ -7,9 +7,9 @@ import { ButtonProps } from './Button.types'
 import * as s from './Button.css'
 
 const Button: FC<ButtonProps> = ({ children, large, loading, onClick = noop, ...rest }) => {
-  function handleClick() {
+  function handleClick<T extends MouseEvent>(event: T) {
     if (loading) return
-    onClick()
+    onClick(event)
   }
 
   return (

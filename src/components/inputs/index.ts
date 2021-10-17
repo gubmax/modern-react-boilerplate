@@ -1,3 +1,3 @@
-export * from './Button'
+export * from './buttons/Button'
+export * from './buttons/RoundedButton'
 export * from './InteractiveWrapper'
-export * from './RoundedButton'
