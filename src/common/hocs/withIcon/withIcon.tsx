@@ -2,7 +2,7 @@ import { ElementType, FC } from 'react'
 
 import { cn } from 'src/common/helpers'
 import { IconProps } from './withIcon.types'
-import { IconSizes } from './withIcon.constants'
+import { DEFAULT_SIZE, IconSizes } from './withIcon.constants'
 import { iconSizeStyles, iconStateStyles } from './withIcon.css'
 
 export function withIcon(Component: ElementType<IconProps>): ElementType<IconProps> {
@@ -14,7 +14,7 @@ export function withIcon(Component: ElementType<IconProps>): ElementType<IconPro
       className,
     )
 
-    return <Component className={classNames} {...rest} />
+    return <Component width={DEFAULT_SIZE} height={DEFAULT_SIZE} className={classNames} {...rest} />
   }
 
   return Icon
