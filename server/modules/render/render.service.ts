@@ -15,9 +15,13 @@ import { HttpClientService } from '../httpClient/httpClient.service'
 
 @Injectable()
 export class RenderService {
-  template = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
+  template = ''
 
   constructor(protected readonly httpClientService: HttpClientService) {}
+
+  initTemplate() {
+    this.template = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
+  }
 
   /**
    * Production render function.

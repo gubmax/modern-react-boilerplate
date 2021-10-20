@@ -5,7 +5,7 @@ import compression from 'compression'
 import serve from 'serve-static'
 
 import { AppModule } from './modules'
-import { DevelopmentRenderService, renderServiceSymbol } from './modules/render'
+import { DevelopmentRenderService, RenderService, renderServiceSymbol } from './modules/render'
 import { LoggerService, loggerServiceSymbol } from './modules/logger'
 import { AllExceptionsFilter } from './common/filters'
 import { PATH_RESOLVED_DIST_CLIENT } from './common/constants'
@@ -29,6 +29,9 @@ export async function bootstrap(): Promise<NestExpressApplication> {
   if (isProdEnv) {
     app.use(compression())
     app.use(serve(PATH_RESOLVED_DIST_CLIENT, { index: false }))
+
+    const render = app.get(RenderService)
+    render.initTemplate()
 
     await app.listen(port)
     return app
