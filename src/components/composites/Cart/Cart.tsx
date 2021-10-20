@@ -5,14 +5,14 @@ import { useInit, useInject, useObservableState } from 'src/common/hooks'
 import { H2, H3 } from 'src/components/typography'
 import { EmptyShoppingCartIcon } from 'src/components/icons'
 import { ProductList } from './components'
-import { CartModel, cartModelSymbol } from './models'
+import { CartModel } from './models'
 import { CartSkeleton } from './Cart.skeleton'
 import { CartProps } from './Cart.types'
 import * as s from './Cart.css'
 import './Cart.ioc'
 
 const Cart: FC<CartProps> = ({ loading, products: initialProducts }) => {
-  const { products$, products, totalPrice } = useInject<CartModel>(cartModelSymbol)
+  const { products$, products, totalPrice } = useInject(CartModel)
 
   useInit(() => initialProducts && products$.next(initialProducts))
 

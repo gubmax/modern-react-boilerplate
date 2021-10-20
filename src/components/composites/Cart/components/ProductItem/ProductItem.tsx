@@ -4,12 +4,12 @@ import { useInject } from 'src/common/hooks'
 import { Button, RoundedButton } from 'src/components/inputs'
 import { Wrapper } from 'src/components/surfaces'
 import { H3 } from 'src/components/typography'
-import { CartModel, cartModelSymbol } from '../../models'
+import { CartModel } from '../../models'
 import { ProductItemProps } from './ProductItem.types'
 import * as s from './ProductItem.css'
 
 const ProductItem: FC<ProductItemProps> = ({ product: { id, icon, title, price, amount } }) => {
-  const { increaseAmount, decreaseAmount, remove } = useInject<CartModel>(cartModelSymbol)
+  const { increaseAmount, decreaseAmount, remove } = useInject(CartModel)
 
   const increase = useCallback(() => increaseAmount(id), [id, increaseAmount])
   const decrease = useCallback(() => decreaseAmount(id), [decreaseAmount, id])

@@ -1,1 +1,1 @@
-export * from './updateAmountQuery.ioc'
+export * from './updateAmountQuery.model'

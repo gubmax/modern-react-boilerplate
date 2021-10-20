@@ -1,7 +1,7 @@
 import { inject, injectable } from 'inversify'
 
 import { HttpRequestResponse, HttpRequestBody, HttpRequestInit } from 'shared/http'
-import { HttpClientModel, httpClientModelSymbol } from '../http'
+import { HttpClientModel } from '../http'
 import { QueryModel } from './query.model'
 
 @injectable()
@@ -11,7 +11,7 @@ export abstract class HttpQueryModel<
 > extends QueryModel<R> {
   abstract readonly init: HttpRequestInit
 
-  constructor(@inject(httpClientModelSymbol) private readonly httpClientModel: HttpClientModel) {
+  constructor(@inject(HttpClientModel) private readonly httpClientModel: HttpClientModel) {
     super()
   }
 

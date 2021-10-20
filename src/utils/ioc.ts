@@ -1,10 +1,10 @@
 import { Container } from 'inversify'
 
-import { ServerSidePropsQueryModule, UpdateAmountQueryModule } from 'src/models/queries'
-import { HttpClientModule } from 'src/models/http'
+import { HttpClientModel } from 'src/models/http'
+import { ServerSidePropsQueryModule, UpdateAmountQueryModel } from 'src/models/queries'
 
 export const iocContainer = new Container({ defaultScope: 'Singleton' })
 
 iocContainer.load(ServerSidePropsQueryModule)
-iocContainer.load(UpdateAmountQueryModule)
-iocContainer.load(HttpClientModule)
+iocContainer.bind(UpdateAmountQueryModel).to(UpdateAmountQueryModel)
+iocContainer.bind(HttpClientModel).to(HttpClientModel)

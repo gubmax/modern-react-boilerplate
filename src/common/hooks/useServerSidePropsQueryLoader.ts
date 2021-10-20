@@ -10,13 +10,13 @@ import { useInit } from './useInit'
 import { useHistory } from './useHistory'
 import { useServerSideProps } from './useServerSideProps'
 import { useInject } from './useInject'
-import { HttpClientModel, httpClientModelSymbol } from 'src/models/http'
+import { HttpClientModel } from 'src/models/http'
 import { GetServerSideProps } from 'shared/utils'
 
 export function useServerSidePropsQueryLoader<T>(
   getServerSideProps: GetServerSideProps<T>,
 ): ServerSidePropsQueryModel<T> {
-  const httpClient = useInject<HttpClientModel>(httpClientModelSymbol)
+  const httpClient = useInject(HttpClientModel)
   const sspQueryModelFactory = useInject<ServerSidePropsModelFactory>(
     serverSidePropsModelFactorySymbol,
   )

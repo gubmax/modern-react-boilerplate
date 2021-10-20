@@ -1,14 +1,9 @@
 import { inject, injectable } from 'inversify'
 import { BehaviorSubject } from 'rxjs'
 
-import {
-  ServerSidePropsQueryModel,
-  serverSidePropsQueryModelSymbol,
-  UpdateAmountQueryModel,
-  updateAmountQueryModelSymbol,
-} from 'src/models/queries'
+import { ServerSidePropsQueryModel, UpdateAmountQueryModel } from 'src/models/queries'
 import { GetProductsResponse, JSONPatchOperations, UpdateAmountPaths } from 'shared/http'
-import { CartService, cartServiceSymbol } from '../../domain/services'
+import { CartService } from '../../domain/services'
 import { Product } from '../../domain/entities'
 
 @injectable()
@@ -17,11 +12,11 @@ export class CartModel {
   totalPrice = 0
 
   constructor(
-    @inject(serverSidePropsQueryModelSymbol)
+    @inject(ServerSidePropsQueryModel)
     readonly serverSidePropsQueryModel: ServerSidePropsQueryModel<GetProductsResponse>,
-    @inject(updateAmountQueryModelSymbol)
+    @inject(UpdateAmountQueryModel)
     private readonly updateAmountQueryModel: UpdateAmountQueryModel,
-    @inject(cartServiceSymbol) private readonly cartService: CartService,
+    @inject(CartService) private readonly cartService: CartService,
   ) {
     // Server-side props
     serverSidePropsQueryModel.state$.subscribe(({ response: { products } = {} }) => {

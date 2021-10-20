@@ -1,1 +1,1 @@
-export * from './cart.ioc'
+export * from './cart.model'

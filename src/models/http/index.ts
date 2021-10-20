@@ -1,1 +1,1 @@
-export * from './httpClient.ioc'
+export * from './httpClient.model'
