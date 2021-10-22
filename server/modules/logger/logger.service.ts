@@ -10,7 +10,7 @@ type MsgData = string | { msg: string }
 export class LoggerService implements NestLoggerService {
   protected readonly logger: P.Logger
 
-  constructor(@Inject(ConfigService) private readonly configService: ConfigService) {
+  constructor(private readonly configService: ConfigService) {
     const isProdEnv = this.configService.get<boolean>('isProdEnv')
     const logLevel = this.configService.get<string>('logLevel') || 'trace'
 
@@ -22,7 +22,7 @@ export class LoggerService implements NestLoggerService {
     return typeof msg === 'string' ? { msg } : msg
   }
 
-  trace(msg: MsgData): void {
+  verbose(msg: MsgData): void {
     this.logger.trace(this.formatMsg(msg))
   }
 
