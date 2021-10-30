@@ -9,19 +9,17 @@ export async function fetchPageProps(
   url: string,
   httpClient: HttpClientImpl,
 ): Promise<ServerSideProps> {
-  const pageName = CONFIG_SSR_ROUTES[url]
+  const { path } = CONFIG_SSR_ROUTES[url] || {}
 
-  if (!pageName) return {}
+  if (!path) return {}
 
   const pageModulePath = PATH_RESOLVED_CLIENT_PAGES
-  const { getServerSideProps } = (await import(`${pageModulePath}/${pageName}`)) as {
+  const { getServerSideProps } = (await import(`${pageModulePath}/${path}`)) as {
     getServerSideProps?: GetServerSideProps<ServerSideProps>
   }
 
   if (!getServerSideProps) {
-    throw new InternalServerException(
-      `Function "getServerSideProps" not found for page "${pageName}"`,
-    )
+    throw new InternalServerException(`Function "getServerSideProps" not found for page "${path}"`)
   }
 
   return getServerSideProps(httpClient)

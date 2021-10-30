@@ -1,6 +1,7 @@
 import { hydrateRoot } from 'react-dom'
-import { registerSW } from 'virtual:pwa-register'
+// import { registerSW } from 'virtual:pwa-register'
 
+import { MARK_SERVER_SIDE_PROPS } from 'shared/constants'
 import { App } from './components/layout'
 import { BrowserRouter } from './components/auxiliary'
 import { ServerSideProps } from './common/contexts'
@@ -8,12 +9,7 @@ import { reportWebVitals } from './infra/http'
 
 // Server-side props
 
-let serverSideProps: ServerSideProps = {}
-
-if (window.SERVER_SIDE_PROPS) {
-  serverSideProps = { ...window.SERVER_SIDE_PROPS }
-  delete window.SERVER_SIDE_PROPS
-}
+const serverSideProps: ServerSideProps = window[MARK_SERVER_SIDE_PROPS] || {}
 
 // Bootstrap
 
@@ -27,7 +23,7 @@ root.render(
 )
 
 // Service Worker
-registerSW()
+// registerSW()
 
 // Web Vitals
 if (process.env.NODE_ENV === 'production') {

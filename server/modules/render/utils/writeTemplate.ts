@@ -1,6 +1,8 @@
 import type { Response } from 'express'
 // @ts-expect-error: TODO: Add type
 import { renderToPipeableStream as render } from 'react-dom/server'
+import { HtmlMarks } from 'server/common/constants'
+import { MARK_SERVER_SIDE_PROPS } from 'shared/constants'
 
 import { ServerSideProps } from 'src/common/contexts'
 
@@ -14,45 +16,42 @@ const renderToPipeableStream = render as (
   pipe: (writable: Response) => void
 }
 
-const TAG_EXTERNAL_RESOURCES = '<!--external-resources-->'
-const TAG_ROOT_HTML = '<!--root-html-->'
+interface WriteTemplateArg {
+  html: string
+  app: JSX.Element
+  res: Response
+  serverSideProps: ServerSideProps
+}
 
-export function writeTemplate(
-  template: string,
-  appHtml: JSX.Element,
-  res: Response,
-  serverSideProps: ServerSideProps = {},
-): void {
+export function writeTemplate({ html, app, res, serverSideProps = {} }: WriteTemplateArg): void {
   let didError = false
 
-  const stream = renderToPipeableStream(appHtml, {
+  const stream = renderToPipeableStream(app, {
     onCompleteShell() {
       res.statusCode = didError ? 500 : 200
       res.setHeader('Content-type', 'text/html')
 
       //  Server-side props
-      const serverSidePropsScript = `
-        <script type="text/javascript" id="state">
-          window.SERVER_SIDE_PROPS = ${JSON.stringify(serverSideProps)};
-          document.getElementById('state').remove();
+      const serverSidePropsTag = `
+        <script type="text/javascript" id="serverSideProps">
+          window.${MARK_SERVER_SIDE_PROPS} = ${JSON.stringify(serverSideProps)};
+          document.getElementById('serverSideProps').remove();
         </script>
       `
 
-      // External resources
-      template = template.replace(
-        TAG_EXTERNAL_RESOURCES,
-        `${TAG_EXTERNAL_RESOURCES}${serverSidePropsScript}`,
-      )
+      // Assets
+      html = html.replace(HtmlMarks.ASSETS, `${HtmlMarks.ASSETS}${serverSidePropsTag}`)
 
       //  Writing
 
-      const batches = template.split(TAG_ROOT_HTML)
+      const batches = html.split(HtmlMarks.SSR_OUTLER)
 
       res.write(batches[0])
       stream.pipe(res)
       res.write(batches[1])
     },
-    onError() {
+    onError(error) {
+      console.error(error) // TODO: replace with logger
       didError = true
     },
   })

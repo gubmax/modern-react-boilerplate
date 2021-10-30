@@ -1,0 +1,1 @@
+export const MARK_SERVER_SIDE_PROPS = '__SERVER_SIDE_PROPS__'

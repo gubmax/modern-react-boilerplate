@@ -4,23 +4,30 @@ import type { Request, Response } from 'express'
 import { matchPath } from 'react-router'
 
 import type { renderClient as RenderClient } from 'server/renderClient'
-import { CONFIG_SSG_ROUTES } from 'server/config'
-import { fetchPageProps, writeTemplate } from './utils'
+import { CONFIG_SSG_ROUTES, CONFIG_SSR_ROUTES } from 'server/config'
+import { AssetsInjector, fetchPageProps, writeTemplate } from './utils'
 import {
   PATH_RESOLVED_DIST_RENDER,
   PATH_RESOLVED_DIST_INDEX_HTML,
   PATH_RESOLVED_DIST_CLIENT,
+  PATH_DIST_MANIFEST,
+  HtmlMarks,
 } from 'server/common/constants'
 import { HttpClientService } from '../httpClient/httpClient.service'
+import { Manifest } from 'vite'
 
 @Injectable()
 export class RenderService {
-  template = ''
+  html = ''
+  manifest: Manifest = {}
 
   constructor(protected readonly httpClientService: HttpClientService) {}
 
-  initTemplate() {
-    this.template = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
+  async init(): Promise<void> {
+    this.html = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
+
+    const distManifestPath = PATH_DIST_MANIFEST
+    this.manifest = (await import(distManifestPath)) as Manifest
   }
 
   /**
@@ -34,7 +41,7 @@ export class RenderService {
       }
     }
 
-    // Render template
+    // Render client
 
     const renderModulePath = PATH_RESOLVED_DIST_RENDER
     const [serverSideProps, { renderClient }] = await Promise.all([
@@ -42,8 +49,17 @@ export class RenderService {
       import(renderModulePath) as Promise<{ renderClient: typeof RenderClient }>,
     ])
 
-    const appHtml = renderClient(req.url, serverSideProps)
+    const app = renderClient(req.url, serverSideProps)
 
-    writeTemplate(this.template, appHtml, res, serverSideProps)
+    // Inject assets
+
+    const { imports = [] } = CONFIG_SSR_ROUTES[req.url] || {}
+    const assetsInjector = new AssetsInjector({ manifest: this.manifest, mark: HtmlMarks.ASSETS })
+
+    const html = assetsInjector.injectByModulePaths(this.html, imports)
+
+    // Write
+
+    writeTemplate({ html, app, res, serverSideProps })
   }
 }

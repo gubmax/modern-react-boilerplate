@@ -5,27 +5,27 @@ import type { Request, Response } from 'express'
 import { createServer, ViteDevServer } from 'vite'
 
 import { InternalServerException } from 'shared/exceptions'
+import viteDevServerConfig from 'server/vite.config'
 import {
   PATH_RESOLVED_DEV_INDEX_HTML,
   PATH_RENDER,
   PATH_CLIENT_APP_MODULE,
+  HtmlMarks,
+  PATH_CLIENT_MAIN_MODULE,
 } from 'server/common/constants'
-import { CONFIG_VITE_DEV_SERVER } from 'server/config'
 import type { renderClient as RenderClient } from 'server/renderClient'
-import { collectCss, fetchPageProps, injectCss, writeTemplate } from './utils'
-import type { PreloadUrls } from './types'
+import { DevelopmentAssetsInjector, fetchPageProps, writeTemplate } from './utils'
 import { RenderService } from './render.service'
 
 @Injectable()
 export class DevelopmentRenderService extends RenderService {
-  template = ''
   private devServer?: ViteDevServer
 
   /**
    * Initializes Vite development server.
    */
   async setupDevServer(app: NestExpressApplication): Promise<void> {
-    const devServer = await createServer(CONFIG_VITE_DEV_SERVER)
+    const devServer = await createServer(viteDevServerConfig)
     app.use(devServer.middlewares)
     this.devServer = devServer
   }
@@ -42,13 +42,12 @@ export class DevelopmentRenderService extends RenderService {
     }
 
     const { url } = req
-    const visitedModules = new Set<string>()
-    const preloadUrls: PreloadUrls = {
-      css: new Set<string>(),
-    }
 
     try {
-      const html = readFileSync(PATH_RESOLVED_DEV_INDEX_HTML, 'utf-8')
+      let html = readFileSync(PATH_RESOLVED_DEV_INDEX_HTML, 'utf-8')
+
+      const assetsInjector = new DevelopmentAssetsInjector({ mark: HtmlMarks.ASSETS })
+      html = assetsInjector.injectUrls(html, [PATH_CLIENT_MAIN_MODULE])
 
       const [template, appModule, { renderClient }, serverSideProps] = await Promise.all([
         devServer.transformIndexHtml(url, html),
@@ -57,12 +56,11 @@ export class DevelopmentRenderService extends RenderService {
         fetchPageProps(url, this.httpClientService),
       ])
 
-      collectCss(appModule, preloadUrls, visitedModules)
-      this.template = injectCss(template, preloadUrls)
+      html = assetsInjector.injectByModule(template, appModule)
 
-      const appHtml = renderClient(url, serverSideProps)
+      const app = renderClient(url, serverSideProps)
 
-      writeTemplate(this.template, appHtml, res, serverSideProps)
+      writeTemplate({ html, app, res, serverSideProps })
     } catch (error: unknown) {
       if (error instanceof Error) {
         devServer.ssrFixStacktrace(error)

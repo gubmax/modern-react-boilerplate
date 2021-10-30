@@ -31,7 +31,7 @@ export async function bootstrap(): Promise<NestExpressApplication> {
     app.use(serve(PATH_RESOLVED_DIST_CLIENT, { index: false }))
 
     const render = app.get<RenderService>(renderServiceSymbol)
-    render.initTemplate()
+    await render.init()
 
     await app.listen(port)
     return app

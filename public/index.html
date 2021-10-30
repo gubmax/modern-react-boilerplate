@@ -18,10 +18,9 @@
       @namespace svg 'http://www.w3.org/2000/svg';
       :not(svg|*) { all: unset; display: revert }
     </style>
-    <!--external-resources-->
+    <!--assets-->
   </head>
   <body>
-    <div id="root"><!--root-html--></div>
-    <script type="module" src="./src/main.tsx"></script>
+    <div id="root"><!--ssr-outlet--></div>
   </body>
 </html>

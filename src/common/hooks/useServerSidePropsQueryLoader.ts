@@ -27,12 +27,12 @@ export function useServerSidePropsQueryLoader<T>(
   const model = useInit(() => {
     const sspQueryModel = sspQueryModelFactory<T>(() => getServerSideProps(httpClient))
 
-    const shouldShowsetInitialLoading =
+    const shouldSetInitialLoading =
       action === Action.Push ||
       // If page reload with Service Worker cache
       (action === Action.Pop && Object.keys(serverSideProps).length === 0)
 
-    if (shouldShowsetInitialLoading) {
+    if (shouldSetInitialLoading) {
       sspQueryModel.setInitialLoading()
     }
 

@@ -1,31 +1,25 @@
-import path from 'path'
-import { UserConfig } from 'vite'
-import { VitePWA } from 'vite-plugin-pwa'
-import reactRefresh from '@vitejs/plugin-react-refresh'
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
-
-import manifest from './public/manifest.json'
+import { resolve } from 'path'
+import { UserConfig } from 'vite'
 
 /**
  * @link https://vitejs.dev/config/
  */
 const config: UserConfig = {
   plugins: [
-    reactRefresh(),
     vanillaExtractPlugin({ devStyleRuntime: 'vanilla-extract' }),
-    VitePWA({ manifest, registerType: 'autoUpdate' }),
   ],
   resolve: {
     alias: {
-      src: path.resolve(__dirname, '/src'),
-      server: path.resolve(__dirname, '/server'),
-      scripts: path.resolve(__dirname, '/scripts'),
-      shared: path.resolve(__dirname, '/shared'),
+      src: resolve(__dirname, 'src'),
+      server: resolve(__dirname, 'server'),
+      scripts: resolve(__dirname, 'scripts'),
+      shared: resolve(__dirname, 'shared'),
     },
   },
   esbuild: {
     jsxInject: 'import React from "react"',
-  }
+  },
 }
 
 export default config
