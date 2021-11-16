@@ -11,7 +11,7 @@ export class RequestLoggerMiddleware implements NestMiddleware {
     const now = Date.now()
     const url = baseUrl.length ? baseUrl : '/'
 
-    this.logger.log({ transport: Transports.HTTP, msg: TransportMarks.REQ, url, method })
+    this.logger.verbose({ transport: Transports.HTTP, msg: TransportMarks.REQ, url, method })
 
     res.on('close', () => {
       const { statusCode } = res

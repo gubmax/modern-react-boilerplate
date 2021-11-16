@@ -2,7 +2,7 @@ import chalk from 'chalk'
 
 import { TransportMarks } from 'server/common/constants'
 import { HttpExceptions, HttpStatus } from 'shared/exceptions'
-import { levelByNumber, colorByType, LogLevelWeights } from './logger.constants'
+import { levelByNumber, colorByType, LogLevelWeights, LogLevelTexts } from './logger.constants'
 
 interface Transport {
   transport: string
@@ -37,7 +37,9 @@ export function prettifier(): (inputData: InputData) => string {
 
     const levelText = levelByNumber[level]
     const baseColorFn = chalk[colorByType[levelText]]
-    const prettyLevel = baseColorFn(levelText)
+    const prettyLevel = baseColorFn(
+      [LogLevelTexts.INFO, LogLevelTexts.WARN].includes(levelText) ? `${levelText} ` : levelText,
+    )
     const prettyTime = dim(new Date(time).toLocaleTimeString())
     const baseStr = `${prettyTime} ${prettyLevel}`
     const joinMsg = (...arr: Array<string | undefined>): string =>

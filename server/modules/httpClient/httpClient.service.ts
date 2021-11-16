@@ -15,7 +15,7 @@ export class HttpClientService implements HttpClientImpl {
     body?: B,
   ): Promise<R> {
     try {
-      this.logger.log({
+      this.logger.verbose({
         transport: Transports.HTTP,
         msg: TransportMarks.REQ_INTERNAL,
         url: input,
