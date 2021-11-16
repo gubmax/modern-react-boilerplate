@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+import { fetch } from 'undici'
 import { Injectable, Logger } from '@nestjs/common'
 
 import { HttpClientImpl, HttpRequestBody, HttpRequestInit, HttpRequestResponse } from 'shared/http'
@@ -23,10 +23,7 @@ export class HttpClientService implements HttpClientImpl {
       })
 
       const now = Date.now()
-      const res = await fetch(`${CONFIG_ENV.host}${input}`, {
-        ...init,
-        body: JSON.stringify(body),
-      } as never)
+      const res = await fetch(`${CONFIG_ENV.host}${input}`, { ...init, body: JSON.stringify(body) })
       const data = (await res.json()) as R
 
       this.logger.log({

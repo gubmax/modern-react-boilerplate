@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=14.9.0"
+    "node": ">=16.0.0"
   },
   "repository": {
     "type": "git",
@@ -34,7 +34,6 @@
     "history": "5.0.1",
     "immer": "9.0.6",
     "inversify": "6.0.1",
-    "node-fetch": "2.6.1",
     "pino": "7.0.2",
     "react": "18.0.0-alpha-5fa4d79b0-20211008",
     "react-dom": "18.0.0-alpha-5fa4d79b0-20211008",
@@ -43,13 +42,13 @@
     "reflect-metadata": "0.1.13",
     "rxjs": "7.4.0",
     "serve-static": "1.14.1",
+    "undici": "4.10.0",
     "web-vitals": "2.1.2"
   },
   "devDependencies": {
     "@swc/core": "1.2.98",
     "@types/compression": "1.7.2",
     "@types/node": "16.11.0",
-    "@types/node-fetch": "2.5.12",
     "@types/pino": "6.3.11",
     "@types/react": "17.0.30",
     "@types/react-dom": "17.0.9",
