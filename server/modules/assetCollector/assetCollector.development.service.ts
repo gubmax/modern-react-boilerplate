@@ -1,18 +1,15 @@
-import { PATH_CLIENT_MAIN_MODULE } from 'server/common/constants'
+import { Injectable } from '@nestjs/common'
 import { ModuleNode } from 'vite'
 
-import { AssetsInjector, AssetsInjectorArg } from './AssetsInjector'
+import { AssetCollectorService, PreloadUrl } from './assetCollector.service'
 
-export class DevelopmentAssetsInjector extends AssetsInjector {
-  constructor(options: Omit<AssetsInjectorArg, 'manifest'>) {
-    super({ ...options, manifest: {} })
-  }
-
-  protected isJsScript = (url: string) => url === PATH_CLIENT_MAIN_MODULE
+@Injectable()
+export class DevelopmentAssetCollectorService extends AssetCollectorService {
+  protected isJsLink = (url: string) => /.*\.(js|ts|tsx)$/.test(url)
 
   private collectCss(
     mod: ModuleNode | undefined,
-    preloadUrls: Set<string>,
+    preloadUrls: Set<PreloadUrl>,
     visitedModules: Set<string>,
   ): void {
     if (!mod?.url || visitedModules.has(mod.url)) return
@@ -20,7 +17,7 @@ export class DevelopmentAssetsInjector extends AssetsInjector {
     visitedModules.add(mod.url)
 
     if (this.isCssLink(mod.url)) {
-      preloadUrls.add(mod.url)
+      preloadUrls.add({ url: mod.url })
     }
 
     mod.importedModules.forEach((dep) => {
@@ -29,7 +26,7 @@ export class DevelopmentAssetsInjector extends AssetsInjector {
   }
 
   injectByModule(html: string, mod?: ModuleNode): string {
-    const preloadUrls = new Set<string>()
+    const preloadUrls = new Set<PreloadUrl>()
     const visitedModules = new Set<string>()
 
     this.collectCss(mod, preloadUrls, visitedModules)

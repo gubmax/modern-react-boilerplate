@@ -2,6 +2,7 @@ import { resolve } from 'path'
 import { UserConfig } from 'vite'
 import reactRefreshPlugin from '@vitejs/plugin-react-refresh'
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
+import { HtmlEntries } from './common/constants'
 
 /**
  * @link https://vitejs.dev/config/
@@ -25,7 +26,10 @@ const config: UserConfig = {
     ssr: true,
     outDir: resolve(__dirname, '../dist/server'),
     rollupOptions: {
-      input: resolve(__dirname, './renderClient.tsx')
+      input: {
+        [HtmlEntries.MAIN]: resolve(__dirname, `../src/entries/${HtmlEntries.MAIN}.server.entry.tsx`),
+        [HtmlEntries.INTERNAL_ERROR]: resolve(__dirname, `../src/entries/${HtmlEntries.INTERNAL_ERROR}.entry.tsx`),
+      }
     }
   },
   server: {

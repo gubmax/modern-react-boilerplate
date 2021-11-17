@@ -7,9 +7,6 @@ import { iocContainer } from 'src/utils'
 import { ROUTES } from './App.constants'
 import { AppProps } from './App.types'
 
-import 'src/styles/common.css'
-import 'src/styles/global.css'
-
 const App: FC<AppProps> = ({ serverSideProps = {} }) => {
   const element = useRoutes(ROUTES)
 

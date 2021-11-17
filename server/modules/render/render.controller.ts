@@ -13,6 +13,6 @@ export class RenderController {
   @Get()
   @UseFilters(RenderExceptionsFilter)
   async render(@Req() req: Request, @Res() res: Response): Promise<void> {
-    return this.renderService.render(req, res)
+    return this.renderService.renderMainEntry(req, res)
   }
 }

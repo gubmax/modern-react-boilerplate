@@ -6,55 +6,89 @@ import { renderToString } from 'react-dom/server'
 import { cyan, dim, green } from 'chalk'
 import { Manifest } from 'vite'
 
-import { CONFIG_SSG_ROUTES } from 'server/config'
-import { renderClient as RenderClient } from 'server/renderClient'
+import { CONFIG_ENTRIES, CONFIG_SSG_ROUTES } from 'server/config'
 import {
-  PATH_RESOLVED_DIST_RENDER,
   PATH_RESOLVED_DIST_INDEX_HTML,
   PATH_RESOLVED_DIST_CLIENT,
   PATH_DIST_CLIENT,
   PATH_DIST_MANIFEST,
   HtmlMarks,
-  PATH_CLIENT_MAIN_MODULE,
+  HtmlEntries,
 } from 'server/common/constants'
-import { AssetsInjector } from 'server/modules/render/utils'
+import { renderServerMainTemplate as RenderServerMainTemplate } from 'src/entries/main.server.entry'
+import { renderInternalErrorTemplate as RenderInternalErrorTemplate } from 'src/entries/internalError.entry'
+import { AssetCollectorService } from 'server/modules/assetCollector'
 
 process.env.NODE_ENV = 'production'
 
-void (async () => {
-  const baseHtml = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
+function writeEntry({
+  app,
+  indexHtml,
+  assetCollector,
+  modulePath,
+  fileName,
+}: {
+  app: JSX.Element
+  indexHtml: string
+  assetCollector: AssetCollectorService
+  modulePath: string
+  fileName: string
+}) {
+  const ssrOutlet = renderToString(app)
 
-  const renderModulePath = PATH_RESOLVED_DIST_RENDER
-  const { renderClient } = (await import(renderModulePath)) as {
-    renderClient: typeof RenderClient
+  let html = indexHtml.replace(HtmlMarks.SSR_OUTLER, ssrOutlet)
+  html = assetCollector.injectByModulePaths(html, [modulePath])
+
+  writeFileSync(`${PATH_RESOLVED_DIST_CLIENT}/${fileName}`, html)
+}
+
+async function renderMainEntry(indexHtml: string, assetCollector: AssetCollectorService) {
+  console.log(` ${HtmlEntries.MAIN}`)
+
+  const { entryPath, modulePath } = CONFIG_ENTRIES[HtmlEntries.MAIN]
+
+  const { renderServerMainTemplate } = (await import(entryPath)) as {
+    renderServerMainTemplate: typeof RenderServerMainTemplate
   }
+
+  // Pre-render each route...
+  for (const route in CONFIG_SSG_ROUTES) {
+    const app = renderServerMainTemplate(route)
+    const fileName = `${CONFIG_SSG_ROUTES[route]}.html`
+
+    writeEntry({ app, indexHtml, assetCollector, modulePath, fileName })
+
+    console.log(`    ${dim(`${PATH_DIST_CLIENT}/`)}${green(fileName)}`)
+  }
+}
+
+async function renderInternalErrorEntry(indexHtml: string, assetCollector: AssetCollectorService) {
+  console.log(` ${HtmlEntries.INTERNAL_ERROR}`)
+
+  const { entryPath, modulePath } = CONFIG_ENTRIES[HtmlEntries.INTERNAL_ERROR]
+
+  const { renderInternalErrorTemplate } = (await import(entryPath)) as {
+    renderInternalErrorTemplate: typeof RenderInternalErrorTemplate
+  }
+
+  const app = renderInternalErrorTemplate()
+  const fileName = `${HtmlEntries.INTERNAL_ERROR}.html`
+
+  writeEntry({ app, indexHtml, assetCollector, modulePath, fileName })
+
+  console.log(`    ${dim(`${PATH_DIST_CLIENT}/`)}${green(fileName)}`)
+}
+
+void (async () => {
+  const indexHtml = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
 
   const distManifestPath = PATH_DIST_MANIFEST
   const manifest = (await import(distManifestPath)) as Manifest
 
-  const assetsInjector = new AssetsInjector({ manifest, mark: HtmlMarks.ASSETS })
+  const assetCollector = new AssetCollectorService(manifest)
 
-  // Pre-render each route...
   console.log(cyan('pre-rendered:'))
-  for (const route in CONFIG_SSG_ROUTES) {
-    // Render
 
-    const app = renderClient(route)
-    const ssrOutlet = renderToString(app)
-
-    let html = baseHtml.replace(HtmlMarks.SSR_OUTLER, ssrOutlet)
-
-    // Inject assets
-
-    html = assetsInjector.injectByModulePaths(html, [PATH_CLIENT_MAIN_MODULE])
-
-    // Write
-
-    const fileName = `${CONFIG_SSG_ROUTES[route]}.html`
-    const filePath = `${PATH_RESOLVED_DIST_CLIENT}/${fileName}`
-
-    writeFileSync(filePath, html)
-
-    console.log(`${dim(`${PATH_DIST_CLIENT}/`)}${green(fileName)}`)
-  }
+  await renderMainEntry(indexHtml, assetCollector)
+  await renderInternalErrorEntry(indexHtml, assetCollector)
 })()

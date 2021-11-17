@@ -1,9 +1,15 @@
 import { StaticRouter } from 'react-router-dom/server'
 
-import { App } from 'src/components/layout'
 import { ServerSideProps } from 'src/common/contexts'
+import { App } from 'src/components/layout/App'
 
-export function renderClient(url: string, serverSideProps?: ServerSideProps): JSX.Element {
+import 'src/styles/common.css'
+import 'src/styles/global.css'
+
+export function renderServerMainTemplate(
+  url: string,
+  serverSideProps?: ServerSideProps,
+): JSX.Element {
   return (
     <StaticRouter location={url}>
       <App serverSideProps={serverSideProps} />

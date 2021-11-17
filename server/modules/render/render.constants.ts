@@ -1,1 +1,1 @@
-export const renderServiceSymbol = Symbol('RenderService')
+export const renderServiceSymbol = 'RenderService'

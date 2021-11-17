@@ -1,65 +1,82 @@
 import { readFileSync } from 'fs'
 import { Injectable } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import type { Request, Response } from 'express'
 import { matchPath } from 'react-router'
-
-import type { renderClient as RenderClient } from 'server/renderClient'
-import { CONFIG_SSG_ROUTES, CONFIG_SSR_ROUTES } from 'server/config'
-import { AssetsInjector, fetchPageProps, writeTemplate } from './utils'
-import {
-  PATH_RESOLVED_DIST_RENDER,
-  PATH_RESOLVED_DIST_INDEX_HTML,
-  PATH_RESOLVED_DIST_CLIENT,
-  PATH_DIST_MANIFEST,
-  HtmlMarks,
-} from 'server/common/constants'
-import { HttpClientService } from '../httpClient/httpClient.service'
 import { Manifest } from 'vite'
+
+import { CONFIG_ENTRIES, CONFIG_SSG_ROUTES, CONFIG_SSR_ROUTES } from 'server/config'
+import {
+  PATH_RESOLVED_DIST_CLIENT,
+  PATH_RESOLVED_DIST_INDEX_HTML,
+  PATH_DIST_MANIFEST,
+  HtmlEntries,
+} from 'server/common/constants'
+import { renderServerMainTemplate as RenderServerMainTemplate } from 'src/entries/main.server.entry'
+import { HttpClientService } from '../httpClient'
+import { AssetCollectorService } from '../assetCollector'
+import { fetchPageProps, writeTemplate } from './utils'
 
 @Injectable()
 export class RenderService {
-  html = ''
-  manifest: Manifest = {}
+  protected indexHtml = ''
 
-  constructor(protected readonly httpClientService: HttpClientService) {}
+  constructor(
+    protected readonly config: ConfigService,
+    protected readonly httpClient: HttpClientService,
+    protected assetCollector: AssetCollectorService,
+  ) {}
 
   async init(): Promise<void> {
-    this.html = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
-
     const distManifestPath = PATH_DIST_MANIFEST
-    this.manifest = (await import(distManifestPath)) as Manifest
+    const manifest = (await import(distManifestPath)) as Manifest
+
+    this.assetCollector.manifest = manifest
+    this.indexHtml = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
+  }
+
+  private sendPreRenderedTemplate(url: string, res: Response): boolean {
+    for (const route in CONFIG_SSG_ROUTES) {
+      if (matchPath(route, url)) {
+        res.sendFile(`${PATH_RESOLVED_DIST_CLIENT}/${CONFIG_SSG_ROUTES[route]}.html`)
+        return true
+      }
+    }
+
+    return false
   }
 
   /**
    * Production render function.
    */
-  async render(req: Request, res: Response): Promise<void> {
-    // Send pre-rendered template
-    for (const route in CONFIG_SSG_ROUTES) {
-      if (matchPath(route, req.url)) {
-        return res.sendFile(`${PATH_RESOLVED_DIST_CLIENT}/${CONFIG_SSG_ROUTES[route]}.html`)
-      }
-    }
+  async renderMainEntry(req: Request, res: Response): Promise<void> {
+    const hasBeenSent = this.sendPreRenderedTemplate(req.url, res)
+    if (hasBeenSent) return
 
     // Render client
 
-    const renderModulePath = PATH_RESOLVED_DIST_RENDER
-    const [serverSideProps, { renderClient }] = await Promise.all([
-      fetchPageProps(req.url, this.httpClientService),
-      import(renderModulePath) as Promise<{ renderClient: typeof RenderClient }>,
+    const { entryPath } = CONFIG_ENTRIES[HtmlEntries.MAIN]
+
+    const [serverSideProps, { renderServerMainTemplate }] = await Promise.all([
+      fetchPageProps(req.url, this.httpClient),
+      import(entryPath) as Promise<{
+        renderServerMainTemplate: typeof RenderServerMainTemplate
+      }>,
     ])
 
-    const app = renderClient(req.url, serverSideProps)
+    const app = renderServerMainTemplate(req.url, serverSideProps)
 
     // Inject assets
 
     const { imports = [] } = CONFIG_SSR_ROUTES[req.url] || {}
-    const assetsInjector = new AssetsInjector({ manifest: this.manifest, mark: HtmlMarks.ASSETS })
-
-    const html = assetsInjector.injectByModulePaths(this.html, imports)
+    const html = this.assetCollector?.injectByModulePaths(this.indexHtml, imports)
 
     // Write
 
     writeTemplate({ html, app, res, serverSideProps })
+  }
+
+  renderInternalErrorEntry(req: Request, res: Response): void {
+    res.sendFile(`${PATH_RESOLVED_DIST_CLIENT}/${HtmlEntries.INTERNAL_ERROR}.html`)
   }
 }
