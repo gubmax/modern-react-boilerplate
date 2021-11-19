@@ -13,7 +13,7 @@ const serverSideProps: ServerSideProps = window[MARK_SERVER_SIDE_PROPS] || {}
 // Bootstrap
 
 const container = document.getElementById('root') || document.body
-const root = hydrateRoot(container)
+const root = hydrateRoot(container, [])
 
 root.render(renderMainTemplate(serverSideProps))
 

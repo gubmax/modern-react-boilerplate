@@ -6,7 +6,7 @@ import { HistoryContext } from 'src/common/contexts'
 
 const BrowserRouter: FC = ({ children }) => {
   const { current: history } = useRef(createBrowserHistory({ window }))
-  const [{ action, location }, setHistory] = useState({
+  const [{ location }, setHistory] = useState({
     action: history.action,
     location: history.location,
   })
@@ -14,7 +14,7 @@ const BrowserRouter: FC = ({ children }) => {
   useLayoutEffect(() => history.listen(setHistory), [history])
 
   return (
-    <Router action={action} location={location} navigator={history}>
+    <Router location={location} navigator={history}>
       <HistoryContext.Provider value={history}>{children}</HistoryContext.Provider>
     </Router>
   )

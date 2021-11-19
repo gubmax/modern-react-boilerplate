@@ -1,20 +1,17 @@
-import { FC, useState, useEffect } from 'react'
+import { FC, useState, useEffect, useDeferredValue } from 'react'
 
 import { Loader } from 'src/components/elements'
 import * as s from './PageLoader.css'
 
 const PageLoader: FC = () => {
-  const [hide, setHide] = useState(true)
+  const [show, setShow] = useState(true)
+  const deferredShow = useDeferredValue(show)
 
   useEffect(() => {
-    const timer = setTimeout(() => setHide(false), 100)
-
-    return () => {
-      clearTimeout(timer)
-    }
+    setShow(false)
   }, [])
 
-  return hide ? null : <Loader className={s.wrapper} />
+  return deferredShow ? <Loader className={s.wrapper} /> : null
 }
 
 export default PageLoader

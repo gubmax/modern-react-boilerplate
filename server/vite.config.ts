@@ -11,7 +11,7 @@ const config: UserConfig = {
   publicDir: false,
   clearScreen: false,
   plugins: [
-    vanillaExtractPlugin({ devStyleRuntime: 'vanilla-extract' }),
+    vanillaExtractPlugin(),
     reactRefreshPlugin(),
   ],
   resolve: {

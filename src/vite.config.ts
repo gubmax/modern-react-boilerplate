@@ -11,7 +11,7 @@ import { HtmlEntries } from '../server/common/constants'
  */
 const config: UserConfig = {
   plugins: [
-    vanillaExtractPlugin({ devStyleRuntime: 'vanilla-extract' }),
+    vanillaExtractPlugin(),
     VitePWA({ manifest, registerType: 'autoUpdate' }),
   ],
   resolve: {

@@ -25,16 +25,16 @@ export const vars = createGlobalTheme(':root', {
 
 export const theme = createThemeContract({
   color: {
-    primary: '',
-    secondary: '',
-    accent: '',
-    accentLight: '',
-    bg0: '',
-    bg1: '',
-    surface0: '',
-    surface1: '',
-    border: '',
-    borderLight: '',
+    primary: null,
+    secondary: null,
+    accent: null,
+    accentLight: null,
+    bg0: null,
+    bg1: null,
+    surface0: null,
+    surface1: null,
+    border: null,
+    borderLight: null,
   },
 })
 
