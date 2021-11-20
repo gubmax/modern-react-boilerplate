@@ -1,6 +1,7 @@
 import { resolve } from 'path'
 import { UserConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
+import react from '@vitejs/plugin-react'
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 
 import manifest from '../public/manifest.json'
@@ -12,6 +13,7 @@ import { HtmlEntries } from '../server/common/constants'
 const config: UserConfig = {
   plugins: [
     vanillaExtractPlugin(),
+    react(),
     VitePWA({ manifest, registerType: 'autoUpdate' }),
   ],
   resolve: {
@@ -29,9 +31,6 @@ const config: UserConfig = {
         [HtmlEntries.INTERNAL_ERROR]: resolve(__dirname, `./${HtmlEntries.INTERNAL_ERROR}.tsx`),
       }
     }
-  },
-  esbuild: {
-    jsxInject: 'import React from "react"',
   },
 }
 

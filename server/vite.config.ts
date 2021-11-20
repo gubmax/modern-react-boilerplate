@@ -1,6 +1,6 @@
 import { resolve } from 'path'
 import { UserConfig } from 'vite'
-import reactRefreshPlugin from '@vitejs/plugin-react-refresh'
+import react from '@vitejs/plugin-react'
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 import { HtmlEntries } from './common/constants'
 
@@ -12,7 +12,7 @@ const config: UserConfig = {
   clearScreen: false,
   plugins: [
     vanillaExtractPlugin(),
-    reactRefreshPlugin(),
+    react(),
   ],
   resolve: {
     alias: {
@@ -35,9 +35,6 @@ const config: UserConfig = {
   server: {
     fs: { strict: true },
     middlewareMode: 'ssr',
-  },
-  esbuild: {
-    jsxInject: 'import React from "react"',
   },
 }
 
