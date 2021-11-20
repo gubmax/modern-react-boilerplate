@@ -26,13 +26,13 @@ export async function bootstrap(): Promise<NestExpressApplication> {
   const port = config.get<number>('port') || NaN
 
   const render = app.get<DevelopmentRenderService>(renderServiceSymbol)
-  await render.init()
 
   // Production
   if (isProdEnv) {
     app.use(compression())
     app.use(serve(PATH_RESOLVED_DIST_CLIENT, { index: false }))
 
+    await render.init()
     await app.listen(port)
 
     return app
