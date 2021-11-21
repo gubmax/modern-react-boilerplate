@@ -1,10 +1,9 @@
-import chokidar, { WatchOptions } from 'chokidar'
+import watcher from '@parcel/watcher'
 
 import { noop } from 'src/common/helpers'
 
-interface WatchProp {
-  paths: string | ReadonlyArray<string>
-  options?: WatchOptions
+interface WatchOptions {
+  path: string
   dispose: () => void | Promise<void>
   accept: () => void | Promise<void>
 }
@@ -15,16 +14,10 @@ function clearCache() {
   })
 }
 
-export function watch({ paths, options, dispose = noop, accept = noop }: WatchProp): void {
-  const watcher = chokidar.watch(paths, options)
-
-  watcher.on('ready', () => {
-    watcher.on('all', () => {
-      void (async () => {
-        await dispose()
-        clearCache()
-        void accept()
-      })()
-    })
+export async function watch({ path, dispose = noop, accept = noop }: WatchOptions): Promise<void> {
+  await watcher.subscribe(path, async () => {
+    await dispose()
+    clearCache()
+    return accept()
   })
 }

@@ -21,7 +21,7 @@ if (!CONFIG_ENV.isTestEnv) {
         app = await bootstrap()
       }
 
-      watch({ paths: PATH_RESOLVED_SERVER, dispose, accept })
+      void watch({ path: PATH_RESOLVED_SERVER, dispose, accept })
     }
   })()
 }
