@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "types": [
+      "react/next",
+      "react-dom/next",
+      "vite-plugin-pwa/client",
+      "reflect-metadata"
+    ],
+  }
+}

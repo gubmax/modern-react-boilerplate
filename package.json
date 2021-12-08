@@ -2,63 +2,38 @@
   "name": "modern-react-boilerplate",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": ">=16.0.0"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/gubmax/modern-react-boilerplate.git"
   },
   "author": "Maksim Gubyshev <gubyshev@gmail.com> (https://github.com/gubmax)",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "workspaces": [
+    "packages/client",
+    "packages/server"
+  ],
   "scripts": {
-    "dev": "ts-node server/main",
-    "debug": "ts-node --inspect-brk server/main",
+    "dev": "cd packages/server && npm run dev",
+    "debug": "cd packages/server && npm run debug",
     "build": "npm run build:client && npm run build:server && npm run prerender",
-    "build:client": "vite build -c src/vite.config.ts",
-    "build:server": "vite build -c server/vite.config.ts",
-    "prerender": "ts-node scripts/prerender",
-    "serve": "cross-env NODE_ENV=production ts-node server/main",
-    "typecheck": "tsc --noEmit",
-    "lint": "eslint . --ext .ts,.tsx",
+    "build:client": "cd packages/client && npm run build:client",
+    "build:server": "cd packages/client && npm run build:server",
+    "prerender": "cd packages/server && npm run prerender",
+    "serve": "cd packages/server && npm run serve",
+    "typecheck": "(cd packages/client && tsc --noEmit) & (cd packages/server && tsc --noEmit)",
+    "lint": "eslint packages --ext .ts,.tsx",
     "prepare": "husky install"
   },
   "dependencies": {
-    "@nestjs/common": "8.2.2",
-    "@nestjs/config": "1.1.0",
-    "@nestjs/core": "8.2.2",
-    "@nestjs/platform-express": "8.2.2",
-    "@vanilla-extract/css": "1.6.3",
-    "@vanilla-extract/recipes": "0.2.1",
-    "@vanilla-extract/sprinkles": "1.3.1",
-    "compression": "1.7.4",
-    "history": "5.1.0",
-    "immer": "9.0.6",
-    "inversify": "6.0.1",
-    "pino": "7.3.0",
-    "react": "18.0.0-beta-149b420f6-20211119",
-    "react-dom": "18.0.0-beta-149b420f6-20211119",
-    "react-router": "6.0.2",
-    "react-router-dom": "6.0.2",
-    "reflect-metadata": "0.1.13",
-    "rxjs": "7.4.0",
-    "serve-static": "1.14.1",
-    "undici": "4.10.2",
-    "web-vitals": "2.1.2"
+    "react": "18.0.0-rc.0-next-3b3daf557-20211210",
+    "react-dom": "18.0.0-rc.0-next-3b3daf557-20211210"
   },
   "devDependencies": {
-    "@parcel/watcher": "2.0.2",
-    "@swc/core": "1.2.111",
-    "@types/compression": "1.7.2",
-    "@types/node": "16.11.9",
-    "@types/pino": "7.0.5",
-    "@types/react": "17.0.35",
-    "@types/react-dom": "17.0.11",
-    "@types/serve-static": "1.13.10",
     "@typescript-eslint/eslint-plugin": "5.4.0",
     "@typescript-eslint/parser": "5.4.0",
-    "@vanilla-extract/vite-plugin": "3.0.1",
-    "@vitejs/plugin-react": "1.0.9",
-    "chalk": "4.1.2",
     "cross-env": "7.0.3",
     "eslint": "8.2.0",
     "eslint-plugin-prettier": "4.0.0",
@@ -67,10 +42,6 @@
     "husky": "7.0.4",
     "lint-staged": "12.0.3",
     "prettier": "2.4.1",
-    "ts-node": "10.4.0",
-    "tsconfig-paths": "3.11.0",
-    "typescript": "4.4.4",
-    "vite": "2.6.14",
-    "vite-plugin-pwa": "0.11.6"
+    "typescript": "4.4.4"
   }
 }

@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "ts-node": {
+    "files": true,
+    "transpileOnly": true,
+    "transpiler": "ts-node/transpilers/swc-experimental",
+    "require": ["tsconfig-paths/register"]
+  },
+  "compilerOptions": {
+    "types": ["reflect-metadata"]
+  }
+}

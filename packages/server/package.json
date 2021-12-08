@@ -1,0 +1,42 @@
+{
+  "name": "@modern-react-boilerplate/server",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gubmax/modern-react-boilerplate.git",
+    "directory": "packages/server"
+  },
+  "scripts": {
+    "dev": "ts-node src/main",
+    "debug": "ts-node --inspect-brk src/main",
+    "prerender": "ts-node scripts/prerender",
+    "serve": "cross-env NODE_ENV=production ts-node src/main"
+  },
+  "dependencies": {
+    "@nestjs/common": "8.2.2",
+    "@nestjs/config": "1.1.0",
+    "@nestjs/core": "8.2.2",
+    "@nestjs/platform-express": "8.2.2",
+    "compression": "1.7.4",
+    "pino": "7.3.0",
+    "reflect-metadata": "0.1.13",
+    "serve-static": "1.14.1",
+    "undici": "4.10.2"
+  },
+  "devDependencies": {
+    "@parcel/watcher": "2.0.2",
+    "@swc/core": "1.2.111",
+    "@types/compression": "1.7.2",
+    "@types/node": "16.11.9",
+    "@types/pino": "7.0.5",
+    "@types/react": "17.0.35",
+    "@types/serve-static": "1.13.10",
+    "chalk": "4.1.2",
+    "cross-env": "7.0.3",
+    "ts-node": "10.4.0",
+    "tsconfig-paths": "3.11.0"
+  },
+  "peerDependencies": {
+    "typescript": "*",
+    "react-router": "*"
+  }
+}

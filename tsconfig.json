@@ -1,16 +1,5 @@
 {
-  "ts-node": {
-    "files": true,
-    "transpileOnly": true,
-    "transpiler": "ts-node/transpilers/swc-experimental",
-    "require": ["tsconfig-paths/register"]
-  },
-  "include": [
-    "./src",
-    "./server",
-    "./scripts",
-    "./shared",
-  ],
+  "exclude": ["node_modules", "dist"],
   "compilerOptions": {
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -28,12 +17,6 @@
     "emitDecoratorMetadata": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": ".",
-    "types": [
-      "react/next",
-      "react-dom/next",
-      "vite-plugin-pwa/client",
-      "reflect-metadata"
-    ]
+    "baseUrl": "packages"
   }
 }

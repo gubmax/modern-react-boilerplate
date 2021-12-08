@@ -1,6 +1,6 @@
 module.exports = {
-  '(src|server|shared|scripts)/**/*.ts?(x)': [
-    () => 'tsc -p tsconfig.json --noEmit',
-    'npm run lint -- --fix',
+  'packages/**/*.ts?(x)': [
+    () => 'npm run typecheck',
+    'npm run lint',
   ]
 }
