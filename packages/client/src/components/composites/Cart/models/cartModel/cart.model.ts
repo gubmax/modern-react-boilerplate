@@ -1,4 +1,4 @@
-import { inject, injectable } from 'inversify'
+import { singleton, inject } from 'tsyringe'
 import { BehaviorSubject } from 'rxjs'
 
 import { ServerSidePropsQueryModel, UpdateAmountQueryModel } from 'client/src/models/queries'
@@ -6,7 +6,7 @@ import { GetProductsResponse, JSONPatchOperations, UpdateAmountPaths } from 'sha
 import { CartService } from '../../domain/services'
 import { Product } from '../../domain/entities'
 
-@injectable()
+@singleton()
 export class CartModel {
   products$ = new BehaviorSubject<Product[]>([])
   totalPrice = 0

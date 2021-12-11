@@ -1,5 +1,5 @@
 import { produce } from 'immer'
-import { injectable } from 'inversify'
+import { singleton } from 'tsyringe'
 
 import { Product } from '../../entities'
 
@@ -10,7 +10,7 @@ function calcAmount(amount: number) {
   return [AMOUNT_MIN, amount, AMOUNT_MAX].sort((a, b) => a - b)[1]
 }
 
-@injectable()
+@singleton()
 export class CartService {
   calcTotalPrice(products: Product[]): number {
     return products.reduce((total, { price, amount }) => total + price * amount, 0)

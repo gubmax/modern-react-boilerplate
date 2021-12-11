@@ -14,6 +14,6 @@ const Heading: FC<HeadingProps> = ({ as: Tag, className, style, children }) => {
   )
 }
 
-export const H1: FC<StyledProps> = ({ ...props }) => <Heading {...props} as={HeadingTags.H1} />
-export const H2: FC<StyledProps> = ({ ...props }) => <Heading {...props} as={HeadingTags.H2} />
-export const H3: FC<StyledProps> = ({ ...props }) => <Heading {...props} as={HeadingTags.H3} />
+export const H1: FC<StyledProps> = (props) => <Heading {...props} as={HeadingTags.H1} />
+export const H2: FC<StyledProps> = (props) => <Heading {...props} as={HeadingTags.H2} />
+export const H3: FC<StyledProps> = (props) => <Heading {...props} as={HeadingTags.H3} />

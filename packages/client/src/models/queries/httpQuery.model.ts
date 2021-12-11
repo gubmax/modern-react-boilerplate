@@ -1,10 +1,9 @@
-import { inject, injectable } from 'inversify'
+import { inject } from 'tsyringe'
 
 import { HttpRequestResponse, HttpRequestBody, HttpRequestInit } from 'shared/http'
 import { HttpClientModel } from '../http'
 import { QueryModel } from './query.model'
 
-@injectable()
 export abstract class HttpQueryModel<
   R extends HttpRequestResponse = HttpRequestResponse,
   B extends HttpRequestBody = never,

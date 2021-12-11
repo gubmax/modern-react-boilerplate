@@ -1,8 +1,8 @@
-import { Container } from 'inversify'
+import { DependencyContainer } from 'tsyringe'
 
 import { ServerSideProps } from 'client/src/common/contexts'
 
 export interface AppProps {
   serverSideProps?: ServerSideProps
-  iocContainer?: Container
+  iocContainer?: DependencyContainer
 }

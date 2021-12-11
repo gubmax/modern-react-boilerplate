@@ -1,10 +1,10 @@
-import { injectable } from 'inversify'
+import { singleton } from 'tsyringe'
 
 import { HttpClientImpl, HttpRequestBody, HttpRequestInit, HttpRequestResponse } from 'shared/http'
 import { HEADERS_DEFAULT } from 'client/src/infra/http'
 import { FatalException } from 'client/src/domain/exceptions'
 
-@injectable()
+@singleton()
 export class HttpClientModel implements HttpClientImpl {
   async send<R extends HttpRequestResponse = void, B extends HttpRequestBody = HttpRequestBody>(
     { input, headers, ...init }: HttpRequestInit,

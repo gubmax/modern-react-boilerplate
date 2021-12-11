@@ -1,5 +1,4 @@
-import { ContainerModule } from 'inversify'
-
+import { iocContainer } from 'client/src/utils'
 import { GetServerSideProps } from 'shared/utils'
 import { ServerSidePropsQueryModel } from './serverSidePropsQuery.model'
 
@@ -13,19 +12,17 @@ export interface ServerSidePropsModelFactory {
   <T>(getServerSideProps: GetServerSideProps<T>): ServerSidePropsQueryModel<T>
 }
 
-// Module
+// IoC
 
-export const ServerSidePropsQueryModule = new ContainerModule((bind) => {
-  bind(ServerSidePropsQueryModel).to(ServerSidePropsQueryModel)
-
-  bind(serverSidePropsModelFactorySymbol).toFactory(({ container }) => {
-    return <T>(getServerSideProps: GetServerSideProps<T>): ServerSidePropsQueryModel<T> => {
+iocContainer.register(serverSidePropsModelFactorySymbol, {
+  useFactory: (dependencyContainer) => {
+    return <T>(getServerSideProps: GetServerSideProps<T>) => {
       const serverSidePropsQueryModel =
-        container.get<ServerSidePropsQueryModel<T>>(ServerSidePropsQueryModel)
+        dependencyContainer.resolve<ServerSidePropsQueryModel<T>>(ServerSidePropsQueryModel)
 
       serverSidePropsQueryModel.getServerSideProps = getServerSideProps
 
       return serverSidePropsQueryModel
     }
-  })
+  },
 })

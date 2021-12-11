@@ -1,4 +1,4 @@
-import { inject, injectable } from 'inversify'
+import { inject, injectable } from 'tsyringe'
 
 import { GetServerSideProps } from 'shared/utils'
 import { FatalException } from 'client/src/domain/exceptions'

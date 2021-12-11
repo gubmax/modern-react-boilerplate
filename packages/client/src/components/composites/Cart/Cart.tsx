@@ -9,7 +9,6 @@ import { CartModel } from './models'
 import { CartSkeleton } from './Cart.skeleton'
 import { CartProps } from './Cart.types'
 import * as s from './Cart.css'
-import './Cart.ioc'
 
 const Cart: FC<CartProps> = ({ loading, products: initialProducts }) => {
   const { products$, products, totalPrice } = useInject(CartModel)

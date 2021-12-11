@@ -1,10 +1,3 @@
-import { Container } from 'inversify'
+import { container } from 'tsyringe'
 
-import { HttpClientModel } from '../models/http'
-import { ServerSidePropsQueryModule, UpdateAmountQueryModel } from '../models/queries'
-
-export const iocContainer = new Container({ defaultScope: 'Singleton' })
-
-iocContainer.load(ServerSidePropsQueryModule)
-iocContainer.bind(UpdateAmountQueryModel).to(UpdateAmountQueryModel)
-iocContainer.bind(HttpClientModel).to(HttpClientModel)
+export const iocContainer = container

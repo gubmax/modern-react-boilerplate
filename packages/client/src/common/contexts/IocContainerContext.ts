@@ -1,4 +1,4 @@
 import { createContext } from 'react'
-import { Container } from 'inversify'
+import { DependencyContainer } from 'tsyringe'
 
-export const IocContainerContext = createContext<Container | null>(null)
+export const IocContainerContext = createContext<DependencyContainer | null>(null)

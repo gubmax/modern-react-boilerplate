@@ -1,15 +1,15 @@
-import { useContext, useMemo } from 'react'
-import { interfaces } from 'inversify'
-
 import { FatalException } from 'client/src/domain/exceptions'
+import { useContext, useMemo } from 'react'
+import { InjectionToken } from 'tsyringe'
+
 import { IocContainerContext } from '../contexts'
 
-export function useInject<T>(identifier: interfaces.ServiceIdentifier<T>): T {
+export function useInject<T>(identifier: InjectionToken<T>): T {
   const container = useContext(IocContainerContext)
 
   if (!container) {
     throw new FatalException({ message: 'IoC container not found' })
   }
 
-  return useMemo(() => container.get<T>(identifier), [container, identifier])
+  return useMemo(() => container.resolve<T>(identifier), [container, identifier])
 }
