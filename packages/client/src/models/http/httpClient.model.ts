@@ -1,10 +1,10 @@
-import { singleton } from 'tsyringe'
+import { injectable } from 'tsyringe'
 
 import { HttpClientImpl, HttpRequestBody, HttpRequestInit, HttpRequestResponse } from 'shared/http'
 import { HEADERS_DEFAULT } from 'client/src/infra/http'
 import { FatalException } from 'client/src/domain/exceptions'
 
-@singleton()
+@injectable()
 export class HttpClientModel implements HttpClientImpl {
   async send<R extends HttpRequestResponse = void, B extends HttpRequestBody = HttpRequestBody>(
     { input, headers, ...init }: HttpRequestInit,
@@ -16,8 +16,12 @@ export class HttpClientModel implements HttpClientImpl {
         headers: headers || HEADERS_DEFAULT,
         body: JSON.stringify(body),
       })
-      const data = (await res.json()) as R
-      return data
+
+      const contentType = res.headers.get('content-type')
+      const promise =
+        !!contentType && contentType.indexOf('application/json') !== -1 ? res.json() : res.text()
+
+      return promise as Promise<R>
     } catch (error: unknown) {
       throw new FatalException({
         message: error instanceof Error ? error.message : '',

@@ -4,17 +4,20 @@ import { vars, theme, gridAtom } from 'client/src/styles'
 
 export const wrapper = gridAtom({ display: 'flex' })
 
-export const footer = style([wrapper, { marginTop: 'auto' }])
+export const marginRight = style({ marginRight: vars.space.s3 })
 
-export const body = style([
-  gridAtom({
-    display: 'flex',
-    flexDirection: 'column',
-  }),
-  { width: '100%' },
+export const body = style([wrapper, gridAtom({ flexDirection: 'column' }), { width: '100%' }])
+
+export const header = style([wrapper, { marginBottom: vars.space.s1 }])
+
+export const footer = style([
+  wrapper,
+  gridAtom({ justifyContent: 'flex-end' }),
+  { marginTop: 'auto' },
 ])
 
 export const imageBox = style([
+  marginRight,
   gridAtom({
     display: 'inline-flex',
     justifyContent: 'center',
@@ -26,7 +29,6 @@ export const imageBox = style([
     height: '8rem',
     fontSize: '5rem',
     borderRadius: '12px',
-    marginRight: vars.space.s3,
     backgroundColor: theme.color.bg0,
     userSelect: 'none',
   },
@@ -35,7 +37,7 @@ export const imageBox = style([
 export const price = style([
   gridAtom({ marginLeft: 'auto' }),
   {
-    minWidth: '3.5rem',
+    minWidth: '4rem',
     fontSize: vars.fontSize.h3,
     fontWeight: 500,
     textAlign: 'end',
@@ -51,11 +53,4 @@ export const counter = style([
   },
 ])
 
-export const marginLeft = gridAtom({
-  marginLeft: 'auto',
-})
-
-export const deleteButton = style([
-  gridAtom({ alignItems: 'center' }),
-  { marginRight: vars.space.s2 },
-])
+export const deleteButton = gridAtom({ marginRight: 'auto' })

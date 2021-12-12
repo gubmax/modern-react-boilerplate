@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common'
 
 import { BadRequestException } from 'shared/exceptions'
+import { wait } from 'server/src/common/helpers'
 
 @Injectable()
 export class CartService {
   amount: Record<string, number> = {}
 
-  increaseAmount(id: string): void {
+  async increaseAmount(id: string): Promise<void | Error> {
     const nextAmount = (this.amount[id] || 0) + 1
 
     if (nextAmount > 5) {
@@ -14,10 +15,14 @@ export class CartService {
     }
 
     this.amount[id] = nextAmount
+
+    return wait(250)
   }
 
-  decreaseAmount(id: string): void {
+  async decreaseAmount(id: string): Promise<void | Error> {
     const nextAmount = (this.amount[id] || 0) - 1
     this.amount[id] = Math.max(nextAmount, 0)
+
+    return wait(250)
   }
 }

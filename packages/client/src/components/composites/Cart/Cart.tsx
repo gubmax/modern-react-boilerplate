@@ -11,7 +11,8 @@ import { CartProps } from './Cart.types'
 import * as s from './Cart.css'
 
 const Cart: FC<CartProps> = ({ loading, products: initialProducts }) => {
-  const { products$, products, totalPrice } = useInject(CartModel)
+  const { products$, totalPrice } = useInject(CartModel)
+  const products = products$.value
 
   useInit(() => initialProducts && products$.next(initialProducts))
 
@@ -20,7 +21,7 @@ const Cart: FC<CartProps> = ({ loading, products: initialProducts }) => {
   if (loading) return <CartSkeleton />
 
   const listTemplate = products.length ? (
-    <ProductList className={s.list} />
+    <ProductList className={s.list} products={products} />
   ) : (
     <div className={s.emptyCartBox}>
       <EmptyShoppingCartIcon className={s.cartIcon} size={IconSizes.HUGE} />

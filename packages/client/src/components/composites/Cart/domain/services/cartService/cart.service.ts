@@ -1,4 +1,3 @@
-import { produce } from 'immer'
 import { singleton } from 'tsyringe'
 
 import { Product } from '../../entities'
@@ -6,38 +5,39 @@ import { Product } from '../../entities'
 const AMOUNT_MIN = 1
 const AMOUNT_MAX = 10
 
-function calcAmount(amount: number) {
-  return [AMOUNT_MIN, amount, AMOUNT_MAX].sort((a, b) => a - b)[1]
-}
-
 @singleton()
 export class CartService {
-  calcTotalPrice(products: Product[]): number {
-    return products.reduce((total, { price, amount }) => total + price * amount, 0)
+  products: Product[] = []
+  #totalPrice = 0
+
+  get totalPrice() {
+    return this.#totalPrice
   }
 
-  add(products: Product[], product: Product): Product[] {
-    return Array.from(new Set([...products, product]))
+  calcTotalPrice = (): void => {
+    let total = 0
+    this.products.forEach(({ price, amount }) => (total += price * amount))
+    this.#totalPrice = total
   }
 
-  getAmount(products: Product[], id: string): number | undefined {
-    return products.find((product) => product.id === id)?.amount
+  getProductAmount = (id: string): number | undefined => {
+    return this.products.find((product) => product.id === id)?.amount
   }
 
-  setAmount(products: Product[], id: string, amount: number): Product[] | false {
-    if (amount < AMOUNT_MIN || amount > AMOUNT_MAX) return false
+  setProductAmount = (id: string, amount: number): number => {
+    if (amount < AMOUNT_MIN || amount > AMOUNT_MAX) return -1
 
-    const index = products.findIndex((product) => product.id === id)
-    if (index === -1) return false
+    const index = this.products.findIndex((product) => product.id === id)
+    if (index === -1) return -1
 
-    const nextAmount = calcAmount(amount)
+    const nextAmount = [AMOUNT_MIN, amount, AMOUNT_MAX].sort((a, b) => a - b)[1]
 
-    return produce(products, (draft) => {
-      draft[index].amount = nextAmount
-    })
+    this.products[index].amount = nextAmount
+
+    return nextAmount
   }
 
-  remove(products: Product[], id: string): Product[] {
-    return products.filter((product) => product.id !== id)
+  removeProduct = (id: string): void => {
+    this.products = this.products.filter((product) => product.id !== id)
   }
 }

@@ -20,7 +20,10 @@ export class AllExceptionsFilter implements ExceptionFilter {
       httpException = new InternalServerException('Unrecognized error')
     }
 
-    this.logger.error(httpException)
-    res.status(httpException.status).send(JSON.stringify(httpException))
+    httpException.status >= 500
+      ? this.logger.error(httpException)
+      : this.logger.verbose(httpException)
+
+    res.status(httpException.status).send(httpException)
   }
 }

@@ -1,5 +1,3 @@
-import { inject } from 'tsyringe'
-
 import { HttpRequestResponse, HttpRequestBody, HttpRequestInit } from 'shared/http'
 import { HttpClientModel } from '../http'
 import { QueryModel } from './query.model'
@@ -10,7 +8,7 @@ export abstract class HttpQueryModel<
 > extends QueryModel<R> {
   abstract readonly init: HttpRequestInit
 
-  constructor(@inject(HttpClientModel) private readonly httpClientModel: HttpClientModel) {
+  constructor(protected readonly httpClientModel: HttpClientModel) {
     super()
   }
 

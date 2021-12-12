@@ -6,11 +6,11 @@ import {
   serverSidePropsModelFactorySymbol,
   ServerSidePropsQueryModel,
 } from 'client/src/models/queries'
+import { HttpClientModel } from 'client/src/models/http'
 import { useInit } from './useInit'
 import { useHistory } from './useHistory'
 import { useServerSideProps } from './useServerSideProps'
 import { useInject } from './useInject'
-import { HttpClientModel } from 'client/src/models/http'
 import { GetServerSideProps } from 'shared/utils'
 
 export function useServerSidePropsQueryLoader<T>(

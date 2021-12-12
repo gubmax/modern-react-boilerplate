@@ -9,12 +9,19 @@ interface WatchOptions {
   accept: () => void | Promise<void>
 }
 
+function clearCache() {
+  Object.keys(require.cache).forEach((id) => {
+    delete require.cache[id]
+  })
+}
+
 export function watch({ paths, dispose = noop, accept = noop }: WatchOptions): void {
   paths.forEach((path) => {
     void watcher.subscribe(
       path,
       async () => {
         await dispose()
+        clearCache()
         return accept()
       },
       {

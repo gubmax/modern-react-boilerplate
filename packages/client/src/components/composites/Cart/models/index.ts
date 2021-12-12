@@ -1,1 +1,1 @@
-export * from './cartModel'
+export * from './cart.model'

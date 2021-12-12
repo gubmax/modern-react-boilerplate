@@ -21,16 +21,16 @@ export class CartController {
   }
 
   @Patch(ApiRoutes.CART_AMOUNT)
-  updateAmount(@Body() { op, path, value }: UpdateAmountBody): Error | void {
+  updateAmount(@Body() { op, path, value }: UpdateAmountBody): Promise<Error | void> {
     if (op !== JSONPatchOperations.replace) {
       throw new BadRequestException('Unexpected operation')
     }
 
     const { id = '' } = value || {}
 
-    ;({
+    return {
       [UpdateAmountPaths.increase]: () => this.cartService.increaseAmount(id),
       [UpdateAmountPaths.decrease]: () => this.cartService.decreaseAmount(id),
-    }[path]())
+    }[path]()
   }
 }

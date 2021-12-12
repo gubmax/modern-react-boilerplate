@@ -1,16 +1,12 @@
 import { FC } from 'react'
 
-import { useInject } from 'client/src/common/hooks'
 import { List } from 'client/src/components/surfaces'
-import { StyledProps } from 'client/src/typings'
-import { CartModel } from '../models'
 import { ProductItem } from './ProductItem'
+import { ProductListProps } from './ProductList.types'
 
-const ProductList: FC<StyledProps> = ({ ...rest }) => {
-  const { products } = useInject(CartModel)
-
+const ProductList: FC<ProductListProps> = ({ className, style, products }) => {
   return (
-    <List {...rest}>
+    <List className={className} style={style}>
       {products.map((product) => (
         <ProductItem key={product.id} product={product} />
       ))}

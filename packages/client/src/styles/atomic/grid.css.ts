@@ -4,7 +4,7 @@ const gridStyles = defineProperties({
   properties: {
     display: ['flex', 'inline-flex'],
     flexDirection: ['column', 'row'],
-    justifyContent: ['center', 'space-between'],
+    justifyContent: ['center', 'space-between', 'flex-end'],
     alignItems: ['center'],
     alignSelf: ['center'],
     marginLeft: ['auto'],
