@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 import { List } from 'client/src/components/surfaces'
-import { ProductItem } from './ProductItem'
+import { ProductItem } from '../ProductItem'
 import { ProductListProps } from './ProductList.types'
 
 const ProductList: FC<ProductListProps> = ({ className, style, products }) => {

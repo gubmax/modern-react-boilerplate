@@ -1,9 +1,9 @@
 import type { Response } from 'express'
 // @ts-expect-error: TODO: Add type
 import { renderToPipeableStream as render } from 'react-dom/server'
-import { MARK_SERVER_SIDE_PROPS } from 'shared/constants/serverSideProps'
+
+import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
 import { HtmlMarks } from 'server/src/common/constants'
-import { ServerSideProps } from 'client/src/common/contexts'
 
 const renderToPipeableStream = render as (
   children: JSX.Element,
@@ -33,7 +33,7 @@ export function writeTemplate({ html, app, res, serverSideProps = {} }: WriteTem
       //  Server-side props
       const serverSidePropsTag = `
         <script type="text/javascript" id="serverSideProps">
-          window.${MARK_SERVER_SIDE_PROPS} = ${JSON.stringify(serverSideProps)};
+          window.${SERVER_SIDE_PROPS} = ${JSON.stringify(serverSideProps)};
           document.getElementById('serverSideProps').remove();
         </script>
       `

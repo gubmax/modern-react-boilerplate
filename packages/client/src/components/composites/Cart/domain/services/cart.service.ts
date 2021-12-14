@@ -1,6 +1,6 @@
 import { singleton } from 'tsyringe'
 
-import { Product } from '../../entities'
+import { Product } from '../entities'
 
 const AMOUNT_MIN = 1
 const AMOUNT_MAX = 10

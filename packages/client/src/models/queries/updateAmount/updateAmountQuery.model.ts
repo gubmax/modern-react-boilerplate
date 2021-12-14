@@ -6,9 +6,9 @@ import { HttpClientModel } from '../../http'
 
 @singleton()
 export class UpdateAmountQueryModel extends HttpQueryModel<void, UpdateAmountBody> {
+  init = updateAmountInit
+
   constructor(@inject(HttpClientModel) protected readonly httpClientModel: HttpClientModel) {
     super(httpClientModel)
   }
-
-  init = updateAmountInit
 }

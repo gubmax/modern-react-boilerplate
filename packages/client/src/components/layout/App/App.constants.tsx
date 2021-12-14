@@ -1,6 +1,6 @@
 import { RouteObject } from 'react-router'
-import { AboutPage, CartPage, NotFoundPage, SettingsPage } from 'client/src/components/pages'
 
+import { AboutPage, CartPage, NotFoundPage, SettingsPage } from 'client/src/components/pages'
 import { PageRoutes } from 'client/src/infra/http'
 import { Main } from '../Main'
 

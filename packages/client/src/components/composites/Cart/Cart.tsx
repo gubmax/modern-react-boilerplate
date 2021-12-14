@@ -1,20 +1,18 @@
 import { FC } from 'react'
 
 import { IconSizes } from 'client/src/common/hocs'
-import { useInit, useInject, useObservableState } from 'client/src/common/hooks'
+import { useInject, useObservableState } from 'client/src/common/hooks'
 import { H2, H3 } from 'client/src/components/typography'
 import { EmptyShoppingCartIcon } from 'client/src/components/icons'
+import { LoadingProp } from 'client/src/typings'
 import { ProductList } from './components'
 import { CartModel } from './models'
 import { CartSkeleton } from './Cart.skeleton'
-import { CartProps } from './Cart.types'
 import * as s from './Cart.css'
 
-const Cart: FC<CartProps> = ({ loading, products: initialProducts }) => {
+const Cart: FC<LoadingProp> = ({ loading }) => {
   const { products$, totalPrice } = useInject(CartModel)
   const products = products$.value
-
-  useInit(() => initialProducts && products$.next(initialProducts))
 
   useObservableState(products$)
 

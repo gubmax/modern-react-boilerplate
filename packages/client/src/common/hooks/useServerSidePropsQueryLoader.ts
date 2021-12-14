@@ -1,32 +1,19 @@
 import { useEffect } from 'react'
 import { Action } from 'history'
 
-import {
-  ServerSidePropsModelFactory,
-  serverSidePropsModelFactorySymbol,
-  ServerSidePropsQueryModel,
-} from 'client/src/models/queries'
-import { HttpClientModel } from 'client/src/models/http'
+import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
+import { ServerSidePropsQueryModel } from 'client/src/models/queries'
 import { useInit } from './useInit'
 import { useHistory } from './useHistory'
-import { useServerSideProps } from './useServerSideProps'
 import { useInject } from './useInject'
-import { GetServerSideProps } from 'shared/utils'
 
 export function useServerSidePropsQueryLoader<T>(
-  getServerSideProps: GetServerSideProps<T>,
-): ServerSidePropsQueryModel<T> {
-  const httpClient = useInject(HttpClientModel)
-  const sspQueryModelFactory = useInject<ServerSidePropsModelFactory>(
-    serverSidePropsModelFactorySymbol,
-  )
-
+  sspQueryModel: ServerSidePropsQueryModel<T>,
+): void {
   const { action } = useHistory()
-  const serverSideProps = useServerSideProps()
+  const serverSideProps = useInject<ServerSideProps>(SERVER_SIDE_PROPS)
 
   const model = useInit(() => {
-    const sspQueryModel = sspQueryModelFactory<T>(() => getServerSideProps(httpClient))
-
     const shouldSetInitialLoading =
       action === Action.Push ||
       // If page reload with Service Worker cache
@@ -44,6 +31,4 @@ export function useServerSidePropsQueryLoader<T>(
       void model.send()
     }
   }, [model])
-
-  return model
 }

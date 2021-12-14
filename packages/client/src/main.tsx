@@ -1,14 +1,13 @@
 import { hydrateRoot } from 'react-dom'
 // import { registerSW } from 'virtual:pwa-register'
 
-import { MARK_SERVER_SIDE_PROPS } from 'shared/constants/serverSideProps'
-import { ServerSideProps } from './common/contexts'
+import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
 import { reportWebVitals } from './infra/http'
 import { renderMainTemplate } from './entries/main.entry'
 
 // Server-side props
 
-const serverSideProps: ServerSideProps = window[MARK_SERVER_SIDE_PROPS] || {}
+const serverSideProps: ServerSideProps = window[SERVER_SIDE_PROPS] || {}
 
 // Bootstrap
 

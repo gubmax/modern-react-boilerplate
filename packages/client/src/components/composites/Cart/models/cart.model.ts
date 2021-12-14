@@ -1,23 +1,30 @@
 import { singleton, inject } from 'tsyringe'
 import { BehaviorSubject } from 'rxjs'
 
-import { ServerSidePropsQueryModel, UpdateAmountQueryModel } from 'client/src/models/queries'
-import { GetProductsResponse, JSONPatchOperations, UpdateAmountPaths } from 'shared/http'
+import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
+import { CartSspQueryModel } from 'client/src/components/pages/Cart/models'
+import { UpdateAmountQueryModel } from 'client/src/models/queries'
+import { JSONPatchOperations, UpdateAmountPaths } from 'shared/http'
 import { CartService } from '../domain/services'
 import { Product } from '../domain/entities'
 
 @singleton()
 export class CartModel {
-  products$ = new BehaviorSubject<Product[]>([])
+  products$: BehaviorSubject<Product[]>
 
   constructor(
-    @inject(ServerSidePropsQueryModel)
-    readonly serverSidePropsQueryModel: ServerSidePropsQueryModel<GetProductsResponse>,
+    @inject(SERVER_SIDE_PROPS)
+    private readonly serverSideProps: ServerSideProps,
+    @inject(CartSspQueryModel)
+    private readonly cartSspQueryModel: CartSspQueryModel,
     @inject(UpdateAmountQueryModel)
     private readonly updateAmountQueryModel: UpdateAmountQueryModel,
-    @inject(CartService) private readonly cartService: CartService,
+    @inject(CartService)
+    private readonly cartService: CartService,
   ) {
-    serverSidePropsQueryModel.state$.subscribe(({ response: { products } = {} }) => {
+    this.products$ = new BehaviorSubject(serverSideProps.products || [])
+
+    cartSspQueryModel.state$.subscribe(({ response: { products } = {} }) => {
       products && this.products$.next(products)
     })
 
@@ -27,11 +34,11 @@ export class CartModel {
     })
   }
 
-  #updateProducts = () => this.products$.next([...this.cartService.products])
-
   get totalPrice() {
     return this.cartService.totalPrice
   }
+
+  #updateProducts = () => this.products$.next([...this.cartService.products])
 
   #setAmount = (id: string, path: UpdateAmountPaths): void => {
     const prevAmount = this.cartService.getProductAmount(id)
