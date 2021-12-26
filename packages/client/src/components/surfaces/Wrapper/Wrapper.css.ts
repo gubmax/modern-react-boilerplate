@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
-import { vars, theme } from 'client/src/styles'
+import { vars, theme } from 'client/src/common/styles'
 
 export const wrapper = style({
   background: theme.color.surface0,

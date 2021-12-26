@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'react'
-import { StyledProps, AsProp, RefProp } from 'client/src/typings'
+import { StyledProps, AsProp, RefProp } from 'client/src/common/typings'
 
 type WrapperHtmlElements = HTMLDivElement & HTMLUListElement & HTMLLIElement
 type WrapperTags = 'div' | 'main' | 'ul' | 'li' | 'section'

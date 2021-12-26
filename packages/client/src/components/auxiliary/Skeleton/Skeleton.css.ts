@@ -1,5 +1,6 @@
 import { style, keyframes } from '@vanilla-extract/css'
-import { theme, vars } from 'client/src/styles'
+
+import { theme, vars } from 'client/src/common/styles'
 
 export const wrapper = style({
   width: '100%',

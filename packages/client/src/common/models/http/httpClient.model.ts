@@ -2,7 +2,7 @@ import { injectable } from 'tsyringe'
 
 import { HttpClientImpl, HttpRequestBody, HttpRequestInit, HttpRequestResponse } from 'shared/http'
 import { HEADERS_DEFAULT } from 'client/src/infra/http'
-import { FatalException } from 'client/src/domain/exceptions'
+import { FatalException } from 'client/src/common/domain/exceptions'
 
 @injectable()
 export class HttpClientModel implements HttpClientImpl {

@@ -4,8 +4,8 @@ import { ServerSideProps, SERVER_SIDE_PROPS } from 'shared/constants/serverSideP
 import { App } from 'client/src/components/layout/App'
 import { iocContainer } from 'client/src/utils'
 
-import 'client/src/styles/common.css'
-import 'client/src/styles/global.css'
+import 'client/src/common/styles/common.css'
+import 'client/src/common/styles/global.css'
 
 export function renderServerMainTemplate(
   url: string,

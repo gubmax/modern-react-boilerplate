@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 import { cn } from 'client/src/common/helpers'
-import { focusStyle } from 'client/src/styles'
+import { focusStyle } from 'client/src/common/styles'
 import { BaseButtonProps } from './BaseButton.types'
 import * as s from './BaseButton.css'
 import { ButtontTypes } from './BaseButton.constants'

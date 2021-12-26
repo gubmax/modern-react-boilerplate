@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'shared/utils'
-import { HttpClientModel } from 'client/src/models/http'
+import { HttpClientModel } from 'client/src/common/models/http'
 import { QueryModel } from '../query.model'
 
 export abstract class ServerSidePropsQueryModel<R = unknown> extends QueryModel<R> {

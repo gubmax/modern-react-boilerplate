@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
-import { vars } from 'client/src/styles'
+import { vars } from 'client/src/common/styles'
 
 export const rounded = style({
   width: '3rem',

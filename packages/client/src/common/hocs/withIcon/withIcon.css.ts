@@ -1,6 +1,6 @@
 import { styleVariants } from '@vanilla-extract/css'
 
-import { theme, vars } from 'client/src/styles'
+import { theme, vars } from 'client/src/common/styles'
 import { IconSizes } from './withIcon.constants'
 
 // State

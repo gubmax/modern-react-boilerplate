@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { cn } from 'client/src/common/helpers'
 import { Wrapper } from 'client/src/components/surfaces'
-import { focusStyle } from 'client/src/styles'
+import { focusStyle } from 'client/src/common/styles'
 import { InteractiveWrapperProps } from './InteractiveWrapper.types'
 import * as s from './InteractiveWrapper.css'
 

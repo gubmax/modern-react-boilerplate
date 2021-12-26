@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs'
 
 import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
 import { CartSspQueryModel } from 'client/src/components/pages/Cart/models'
-import { UpdateAmountQueryModel } from 'client/src/models/queries'
+import { UpdateAmountQueryModel } from 'client/src/common/models/queries'
 import { JSONPatchOperations, UpdateAmountPaths } from 'shared/http'
 import { CartService } from '../domain/services'
 import { Product } from '../domain/entities'

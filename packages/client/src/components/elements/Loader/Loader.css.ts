@@ -1,6 +1,6 @@
 import { style, keyframes } from '@vanilla-extract/css'
 
-import { theme, gridAtom } from 'client/src/styles'
+import { theme, gridAtom } from 'client/src/common/styles'
 
 const borderRadius = style({ borderRadius: '50%' })
 

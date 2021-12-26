@@ -1,7 +1,7 @@
-import { FatalException } from 'client/src/domain/exceptions'
 import { useContext, useMemo } from 'react'
 import { InjectionToken } from 'tsyringe'
 
+import { FatalException } from 'client/src/common/domain/exceptions'
 import { IocContainerContext } from '../contexts'
 
 export function useInject<T>(identifier: InjectionToken<T>): T {

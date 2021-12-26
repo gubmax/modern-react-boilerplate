@@ -5,7 +5,7 @@ import { Link } from 'client/src/components/auxiliary'
 import { Logo, UserAvatar } from 'client/src/components/elements'
 import { A } from 'client/src/components/typography'
 import { PageRoutes } from 'client/src/infra/http'
-import { StyledProps } from 'client/src/typings'
+import { StyledProps } from 'client/src/common/typings'
 import { LINK_REPO } from './Header.constants'
 import * as s from './Header.css'
 

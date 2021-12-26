@@ -1,6 +1,6 @@
 import { recipe } from '@vanilla-extract/recipes'
 
-import { vars } from 'client/src/styles'
+import { vars } from 'client/src/common/styles'
 
 export const heading = recipe({
   base: { letterSpacing: '0.05rem' },

@@ -1,6 +1,6 @@
 import { recipe } from '@vanilla-extract/recipes'
 
-import { theme, gridAtom, vars } from 'client/src/styles'
+import { theme, gridAtom, vars } from 'client/src/common/styles'
 import { ButtontTypes } from './BaseButton.constants'
 
 export const button = recipe({

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 import { cn } from 'client/src/common/helpers'
-import { StyledProps } from 'client/src/typings'
+import { StyledProps } from 'client/src/common/typings'
 import { HeadingProps } from './Heading.types'
 import { HeadingTags } from './Heading.constants'
 import * as s from './Heading.css'

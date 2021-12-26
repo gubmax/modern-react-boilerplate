@@ -1,4 +1,4 @@
-import { StyledProps } from 'client/src/typings'
+import { StyledProps } from 'client/src/common/typings'
 import { IconSizes } from './withIcon.constants'
 
 export interface IconProps extends StyledProps {

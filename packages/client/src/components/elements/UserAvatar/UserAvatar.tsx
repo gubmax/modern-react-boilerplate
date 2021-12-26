@@ -4,7 +4,7 @@ import { cn } from 'client/src/common/helpers'
 import { Link } from 'client/src/components/auxiliary'
 import { UserIcon } from 'client/src/components/icons'
 import { PageRoutes } from 'client/src/infra/http'
-import { StyledProps } from 'client/src/typings'
+import { StyledProps } from 'client/src/common/typings'
 import * as s from './UserAvatar.css'
 
 const UserAvatar: FC<StyledProps> = ({ className, style }) => {
