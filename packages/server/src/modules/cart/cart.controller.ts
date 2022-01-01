@@ -1,13 +1,9 @@
 import { Body, Controller, Get, Inject, Patch } from '@nestjs/common'
 import { BadRequestException } from 'shared/exceptions'
 
-import {
-  ApiRoutes,
-  GetProductsResponse,
-  JSONPatchOperations,
-  UpdateAmountBody,
-  UpdateAmountPaths,
-} from 'shared/http'
+import { ApiRoutes } from 'shared/http/constants'
+import { GetProductsResponse, UpdateAmountBody, UpdateAmountPaths } from 'shared/http/requests'
+import { JSONPatchOperations } from 'shared/http/jsonPatch'
 import { CartService } from './cart.service'
 import { MOCK_PRODUCTS } from './products.mock'
 

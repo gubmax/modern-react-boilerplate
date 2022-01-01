@@ -1,6 +1,6 @@
 import watcher from '@parcel/watcher'
 
-import { noop } from 'client/src/common/helpers'
+import { noop } from 'client/src/common/helpers/noop'
 import { PATH_RESOLVED_PACKAGES } from 'shared/constants/paths'
 
 interface WatchOptions {

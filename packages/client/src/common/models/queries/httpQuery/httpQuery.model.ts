@@ -1,6 +1,6 @@
-import { HttpRequestResponse, HttpRequestBody, HttpRequestInit } from 'shared/http'
-import { HttpClientModel } from '../http'
-import { QueryModel } from './query.model'
+import { HttpRequestResponse, HttpRequestBody, HttpRequestInit } from 'shared/http/types'
+import { HttpClientModel } from '../../http'
+import { QueryModel } from '../query'
 
 export abstract class HttpQueryModel<
   R extends HttpRequestResponse = HttpRequestResponse,

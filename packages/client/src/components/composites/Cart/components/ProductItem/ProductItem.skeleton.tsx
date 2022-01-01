@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
-import { Skeleton } from 'client/src/components/auxiliary'
-import { Wrapper } from 'client/src/components/surfaces'
+import { Skeleton } from 'client/src/components/auxiliary/Skeleton'
+import { Wrapper } from 'client/src/components/surfaces/Wrapper'
 import * as s from './ProductItem.css'
 
 const ProductItemSkeleton: FC = () => {

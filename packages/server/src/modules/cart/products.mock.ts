@@ -1,4 +1,4 @@
-import { ProductDto } from 'shared/http'
+import { ProductDto } from 'shared/http/requests'
 
 export const MOCK_PRODUCTS: ProductDto[] = [
   {

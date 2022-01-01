@@ -1,7 +1,10 @@
 import { RouteObject } from 'react-router'
 
-import { AboutPage, CartPage, NotFoundPage, SettingsPage } from 'client/src/components/pages'
-import { PageRoutes } from 'client/src/infra/http'
+import { AboutPage } from 'client/src/components/pages/About'
+import { CartPage } from 'client/src/components/pages/Cart'
+import { NotFoundPage } from 'client/src/components/pages/NotFound'
+import { SettingsPage } from 'client/src/components/pages/Settings'
+import { PageRoutes } from 'client/src/infra/http/constants'
 import { Main } from '../Main'
 
 export const ROUTES: RouteObject[] = [

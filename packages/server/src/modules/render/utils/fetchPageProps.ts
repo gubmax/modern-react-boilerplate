@@ -2,8 +2,8 @@ import { ServerSideProps } from 'shared/constants/serverSideProps'
 import { PATH_RESOLVED_CLIENT_PAGES } from 'shared/constants/paths'
 import { CONFIG_SSR_ROUTES } from 'server/config'
 import { InternalServerException } from 'shared/exceptions'
-import { HttpClientImpl } from 'shared/http'
-import { GetServerSideProps } from 'shared/utils'
+import { HttpClientImpl } from 'shared/http/types'
+import { GetServerSideProps } from 'shared/utils/serverSideProps'
 
 export async function fetchPageProps(
   url: string,

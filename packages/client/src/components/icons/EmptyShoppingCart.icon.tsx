@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { IconProps, withIcon } from 'client/src/common/hocs'
+import { IconProps, withIcon } from 'client/src/common/hocs/withIcon'
 
 const EmptyShoppingCardIcon: FC<IconProps> = (props) => {
   return (

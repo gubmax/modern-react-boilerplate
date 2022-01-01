@@ -1,8 +1,8 @@
 import { MouseEvent } from 'react'
 import { useNavigate } from 'react-router'
 
-import { PageRoutes } from 'client/src/infra/http'
-import { noop } from '../helpers'
+import { PageRoutes } from 'client/src/infra/http/constants'
+import { noop } from '../helpers/noop'
 
 type HandleClick<T extends MouseEvent> = (event: T) => void
 

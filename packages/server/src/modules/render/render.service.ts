@@ -11,11 +11,12 @@ import {
   PATH_RESOLVED_DIST_INDEX_HTML,
   PATH_RESOLVED_DIST_MANIFEST,
 } from 'shared/constants/paths'
-import { HtmlEntries } from 'server/src/common/constants'
+import { HtmlEntries } from 'server/src/common/constants/html'
 import { renderServerMainTemplate as RenderServerMainTemplate } from 'client/src/entries/main.server.entry'
 import { HttpClientService } from '../httpClient'
 import { AssetCollectorService } from '../assetCollector'
-import { fetchPageProps, writeTemplate } from './utils'
+import { fetchPageProps } from './utils/fetchPageProps'
+import { writeTemplate } from './utils/writeTemplate'
 
 @Injectable()
 export class RenderService {

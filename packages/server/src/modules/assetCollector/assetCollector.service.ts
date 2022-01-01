@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { Manifest } from 'vite'
 
-import { HtmlMarks } from 'server/src/common/constants'
+import { HtmlMarks } from 'server/src/common/constants/html'
 
 export type PreloadUrl = { url: string; isEntry?: boolean }
 

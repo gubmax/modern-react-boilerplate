@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useOutlet } from 'react-router-dom'
 
-import { NavigationList } from 'client/src/components/composites'
+import { NavigationList } from 'client/src/components/composites/NavigationList'
 import { Header } from '../Header'
 import * as s from './Main.css'
 

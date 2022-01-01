@@ -1,4 +1,4 @@
-import { noop } from 'client/src/common/helpers'
+import { noop } from 'client/src/common/helpers/noop'
 import { QueryStatuses } from './query.constants'
 import { QueryAction, QueryState } from './query.types'
 

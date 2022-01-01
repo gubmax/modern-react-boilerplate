@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { cn } from 'client/src/common/helpers'
+import { cn } from 'client/src/common/helpers/classNames'
 import { SkeletonProps } from './Skeleton.types'
 import * as s from './Skeleton.css'
 

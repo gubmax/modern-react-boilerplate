@@ -1,4 +1,4 @@
-import { PageRoutes } from 'client/src/infra/http'
+import { PageRoutes } from 'client/src/infra/http/constants'
 
 /**
  * Pre-Rendering / Static-Site Generation routes

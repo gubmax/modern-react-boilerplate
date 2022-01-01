@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { List } from 'client/src/components/surfaces'
+import { List } from 'client/src/components/surfaces/List'
 import { ProductItem } from '../ProductItem'
 import { ProductListProps } from './ProductList.types'
 

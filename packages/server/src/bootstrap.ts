@@ -5,7 +5,7 @@ import compression from 'compression'
 import serve from 'serve-static'
 
 import { PATH_RESOLVED_DIST_CLIENT } from 'shared/constants/paths'
-import { AppModule } from './modules'
+import { AppModule } from './modules/app.module'
 import { DevelopmentRenderService, renderServiceSymbol } from './modules/render'
 import { LoggerService, loggerServiceSymbol } from './modules/logger'
 import { AllExceptionsFilter } from './common/filters'

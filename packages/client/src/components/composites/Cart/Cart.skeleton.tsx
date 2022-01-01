@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { List } from 'client/src/components/surfaces'
+import { List } from 'client/src/components/surfaces/List'
 import { ProductItemSkeleton } from './components'
 import * as s from './Cart.css'
 

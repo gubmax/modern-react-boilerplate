@@ -1,4 +1,4 @@
-import { Exceptions, ExceptionLevels } from './constants'
+import { Exceptions, ExceptionLevels } from './exceptions.constants'
 
 export interface ExceptionImplProps {
   title?: string

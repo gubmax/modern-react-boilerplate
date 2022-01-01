@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { useLink } from 'client/src/common/hooks'
+import { useLink } from 'client/src/common/hooks/useLink'
 import { LinkProps } from './Link.types'
 
 const Link: FC<LinkProps> = ({ to, onClick, ...rest }) => {

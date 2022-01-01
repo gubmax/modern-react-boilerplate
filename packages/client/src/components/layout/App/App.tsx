@@ -2,7 +2,7 @@ import { FC, StrictMode } from 'react'
 import { useRoutes } from 'react-router'
 import 'reflect-metadata'
 
-import { IocContainerContext } from 'client/src/common/contexts'
+import { IocContainerContext } from 'client/src/common/contexts/IocContainerContext'
 import { ROUTES } from './App.constants'
 import { AppProps } from './App.types'
 

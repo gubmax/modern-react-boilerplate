@@ -1,6 +1,6 @@
 import { FC, useState, useEffect } from 'react'
 
-import { Loader } from 'client/src/components/elements'
+import { Loader } from 'client/src/components/elements/Loader'
 import * as s from './PageLoader.css'
 
 const PageLoader: FC = () => {

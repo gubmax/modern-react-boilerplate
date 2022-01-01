@@ -1,4 +1,4 @@
-import { PageRoutes } from 'client/src/infra/http'
+import { PageRoutes } from 'client/src/infra/http/constants'
 
 const PATH_CHUNK_CART = 'src/components/composites/Cart/cart.chunk.ts'
 

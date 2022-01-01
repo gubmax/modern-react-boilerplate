@@ -2,7 +2,7 @@ import { hydrateRoot } from 'react-dom'
 // import { registerSW } from 'virtual:pwa-register'
 
 import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
-import { reportWebVitals } from './infra/http'
+import { reportWebVitals } from './infra/http/reportWebVitals'
 import { renderMainTemplate } from './entries/main.entry'
 
 // Server-side props

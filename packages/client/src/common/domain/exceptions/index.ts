@@ -1,2 +1,2 @@
-export * from './constants'
+export * from './exceptions.constants'
 export * from './exceptions'

@@ -1,8 +1,9 @@
 import { FC } from 'react'
 
-import { IconSizes } from 'client/src/common/hocs'
-import { useInject, useObservableState } from 'client/src/common/hooks'
-import { H2, H3 } from 'client/src/components/typography'
+import { IconSizes } from 'client/src/common/hocs/withIcon'
+import { useInject } from 'client/src/common/hooks/useInject'
+import { useObservableState } from 'client/src/common/hooks/useObservableState'
+import { H2, H3 } from 'client/src/components/typography/Heading'
 import { EmptyShoppingCartIcon } from 'client/src/components/icons'
 import { LoadingProp } from 'client/src/common/typings'
 import { ProductList } from './components'

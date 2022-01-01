@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 import * as s from './InternalError.css'
-import { H1, H2 } from 'client/src/components/typography'
+import { H1, H2 } from 'client/src/components/typography/Heading'
 
 export const InternalError: FC = () => {
   return (

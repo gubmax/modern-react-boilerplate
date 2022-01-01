@@ -1,6 +1,6 @@
 import { ElementType, FC } from 'react'
 
-import { cn } from 'client/src/common/helpers'
+import { cn } from 'client/src/common/helpers/classNames'
 import { IconProps } from './withIcon.types'
 import { DEFAULT_SIZE, IconSizes } from './withIcon.constants'
 import { iconSizeStyles, iconStateStyles } from './withIcon.css'

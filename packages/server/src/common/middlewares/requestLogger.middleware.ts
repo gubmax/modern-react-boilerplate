@@ -1,7 +1,7 @@
 import { NestMiddleware, Logger } from '@nestjs/common'
-
 import { Request, Response, NextFunction } from 'express'
-import { TransportMarks, Transports } from '../constants'
+
+import { TransportMarks, Transports } from '../constants/transports'
 
 export class RequestLoggerMiddleware implements NestMiddleware {
   private logger = new Logger()

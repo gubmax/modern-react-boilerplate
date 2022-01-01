@@ -1,13 +1,11 @@
 import { lazy, FC, Suspense } from 'react'
 
-import {
-  useDocumentTitle,
-  useInject,
-  useObservableState,
-  useServerSidePropsQueryLoader,
-} from 'client/src/common/hooks'
-import { PageLoader } from 'client/src/components/composites'
-import { H1 } from 'client/src/components/typography'
+import { useDocumentTitle } from 'client/src/common/hooks/useDocumentTitle'
+import { useInject } from 'client/src/common/hooks/useInject'
+import { useObservableState } from 'client/src/common/hooks/useObservableState'
+import { useServerSidePropsQueryLoader } from 'client/src/common/hooks/useServerSidePropsQueryLoader'
+import { PageLoader } from 'client/src/components/composites/PageLoader'
+import { H1 } from 'client/src/components/typography/Heading'
 import { CartSspQueryModel } from './models/cartSspQuery.model'
 import { PAGE_TITLE } from './Cart.constants'
 

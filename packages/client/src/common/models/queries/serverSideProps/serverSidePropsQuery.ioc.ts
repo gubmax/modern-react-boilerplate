@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'shared/utils'
+import { GetServerSideProps } from 'shared/utils/serverSideProps'
 import { ServerSidePropsQueryModel } from './serverSidePropsQuery.model'
 
 // Symbols

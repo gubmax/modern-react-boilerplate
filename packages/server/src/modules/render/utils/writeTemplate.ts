@@ -3,7 +3,7 @@ import type { Response } from 'express'
 import { renderToPipeableStream as render } from 'react-dom/server'
 
 import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
-import { HtmlMarks } from 'server/src/common/constants'
+import { HtmlMarks } from 'server/src/common/constants/html'
 
 const renderToPipeableStream = render as (
   children: JSX.Element,

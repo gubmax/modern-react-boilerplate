@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 
 import { PATH_DIST_CLIENT } from '../../shared/constants/paths'
-import { HtmlEntries } from '../../server/src/common/constants'
+import { HtmlEntries } from '../../server/src/common/constants/html'
 import manifest from '../public/manifest.json'
 
 const ENTRY_PATH_MAIN = resolve(__dirname, `../src/${HtmlEntries.MAIN}.tsx`)

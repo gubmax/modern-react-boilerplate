@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { IW } from 'client/src/components/inputs'
-import { List } from 'client/src/components/surfaces'
+import { IW } from 'client/src/components/inputs/InteractiveWrapper'
+import { List } from 'client/src/components/surfaces/List'
 import { ROUTES } from './NavigationList.constants'
 import * as s from './NavigationList.css'
 

@@ -1,9 +1,9 @@
 import { FC } from 'react'
 
-import { cn } from 'client/src/common/helpers'
-import { Link } from 'client/src/components/auxiliary'
+import { cn } from 'client/src/common/helpers/classNames'
+import { Link } from 'client/src/components/auxiliary/Link'
 import { UserIcon } from 'client/src/components/icons'
-import { PageRoutes } from 'client/src/infra/http'
+import { PageRoutes } from 'client/src/infra/http/constants'
 import { StyledProps } from 'client/src/common/typings'
 import * as s from './UserAvatar.css'
 

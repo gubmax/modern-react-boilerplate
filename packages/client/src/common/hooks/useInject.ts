@@ -2,7 +2,7 @@ import { useContext, useMemo } from 'react'
 import { InjectionToken } from 'tsyringe'
 
 import { FatalException } from 'client/src/common/domain/exceptions'
-import { IocContainerContext } from '../contexts'
+import { IocContainerContext } from '../contexts/IocContainerContext'
 
 export function useInject<T>(identifier: InjectionToken<T>): T {
   const container = useContext(IocContainerContext)

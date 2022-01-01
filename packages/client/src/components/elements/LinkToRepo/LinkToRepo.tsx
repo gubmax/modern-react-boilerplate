@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { A } from 'client/src/components/typography'
+import { A } from 'client/src/components/typography/Anchor'
 import { LINK_REPO } from './LinkToRepo.constants'
 
 const LinkToRepo: FC = () => {

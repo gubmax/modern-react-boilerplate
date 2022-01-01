@@ -1,6 +1,6 @@
 import { FC, memo } from 'react'
 
-import { cn } from 'client/src/common/helpers'
+import { cn } from 'client/src/common/helpers/classNames'
 import { LoaderProps } from './Loader.types'
 import * as s from './Loader.css'
 

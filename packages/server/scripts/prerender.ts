@@ -13,7 +13,7 @@ import {
   PATH_RESOLVED_DIST_MANIFEST,
   PATH_DIST_CLIENT,
 } from 'shared/constants/paths'
-import { HtmlEntries, HtmlMarks } from 'server/src/common/constants'
+import { HtmlEntries, HtmlMarks } from 'server/src/common/constants/html'
 import { AssetCollectorService } from 'server/src/modules/assetCollector'
 import { renderServerMainTemplate as RenderServerMainTemplate } from 'client/src/entries/main.server.entry'
 import { renderInternalErrorTemplate as RenderInternalErrorTemplate } from 'client/src/entries/internalError.entry'

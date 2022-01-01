@@ -1,7 +1,7 @@
 import { ElementType } from 'react'
 
-import { IconProps } from 'client/src/common/hocs'
-import { PageRoutes } from 'client/src/infra/http'
+import { IconProps } from 'client/src/common/hocs/withIcon'
+import { PageRoutes } from 'client/src/infra/http/constants'
 import { InfoIcon, SettingsIcon, ShoppingCardIcon } from 'client/src/components/icons'
 
 export const ROUTES: Array<{

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { H2 } from 'client/src/components/typography'
+import { H2 } from 'client/src/components/typography/Heading'
 import * as s from './Logo.css'
 
 const Logo: FC = () => {
