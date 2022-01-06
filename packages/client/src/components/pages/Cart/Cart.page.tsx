@@ -23,7 +23,7 @@ const CartPage: FC = () => {
     <>
       <H1>{PAGE_TITLE}</H1>
       <Suspense fallback={<PageLoader />}>
-        <Cart loading={sspQueryModel.state.loading} />
+        <Cart loading={sspQueryModel.state$.value.loading} />
       </Suspense>
     </>
   )

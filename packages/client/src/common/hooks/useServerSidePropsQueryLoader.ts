@@ -20,14 +20,14 @@ export function useServerSidePropsQueryLoader<T>(
       (action === Action.Pop && Object.keys(serverSideProps).length === 0)
 
     if (shouldSetInitialLoading) {
-      sspQueryModel.setInitialLoading()
+      sspQueryModel.setLoading()
     }
 
     return sspQueryModel
   })
 
   useEffect(() => {
-    if (model.state.loading) {
+    if (model.state$.value.loading) {
       void model.send()
     }
   }, [model])

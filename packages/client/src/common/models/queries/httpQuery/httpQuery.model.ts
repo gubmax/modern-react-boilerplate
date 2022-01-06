@@ -6,9 +6,10 @@ export abstract class HttpQueryModel<
   R extends HttpRequestResponse = HttpRequestResponse,
   B extends HttpRequestBody = never,
 > extends QueryModel<R> {
-  abstract readonly init: HttpRequestInit
-
-  constructor(protected readonly httpClientModel: HttpClientModel) {
+  constructor(
+    protected readonly httpClientModel: HttpClientModel,
+    protected readonly init: HttpRequestInit,
+  ) {
     super()
   }
 
