@@ -28,20 +28,20 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "react": "18.0.0-rc.0-next-3b3daf557-20211210",
-    "react-dom": "18.0.0-rc.0-next-3b3daf557-20211210"
+    "react": "18.0.0-rc.0-next-fe419346d-20220105",
+    "react-dom": "18.0.0-rc.0-next-fe419346d-20220105"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "5.4.0",
-    "@typescript-eslint/parser": "5.4.0",
+    "@typescript-eslint/eslint-plugin": "5.9.0",
+    "@typescript-eslint/parser": "5.9.0",
     "cross-env": "7.0.3",
-    "eslint": "8.2.0",
+    "eslint": "8.6.0",
     "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-react": "7.27.1",
+    "eslint-plugin-react": "7.28.0",
     "eslint-plugin-react-hooks": "4.3.0",
     "husky": "7.0.4",
-    "lint-staged": "12.0.3",
-    "prettier": "2.4.1",
+    "lint-staged": "12.1.7",
+    "prettier": "2.5.1",
     "typescript": "4.4.4"
   }
 }
