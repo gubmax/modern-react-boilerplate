@@ -4,20 +4,23 @@ import { vars, theme, gridAtom } from 'client/src/common/styles'
 
 export const wrapper = gridAtom({ display: 'flex' })
 
-export const marginRight = style({ marginRight: vars.space.s3 })
+export const title = style({ marginRight: vars.space.s3 })
 
-export const body = style([wrapper, gridAtom({ flexDirection: 'column' }), { width: '100%' }])
+export const body = style([
+  gridAtom({ display: 'flex' }),
+  gridAtom({ flexDirection: 'column' }),
+  { width: '100%' },
+])
 
-export const header = style([wrapper, { marginBottom: vars.space.s1 }])
+export const header = style([gridAtom({ display: 'flex' }), { marginBottom: vars.space.s1 }])
 
 export const footer = style([
-  wrapper,
+  gridAtom({ display: 'flex' }),
   gridAtom({ justifyContent: 'flex-end' }),
   { marginTop: 'auto' },
 ])
 
 export const imageBox = style([
-  marginRight,
   gridAtom({
     display: 'inline-flex',
     justifyContent: 'center',
@@ -27,6 +30,7 @@ export const imageBox = style([
     flexShrink: 0,
     width: '8rem',
     height: '8rem',
+    marginRight: vars.space.s3,
     fontSize: '5rem',
     borderRadius: '12px',
     backgroundColor: theme.color.bg0,

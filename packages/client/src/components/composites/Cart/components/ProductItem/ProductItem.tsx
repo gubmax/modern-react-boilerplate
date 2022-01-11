@@ -21,7 +21,7 @@ const ProductItem: FC<ProductItemProps> = ({ product: { id, icon, title, price, 
       <i className={s.imageBox}>{icon}</i>
       <div className={s.body}>
         <div className={s.header}>
-          <H3 className={s.marginRight}>{title}</H3>
+          <H3 className={s.title}>{title}</H3>
           <span className={s.price}>${price * amount}</span>
         </div>
         <div className={s.footer}>
