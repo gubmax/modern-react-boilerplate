@@ -1,5 +1,7 @@
 import { HTMLAttributes } from 'react'
+
 import { StyledProps, AsProp, RefProp } from 'client/src/common/typings'
+import { WrapperVariants } from './Wrapper.constants'
 
 type WrapperHtmlElements = HTMLDivElement & HTMLUListElement & HTMLLIElement
 type WrapperTags = 'div' | 'main' | 'ul' | 'li' | 'section'
@@ -9,6 +11,6 @@ export interface WrapperProps
     AsProp<WrapperTags>,
     RefProp<WrapperHtmlElements>,
     HTMLAttributes<WrapperHtmlElements> {
-  noPadding?: boolean
+  variant?: WrapperVariants
   onClick?(): void
 }

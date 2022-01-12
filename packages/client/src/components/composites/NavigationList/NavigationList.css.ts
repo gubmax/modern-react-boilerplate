@@ -1,13 +1,29 @@
 import { style } from '@vanilla-extract/css'
+import { MediaQueries } from 'client/src/common/constants/media'
 
 import { vars } from 'client/src/common/styles'
+
+export const wrapper = style({
+  padding: `${vars.space.s2} ${vars.space.s1}`,
+})
+
+export const text = style({
+  marginLeft: vars.space.s1,
+
+  '@media': {
+    [MediaQueries.TOUCH]: { display: 'none' },
+  },
+})
 
 export const listItem = style({
   display: 'flex',
   alignItems: 'center',
-  padding: `11px ${vars.space.s3}`,
+  padding: vars.space.s1,
+  marginBottom: vars.space.s0,
+
+  ':last-child': { marginBottom: 0 },
 })
 
 export const routeIcon = style({
-  marginRight: vars.space.s1,
+  flexShrink: 0,
 })

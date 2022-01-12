@@ -7,5 +7,5 @@ export const wrapper = style({
 })
 
 export const active = style({
-  color: theme.color.accent,
+  background: theme.color.accentLight,
 })

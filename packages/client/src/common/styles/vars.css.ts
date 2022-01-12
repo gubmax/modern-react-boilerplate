@@ -14,6 +14,7 @@ export const vars = createGlobalTheme(':root', {
     h3: '1.25rem',
   },
   space: {
+    s0: '0.5rem',
     s1: '1rem',
     s2: '1.15rem',
     s3: '1.5rem',
@@ -63,7 +64,7 @@ export const darkTheme = assignVars(theme, {
     bg1: 'rgb(176, 176, 177)',
     surface0: 'rgb(26, 26, 26)',
     surface1: 'rgb(33, 33, 33)',
-    border: 'rgb(12, 12, 12)',
+    border: 'rgb(8, 8, 8)',
     borderLight: 'rgb(20, 20, 20)',
   },
 })

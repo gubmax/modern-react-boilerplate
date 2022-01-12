@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
+import { MediaQueries } from 'client/src/common/constants/media'
 import { vars } from 'client/src/common/styles'
 
 export const page = style({
@@ -11,6 +12,10 @@ export const page = style({
     "aside main"
   `,
   minHeight: '100vh',
+
+  '@media': {
+    [MediaQueries.TOUCH]: { gridTemplateColumns: '0fr 1fr' },
+  },
 })
 
 export const header = style({
