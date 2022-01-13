@@ -1,32 +1,27 @@
 import { useState, useEffect } from 'react'
-import { debounce, fromEvent, interval } from 'rxjs'
-
-const THROTTLE_TIME = 250
+import { WindowResizeObserverModel } from '../models/WindowResizeObserver.model'
+import { useInject } from './useInject'
 
 function matchMedia(query: string): boolean {
-  if (typeof window !== 'undefined') {
-    return window.matchMedia(query).matches
-  }
-
-  return false
+  if (typeof window === 'undefined') return false
+  return window.matchMedia(query).matches
 }
 
 export const useMedia = (query: string): boolean => {
   const [value, setValue] = useState(matchMedia(query))
+  const windowResizeObserverModel = useInject(WindowResizeObserverModel)
 
   useEffect(() => {
-    const resize$ = fromEvent(window, 'resize')
-      .pipe(debounce(() => interval(THROTTLE_TIME)))
-      .subscribe(() => {
-        const matches = matchMedia(query)
+    const unsubscribe = windowResizeObserverModel.subscribe(() => {
+      const matches = matchMedia(query)
 
-        if (matches !== value) {
-          setValue(matches)
-        }
-      })
+      if (matches !== value) {
+        setValue(matches)
+      }
+    })
 
-    return () => resize$.unsubscribe()
-  }, [query, value])
+    return () => unsubscribe()
+  }, [query, value, windowResizeObserverModel])
 
   return value
 }
