@@ -3,10 +3,10 @@ import { FC } from 'react'
 import { cn } from 'client/src/common/helpers/classNames'
 import { noop } from 'client/src/common/helpers/noop'
 import { WrapperVariants } from './Wrapper.constants'
-import { WrapperProps } from './Wrapper.types'
+import { BaseWrapperProps, WrapperProps } from './Wrapper.types'
 import * as s from './Wrapper.css'
 
-const Wrapper: FC<WrapperProps> = ({
+const BaseWrapper: FC<BaseWrapperProps> = ({
   as: Tag = 'div',
   className,
   children,
@@ -17,7 +17,7 @@ const Wrapper: FC<WrapperProps> = ({
 }) => {
   return (
     <Tag
-      className={cn(s.wrapperVariants[variant || WrapperVariants.FLAT], className)}
+      className={cn(s.wrapperVariants[variant], className)}
       onClick={onClick}
       onKeyPress={onClick}
       ref={innerRef}
@@ -28,4 +28,14 @@ const Wrapper: FC<WrapperProps> = ({
   )
 }
 
-export default Wrapper
+export const Wrapper: FC<WrapperProps> = (props) => (
+  <BaseWrapper {...props} variant={WrapperVariants.DEFAULT} />
+)
+
+export const FlatWrapper: FC<WrapperProps> = (props) => (
+  <BaseWrapper {...props} variant={WrapperVariants.FLAT} />
+)
+
+export const OutlineWrapper: FC<WrapperProps> = (props) => (
+  <BaseWrapper {...props} variant={WrapperVariants.OUTLINE} />
+)

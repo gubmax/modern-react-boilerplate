@@ -9,7 +9,7 @@ const baseWrapper = style({
 })
 
 export const wrapperVariants = styleVariants({
-  [WrapperVariants.BASIC]: [baseWrapper],
+  [WrapperVariants.DEFAULT]: [baseWrapper],
   [WrapperVariants.FLAT]: [
     baseWrapper,
     {
@@ -17,7 +17,7 @@ export const wrapperVariants = styleVariants({
       borderRadius: vars.borderRadius.primary,
     },
   ],
-  [WrapperVariants.OUTLINED]: [
+  [WrapperVariants.OUTLINE]: [
     baseWrapper,
     { boxShadow: `inset 0 0 0 0.1rem ${theme.color.border}` },
   ],

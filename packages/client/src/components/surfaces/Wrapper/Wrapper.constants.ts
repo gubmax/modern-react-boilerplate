@@ -1,5 +1,5 @@
 export enum WrapperVariants {
-  BASIC = 'basic',
+  DEFAULT = 'default',
   FLAT = 'flat',
-  OUTLINED = 'outline',
+  OUTLINE = 'outline',
 }

@@ -6,11 +6,13 @@ import { WrapperVariants } from './Wrapper.constants'
 type WrapperHtmlElements = HTMLDivElement & HTMLUListElement & HTMLLIElement
 type WrapperTags = 'div' | 'main' | 'ul' | 'li' | 'section'
 
-export interface WrapperProps
+export interface BaseWrapperProps
   extends StyledProps,
     AsProp<WrapperTags>,
     RefProp<WrapperHtmlElements>,
     HTMLAttributes<WrapperHtmlElements> {
-  variant?: WrapperVariants
+  variant: WrapperVariants
   onClick?(): void
 }
+
+export type WrapperProps = Omit<BaseWrapperProps, 'variant'>
