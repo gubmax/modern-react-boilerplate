@@ -1,12 +1,11 @@
 import { FC } from 'react'
 
-import { IconSizes } from 'client/src/common/hocs/withIcon'
 import { useInject } from 'client/src/common/hooks/useInject'
 import { useObservableState } from 'client/src/common/hooks/useObservableState'
-import { H2, H3 } from 'client/src/components/typography/Heading'
-import { EmptyShoppingCartIcon } from 'client/src/components/icons'
+import { H3 } from 'client/src/components/typography/Heading'
 import { LoadingProp } from 'client/src/common/typings'
-import { ProductList } from './components'
+import { ProductList } from './components/ProductList'
+import { EmptyMessage } from './components/EmptyMessage'
 import { CartModel } from './models'
 import { CartSkeleton } from './Cart.skeleton'
 import * as s from './Cart.css'
@@ -22,10 +21,7 @@ const Cart: FC<LoadingProp> = ({ loading }) => {
   const listTemplate = products.length ? (
     <ProductList className={s.list} products={products} />
   ) : (
-    <div className={s.emptyCartBox}>
-      <EmptyShoppingCartIcon className={s.cartIcon} size={IconSizes.HUGE} />
-      <H2>Your cart is empty</H2>
-    </div>
+    <EmptyMessage />
   )
 
   return (

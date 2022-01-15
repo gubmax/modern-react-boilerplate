@@ -9,12 +9,3 @@ export const wrapper = style({
 export const list = style({
   marginBottom: vars.space.s2,
 })
-
-export const emptyCartBox = style({
-  display: 'inline-block',
-  textAlign: 'center',
-})
-
-export const cartIcon = style({
-  userSelect: 'none',
-})

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 import { List } from 'client/src/components/surfaces/List'
-import { ProductItemSkeleton } from './components'
+import { ProductItemSkeleton } from './components/ProductItem'
 import * as s from './Cart.css'
 
 export const CartSkeleton: FC = () => {
