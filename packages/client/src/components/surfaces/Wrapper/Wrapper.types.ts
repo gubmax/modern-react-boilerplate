@@ -12,7 +12,6 @@ export interface BaseWrapperProps
     RefProp<WrapperHtmlElements>,
     HTMLAttributes<WrapperHtmlElements> {
   variant: WrapperVariants
-  onClick?(): void
 }
 
 export type WrapperProps = Omit<BaseWrapperProps, 'variant'>

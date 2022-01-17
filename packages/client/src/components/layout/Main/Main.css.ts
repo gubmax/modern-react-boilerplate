@@ -5,7 +5,7 @@ import { vars } from 'client/src/common/styles'
 
 export const page = style({
   display: 'grid',
-  gridTemplateColumns: '20rem 1fr',
+  gridTemplateColumns: '0fr 1fr',
   gridTemplateRows: '0fr 1fr',
   gridTemplateAreas: `
     "header header"
@@ -14,7 +14,7 @@ export const page = style({
   minHeight: '100vh',
 
   '@media': {
-    [MediaQueries.TOUCH]: { gridTemplateColumns: '0fr 1fr' },
+    [MediaQueries.DESKTOP]: { gridTemplateColumns: '20rem 1fr' },
   },
 })
 

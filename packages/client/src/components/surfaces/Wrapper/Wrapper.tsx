@@ -12,17 +12,10 @@ const BaseWrapper: FC<BaseWrapperProps> = ({
   children,
   innerRef,
   variant,
-  onClick = noop,
   ...rest
 }) => {
   return (
-    <Tag
-      className={cn(s.wrapperVariants[variant], className)}
-      onClick={onClick}
-      onKeyPress={onClick}
-      ref={innerRef}
-      {...rest}
-    >
+    <Tag className={cn(s.wrapperVariants[variant], className)} ref={innerRef} {...rest}>
       {children}
     </Tag>
   )

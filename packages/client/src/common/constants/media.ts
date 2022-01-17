@@ -1,3 +1,4 @@
 export enum MediaQueries {
-  TOUCH = 'screen and (max-width: 768px)',
+  DESKTOP = 'screen and (min-width: 768px)',
+  MOBILE = 'screen and (max-width: 480px)',
 }

@@ -8,10 +8,11 @@ export const wrapper = style({
 })
 
 export const text = style({
+  display: 'none',
   marginLeft: vars.space.s1,
 
   '@media': {
-    [MediaQueries.TOUCH]: { display: 'none' },
+    [MediaQueries.DESKTOP]: { display: 'unset' },
   },
 })
 
