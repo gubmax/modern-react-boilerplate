@@ -37,11 +37,8 @@ export function prettifier(): (inputData: InputData) => string {
 
     const levelText = levelByNumber[level]
     const baseColorFn = chalk[colorByType[levelText]]
-    const prettyLevel = baseColorFn(
-      [LogLevelTexts.INFO, LogLevelTexts.WARN].includes(levelText) ? `${levelText} ` : levelText,
-    )
     const prettyTime = dim(new Date(time).toLocaleTimeString())
-    const baseStr = `${prettyTime} ${prettyLevel}`
+    const baseStr = `${prettyTime} ${baseColorFn(levelText)}`
     const joinMsg = (...arr: Array<string | undefined>): string =>
       [baseStr].concat([...arr.filter((item): item is string => !!item), '\n']).join(' ')
 
