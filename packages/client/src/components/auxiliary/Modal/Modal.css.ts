@@ -3,8 +3,12 @@ import { MediaQueries } from 'client/src/common/constants/media'
 import { ScreenSizes } from 'client/src/common/constants/screen'
 import { theme, vars } from 'client/src/common/styles'
 
+export const noScroll = style({
+  overflow: 'hidden',
+})
+
 export const background = style({
-  position: 'absolute',
+  position: 'fixed',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
