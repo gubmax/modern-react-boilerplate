@@ -34,6 +34,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "5.9.0",
     "@typescript-eslint/parser": "5.9.0",
+    "autoprefixer": "10.4.2",
     "cross-env": "7.0.3",
     "eslint": "8.6.0",
     "eslint-plugin-prettier": "4.0.0",
