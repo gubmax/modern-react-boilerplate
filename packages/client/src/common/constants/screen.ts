@@ -1,3 +1,8 @@
 export enum ScreenSizes {
-  DESKTOP = '768px',
+  MIN = '320px',
+  MOBILE = '480px',
+  TABLET = '768px',
+  LAPTOP = '1024px',
+  DESKTOP = '1200px',
+  MAX = '1440px',
 }

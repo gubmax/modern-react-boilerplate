@@ -9,12 +9,14 @@ const Main: FC = () => {
   const element = useOutlet()
 
   return (
-    <div className={s.page}>
+    <div className={s.wrapper}>
       <Header className={s.header} />
-      <aside className={s.sidebar}>
-        <NavigationList />
-      </aside>
-      <main className={s.main}>{element}</main>
+      <div className={s.page}>
+        <aside className={s.sidebar}>
+          <NavigationList />
+        </aside>
+        <main className={s.main}>{element}</main>
+      </div>
     </div>
   )
 }

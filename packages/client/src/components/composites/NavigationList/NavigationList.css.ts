@@ -1,10 +1,24 @@
 import { style } from '@vanilla-extract/css'
 import { MediaQueries } from 'client/src/common/constants/media'
 
-import { vars } from 'client/src/common/styles'
+import { theme, vars } from 'client/src/common/styles'
 
 export const wrapper = style({
-  padding: `${vars.space.s2} ${vars.space.s1}`,
+  display: 'flex',
+  width: '100%',
+  justifyContent: 'space-around',
+  padding: vars.space.s0,
+  borderTop: `1px solid ${theme.color.borderLight}`,
+  borderRadius: `${vars.borderRadius.primary} ${vars.borderRadius.primary} 0 0`,
+
+  '@media': {
+    [MediaQueries.MIN_WIDTH_MOBILE]: {
+      flexDirection: 'column',
+      padding: `${vars.space.s2} ${vars.space.s1}`,
+      border: 'none',
+      borderRadius: vars.borderRadius.primary,
+    },
+  },
 })
 
 export const text = style({
@@ -12,7 +26,7 @@ export const text = style({
   marginLeft: vars.space.s1,
 
   '@media': {
-    [MediaQueries.DESKTOP]: { display: 'unset' },
+    [MediaQueries.MIN_WIDTH_DESKTOP]: { display: 'unset' },
   },
 })
 
@@ -20,9 +34,12 @@ export const listItem = style({
   display: 'flex',
   alignItems: 'center',
   padding: vars.space.s1,
-  marginBottom: vars.space.s0,
 
   ':last-child': { marginBottom: 0 },
+
+  '@media': {
+    [MediaQueries.MIN_WIDTH_MOBILE]: { marginBottom: vars.space.s0 },
+  },
 })
 
 export const routeIcon = style({

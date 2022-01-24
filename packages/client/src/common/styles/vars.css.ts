@@ -3,6 +3,9 @@ import { createThemeContract, assignVars, createGlobalTheme } from '@vanilla-ext
 export const vars = createGlobalTheme(':root', {
   fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+  sizes: {
+    headerHeight: '5rem',
+  },
   colors: {
     transparentBorder: 'rgba(0, 0, 0, 0.01)',
   },
@@ -68,7 +71,7 @@ export const darkTheme = assignVars(theme, {
     transparentBg0: 'rgba(17, 17, 17, 0.85)',
     surface0: 'rgb(26, 26, 26)',
     surface1: 'rgb(33, 33, 33)',
-    border: 'rgb(8, 8, 8)',
+    border: 'rgb(40, 40, 40)',
     borderLight: 'rgb(20, 20, 20)',
   },
 })

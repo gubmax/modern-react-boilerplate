@@ -3,7 +3,10 @@ import { recipe } from '@vanilla-extract/recipes'
 import { vars } from 'client/src/common/styles'
 
 export const heading = recipe({
-  base: { letterSpacing: '0.05rem' },
+  base: {
+    display: 'inline-block',
+    letterSpacing: '0.05rem',
+  },
 
   variants: {
     type: {

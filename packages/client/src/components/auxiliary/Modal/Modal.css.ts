@@ -1,47 +1,53 @@
 import { style } from '@vanilla-extract/css'
+
 import { MediaQueries } from 'client/src/common/constants/media'
 import { ScreenSizes } from 'client/src/common/constants/screen'
-import { theme, vars } from 'client/src/common/styles'
+import { glassBackgroundStyle, theme, vars } from 'client/src/common/styles'
 
 export const noScroll = style({
   overflow: 'hidden',
 })
 
-export const background = style({
-  position: 'fixed',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
-  background: theme.color.transparentBg0,
-  backdropFilter: 'blur(0.5rem)',
-  overflowY: 'auto',
-  willChange: 'scroll-position',
-})
+export const background = style([
+  glassBackgroundStyle,
+  {
+    position: 'fixed',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    background: theme.color.transparentBg0,
+    backdropFilter: 'blur(0.5rem)',
+    overflowY: 'auto',
+    willChange: 'scroll-position',
+    zIndex: 1,
+  },
+])
 
 export const wrapper = style({
   position: 'absolute',
-  top: vars.space.s4,
-  left: vars.space.s4,
-  right: vars.space.s4,
-  maxWidth: ScreenSizes.DESKTOP,
+  bottom: 0,
+  left: 0,
+  right: 0,
+  minHeight: '24rem',
+  maxWidth: ScreenSizes.TABLET,
   margin: '0 auto',
   padding: 0,
   border: `0.1rem solid ${theme.color.borderLight}`,
-  borderRadius: vars.borderRadius.primary,
+  borderRadius: `${vars.borderRadius.primary} ${vars.borderRadius.primary} 0 0`,
   overflow: 'hidden',
 
   '@media': {
-    [MediaQueries.MOBILE]: {
-      top: 'unset',
-      bottom: 0,
-      left: 0,
-      right: 0,
-      minHeight: '24rem',
-      borderRadius: `${vars.borderRadius.primary} ${vars.borderRadius.primary} 0 0`,
+    [MediaQueries.MIN_WIDTH_MOBILE]: {
+      top: vars.space.s4,
+      bottom: 'unset',
+      left: vars.space.s4,
+      right: vars.space.s4,
+      minHeight: 'unset',
+      borderRadius: vars.borderRadius.primary,
     },
   },
 })

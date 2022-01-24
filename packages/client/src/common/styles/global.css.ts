@@ -6,6 +6,7 @@ globalStyle('body', {
   color: theme.color.primary,
   background: theme.color.bg0,
   fontFamily: vars.fontFamily,
+  overscrollBehavior: 'none',
 })
 
 globalStyle(':root', {
