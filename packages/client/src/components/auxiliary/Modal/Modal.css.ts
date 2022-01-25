@@ -5,6 +5,7 @@ import { ScreenSizes } from 'client/src/common/constants/screen'
 import { glassBackgroundStyle, theme, vars } from 'client/src/common/styles'
 
 export const noScroll = style({
+  position: 'fixed',
   overflow: 'hidden',
 })
 

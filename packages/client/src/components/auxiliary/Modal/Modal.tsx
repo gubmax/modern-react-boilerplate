@@ -15,16 +15,28 @@ import { Portal } from '../Portal'
 import { ModalProps } from './Modal.types'
 import * as s from './Modal.css'
 
-function toggleBodyClassName(force: boolean): void {
-  document.body.classList.toggle(s.noScroll, force)
+let positionTop = 0
+
+function toggleBodyStyles(active: boolean): void {
+  const {
+    body: { style, classList },
+    documentElement: { scrollLeft, scrollTop },
+  } = document
+
+  active && (positionTop = scrollTop)
+
+  style.top = active ? `-${positionTop}px` : ''
+  classList.toggle(s.noScroll, active)
+
+  !active && window.scrollTo(scrollLeft, positionTop)
 }
 
 const Modal: FC<ModalProps> = ({ children, active = false, onClose = noop }) => {
   useEffect(() => {
-    toggleBodyClassName(active)
+    toggleBodyStyles(active)
 
     return () => {
-      toggleBodyClassName(false)
+      toggleBodyStyles(false)
     }
   }, [active])
 
