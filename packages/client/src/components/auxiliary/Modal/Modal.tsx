@@ -5,6 +5,7 @@ import {
   RefCallback,
   useCallback,
   useEffect,
+  useRef,
 } from 'react'
 
 import { RoundedButton } from 'client/src/components/inputs/buttons/RoundedButton'
@@ -15,33 +16,30 @@ import { Portal } from '../Portal'
 import { ModalProps } from './Modal.types'
 import * as s from './Modal.css'
 
-let positionTop = 0
-
-function toggleBodyStyles(active: boolean): void {
+function toggleBodyStyles(active: boolean, positionTop: number): void {
   const {
     body: { style, classList },
-    documentElement: { scrollLeft, scrollTop },
   } = document
-
-  active && (positionTop = scrollTop)
 
   style.top = active ? `-${positionTop}px` : ''
   classList.toggle(s.noScroll, active)
-
-  !active && window.scrollTo(scrollLeft, positionTop)
 }
 
 const Modal: FC<ModalProps> = ({ children, active = false, onClose = noop }) => {
-  useEffect(() => {
-    toggleBodyStyles(active)
+  const positionTopRef = useRef(0)
 
-    return () => {
-      toggleBodyStyles(false)
-    }
+  useEffect(() => {
+    const { scrollLeft, scrollTop } = document.documentElement
+
+    active && (positionTopRef.current = scrollTop)
+    toggleBodyStyles(active, positionTopRef.current)
+    !active && window.scrollTo(scrollLeft, positionTopRef.current)
   }, [active])
 
+  useEffect(() => () => toggleBodyStyles(false, 0), [])
+
   const backgroundRef: RefCallback<HTMLDivElement> = (node) => {
-    if (node !== null) {
+    if (node) {
       node.focus()
       node.tabIndex = -1
     }
