@@ -1,14 +1,14 @@
 import { styleVariants } from '@vanilla-extract/css'
 
-import { theme, vars } from 'client/src/common/styles'
+import { palette, vars } from 'client/src/common/styles'
 import { IconSizes } from './withIcon.constants'
 
 // State
 
 export const iconStateStyles = styleVariants(
   {
-    default: theme.color.primary,
-    active: theme.color.accent,
+    default: palette.color.primary,
+    active: palette.color.accent,
   },
   (color) => ({ fill: color }),
 )

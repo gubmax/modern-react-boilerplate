@@ -1,77 +1,78 @@
-import { createThemeContract, assignVars, createGlobalTheme } from '@vanilla-extract/css'
+/**
+ * @file Based on Material Design type system
+ * @link https://material.io/design/typography/the-type-system.html#type-scale
+ */
 
-export const vars = createGlobalTheme(':root', {
+import { assignVars, createGlobalTheme, createThemeContract } from '@vanilla-extract/css'
+
+const FONT_SIZE = 14
+
+const size = (val: number) => `${(val / FONT_SIZE).toFixed(2)}rem`
+
+const commonVars = createGlobalTheme(':root', {
   fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
   sizes: {
-    headerHeight: '5rem',
+    font: `${FONT_SIZE}px`,
+    headerHeight: size(70),
   },
   colors: {
     transparentBorder: 'rgba(0, 0, 0, 0.01)',
-  },
-  fontSize: {
-    primary: '1rem',
-    accent: '1.10rem',
-    h1: '3rem',
-    h2: '1.65rem',
-    h3: '1.25rem',
-  },
-  space: {
-    s0: '0.5rem',
-    s1: '1rem',
-    s2: '1.15rem',
-    s3: '1.5rem',
-    s4: '3rem',
   },
   borderRadius: {
     primary: '20px',
   },
 })
 
-export const theme = createThemeContract({
-  color: {
+const varsContract = createThemeContract({
+  fontSize: {
     primary: null,
-    secondary: null,
     accent: null,
-    accentLight: null,
-    bg0: null,
-    bg1: null,
-    transparentBg0: null,
-    surface0: null,
-    surface1: null,
-    border: null,
-    borderLight: null,
+    h1: null,
+    h2: null,
+    h3: null,
+  },
+  space: {
+    s0: null,
+    s1: null,
+    s2: null,
+    s3: null,
+    s4: null,
   },
 })
 
-export const ligthTheme = assignVars(theme, {
-  color: {
-    primary: 'rgb(64, 64, 64)',
-    secondary: 'rgb(118, 118, 118)',
-    accent: 'rgb(63, 81, 181)',
-    accentLight: 'rgb(208, 214, 231)',
-    bg0: 'rgb(230, 230, 230)',
-    bg1: 'rgb(118, 118, 118)',
-    transparentBg0: 'rgba(230, 230, 230, 0.85)',
-    surface0: 'rgb(245, 245, 245)',
-    surface1: 'rgb(255, 255, 255)',
-    border: 'rgb(190, 190, 190)',
-    borderLight: 'rgb(235, 235, 235)',
+export const desktopVars = assignVars(varsContract, {
+  fontSize: {
+    primary: size(14),
+    accent: size(16),
+    h3: size(20),
+    h2: size(24),
+    h1: size(48),
+  },
+  space: {
+    s0: size(8),
+    s1: size(14),
+    s2: size(16),
+    s3: size(24),
+    s4: size(42),
   },
 })
 
-export const darkTheme = assignVars(theme, {
-  color: {
-    primary: 'rgb(224, 224, 224)',
-    secondary: 'rgb(64, 64, 64)',
-    accent: 'rgb(92, 107, 192)',
-    accentLight: 'rgb(39, 43, 59)',
-    bg0: 'rgb(17, 17, 17)',
-    bg1: 'rgb(176, 176, 177)',
-    transparentBg0: 'rgba(17, 17, 17, 0.85)',
-    surface0: 'rgb(26, 26, 26)',
-    surface1: 'rgb(33, 33, 33)',
-    border: 'rgb(40, 40, 40)',
-    borderLight: 'rgb(20, 20, 20)',
+export const mobileVars = assignVars(varsContract, {
+  fontSize: {
+    primary: size(14),
+    accent: size(16),
+    h3: size(20),
+    h2: size(24),
+    h1: size(34),
+  },
+  space: {
+    s0: size(4),
+    s1: size(10),
+    s2: size(12),
+    s3: size(20),
+    s4: size(38),
   },
 })
+
+export const vars = { ...commonVars, ...varsContract }

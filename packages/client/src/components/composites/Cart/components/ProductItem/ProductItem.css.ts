@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
-import { vars, theme, gridAtom } from 'client/src/common/styles'
+import { palette, vars, gridAtom } from 'client/src/common/styles'
 
 export const wrapper = gridAtom({ display: 'flex' })
 
@@ -33,7 +33,7 @@ export const imageBox = style([
     marginRight: vars.space.s3,
     fontSize: '5rem',
     borderRadius: '12px',
-    backgroundColor: theme.color.bg0,
+    backgroundColor: palette.color.bg0,
     userSelect: 'none',
   },
 ])

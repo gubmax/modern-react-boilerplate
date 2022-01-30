@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css'
 
 import { MediaQueries } from 'client/src/common/constants/media'
 import { ScreenSizes } from 'client/src/common/constants/screen'
-import { glassBackgroundStyle, theme, vars } from 'client/src/common/styles'
+import { glassBackgroundStyle, palette, vars } from 'client/src/common/styles'
 
 export const noScroll = style({
   position: 'fixed',
@@ -20,7 +20,7 @@ export const background = style([
     left: 0,
     width: '100%',
     height: '100%',
-    background: theme.color.transparentBg0,
+    background: palette.color.transparentBg0,
     backdropFilter: 'blur(0.5rem)',
     overflowY: 'auto',
     willChange: 'scroll-position',
@@ -37,7 +37,7 @@ export const wrapper = style({
   maxWidth: ScreenSizes.TABLET,
   margin: '0 auto',
   padding: 0,
-  border: `0.1rem solid ${theme.color.borderLight}`,
+  border: `0.1rem solid ${palette.color.borderLight}`,
   borderRadius: `${vars.borderRadius.primary} ${vars.borderRadius.primary} 0 0`,
   overflow: 'hidden',
 
@@ -55,7 +55,7 @@ export const wrapper = style({
 
 export const header = style({
   padding: `${vars.space.s0} ${vars.space.s3}`,
-  background: theme.color.borderLight,
+  background: palette.color.borderLight,
 })
 
 export const body = style({

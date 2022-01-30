@@ -1,6 +1,6 @@
 import { recipe } from '@vanilla-extract/recipes'
 
-import { theme, gridAtom, vars } from 'client/src/common/styles'
+import { vars, gridAtom, palette } from 'client/src/common/styles'
 import { ButtontTypes } from './BaseButton.constants'
 
 export const button = recipe({
@@ -16,21 +16,21 @@ export const button = recipe({
       fontWeight: 500,
       height: '3rem',
       minWidth: '10rem',
-      padding: `0 ${theme.color.primary}`,
+      padding: `0 ${palette.color.primary}`,
     },
   ],
 
   variants: {
     type: {
       [ButtontTypes.DEFAULT]: {
-        border: `1px solid ${theme.color.accent}`,
-        color: theme.color.accent,
+        border: `1px solid ${palette.color.accent}`,
+        color: palette.color.accent,
 
-        ':focus': { color: theme.color.accent },
+        ':focus': { color: palette.color.accent },
       },
       [ButtontTypes.PRIMARY]: {
-        background: theme.color.accent,
-        color: theme.color.surface0,
+        background: palette.color.accent,
+        color: palette.color.surface0,
 
         ':after': { background: 'rgba(255, 255, 255, 0.25)' },
       },

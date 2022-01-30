@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css'
-import { theme, vars } from 'client/src/common/styles'
+import { vars, palette } from 'client/src/common/styles'
 
 export const highlight = style({
   position: 'relative',
@@ -7,7 +7,7 @@ export const highlight = style({
   width: '2.5rem',
   marginLeft: vars.space.s0,
   textAlign: 'center',
-  background: theme.color.bg0,
+  background: palette.color.bg0,
   borderRadius: '0.6rem',
 
   ':before': {

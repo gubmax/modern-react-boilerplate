@@ -1,11 +1,11 @@
 import { style, keyframes } from '@vanilla-extract/css'
 
-import { theme, vars } from 'client/src/common/styles'
+import { vars, palette } from 'client/src/common/styles'
 
 export const wrapper = style({
   width: '100%',
   height: '1.5rem',
-  background: theme.color.bg0,
+  background: palette.color.bg0,
   borderRadius: vars.borderRadius.primary,
 })
 
@@ -29,7 +29,7 @@ export const shim = style({
     width: '100%',
     height: '100%',
     transform: 'translateX(-100%)',
-    background: `linear-gradient(90deg, transparent, ${theme.color.surface1}, transparent)`,
+    background: `linear-gradient(90deg, transparent, ${palette.color.surface1}, transparent)`,
     animation: `${shimmmer} 1s ease-in-out infinite`,
   },
 })

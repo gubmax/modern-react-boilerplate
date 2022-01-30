@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
-import { gridAtom, theme, vars } from 'client/src/common/styles'
+import { gridAtom, vars, palette } from 'client/src/common/styles'
 
 export const wrapper = style([
   gridAtom({
@@ -11,7 +11,7 @@ export const wrapper = style([
   {
     width: '3rem',
     height: '3rem',
-    background: theme.color.accentLight,
+    background: palette.color.accentLight,
     borderRadius: '50%',
     overflow: 'hidden',
     boxShadow: `inset 0 0 0 0.1rem ${vars.colors.transparentBorder}`,

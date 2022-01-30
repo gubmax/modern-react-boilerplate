@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
-import { theme } from '../vars.css'
+import { palette } from '../palette.css'
 
 export const focusStyle = style({
   position: 'relative',
@@ -8,7 +8,7 @@ export const focusStyle = style({
   zIndex: 0,
 
   ':after': {
-    background: theme.color.accentLight,
+    background: palette.color.accentLight,
     borderRadius: '50%',
     content: '""',
     display: 'block',

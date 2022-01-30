@@ -1,6 +1,6 @@
 import { style, styleVariants } from '@vanilla-extract/css'
 
-import { vars, theme } from 'client/src/common/styles'
+import { vars, palette } from 'client/src/common/styles'
 import { WrapperVariants } from './Wrapper.constants'
 
 const baseWrapper = style({
@@ -13,12 +13,12 @@ export const wrapperVariants = styleVariants({
   [WrapperVariants.FLAT]: [
     baseWrapper,
     {
-      background: theme.color.surface0,
+      background: palette.color.surface0,
       borderRadius: vars.borderRadius.primary,
     },
   ],
   [WrapperVariants.OUTLINE]: [
     baseWrapper,
-    { boxShadow: `inset 0 0 0 0.1rem ${theme.color.border}` },
+    { boxShadow: `inset 0 0 0 0.1rem ${palette.color.border}` },
   ],
 })

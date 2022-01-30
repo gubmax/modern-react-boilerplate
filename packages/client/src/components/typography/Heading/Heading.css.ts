@@ -13,14 +13,19 @@ export const heading = recipe({
       h1: {
         marginBottom: vars.space.s3,
         fontSize: vars.fontSize.h1,
-        fontWeight: 'bold',
+        fontWeight: 500,
+        letterSpacing: 0.25,
       },
       h2: {
         marginBottom: vars.space.s2,
         fontSize: vars.fontSize.h2,
-        fontWeight: 'bold',
+        fontWeight: 500,
+        letterSpacing: 0,
       },
-      h3: { fontSize: vars.fontSize.h3 },
+      h3: {
+        fontSize: vars.fontSize.h3,
+        letterSpacing: 0.15,
+      },
     },
   },
 })

@@ -1,8 +1,8 @@
 import { style } from '@vanilla-extract/css'
 
-import { theme } from '../vars.css'
+import { palette } from '../palette.css'
 
 export const glassBackgroundStyle = style({
-  background: theme.color.transparentBg0,
+  background: palette.color.transparentBg0,
   backdropFilter: 'blur(0.5rem)',
 })

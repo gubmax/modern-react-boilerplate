@@ -1,14 +1,14 @@
 import { style } from '@vanilla-extract/css'
-import { MediaQueries } from 'client/src/common/constants/media'
 
-import { theme, vars } from 'client/src/common/styles'
+import { MediaQueries } from 'client/src/common/constants/media'
+import { vars, palette } from 'client/src/common/styles'
 
 export const wrapper = style({
   display: 'flex',
   width: '100%',
   justifyContent: 'space-around',
   padding: vars.space.s0,
-  borderTop: `1px solid ${theme.color.borderLight}`,
+  borderTop: `1px solid ${palette.color.borderLight}`,
   borderRadius: `${vars.borderRadius.primary} ${vars.borderRadius.primary} 0 0`,
 
   '@media': {

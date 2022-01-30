@@ -1,6 +1,6 @@
 import { style, keyframes } from '@vanilla-extract/css'
 
-import { theme, gridAtom } from 'client/src/common/styles'
+import { palette, gridAtom } from 'client/src/common/styles'
 
 const borderRadius = style({ borderRadius: '50%' })
 
@@ -18,7 +18,7 @@ export const spinner = style([
     margin: 'auto',
     borderWidth: '3px',
     borderStyle: 'solid',
-    borderColor: `transparent ${theme.color.accent}`,
+    borderColor: `transparent ${palette.color.accent}`,
     animation: `${spin} 0.65s infinite linear`,
   },
 ])
@@ -36,6 +36,6 @@ export const spinnerSmall = style({
 })
 
 export const spinnerSecondary = style({
-  borderRightColor: theme.color.bg0,
-  borderLeftColor: theme.color.bg1,
+  borderRightColor: palette.color.bg0,
+  borderLeftColor: palette.color.bg1,
 })
