@@ -3,6 +3,7 @@ import { useRoutes } from 'react-router'
 import 'reflect-metadata'
 
 import { IocContainerContext } from 'client/src/common/contexts/IocContainerContext'
+import { CommonSvg } from 'client/src/components/auxiliary/CommonSvg'
 import { ROUTES } from './App.constants'
 import { AppProps } from './App.types'
 
@@ -12,6 +13,7 @@ const App: FC<AppProps> = ({ iocContainer }) => {
   return (
     <StrictMode>
       <IocContainerContext.Provider value={iocContainer}>{element}</IocContainerContext.Provider>
+      <CommonSvg />
     </StrictMode>
   )
 }

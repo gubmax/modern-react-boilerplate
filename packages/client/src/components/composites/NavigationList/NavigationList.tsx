@@ -18,7 +18,7 @@ const NavigationList: FC = () => {
 
         return (
           <IW key={to} as="li" className={s.listItem} active={active} onClick={goTo}>
-            <Icon className={s.routeIcon} />
+            <Icon className={s.routeIcon} active={active} />
             <span className={s.text}>{text}</span>
           </IW>
         )

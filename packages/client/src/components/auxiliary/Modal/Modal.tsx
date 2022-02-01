@@ -75,7 +75,7 @@ const Modal: FC<ModalProps> = ({ children, active = false, onClose = noop }) => 
         >
           <div className={s.header}>
             <RoundedButton className={s.closeButton} onClick={onClose}>
-              <CloseIcon active />
+              <CloseIcon accent />
             </RoundedButton>
           </div>
           <div className={s.body}>{children}</div>
