@@ -1,5 +1,7 @@
+export { default as CloseIcon } from './Close.icon'
 export { default as EmptyShoppingCartIcon } from './EmptyShoppingCart.icon'
 export { default as InfoIcon } from './Info.icon'
 export { default as SettingsIcon } from './Settings.icon'
 export { default as ShoppingCardIcon } from './ShoppingCard.icon'
+export { default as ShowcaseIcon } from './Showcase.icon'
 export { default as UserIcon } from './User.icon'

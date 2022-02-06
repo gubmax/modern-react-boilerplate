@@ -11,7 +11,7 @@ import {
 import { RoundedButton } from 'client/src/components/inputs/buttons/RoundedButton'
 import { FlatWrapper } from 'client/src/components/surfaces/Wrapper'
 import { noop } from 'client/src/common/helpers/noop'
-import CloseIcon from '../../icons/Close.icon'
+import { CloseIcon } from '../../icons'
 import { Portal } from '../Portal'
 import { ModalProps } from './Modal.types'
 import * as s from './Modal.css'

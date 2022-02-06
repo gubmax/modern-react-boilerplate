@@ -1,15 +1,16 @@
 import { ElementType } from 'react'
 
-import { IconProps } from 'client/src/common/hocs/withIcon'
 import { PageRoutes } from 'client/src/infra/http/constants'
-import { InfoIcon, SettingsIcon, ShoppingCardIcon } from 'client/src/components/icons'
+import { IconProps } from 'client/src/common/hocs/withIcon'
+import { InfoIcon, SettingsIcon, ShoppingCardIcon, ShowcaseIcon } from 'client/src/components/icons'
 
 export const ROUTES: Array<{
   to: PageRoutes
   icon: ElementType<IconProps>
   text: string
 }> = [
-  { to: PageRoutes.ROOT, icon: InfoIcon, text: 'About' },
+  { to: PageRoutes.ROOT, icon: ShowcaseIcon, text: 'Showcase' },
   { to: PageRoutes.CART, icon: ShoppingCardIcon, text: 'Shopping Cart' },
+  { to: PageRoutes.ABOUT, icon: InfoIcon, text: 'About' },
   { to: PageRoutes.SETTINGS, icon: SettingsIcon, text: 'Settings' },
 ]
