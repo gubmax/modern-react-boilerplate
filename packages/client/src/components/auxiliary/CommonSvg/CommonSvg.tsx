@@ -5,7 +5,11 @@ import * as s from './CommonSvg.css'
 const CommonSvg: FC = () => (
   <svg className={s.hide}>
     <defs>
-      <linearGradient id="gradient_0" gradientTransform="rotate(45)">
+      <linearGradient id="lg-accent-light" gradientTransform="rotate(45)">
+        <stop stopColor="#6153f9"></stop>
+        <stop offset="1" stopColor="#00b5dd"></stop>
+      </linearGradient>
+      <linearGradient id="lg-accent-dark" gradientTransform="rotate(45)">
         <stop stopColor="#7064f9"></stop>
         <stop offset="1" stopColor="#66e3ff"></stop>
       </linearGradient>

@@ -1,18 +1,22 @@
 import { styleVariants } from '@vanilla-extract/css'
 
 import { palette, vars } from 'client/src/common/styles'
+import { MediaQueries } from '../../constants/media'
 import { IconSizes, IconVariants } from './withIcon.constants'
 
 // State
 
-export const iconStateStyles = styleVariants(
-  {
-    [IconVariants.ACCENT]: palette.color.accent,
-    [IconVariants.ACTIVE]: 'url(#gradient_0)',
-    [IconVariants.PRIMARY]: palette.color.primary,
+export const iconStateStyles = styleVariants({
+  [IconVariants.ACCENT]: { fill: palette.color.accent },
+  [IconVariants.ACTIVE]: {
+    fill: 'url(#lg-accent-light)',
+
+    '@media': {
+      [MediaQueries.COLOR_CHEME_DARK]: { fill: 'url(#lg-accent-dark)' },
+    },
   },
-  (color) => ({ fill: color }),
-)
+  [IconVariants.PRIMARY]: { fill: palette.color.primary },
+})
 
 // Sizes
 

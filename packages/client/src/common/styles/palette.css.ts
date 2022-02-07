@@ -14,6 +14,9 @@ export const palette = createThemeContract({
     border: null,
     borderLight: null,
   },
+  gradient: {
+    accent: null,
+  },
 })
 
 export const ligthPalette = assignVars(palette, {
@@ -30,6 +33,9 @@ export const ligthPalette = assignVars(palette, {
     border: 'rgb(190, 190, 190)',
     borderLight: 'rgb(235, 235, 235)',
   },
+  gradient: {
+    accent: 'linear-gradient(-45deg, #00b5dd, #6153f9)',
+  },
 })
 
 export const darkPalette = assignVars(palette, {
@@ -45,5 +51,8 @@ export const darkPalette = assignVars(palette, {
     surface1: 'rgb(33, 33, 33)',
     border: 'rgb(40, 40, 40)',
     borderLight: 'rgb(20, 20, 20)',
+  },
+  gradient: {
+    accent: 'linear-gradient(-45deg, #66e3ff, #7064f9)',
   },
 })

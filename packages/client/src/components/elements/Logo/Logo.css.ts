@@ -19,7 +19,7 @@ export const highlight = style({
     right: '-0.35rem',
     borderRadius: '0.6rem',
     transform: 'rotate(6deg)',
-    background: 'linear-gradient(-45deg, #66e3ff, #7064f9)',
+    background: palette.gradient.accent,
     zIndex: -1,
   },
 })
