@@ -1,5 +1,20 @@
 import { style } from '@vanilla-extract/css'
+import { MediaQueries } from 'client/src/common/constants/media'
 import { vars, palette } from 'client/src/common/styles'
+
+export const text = style({
+  fontSize: '1.8em',
+  fontWeight: 500,
+  marginBottom: 0,
+})
+
+export const title = style({
+  display: 'none',
+
+  '@media': {
+    [MediaQueries.MIN_WIDTH_MOBILE]: { display: 'unset' },
+  },
+})
 
 export const highlight = style({
   position: 'relative',
@@ -22,10 +37,4 @@ export const highlight = style({
     background: palette.gradient.accent,
     zIndex: -1,
   },
-})
-
-export const text = style({
-  fontSize: '1.8em',
-  fontWeight: 500,
-  marginBottom: 0,
 })

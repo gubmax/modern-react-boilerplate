@@ -5,7 +5,8 @@ import * as s from './Logo.css'
 const Logo: FC = () => {
   return (
     <span className={s.text}>
-      Boilerplate <span className={s.highlight}>UI</span>
+      <span className={s.title}>Boilerplate </span>
+      <span className={s.highlight}>UI</span>
     </span>
   )
 }
