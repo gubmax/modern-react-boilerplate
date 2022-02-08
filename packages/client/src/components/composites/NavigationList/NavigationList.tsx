@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { IW } from 'client/src/components/inputs/InteractiveWrapper'
-import { FlatWrapper } from 'client/src/components/surfaces/Wrapper'
+import { Wrapper } from 'client/src/components/surfaces/Wrapper'
 import { ROUTES } from './NavigationList.constants'
 import * as s from './NavigationList.css'
 
@@ -11,7 +11,7 @@ const NavigationList: FC = () => {
   const navigate = useNavigate()
 
   return (
-    <FlatWrapper as="ul" className={s.wrapper}>
+    <Wrapper as="ul" className={s.wrapper}>
       {ROUTES.map(({ to, icon: Icon, text }) => {
         const active = to === pathname
         const goTo = () => navigate(to)
@@ -23,7 +23,7 @@ const NavigationList: FC = () => {
           </IW>
         )
       })}
-    </FlatWrapper>
+    </Wrapper>
   )
 }
 

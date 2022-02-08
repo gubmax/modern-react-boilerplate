@@ -26,13 +26,19 @@ export const header = style({
   zIndex: 1,
 })
 
-const PADDING_TOP = vars.space.s4
+const PADDING_TOP = vars.space.s2
 
 export const main = style({
   position: 'relative',
   width: '100%',
-  padding: `${PADDING_TOP} ${vars.space.s3} ${vars.space.s4}`,
+  padding: `${PADDING_TOP} ${vars.space.s2} ${vars.space.s4}`,
   overflowX: 'hidden',
+
+  '@media': {
+    [MediaQueries.MIN_WIDTH_MOBILE]: {
+      padding: `${PADDING_TOP} ${vars.space.s3} ${vars.space.s4}`,
+    },
+  },
 })
 
 export const sidebar = style({

@@ -1,25 +1,30 @@
 import { style } from '@vanilla-extract/css'
 
 import { MediaQueries } from 'client/src/common/constants/media'
-import { vars, palette } from 'client/src/common/styles'
+import { vars, palette, glassBackgroundStyle } from 'client/src/common/styles'
 
-export const wrapper = style({
-  display: 'flex',
-  width: '100%',
-  justifyContent: 'space-around',
-  padding: vars.space.s0,
-  borderTop: `1px solid ${palette.color.borderLight}`,
-  borderRadius: `${vars.borderRadius.primary} ${vars.borderRadius.primary} 0 0`,
+export const wrapper = style([
+  glassBackgroundStyle,
+  {
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'space-around',
+    padding: vars.space.s1,
+    borderTop: `1px solid ${palette.color.borderLight}`,
+    borderRadius: `${vars.borderRadius.primary} ${vars.borderRadius.primary} 0 0`,
 
-  '@media': {
-    [MediaQueries.MIN_WIDTH_MOBILE]: {
-      flexDirection: 'column',
-      padding: `${vars.space.s2} ${vars.space.s1}`,
-      border: 'none',
-      borderRadius: vars.borderRadius.primary,
+    '@media': {
+      [MediaQueries.MIN_WIDTH_MOBILE]: {
+        flexDirection: 'column',
+        padding: `${vars.space.s2} ${vars.space.s1}`,
+        background: palette.color.surface0,
+        border: 'none',
+        borderRadius: vars.borderRadius.primary,
+        backdropFilter: 'none',
+      },
     },
   },
-})
+])
 
 export const text = style({
   display: 'none',

@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css'
+import { MediaQueries } from 'client/src/common/constants/media'
 
 import { glassBackgroundStyle, gridAtom, vars } from 'client/src/common/styles'
 
@@ -10,8 +11,14 @@ export const wrapper = style([
   }),
   {
     height: vars.sizes.headerHeight,
-    padding: `${vars.space.s1} ${vars.space.s3}`,
+    padding: `0 ${vars.space.s1} 0 ${vars.space.s2}`,
     borderRadius: `0 0 ${vars.borderRadius.primary} ${vars.borderRadius.primary}`,
+
+    '@media': {
+      [MediaQueries.MIN_WIDTH_MOBILE]: {
+        padding: `${vars.space.s1} ${vars.space.s3}`,
+      },
+    },
   },
 ])
 
