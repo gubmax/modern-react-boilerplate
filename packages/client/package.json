@@ -6,8 +6,8 @@
     "directory": "packages/client"
   },
   "scripts": { 
-    "build:client": "vite build -c config/vite.config.ts",
-    "build:server": "vite build -c config/vite.server.config.ts"
+    "build:static": "vite build -c config/vite.config.ts",
+    "build:render": "vite build -c config/vite.server.config.ts"
   },
   "dependencies": {
     "@vanilla-extract/css": "1.6.8",
@@ -25,9 +25,9 @@
     "@types/react": "17.0.38",
     "@types/react-dom": "17.0.11",
     "@vanilla-extract/vite-plugin": "3.1.2",
-    "@vitejs/plugin-react": "1.1.4",
-    "vite": "2.7.10",
-    "vite-plugin-pwa": "0.11.12"
+    "@vitejs/plugin-react": "1.2.0",
+    "vite": "2.8.1",
+    "vite-plugin-pwa": "0.11.13"
   },
   "peerDependencies": {
     "typescript": "*",

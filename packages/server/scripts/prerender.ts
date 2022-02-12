@@ -19,6 +19,7 @@ import { renderServerMainTemplate as RenderServerMainTemplate } from 'client/src
 import { renderInternalErrorTemplate as RenderInternalErrorTemplate } from 'client/src/entries/internalError.entry'
 
 process.env.NODE_ENV = 'production'
+process.env.PATHS = 'local'
 
 const logInfo = (fileName: string) =>
   console.log(`    ${dim(`${PATH_DIST_CLIENT}/`)}${green(fileName)}`)
@@ -49,7 +50,7 @@ async function renderMainEntry(indexHtml: string, assetCollector: AssetCollector
 
   const { entryPath, modulePath } = CONFIG_ENTRIES[HtmlEntries.MAIN]
 
-  const { renderServerMainTemplate } = (await import(entryPath)) as {
+  const { renderServerMainTemplate } = (await require(entryPath)) as {
     renderServerMainTemplate: typeof RenderServerMainTemplate
   }
 
@@ -68,7 +69,7 @@ async function renderInternalErrorEntry(indexHtml: string, assetCollector: Asset
 
   const { entryPath, modulePath } = CONFIG_ENTRIES[HtmlEntries.INTERNAL_ERROR]
 
-  const { renderInternalErrorTemplate } = (await import(entryPath)) as {
+  const { renderInternalErrorTemplate } = (await require(entryPath)) as {
     renderInternalErrorTemplate: typeof RenderInternalErrorTemplate
   }
 
@@ -81,9 +82,7 @@ async function renderInternalErrorEntry(indexHtml: string, assetCollector: Asset
 
 void (async () => {
   const indexHtml = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
-
-  const distManifestPath = PATH_RESOLVED_DIST_MANIFEST
-  const manifest = (await import(distManifestPath)) as Manifest
+  const manifest = JSON.parse(readFileSync(PATH_RESOLVED_DIST_MANIFEST, 'utf-8')) as Manifest
 
   const assetCollector = new AssetCollectorService(manifest)
 

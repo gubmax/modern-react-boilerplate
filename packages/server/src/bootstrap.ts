@@ -32,7 +32,7 @@ export async function bootstrap(): Promise<NestExpressApplication> {
     app.use(compression())
     app.use(serve(PATH_RESOLVED_DIST_CLIENT, { index: false }))
 
-    await render.init()
+    render.init()
     await app.listen(port)
 
     return app

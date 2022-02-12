@@ -1,36 +1,41 @@
+import { spawn } from 'child_process'
+import { yellow } from 'chalk'
 import watcher from '@parcel/watcher'
 
-import { noop } from 'client/src/common/helpers/noop'
-import { PATH_RESOLVED_PACKAGES } from 'shared/constants/paths'
+import {
+  PATH_RESOLVED_PACKAGES,
+  PATH_RESOLVED_SERVER,
+  PATH_RESOLVED_SHARED,
+} from 'shared/constants/paths'
 
-interface WatchOptions {
-  paths: string[]
-  dispose: () => void | Promise<void>
-  accept: () => void | Promise<void>
+const DIRECTORIES = [PATH_RESOLVED_SERVER, PATH_RESOLVED_SHARED]
+const OPTIONS = {
+  ignore: [
+    'scripts',
+    `${PATH_RESOLVED_PACKAGES}/client/node_modules/.vite`,
+    `${PATH_RESOLVED_PACKAGES}/server/node_modules/.vite`,
+  ],
 }
 
-function clearCache() {
-  Object.keys(require.cache).forEach((id) => {
-    delete require.cache[id]
-  })
+function runScript() {
+  return spawn('node -r esbuild-register src/main', { stdio: 'inherit', shell: true })
 }
 
-export function watch({ paths, dispose = noop, accept = noop }: WatchOptions): void {
-  paths.forEach((path) => {
-    void watcher.subscribe(
-      path,
-      async () => {
-        await dispose()
-        clearCache()
-        return accept()
-      },
-      {
-        ignore: [
-          // FIXME: https://github.com/parcel-bundler/watcher/issues/64
-          `${PATH_RESOLVED_PACKAGES}/client/node_modules/.vite`,
-          `${PATH_RESOLVED_PACKAGES}/server/node_modules/.vite`,
-        ],
-      },
-    )
+function callback() {
+  console.log(yellow('Restarting server...'))
+  server.kill()
+  server = runScript()
+}
+
+let server = runScript()
+
+for (const dir of DIRECTORIES) {
+  void watcher.subscribe(dir, callback, OPTIONS)
+}
+
+for (const sig of ['SIGINT', 'SIGTERM']) {
+  process.on(sig, () => {
+    server.kill()
+    process.exit()
   })
 }

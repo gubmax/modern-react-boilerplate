@@ -13,8 +13,7 @@ export async function fetchPageProps(
 
   if (!path) return {}
 
-  const pageModulePath = PATH_RESOLVED_CLIENT_PAGES
-  const { getServerSideProps } = (await import(`${pageModulePath}/${path}`)) as {
+  const { getServerSideProps } = (await require(`${PATH_RESOLVED_CLIENT_PAGES}/${path}`)) as {
     getServerSideProps?: GetServerSideProps<ServerSideProps>
   }
 

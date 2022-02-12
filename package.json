@@ -16,13 +16,14 @@
     "packages/server"
   ],
   "scripts": {
+    "start": "cross-env NODE_ENV=production node dist/server",
+    "build": "npm run build:client && npm run build:server && npm run prerender",
+    "build:client": "cd packages/client && npm run build:static && npm run build:render",
+    "build:server": "cd packages/server && npm run build",
+    "prerender": "cd packages/server && npm run prerender",
+    "preview": "cd packages/server && npm run preview",
     "dev": "cd packages/server && npm run dev",
     "debug": "cd packages/server && npm run debug",
-    "build": "npm run build:client && npm run build:server && npm run prerender",
-    "build:client": "cd packages/client && npm run build:client",
-    "build:server": "cd packages/client && npm run build:server",
-    "prerender": "cd packages/server && npm run prerender",
-    "serve": "cd packages/server && npm run serve",
     "typecheck": "(cd packages/client && tsc --noEmit) & (cd packages/server && tsc --noEmit)",
     "lint": "eslint packages --ext .ts,.tsx",
     "prepare": "husky install"

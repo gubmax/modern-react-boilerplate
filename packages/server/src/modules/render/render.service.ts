@@ -28,9 +28,8 @@ export class RenderService {
     protected assetCollector: AssetCollectorService,
   ) {}
 
-  async init(): Promise<void> {
-    const distManifestPath = PATH_RESOLVED_DIST_MANIFEST
-    const manifest = (await import(distManifestPath)) as Manifest
+  init(): void {
+    const manifest = JSON.parse(readFileSync(PATH_RESOLVED_DIST_MANIFEST, 'utf-8')) as Manifest
 
     this.assetCollector.manifest = manifest
     this.indexHtml = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
@@ -60,9 +59,9 @@ export class RenderService {
 
     const [serverSideProps, { renderServerMainTemplate }] = await Promise.all([
       fetchPageProps(req.url, this.httpClient),
-      import(entryPath) as Promise<{
+      (await require(entryPath)) as {
         renderServerMainTemplate: typeof RenderServerMainTemplate
-      }>,
+      },
     ])
 
     const app = renderServerMainTemplate(req.url, serverSideProps)
