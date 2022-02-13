@@ -1,4 +1,4 @@
-# 🌀 Modern React Boilerplate
+# 🤖 Modern React Boilerplate
 
 This project is boilerplate for starting modern React web app.
 
@@ -29,6 +29,7 @@ npm run build
 npm run preview
 ```
 
-## Docs
+## Useful Links
 - [Conventional Commits](https://www.conventionalcommits.org)
 - [JSON Patch](https://datatracker.ietf.org/doc/html/rfc6902)
+- [TypeScript Performance](https://github.com/microsoft/TypeScript/wiki/Performance)
