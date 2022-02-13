@@ -1,6 +1,3 @@
 module.exports = {
-  'packages/**/*.ts?(x)': [
-    () => 'npm run typecheck',
-    'npm run lint',
-  ]
+  'packages/**/*.ts?(x)': [() => 'npm run typecheck', 'npm run lint'],
 }

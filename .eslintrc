@@ -11,7 +11,8 @@
     "ecmaFeatures": { "jsx": true },
     "project": [
       "./packages/client/tsconfig.json",
-      "./packages/server/tsconfig.json"
+      "./packages/server/tsconfig.json",
+      "./tsconfig.json"
     ]
   },
   "plugins": ["prettier"],
@@ -40,9 +41,9 @@
     }
   ],
   "ignorePatterns": [
-    "node_modules",
+    "coverage",
     "dist",
-    "*.config.js",
+    "node_modules",
     "*.html"
   ]
 }

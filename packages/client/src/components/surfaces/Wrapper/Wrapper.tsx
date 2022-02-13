@@ -1,7 +1,6 @@
 import { FC } from 'react'
 
 import { cn } from 'client/src/common/helpers/classNames'
-import { noop } from 'client/src/common/helpers/noop'
 import { WrapperVariants } from './Wrapper.constants'
 import { BaseWrapperProps, WrapperProps } from './Wrapper.types'
 import * as s from './Wrapper.css'

@@ -24,7 +24,9 @@
     "preview": "cd packages/server && npm run preview",
     "dev": "cd packages/server && npm run dev",
     "debug": "cd packages/server && npm run debug",
-    "typecheck": "(cd packages/client && tsc --noEmit) & (cd packages/server && tsc --noEmit)",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "typecheck": "(tsc -p packages/client --noEmit) & (tsc -p packages/server --noEmit)",
     "lint": "eslint packages --ext .ts,.tsx",
     "prepare": "husky install"
   },
@@ -37,13 +39,16 @@
     "@typescript-eslint/parser": "5.9.0",
     "autoprefixer": "10.4.2",
     "cross-env": "7.0.3",
+    "esbuild-jest": "0.5.0",
     "eslint": "8.6.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-react": "7.28.0",
     "eslint-plugin-react-hooks": "4.3.0",
     "husky": "7.0.4",
+    "jest": "27.5.1",
     "lint-staged": "12.1.7",
     "prettier": "2.5.1",
+    "ts-node": "10.5.0",
     "typescript": "4.4.4"
   }
 }
