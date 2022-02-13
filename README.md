@@ -29,7 +29,14 @@ npm run build
 npm run preview
 ```
 
+## Build using docker
+```sh
+npm run docker
+```
+Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
+
 ## Useful Links
 - [Conventional Commits](https://www.conventionalcommits.org)
 - [JSON Patch](https://datatracker.ietf.org/doc/html/rfc6902)
 - [TypeScript Performance](https://github.com/microsoft/TypeScript/wiki/Performance)
+- [Well-Known URIs](https://www.rfc-editor.org/rfc/rfc8615#section-3)

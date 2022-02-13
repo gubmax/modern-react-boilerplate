@@ -18,6 +18,7 @@
     "@nestjs/core": "8.2.6",
     "@nestjs/platform-express": "8.2.6",
     "compression": "1.7.4",
+    "esbuild-register": "3.3.2",
     "pino": "7.3.0",
     "reflect-metadata": "0.1.13",
     "serve-static": "1.14.2",
@@ -30,11 +31,11 @@
     "@types/pino": "7.0.5",
     "@types/react": "17.0.38",
     "@types/serve-static": "1.13.10",
-    "chalk": "4.1.2",
-    "esbuild-register": "3.3.2"
+    "chalk": "4.1.2"
   },
   "peerDependencies": {
     "react-router": "*",
-    "typescript": "*"
+    "typescript": "*",
+    "react-router-dom": "*"
   }
 }
