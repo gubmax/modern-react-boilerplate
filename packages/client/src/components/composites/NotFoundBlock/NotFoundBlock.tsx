@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { useLink } from 'client/src/common/hooks/useLink'
 import { Button } from 'client/src/components/inputs/buttons/Button'
 import { H1 } from 'client/src/components/typography/Heading'
-import { PageRoutes } from 'client/src/infra/http/constants'
+import { PageRoutes } from 'client/src/browser/http/constants'
 import * as s from './NotFoundBlock.css'
 
 const NotFoundBlock: FC = () => {

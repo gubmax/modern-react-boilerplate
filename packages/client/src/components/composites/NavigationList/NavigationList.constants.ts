@@ -1,6 +1,6 @@
 import { ElementType } from 'react'
 
-import { PageRoutes } from 'client/src/infra/http/constants'
+import { PageRoutes } from 'client/src/browser/http/constants'
 import { IconProps } from 'client/src/common/hocs/withIcon'
 import { InfoIcon, SettingsIcon, ShoppingCardIcon, ShowcaseIcon } from 'client/src/components/icons'
 

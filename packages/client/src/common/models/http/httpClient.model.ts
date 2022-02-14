@@ -6,7 +6,7 @@ import {
   HttpRequestInit,
   HttpRequestResponse,
 } from 'shared/http/types'
-import { HEADERS_DEFAULT } from 'client/src/infra/http/constants'
+import { HEADERS_DEFAULT } from 'client/src/browser/http/constants'
 import { FatalException } from 'client/src/common/domain/exceptions'
 
 @injectable()

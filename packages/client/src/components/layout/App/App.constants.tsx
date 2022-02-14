@@ -5,7 +5,7 @@ import { CartPage } from 'client/src/components/pages/Cart'
 import { NotFoundPage } from 'client/src/components/pages/NotFound'
 import { SettingsPage } from 'client/src/components/pages/Settings'
 import { ShowcasePage } from 'client/src/components/pages/Showcase'
-import { PageRoutes } from 'client/src/infra/http/constants'
+import { PageRoutes } from 'client/src/browser/http/constants'
 import { Main } from '../Main'
 
 export const ROUTES: RouteObject[] = [

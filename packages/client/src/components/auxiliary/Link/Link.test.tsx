@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 
-import { PageRoutes } from 'client/src/infra/http/constants'
+import { PageRoutes } from 'client/src/browser/http/constants'
 import Link from './Link'
 
 const TEXT = 'some text'
