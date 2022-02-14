@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { VFC } from 'react'
 
 import { cn } from 'client/src/common/helpers/classNames'
 import { useToggle } from 'client/src/common/hooks/useToggle'
@@ -7,7 +7,7 @@ import { UserIcon } from 'client/src/components/icons'
 import { StyledProps } from 'client/src/common/typings'
 import * as s from './UserAvatar.css'
 
-const UserAvatar: FC<StyledProps> = ({ className, style }) => {
+const UserAvatar: VFC<StyledProps> = ({ className, style }) => {
   const [shown, toggleShown] = useToggle()
 
   return (

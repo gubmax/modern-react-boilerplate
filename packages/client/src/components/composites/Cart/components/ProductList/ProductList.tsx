@@ -1,10 +1,10 @@
-import { FC } from 'react'
+import { VFC } from 'react'
 
 import { List } from 'client/src/components/surfaces/List'
 import { ProductItem } from '../ProductItem'
 import { ProductListProps } from './ProductList.types'
 
-const ProductList: FC<ProductListProps> = ({ className, style, products }) => {
+const ProductList: VFC<ProductListProps> = ({ className, style, products }) => {
   return (
     <List className={className} style={style}>
       {products.map((product) => (

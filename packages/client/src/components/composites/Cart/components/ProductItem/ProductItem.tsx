@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { VFC } from 'react'
 
 import { useInject } from 'client/src/common/hooks/useInject'
 import { Button } from 'client/src/components/inputs/buttons/Button'
@@ -9,7 +9,7 @@ import { CartModel } from '../../models'
 import { ProductItemProps } from './ProductItem.types'
 import * as s from './ProductItem.css'
 
-const ProductItem: FC<ProductItemProps> = ({ product: { id, icon, title, price, amount } }) => {
+const ProductItem: VFC<ProductItemProps> = ({ product: { id, icon, title, price, amount } }) => {
   const { increaseAmount, decreaseAmount, remove } = useInject(CartModel)
 
   const increase = () => increaseAmount(id)

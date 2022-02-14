@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { VFC } from 'react'
 
 import { cn } from 'client/src/common/helpers/classNames'
 import { Link } from 'client/src/components/auxiliary/Link'
@@ -10,7 +10,7 @@ import { StyledProps } from 'client/src/common/typings'
 import { LINK_REPO } from './Header.constants'
 import * as s from './Header.css'
 
-const Header: FC<StyledProps> = ({ className, ...rest }) => {
+const Header: VFC<StyledProps> = ({ className, ...rest }) => {
   return (
     <div className={cn(s.wrapper, className)} {...rest}>
       <Link to={PageRoutes.ROOT}>

@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react'
+import { VFC, useMemo } from 'react'
 
 import { Modal } from 'client/src/components/auxiliary/Modal'
 import { cn } from 'client/src/common/helpers/classNames'
@@ -8,7 +8,7 @@ import { backgrounds } from './ProductCardList.constants'
 import { ProductCardListProps } from './ProductCardList.types'
 import * as s from './ProductCardList.css'
 
-const ProductCardList: FC<ProductCardListProps> = ({ className, style, items }) => {
+const ProductCardList: VFC<ProductCardListProps> = ({ className, style, items }) => {
   const [shown, toggleShown] = useToggle()
 
   const listTemplate = useMemo(

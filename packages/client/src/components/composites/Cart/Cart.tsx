@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { VFC } from 'react'
 
 import { useInject } from 'client/src/common/hooks/useInject'
 import { useObservableState } from 'client/src/common/hooks/useObservableState'
@@ -10,7 +10,7 @@ import { CartModel } from './models'
 import { CartSkeleton } from './Cart.skeleton'
 import * as s from './Cart.css'
 
-const Cart: FC<LoadingProp> = ({ loading }) => {
+const Cart: VFC<LoadingProp> = ({ loading }) => {
   const { products$, totalPrice } = useInject(CartModel)
   const products = products$.value
 

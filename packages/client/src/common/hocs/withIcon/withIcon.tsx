@@ -1,4 +1,4 @@
-import { ElementType, FC } from 'react'
+import { ElementType, VFC } from 'react'
 
 import { cn } from 'client/src/common/helpers/classNames'
 import { IconProps } from './withIcon.types'
@@ -6,7 +6,7 @@ import { DEFAULT_SIZE, IconSizes, IconVariants } from './withIcon.constants'
 import { iconSizeStyles, iconStateStyles } from './withIcon.css'
 
 export function withIcon(Component: ElementType<IconProps>): ElementType<IconProps> {
-  const Icon: FC<IconProps> = ({ active, accent, size, className, ...rest }) => {
+  const Icon: VFC<IconProps> = ({ active, accent, size, className, ...rest }) => {
     const classNames = cn(
       iconStateStyles[
         (active && IconVariants.ACTIVE) || (accent && IconVariants.ACCENT) || IconVariants.PRIMARY

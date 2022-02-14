@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { VFC } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { IW } from 'client/src/components/inputs/InteractiveWrapper'
@@ -6,7 +6,7 @@ import { Wrapper } from 'client/src/components/surfaces/Wrapper'
 import { ROUTES } from './NavigationList.constants'
 import * as s from './NavigationList.css'
 
-const NavigationList: FC = () => {
+const NavigationList: VFC = () => {
   const { pathname } = useLocation()
   const navigate = useNavigate()
 

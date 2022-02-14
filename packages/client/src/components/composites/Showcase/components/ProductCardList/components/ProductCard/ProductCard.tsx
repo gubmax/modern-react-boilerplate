@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { VFC } from 'react'
 
 import { Wrapper } from 'client/src/components/surfaces/Wrapper'
 import { cn } from 'client/src/common/helpers/classNames'
@@ -6,7 +6,7 @@ import { Cost } from './components/Cost'
 import { ProductCardProps } from './ProductCard.types'
 import * as s from './ProductCard.css'
 
-const ProductCard: FC<ProductCardProps> = ({
+const ProductCard: VFC<ProductCardProps> = ({
   className,
   imageClassName,
   style,
