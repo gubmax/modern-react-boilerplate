@@ -29,9 +29,22 @@ npm run build
 npm run preview
 ```
 
-## Build using docker
+## Start Docker Container
+
+### Using the `npm`
 ```sh
 npm run docker
+```
+Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
+
+### Using the `docker` commands
+Build the app’s container image.
+```sh
+docker build . --no-cache -t modern-react-boilerplate -f infra/docker/Dockerfile
+```
+Start an app container.
+```sh
+docker run -p 8080:3000 --rm modern-react-boilerplate
 ```
 Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
