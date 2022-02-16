@@ -5,7 +5,7 @@ import { WrapperVariants } from './Wrapper.constants'
 import { BaseWrapperProps, WrapperProps } from './Wrapper.types'
 import * as s from './Wrapper.css'
 
-const BaseWrapper: FC<BaseWrapperProps> = ({
+const baseWrapper: FC<BaseWrapperProps> = ({
   as: Tag = 'div',
   className,
   children,
@@ -20,14 +20,14 @@ const BaseWrapper: FC<BaseWrapperProps> = ({
   )
 }
 
-export const Wrapper: FC<WrapperProps> = (props) => (
-  <BaseWrapper {...props} variant={WrapperVariants.DEFAULT} />
-)
+export const Wrapper: FC<WrapperProps> = (props) =>
+  baseWrapper({ ...props, variant: WrapperVariants.DEFAULT })
 
-export const FlatWrapper: FC<WrapperProps> = (props) => (
-  <BaseWrapper {...props} variant={WrapperVariants.FLAT} />
-)
+export const FlatWrapper: FC<WrapperProps> = (props) =>
+  baseWrapper({ ...props, variant: WrapperVariants.FLAT })
 
-export const OutlineWrapper: FC<WrapperProps> = (props) => (
-  <BaseWrapper {...props} variant={WrapperVariants.OUTLINE} />
-)
+export const GlassWrapper: FC<WrapperProps> = (props) =>
+  baseWrapper({ ...props, variant: WrapperVariants.GLASS })
+
+export const OutlineWrapper: FC<WrapperProps> = (props) =>
+  baseWrapper({ ...props, variant: WrapperVariants.OUTLINE })

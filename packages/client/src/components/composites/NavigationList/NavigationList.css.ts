@@ -2,32 +2,29 @@ import { style } from '@vanilla-extract/css'
 
 import { MediaQueries } from 'client/src/common/constants/media'
 import { ScreenSizes } from 'client/src/common/constants/screen'
-import { vars, palette, glassBackgroundStyle } from 'client/src/common/styles'
+import { vars, palette } from 'client/src/common/styles'
 
-export const wrapper = style([
-  glassBackgroundStyle,
-  {
-    display: 'flex',
-    width: '100%',
-    minWidth: ScreenSizes.MIN,
-    justifyContent: 'space-around',
-    padding: vars.space.s1,
-    borderTop: `1px solid ${palette.color.borderLight}`,
-    borderRadius: `${vars.borderRadius.primary} ${vars.borderRadius.primary} 0 0`,
+export const wrapper = style({
+  display: 'flex',
+  width: '100%',
+  minWidth: ScreenSizes.MIN,
+  justifyContent: 'space-around',
+  padding: vars.space.s1,
+  borderTop: `1px solid ${palette.color.borderLight}`,
+  borderRadius: `${vars.borderRadius.primary} ${vars.borderRadius.primary} 0 0`,
 
-    '@media': {
-      [MediaQueries.MIN_WIDTH_MOBILE]: {
-        flexDirection: 'column',
-        minWidth: 'unset',
-        padding: `${vars.space.s2} ${vars.space.s1}`,
-        background: palette.color.surface0,
-        border: 'none',
-        borderRadius: vars.borderRadius.primary,
-        backdropFilter: 'none',
-      },
+  '@media': {
+    [MediaQueries.MIN_WIDTH_MOBILE]: {
+      flexDirection: 'column',
+      minWidth: 'unset',
+      padding: `${vars.space.s2} ${vars.space.s1}`,
+      background: palette.color.surface0,
+      border: 'none',
+      borderRadius: vars.borderRadius.primary,
+      backdropFilter: 'none',
     },
   },
-])
+})
 
 export const text = style({
   display: 'none',

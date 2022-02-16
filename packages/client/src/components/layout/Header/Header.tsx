@@ -1,6 +1,7 @@
 import { VFC } from 'react'
 
 import { cn } from 'client/src/common/helpers/classNames'
+import { GlassWrapper } from 'client/src/components/surfaces/Wrapper'
 import { Link } from 'client/src/components/auxiliary/Link'
 import { Logo } from 'client/src/components/elements/Logo'
 import { UserAvatar } from 'client/src/components/elements/UserAvatar'
@@ -12,7 +13,7 @@ import * as s from './Header.css'
 
 const Header: VFC<StyledProps> = ({ className, ...rest }) => {
   return (
-    <div className={cn(s.wrapper, className)} {...rest}>
+    <GlassWrapper className={cn(s.wrapper, className)} {...rest}>
       <Link to={PageRoutes.ROOT}>
         <Logo />
       </Link>
@@ -20,7 +21,7 @@ const Header: VFC<StyledProps> = ({ className, ...rest }) => {
         GitHub
       </A>
       <UserAvatar />
-    </div>
+    </GlassWrapper>
   )
 }
 

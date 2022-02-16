@@ -9,7 +9,7 @@ import {
 } from 'react'
 
 import { RoundedButton } from 'client/src/components/inputs/buttons/RoundedButton'
-import { FlatWrapper } from 'client/src/components/surfaces/Wrapper'
+import { FlatWrapper, GlassWrapper } from 'client/src/components/surfaces/Wrapper'
 import { noop } from 'client/src/common/helpers/noop'
 import { CloseIcon } from '../../icons'
 import { Portal } from '../Portal'
@@ -59,8 +59,8 @@ const Modal: FC<ModalProps> = ({ children, active = false, onClose = noop }) => 
 
   return (
     <Portal disabled={!active}>
-      <div
-        ref={backgroundRef}
+      <GlassWrapper
+        innerRef={backgroundRef}
         className={s.background}
         tabIndex={0}
         onClick={onClose}
@@ -80,7 +80,7 @@ const Modal: FC<ModalProps> = ({ children, active = false, onClose = noop }) => 
           </div>
           <div className={s.body}>{children}</div>
         </FlatWrapper>
-      </div>
+      </GlassWrapper>
     </Portal>
   )
 }

@@ -2,31 +2,26 @@ import { style } from '@vanilla-extract/css'
 
 import { MediaQueries } from 'client/src/common/constants/media'
 import { ScreenSizes } from 'client/src/common/constants/screen'
-import { glassBackgroundStyle, palette, vars } from 'client/src/common/styles'
+import { palette, vars } from 'client/src/common/styles'
 
 export const noScroll = style({
   position: 'fixed',
   overflow: 'hidden',
 })
 
-export const background = style([
-  glassBackgroundStyle,
-  {
-    position: 'fixed',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    background: palette.color.transparentBg0,
-    backdropFilter: 'blur(0.5rem)',
-    overflowY: 'auto',
-    willChange: 'scroll-position',
-    zIndex: 1,
-  },
-])
+export const background = style({
+  position: 'fixed',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  overflowY: 'auto',
+  willChange: 'scroll-position',
+  zIndex: 1,
+})
 
 export const wrapper = style({
   position: 'absolute',

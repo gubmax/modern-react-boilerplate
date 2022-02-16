@@ -1,10 +1,9 @@
 import { style } from '@vanilla-extract/css'
 import { MediaQueries } from 'client/src/common/constants/media'
 
-import { glassBackgroundStyle, gridAtom, vars } from 'client/src/common/styles'
+import { gridAtom, vars } from 'client/src/common/styles'
 
 export const wrapper = style([
-  glassBackgroundStyle,
   gridAtom({
     display: 'flex',
     alignItems: 'center',
