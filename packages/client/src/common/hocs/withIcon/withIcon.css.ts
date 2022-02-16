@@ -22,8 +22,8 @@ export const iconStateStyles = styleVariants({
 
 export const iconSizeStyles = styleVariants(
   {
-    [IconSizes.SMALL]: vars.fontSize.h2,
-    [IconSizes.HUGE]: '8rem',
+    [IconSizes.SMALL]: vars.icons.small,
+    [IconSizes.HUGE]: vars.icons.huge,
   },
   (size) => ({ width: size, height: size }),
 )

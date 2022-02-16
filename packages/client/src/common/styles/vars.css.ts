@@ -39,6 +39,10 @@ const varsContract = createThemeContract({
     s3: null,
     s4: null,
   },
+  icons: {
+    small: null,
+    huge: null,
+  },
 })
 
 export const desktopVars = assignVars(varsContract, {
@@ -56,6 +60,10 @@ export const desktopVars = assignVars(varsContract, {
     s3: size(24),
     s4: size(42),
   },
+  icons: {
+    small: size(24),
+    huge: size(112),
+  },
 })
 
 export const mobileVars = assignVars(varsContract, {
@@ -72,6 +80,10 @@ export const mobileVars = assignVars(varsContract, {
     s2: size(12),
     s3: size(20),
     s4: size(38),
+  },
+  icons: {
+    small: size(28),
+    huge: size(112),
   },
 })
 
