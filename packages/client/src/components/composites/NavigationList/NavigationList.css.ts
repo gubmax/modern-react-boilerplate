@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css'
 
 import { MediaQueries } from 'client/src/common/constants/media'
+import { ScreenSizes } from 'client/src/common/constants/screen'
 import { vars, palette, glassBackgroundStyle } from 'client/src/common/styles'
 
 export const wrapper = style([
@@ -8,6 +9,7 @@ export const wrapper = style([
   {
     display: 'flex',
     width: '100%',
+    minWidth: ScreenSizes.MIN,
     justifyContent: 'space-around',
     padding: vars.space.s1,
     borderTop: `1px solid ${palette.color.borderLight}`,
@@ -16,6 +18,7 @@ export const wrapper = style([
     '@media': {
       [MediaQueries.MIN_WIDTH_MOBILE]: {
         flexDirection: 'column',
+        minWidth: 'unset',
         padding: `${vars.space.s2} ${vars.space.s1}`,
         background: palette.color.surface0,
         border: 'none',
