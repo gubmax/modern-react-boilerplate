@@ -1,13 +1,10 @@
 import { resolve } from 'path'
 import { realpathSync } from 'fs'
-import { cwd } from 'process'
-
-const WORKING_DIRECTORY = cwd()
 
 const ABSOLUTE_PATH =
   process.env.NODE_ENV === 'production' && process.env.PATHS !== 'local'
-    ? WORKING_DIRECTORY
-    : realpathSync(`${WORKING_DIRECTORY}/../../`)
+    ? realpathSync(`${__dirname}/../../`)
+    : realpathSync(`${__dirname}/../../../`)
 
 export function resolvePath(relativePath: string): string {
   return resolve(ABSOLUTE_PATH, relativePath)

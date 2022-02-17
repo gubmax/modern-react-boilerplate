@@ -6,10 +6,8 @@
     "directory": "packages/server"
   },
   "scripts": {
-    "build": "node -r esbuild-register scripts/build",
-    "prerender": "node -r esbuild-register scripts/prerender",
     "preview": "cross-env NODE_ENV=production PATHS=local node -r esbuild-register src/main",
-    "dev": "node -r esbuild-register scripts/watch",
+    "dev": "node -r esbuild-register src/main",
     "debug": "node -r esbuild-register --inspect-brk src/main"
   },
   "dependencies": {
@@ -18,7 +16,6 @@
     "@nestjs/core": "8.2.6",
     "@nestjs/platform-express": "8.2.6",
     "compression": "1.7.4",
-    "esbuild-register": "3.3.2",
     "pino": "7.3.0",
     "reflect-metadata": "0.1.13",
     "serve-static": "1.14.2",
@@ -34,6 +31,7 @@
     "chalk": "4.1.2"
   },
   "peerDependencies": {
+    "esbuild-register": "*",
     "react-router": "*",
     "typescript": "*",
     "react-router-dom": "*"

@@ -1,12 +1,13 @@
 import { build } from 'esbuild'
 import { cyan, dim, green } from 'chalk'
 
-import { PATH_DIST_SERVER, PATH_RESOLVED_DIST_SERVER } from '../../shared/constants/paths'
-import serverPackage from '../package.json'
-import clientPackage from '../../client/package.json'
+import { PATH_DIST_SERVER, PATH_RESOLVED_DIST_SERVER } from 'shared/constants/paths'
+import serverPackage from 'server/package.json'
+import clientPackage from 'client/package.json'
 
 process.env.NODE_ENV = 'production'
 
+const ENTRY_MAIN = 'packages/server/src/main.ts'
 const OUTFILE_NAME = 'index.js'
 
 const getExternal = (packages: Record<string, string | Record<string, string>>): string[] => {
@@ -19,7 +20,7 @@ const getExternal = (packages: Record<string, string | Record<string, string>>):
   }, [])
 }
 
-console.log(`${cyan('esbuild')} ${green('building for production...')}`)
+console.log(`${cyan('esbuild')} ${green('building server for production...')}`)
 
 build({
   platform: 'node',
@@ -27,7 +28,7 @@ build({
   bundle: true,
   sourcemap: false,
   external: [...getExternal(serverPackage), ...getExternal(clientPackage)],
-  entryPoints: ['./src/main.ts'],
+  entryPoints: [ENTRY_MAIN],
   outfile: `${PATH_RESOLVED_DIST_SERVER}/${OUTFILE_NAME}`,
   format: 'cjs',
   tsconfig: './tsconfig.json',

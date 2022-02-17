@@ -2,6 +2,8 @@ import { spawn } from 'child_process'
 import { yellow } from 'chalk'
 import watcher from '@parcel/watcher'
 
+import serverPackage from 'server/package.json'
+
 import {
   PATH_RESOLVED_PACKAGES,
   PATH_RESOLVED_SERVER,
@@ -11,14 +13,16 @@ import {
 const DIRECTORIES = [PATH_RESOLVED_SERVER, PATH_RESOLVED_SHARED]
 const OPTIONS = {
   ignore: [
-    'scripts',
     `${PATH_RESOLVED_PACKAGES}/client/node_modules/.vite`,
     `${PATH_RESOLVED_PACKAGES}/server/node_modules/.vite`,
   ],
 }
 
 function runScript() {
-  return spawn('node -r esbuild-register src/main', { stdio: 'inherit', shell: true })
+  return spawn(`cd packages/server && ${serverPackage.scripts.dev}`, {
+    stdio: 'inherit',
+    shell: true,
+  })
 }
 
 function callback() {
