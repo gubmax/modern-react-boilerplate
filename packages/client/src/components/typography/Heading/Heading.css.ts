@@ -4,7 +4,7 @@ import { vars } from 'client/src/common/styles'
 
 export const heading = recipe({
   base: {
-    display: 'inline-block',
+    display: 'block',
     letterSpacing: '0.05rem',
   },
 

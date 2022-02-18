@@ -1,6 +1,6 @@
 import { style, styleVariants } from '@vanilla-extract/css'
 
-import { vars, palette, glassBackgroundStyle } from 'client/src/common/styles'
+import { vars, palette } from 'client/src/common/styles'
 import { WrapperVariants } from './Wrapper.constants'
 
 const baseWrapper = style({
@@ -17,7 +17,13 @@ export const wrapperVariants = styleVariants({
       borderRadius: vars.borderRadius.primary,
     },
   ],
-  [WrapperVariants.GLASS]: [baseWrapper, glassBackgroundStyle],
+  [WrapperVariants.GLASS]: [
+    baseWrapper,
+    {
+      background: palette.color.transparentBg0,
+      backdropFilter: 'blur(0.5rem)',
+    },
+  ],
   [WrapperVariants.OUTLINE]: [
     baseWrapper,
     { boxShadow: `inset 0 0 0 0.1rem ${palette.color.border}` },

@@ -14,7 +14,7 @@ export const wrapper = style([
     background: palette.color.accentLight,
     borderRadius: '50%',
     overflow: 'hidden',
-    boxShadow: `inset 0 0 0 0.1rem ${vars.colors.transparentBorder}`,
+    boxShadow: `inset 0 0 0 0.1rem ${vars.color.transparentBorder}`,
     cursor: 'pointer',
   },
 ])

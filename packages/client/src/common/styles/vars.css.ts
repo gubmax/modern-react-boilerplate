@@ -16,8 +16,9 @@ const commonVars = createGlobalTheme(':root', {
     font: `${FONT_SIZE}px`,
     headerHeight: size(70),
   },
-  colors: {
+  color: {
     transparentBorder: 'rgba(0, 0, 0, 0.01)',
+    white: 'rgb(224, 224, 224)',
   },
   borderRadius: {
     primary: '20px',
