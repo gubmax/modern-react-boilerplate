@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
-import { gridAtom, palette, textFillColor, vars } from 'client/src/common/styles'
+import { gridAtom, vars } from 'client/src/common/styles'
 
 export const wrapper = style({
   background: 'linear-gradient(-45deg, #a655f6, #6565f1)',

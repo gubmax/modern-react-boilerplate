@@ -7,6 +7,6 @@ export const mainBanner = style({
 })
 
 export const productCardList = style({
-  paddingBottom: vars.space.s3,
+  paddingBottom: vars.space.s1,
   marginBottom: vars.space.s3,
 })

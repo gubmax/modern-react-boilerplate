@@ -1,15 +1,18 @@
 import { style } from '@vanilla-extract/css'
 
 import { MediaQueries } from 'client/src/common/constants/media'
-import { vars } from 'client/src/common/styles'
+import { vars, scrollbar } from 'client/src/common/styles'
 
-export const wrapper = style({
-  display: 'flex',
-  overflowX: 'auto',
-  overscrollBehaviorX: 'contain',
-  scrollSnapType: 'x mandatory',
-  scrollPadding: '0',
-})
+export const wrapper = style([
+  scrollbar,
+  {
+    display: 'flex',
+    overflowX: 'auto',
+    overscrollBehaviorX: 'contain',
+    scrollSnapType: 'x mandatory',
+    scrollPadding: '0',
+  },
+])
 
 export const productCard = style({
   scrollSnapAlign: 'start',

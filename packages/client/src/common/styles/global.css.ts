@@ -46,12 +46,14 @@ globalStyle('body', {
 })
 
 globalStyle(':root', {
+  colorScheme: 'light',
   vars: { ...mobileVars, ...ligthPalette },
   '@media': {
     [MediaQueries.MIN_WIDTH_MOBILE]: {
       vars: desktopVars,
     },
     '(prefers-color-scheme: dark)': {
+      colorScheme: 'dark',
       vars: darkPalette,
     },
   },
