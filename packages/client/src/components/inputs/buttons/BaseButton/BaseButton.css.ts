@@ -40,7 +40,7 @@ export const button = recipe({
       },
       [ButtonTypes.PRIMARY_WHITE]: {
         background: vars.color.white,
-        color: palette.color.surface0,
+        color: vars.color.black,
 
         ':after': { background: 'rgba(0, 0, 0, 0.25)' },
       },

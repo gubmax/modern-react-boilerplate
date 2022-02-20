@@ -9,6 +9,7 @@ export const wrapper = style([
     display: 'flex',
     overflowX: 'auto',
     overscrollBehaviorX: 'contain',
+    scrollBehavior: 'smooth',
     scrollSnapType: 'x mandatory',
     scrollPadding: '0',
   },

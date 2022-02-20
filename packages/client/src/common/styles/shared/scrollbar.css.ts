@@ -8,7 +8,7 @@ export const scrollbar = style({
   scrollbarWidth: 'thin',
 
   '::-webkit-scrollbar-thumb': {
-    backgroundColor: palette.color.surface1,
+    backgroundColor: palette.color.border,
     borderRadius: vars.borderRadius.primary,
   },
 
@@ -18,14 +18,11 @@ export const scrollbar = style({
   },
 
   '::-webkit-scrollbar': {
-    width: '1rem',
-    height: '1rem',
+    width: '0.65rem',
+    height: '0.65rem',
   },
 
   selectors: {
-    '&::-webkit-scrollbar-thumb:hover': {
-      backgroundColor: palette.color.border,
-    },
     '&::-webkit-scrollbar-thumb:active': {
       backgroundColor: palette.color.accentLight,
     },

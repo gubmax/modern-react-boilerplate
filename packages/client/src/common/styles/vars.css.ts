@@ -19,6 +19,7 @@ const commonVars = createGlobalTheme(':root', {
   color: {
     transparentBorder: 'rgba(0, 0, 0, 0.01)',
     white: 'rgb(224, 224, 224)',
+    black: 'rgb(64, 64, 64)',
   },
   borderRadius: {
     primary: '20px',
