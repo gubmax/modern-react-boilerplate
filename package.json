@@ -24,6 +24,7 @@
     "preview": "cd packages/server && npm run preview",
     "dev": "node -r esbuild-register scripts/watch",
     "debug": "cd packages/server && npm run debug",
+    "visualize": "cross-env VISUALIZE_MODE=on npm run build:client",
     "test": "jest",
     "coverage": "jest --coverage",
     "typecheck": "(tsc -p packages/client --noEmit) & (tsc -p packages/server --noEmit)",
@@ -52,6 +53,7 @@
     "jest": "27.5.1",
     "lint-staged": "12.1.7",
     "prettier": "2.5.1",
+    "rollup-plugin-visualizer": "5.5.4",
     "ts-node": "10.5.0",
     "typescript": "4.4.4"
   }
