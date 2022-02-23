@@ -22,7 +22,7 @@ process.env.NODE_ENV = 'production'
 process.env.PATHS = 'local'
 
 const logInfo = (fileName: string) =>
-  console.log(`    ${dim(`${PATH_DIST_CLIENT}/`)}${green(fileName)}`)
+  console.log(`  ${dim(`${PATH_DIST_CLIENT}/`)}${green(fileName)}`)
 
 function writeEntry({
   app,
@@ -46,7 +46,7 @@ function writeEntry({
 }
 
 async function renderMainEntry(indexHtml: string, assetCollector: AssetCollectorService) {
-  console.log(`  ${HtmlEntries.MAIN}`)
+  console.log(HtmlEntries.MAIN)
 
   const { entryPath, modulePath } = CONFIG_ENTRIES[HtmlEntries.MAIN]
 
@@ -65,7 +65,7 @@ async function renderMainEntry(indexHtml: string, assetCollector: AssetCollector
 }
 
 async function renderInternalErrorEntry(indexHtml: string, assetCollector: AssetCollectorService) {
-  console.log(`  ${HtmlEntries.INTERNAL_ERROR}`)
+  console.log(HtmlEntries.INTERNAL_ERROR)
 
   const { entryPath, modulePath } = CONFIG_ENTRIES[HtmlEntries.INTERNAL_ERROR]
 
@@ -86,7 +86,7 @@ void (async () => {
 
   const assetCollector = new AssetCollectorService(manifest)
 
-  console.log(cyan('pre-rendered:'))
+  console.log(`${cyan('pre-render script')} ${green('generating html files...')}`)
 
   await renderMainEntry(indexHtml, assetCollector)
   await renderInternalErrorEntry(indexHtml, assetCollector)
