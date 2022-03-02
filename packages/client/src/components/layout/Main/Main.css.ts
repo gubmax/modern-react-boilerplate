@@ -52,10 +52,10 @@ export const sidebar = style({
   '@media': {
     [MediaQueries.MIN_WIDTH_MOBILE]: {
       position: 'sticky',
-      top: `calc(${vars.sizes.headerHeight} + ${PADDING_TOP})`,
+      top: vars.sizes.headerHeight,
       bottom: 'unset',
       height: `calc(100vh - ${vars.sizes.headerHeight} - ${PADDING_TOP})`,
-      padding: `0 ${vars.space.s3}`,
+      padding: `${PADDING_TOP} ${vars.space.s3} 0`,
     },
 
     [MediaQueries.MIN_WIDTH_DESKTOP]: {

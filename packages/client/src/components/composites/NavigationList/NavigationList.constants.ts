@@ -1,8 +1,8 @@
 import { ElementType } from 'react'
 
-import { PageRoutes } from 'client/src/browser/http/constants'
 import { IconProps } from 'client/src/common/hocs/withIcon'
-import { InfoIcon, SettingsIcon, ShoppingCardIcon, ShowcaseIcon } from 'client/src/components/icons'
+import { PageRoutes } from 'client/src/browser/http/constants'
+import { CollectionIcon, SalesIcon, ScheduleIcon, ShowcaseIcon } from 'client/src/components/icons'
 
 export const ROUTES: Array<{
   to: PageRoutes
@@ -10,7 +10,7 @@ export const ROUTES: Array<{
   text: string
 }> = [
   { to: PageRoutes.ROOT, icon: ShowcaseIcon, text: 'Showcase' },
-  { to: PageRoutes.CART, icon: ShoppingCardIcon, text: 'Shopping Cart' },
-  { to: PageRoutes.ABOUT, icon: InfoIcon, text: 'About' },
-  { to: PageRoutes.SETTINGS, icon: SettingsIcon, text: 'Settings' },
+  { to: PageRoutes.COLLECTION, icon: CollectionIcon, text: 'My Collection' },
+  { to: PageRoutes.SALES, icon: SalesIcon, text: 'Sales' },
+  { to: PageRoutes.SCHEDULE, icon: ScheduleIcon, text: 'Schedule' },
 ]

@@ -4,10 +4,8 @@ export const HEADERS_DEFAULT = {
 
 export enum PageRoutes {
   ROOT = '/',
-  ABOUT = '/about',
   CART = '/cart',
   COLLECTION = '/collection',
   SALES = '/sales',
   SCHEDULE = '/schedule',
-  SETTINGS = '/settings',
 }

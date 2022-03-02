@@ -10,7 +10,7 @@ export const wrapper = style([
   }),
   {
     height: vars.sizes.headerHeight,
-    padding: `0 ${vars.space.s1} 0 ${vars.space.s2}`,
+    padding: 0,
     borderRadius: `0 0 ${vars.borderRadius.primary} ${vars.borderRadius.primary}`,
 
     '@media': {
@@ -21,9 +21,19 @@ export const wrapper = style([
   },
 ])
 
-export const marginLeft = style([
-  gridAtom({ marginLeft: 'auto' }),
+export const linkLogo = style([
+  gridAtom({ flexShrink: 0 }),
   {
-    marginRight: vars.space.s3,
+    marginLeft: vars.space.s2,
+
+    '@media': {
+      [MediaQueries.MIN_WIDTH_MOBILE]: {
+        marginLeft: 'unset',
+      },
+    },
   },
 ])
+
+export const linkRepo = style({
+  marginLeft: vars.space.s3,
+})

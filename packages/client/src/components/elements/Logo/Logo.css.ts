@@ -12,7 +12,7 @@ export const title = style({
   display: 'none',
 
   '@media': {
-    [MediaQueries.MIN_WIDTH_MOBILE]: { display: 'unset' },
+    [MediaQueries.MIN_WIDTH_TABLET]: { display: 'unset' },
   },
 })
 

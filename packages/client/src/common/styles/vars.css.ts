@@ -29,6 +29,7 @@ const commonVars = createGlobalTheme(':root', {
 const varsContract = createThemeContract({
   fontSize: {
     primary: null,
+    secondary: null,
     accent: null,
     h1: null,
     h2: null,
@@ -50,6 +51,7 @@ const varsContract = createThemeContract({
 export const desktopVars = assignVars(varsContract, {
   fontSize: {
     primary: size(14),
+    secondary: size(13),
     accent: size(16),
     h3: size(20),
     h2: size(24),
@@ -71,6 +73,7 @@ export const desktopVars = assignVars(varsContract, {
 export const mobileVars = assignVars(varsContract, {
   fontSize: {
     primary: size(14),
+    secondary: size(13),
     accent: size(16),
     h3: size(20),
     h2: size(24),
