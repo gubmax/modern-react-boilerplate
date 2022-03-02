@@ -11,7 +11,7 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
-    "module": "CommonJS",
+    "module": "ESNext",
     "moduleResolution": "Node",
     "isolatedModules": true,
     "emitDecoratorMetadata": true,
