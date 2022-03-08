@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
+import { MediaQueries } from 'client/src/common/constants/media'
 import { gridAtom, vars } from 'client/src/common/styles'
 
 export const wrapper = style({
@@ -22,6 +23,15 @@ export const buttonsGroup = gridAtom({
 
 export const button = style({
   marginRight: vars.space.s1,
+  width: '100%',
+  minWidth: 'unset',
 
   ':last-child': { marginRight: 0 },
+
+  '@media': {
+    [MediaQueries.MIN_WIDTH_MOBILE]: {
+      width: 'unset',
+      minWidth: '10rem',
+    },
+  },
 })

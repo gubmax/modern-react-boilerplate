@@ -70,6 +70,28 @@ export const desktopVars = assignVars(varsContract, {
   },
 })
 
+export const tabletVars = assignVars(varsContract, {
+  fontSize: {
+    primary: size(14),
+    secondary: size(13),
+    accent: size(16),
+    h3: size(20),
+    h2: size(24),
+    h1: size(34),
+  },
+  space: {
+    s0: size(4),
+    s1: size(10),
+    s2: size(12),
+    s3: size(20),
+    s4: size(38),
+  },
+  icons: {
+    small: size(24),
+    huge: size(112),
+  },
+})
+
 export const mobileVars = assignVars(varsContract, {
   fontSize: {
     primary: size(14),

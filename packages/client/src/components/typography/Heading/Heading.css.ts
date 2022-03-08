@@ -6,6 +6,7 @@ export const heading = recipe({
   base: {
     display: 'block',
     letterSpacing: '0.05rem',
+    lineHeight: 1,
   },
 
   variants: {

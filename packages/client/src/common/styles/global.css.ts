@@ -2,7 +2,7 @@ import { globalStyle, keyframes } from '@vanilla-extract/css'
 import { MediaQueries } from '../constants/media'
 
 import { darkPalette, ligthPalette, palette } from './palette.css'
-import { desktopVars, mobileVars, vars } from './vars.css'
+import { desktopVars, mobileVars, tabletVars, vars } from './vars.css'
 
 globalStyle('*, *::before, *::after', {
   boxSizing: 'border-box',
@@ -49,9 +49,8 @@ globalStyle(':root', {
   colorScheme: 'light',
   vars: { ...mobileVars, ...ligthPalette },
   '@media': {
-    [MediaQueries.MIN_WIDTH_MOBILE]: {
-      vars: desktopVars,
-    },
+    [MediaQueries.MIN_WIDTH_MOBILE]: { vars: tabletVars },
+    [MediaQueries.MIN_WIDTH_TABLET]: { vars: desktopVars },
     '(prefers-color-scheme: dark)': {
       colorScheme: 'dark',
       vars: darkPalette,

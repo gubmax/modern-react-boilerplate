@@ -55,7 +55,7 @@ export const sidebar = style({
       top: vars.sizes.headerHeight,
       bottom: 'unset',
       height: `calc(100vh - ${vars.sizes.headerHeight} - ${PADDING_TOP})`,
-      padding: `${PADDING_TOP} ${vars.space.s3} 0`,
+      padding: `${PADDING_TOP} ${vars.space.s1} 0 ${vars.space.s3}`,
     },
 
     [MediaQueries.MIN_WIDTH_DESKTOP]: {
