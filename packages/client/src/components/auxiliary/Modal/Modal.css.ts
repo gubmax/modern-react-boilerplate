@@ -1,8 +1,9 @@
-import { style } from '@vanilla-extract/css'
+import { keyframes, style } from '@vanilla-extract/css'
 
 import { MediaQueries } from 'client/src/common/constants/media'
 import { ScreenSizes } from 'client/src/common/constants/screen'
 import { palette, vars } from 'client/src/common/styles'
+import { TRANSITION_TIMEOUT } from './Modal.constants'
 
 export const noScroll = style({
   position: 'fixed',
@@ -59,4 +60,31 @@ export const body = style({
 
 export const closeButton = style({
   marginLeft: 'auto',
+})
+
+// Fade-in transition
+
+const fadeInWrapper = keyframes({
+  from: { opacity: 0, transform: 'translateY(3rem) scale(0.9)' },
+  to: { opacity: 1, transform: 'translateY(0) scale(1)' },
+})
+
+export const animateWrapper = style({
+  transitionTimingFunction: 'linear',
+  animationName: fadeInWrapper,
+})
+
+const fadeInBg = keyframes({
+  from: { opacity: 0 },
+  to: { opacity: 1 },
+})
+
+export const animateBg = style({
+  transitionTimingFunction: 'ease',
+  animationName: fadeInBg,
+})
+
+export const animationBase = style({
+  animationDuration: `${TRANSITION_TIMEOUT}ms`,
+  animationFillMode: 'forwards',
 })
