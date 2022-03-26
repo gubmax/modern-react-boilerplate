@@ -1,3 +1,5 @@
+export { default as ChevronLeftIcon } from './ChevronLeft.icon'
+export { default as ChevronRightIcon } from './ChevronRight.icon'
 export { default as CloseIcon } from './Close.icon'
 export { default as CollectionIcon } from './Collection.icon'
 export { default as EmptyShoppingCartIcon } from './EmptyShoppingCart.icon'

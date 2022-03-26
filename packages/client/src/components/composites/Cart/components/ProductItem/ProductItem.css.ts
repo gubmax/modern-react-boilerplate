@@ -7,16 +7,14 @@ export const wrapper = gridAtom({ display: 'flex' })
 export const title = style({ marginRight: vars.space.s3 })
 
 export const body = style([
-  gridAtom({ display: 'flex' }),
-  gridAtom({ flexDirection: 'column' }),
+  gridAtom({ display: 'flex', flexDirection: 'column' }),
   { width: '100%' },
 ])
 
 export const header = style([gridAtom({ display: 'flex' }), { marginBottom: vars.space.s1 }])
 
 export const footer = style([
-  gridAtom({ display: 'flex' }),
-  gridAtom({ justifyContent: 'flex-end' }),
+  gridAtom({ display: 'flex', justifyContent: 'flex-end' }),
   { marginTop: 'auto' },
 ])
 

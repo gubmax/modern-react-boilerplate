@@ -2,6 +2,7 @@ import type { Response } from 'express'
 // @ts-expect-error: TODO: Add type
 import { renderToPipeableStream as render } from 'react-dom/server'
 
+import { CLIENT_CONFIG, ClientConfig } from 'shared/constants/clientConfig'
 import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
 import { HtmlMarks } from 'server/src/common/constants/html'
 
@@ -19,10 +20,17 @@ interface WriteTemplateArg {
   html: string
   app: JSX.Element
   res: Response
+  clientConfig: ClientConfig
   serverSideProps: ServerSideProps
 }
 
-export function writeTemplate({ html, app, res, serverSideProps = {} }: WriteTemplateArg): void {
+export function writeTemplate({
+  html,
+  app,
+  res,
+  clientConfig = {},
+  serverSideProps = {},
+}: WriteTemplateArg): void {
   let didError = false
 
   const stream = renderToPipeableStream(app, {
@@ -30,16 +38,17 @@ export function writeTemplate({ html, app, res, serverSideProps = {} }: WriteTem
       res.statusCode = didError ? 500 : 200
       res.setHeader('Content-type', 'text/html')
 
-      //  Server-side props
-      const serverSidePropsTag = `
-        <script type="text/javascript" id="serverSideProps">
+      //  Initial data
+      const initialDataTag = `
+        <script type="text/javascript" id="initialData">
+          window.${CLIENT_CONFIG} = ${JSON.stringify(clientConfig)};
           window.${SERVER_SIDE_PROPS} = ${JSON.stringify(serverSideProps)};
-          document.getElementById('serverSideProps').remove();
+          document.getElementById('initialData').remove();
         </script>
       `
 
       // Assets
-      html = html.replace(HtmlMarks.ASSETS, `${HtmlMarks.ASSETS}${serverSidePropsTag}`)
+      html = html.replace(HtmlMarks.ASSETS, `${HtmlMarks.ASSETS}${initialDataTag}`)
 
       //  Writing
 

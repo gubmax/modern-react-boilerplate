@@ -7,6 +7,7 @@ import { AssetCollectorModule } from './assetCollector'
 import { CartModule } from './cart'
 import { LoggerModule } from './logger'
 import { RenderModule } from './render'
+import { UserAgentParserModule } from './userAgentParser'
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { RenderModule } from './render'
     }),
     LoggerModule,
     RenderModule,
+    UserAgentParserModule,
   ],
 })
 export class AppModule {

@@ -1,12 +1,14 @@
 import { hydrateRoot } from 'react-dom'
 // import { registerSW } from 'virtual:pwa-register'
 
+import { ClientConfig, CLIENT_CONFIG } from 'shared/constants/clientConfig'
 import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
 import { reportWebVitals } from './browser/http/reportWebVitals'
 import { renderMainTemplate } from './entries/main.entry'
 
-// Server-side props
+// Initial data
 
+const clientConfig: ClientConfig = window[CLIENT_CONFIG] || {}
 const serverSideProps: ServerSideProps = window[SERVER_SIDE_PROPS] || {}
 
 // Bootstrap
@@ -14,7 +16,7 @@ const serverSideProps: ServerSideProps = window[SERVER_SIDE_PROPS] || {}
 const container = document.getElementById('root') || document.body
 const root = hydrateRoot(container, [])
 
-root.render(renderMainTemplate(serverSideProps))
+root.render(renderMainTemplate(clientConfig, serverSideProps))
 
 // Service Worker
 // registerSW()

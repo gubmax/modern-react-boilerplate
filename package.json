@@ -18,9 +18,9 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node dist/server",
     "build": "npm run build:client && npm run build:server && npm run prerender",
-    "build:client": "cd packages/client && npm run build:static && npm run build:render",
-    "build:server": "node -r esbuild-register scripts/build",
-    "prerender": "node -r esbuild-register scripts/prerender",
+    "build:client": "cd packages/client && npm run build && npm run build:server",
+    "build:server": "cross-env PATHS=build node -r esbuild-register scripts/build",
+    "prerender": "cross-env NODE_ENV=production PATHS=build node -r esbuild-register scripts/prerender",
     "preview": "cd packages/server && npm run preview",
     "dev": "node -r esbuild-register scripts/watch",
     "debug": "cd packages/server && npm run debug",

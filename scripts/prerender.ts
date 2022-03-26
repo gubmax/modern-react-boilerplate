@@ -6,23 +6,19 @@ import { renderToString } from 'react-dom/server'
 import { cyan, dim, green } from 'chalk'
 import { Manifest } from 'vite'
 
-import { CONFIG_ENTRIES, CONFIG_SSG_ROUTES } from 'server/config'
 import {
-  PATH_RESOLVED_DIST_INDEX_HTML,
-  PATH_RESOLVED_DIST_CLIENT,
-  PATH_RESOLVED_DIST_MANIFEST,
-  PATH_DIST_CLIENT,
+  PATH_RESOLVED_INDEX_HTML,
+  PATH_RESOLVED_CLIENT,
+  PATH_CLIENT,
+  PATH_RESOLVED_BUILD,
 } from 'shared/constants/paths'
+import { CONFIG_ENTRIES, CONFIG_SSG_ROUTES } from 'server/config'
 import { HtmlEntries, HtmlMarks } from 'server/src/common/constants/html'
 import { AssetCollectorService } from 'server/src/modules/assetCollector'
 import { renderServerMainTemplate as RenderServerMainTemplate } from 'client/src/entries/main.server.entry'
 import { renderInternalErrorTemplate as RenderInternalErrorTemplate } from 'client/src/entries/internalError.entry'
 
-process.env.NODE_ENV = 'production'
-process.env.PATHS = 'local'
-
-const logInfo = (fileName: string) =>
-  console.log(`  ${dim(`${PATH_DIST_CLIENT}/`)}${green(fileName)}`)
+const logInfo = (fileName: string) => console.log(`  ${dim(`${PATH_CLIENT}/`)}${green(fileName)}`)
 
 function writeEntry({
   app,
@@ -42,7 +38,7 @@ function writeEntry({
   let html = indexHtml.replace(HtmlMarks.SSR_OUTLER, ssrOutlet)
   html = assetCollector.injectByModulePaths(html, [modulePath])
 
-  writeFileSync(`${PATH_RESOLVED_DIST_CLIENT}/${fileName}`, html)
+  writeFileSync(`${PATH_RESOLVED_CLIENT}/${fileName}`, html)
 }
 
 async function renderMainEntry(indexHtml: string, assetCollector: AssetCollectorService) {
@@ -81,8 +77,10 @@ async function renderInternalErrorEntry(indexHtml: string, assetCollector: Asset
 }
 
 void (async () => {
-  const indexHtml = readFileSync(PATH_RESOLVED_DIST_INDEX_HTML, 'utf-8')
-  const manifest = JSON.parse(readFileSync(PATH_RESOLVED_DIST_MANIFEST, 'utf-8')) as Manifest
+  const indexHtml = readFileSync(PATH_RESOLVED_INDEX_HTML, 'utf-8')
+  const manifest = JSON.parse(
+    readFileSync(`${PATH_RESOLVED_BUILD}/${PATH_CLIENT}/manifest.json`, 'utf-8'),
+  ) as Manifest
 
   const assetCollector = new AssetCollectorService(manifest)
 

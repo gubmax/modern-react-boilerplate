@@ -1,39 +1,30 @@
 import { resolve } from 'path'
-import { realpathSync } from 'fs'
 
-const ABSOLUTE_PATH =
-  process.env.NODE_ENV === 'production' && process.env.PATHS !== 'local'
-    ? realpathSync(`${__dirname}/../../`)
-    : realpathSync(`${__dirname}/../../../`)
+export const PATH_RESOLVED_PROD = resolve(`${__dirname}/../../dist`)
+export const PATH_RESOLVED_BUILD = resolve(`${__dirname}/../../../dist`)
+export const PATH_RESOLVED_LOCAL = resolve(`${__dirname}/../../`)
 
-export function resolvePath(relativePath: string): string {
-  return resolve(ABSOLUTE_PATH, relativePath)
+const ENV_PROD = process.env.NODE_ENV === 'production'
+const ENV_BUILD = process.env.PATHS === 'build'
+const PATH_ROOT = ENV_BUILD
+  ? PATH_RESOLVED_BUILD
+  : ENV_PROD
+  ? PATH_RESOLVED_PROD
+  : PATH_RESOLVED_LOCAL
+
+export const PATH_CLIENT = 'client'
+export const PATH_PUBLIC = ENV_PROD ? PATH_CLIENT : `${PATH_CLIENT}/public`
+export const PATH_SERVER = 'server'
+export const PATH_SHARED = 'shared'
+export const PATH_INDEX_HTML = `${PATH_PUBLIC}/index.html`
+export const PATH_CLIENT_MANIFEST = `${PATH_CLIENT}/manifest.json`
+
+function resolveAbsolutePath(relativePath: string): string {
+  return resolve(PATH_ROOT, relativePath)
 }
 
-// Relative paths
-
-export const PATH_DIST_CLIENT = 'dist/client'
-export const PATH_DIST_SERVER = 'dist/server'
-export const PATH_DIST_INDEX_HTML = `${PATH_DIST_CLIENT}/index.html`
-export const PATH_DIST_MANIFEST = `${PATH_DIST_CLIENT}/manifest.json`
-
-export const PATH_CLIENT = 'packages/client'
-export const PATH_PUBLIC = 'packages/client/public'
-export const PATH_SERVER = 'packages/server'
-export const PATH_SHARED = 'packages/shared'
-export const PATH_INDEX_HTML = `${PATH_PUBLIC}/index.html`
-export const PATH_CLIENT_PAGES = `${PATH_CLIENT}/src/components/pages`
-
-// Absolute paths
-
-export const PATH_RESOLVED_PACKAGES = resolvePath('packages')
-export const PATH_RESOLVED_DIST_CLIENT = resolvePath(PATH_DIST_CLIENT)
-export const PATH_RESOLVED_DIST_SERVER = resolvePath(PATH_DIST_SERVER)
-export const PATH_RESOLVED_DIST_INDEX_HTML = resolvePath(PATH_DIST_INDEX_HTML)
-export const PATH_RESOLVED_DIST_MANIFEST = resolvePath(PATH_DIST_MANIFEST)
-
-export const PATH_RESOLVED_CLIENT = resolvePath(PATH_CLIENT)
-export const PATH_RESOLVED_SERVER = resolvePath(PATH_SERVER)
-export const PATH_RESOLVED_SHARED = resolvePath(PATH_SHARED)
-export const PATH_RESOLVED_DEV_INDEX_HTML = resolvePath(PATH_INDEX_HTML)
-export const PATH_RESOLVED_CLIENT_PAGES = resolvePath(PATH_CLIENT_PAGES)
+export const PATH_RESOLVED_CLIENT = resolveAbsolutePath(PATH_CLIENT)
+export const PATH_RESOLVED_SERVER = resolveAbsolutePath(PATH_SERVER)
+export const PATH_RESOLVED_SHARED = resolveAbsolutePath(PATH_SHARED)
+export const PATH_RESOLVED_INDEX_HTML = resolveAbsolutePath(PATH_INDEX_HTML)
+export const PATH_RESOLVED_CLIENT_MANIFEST = resolveAbsolutePath(PATH_CLIENT_MANIFEST)

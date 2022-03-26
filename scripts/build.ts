@@ -1,11 +1,9 @@
 import { build } from 'esbuild'
 import { cyan, dim, green } from 'chalk'
 
-import { PATH_DIST_SERVER, PATH_RESOLVED_DIST_SERVER } from 'shared/constants/paths'
+import { PATH_SERVER, PATH_RESOLVED_SERVER } from 'shared/constants/paths'
 import serverPackage from 'server/package.json'
 import clientPackage from 'client/package.json'
-
-process.env.NODE_ENV = 'production'
 
 const ENTRY_MAIN = 'packages/server/src/main.ts'
 const OUTFILE_NAME = 'index.js'
@@ -29,12 +27,12 @@ build({
   sourcemap: false,
   external: [...getExternal(serverPackage), ...getExternal(clientPackage)],
   entryPoints: [ENTRY_MAIN],
-  outfile: `${PATH_RESOLVED_DIST_SERVER}/${OUTFILE_NAME}`,
+  outfile: `${PATH_RESOLVED_SERVER}/${OUTFILE_NAME}`,
   format: 'cjs',
   tsconfig: './tsconfig.json',
 })
   .then(() => {
     console.log('outfile')
-    console.log(dim(`  ${PATH_DIST_SERVER}/${OUTFILE_NAME}`))
+    console.log(dim(`  ${PATH_SERVER}/${OUTFILE_NAME}`))
   })
   .catch(() => process.exit())

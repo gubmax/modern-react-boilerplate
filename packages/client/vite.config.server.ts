@@ -3,14 +3,11 @@ import { resolve } from 'path'
 import react from '@vitejs/plugin-react'
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 
-import { PATH_DIST_SERVER } from '../../shared/constants/paths'
-import { HtmlEntries } from '../../server/src/common/constants/html'
+import { PATH_SERVER } from '../shared/constants/paths'
+import { HtmlEntries } from '../server/src/common/constants/html'
 
-const ENTRY_PATH_MAIN = resolve(__dirname, `../src/entries/${HtmlEntries.MAIN}.server.entry.tsx`)
-const ENTRY_PATH_INTERNAL_ERROR = resolve(
-  __dirname,
-  `../src/entries/${HtmlEntries.INTERNAL_ERROR}.entry.tsx`,
-)
+const ENTRY_PATH_MAIN = `./src/entries/${HtmlEntries.MAIN}.server.entry.tsx`
+const ENTRY_PATH_INTERNAL_ERROR = `./src/entries/${HtmlEntries.INTERNAL_ERROR}.entry.tsx`
 
 /**
  * @link https://vitejs.dev/config/
@@ -18,18 +15,18 @@ const ENTRY_PATH_INTERNAL_ERROR = resolve(
 const config: UserConfig = {
   publicDir: false,
   clearScreen: false,
-  plugins: [vanillaExtractPlugin(), react()],
+  plugins: [react(), vanillaExtractPlugin()],
   resolve: {
     alias: {
-      client: resolve(__dirname, '../../client'),
-      server: resolve(__dirname, '../../server'),
-      shared: resolve(__dirname, '../../shared'),
+      client: __dirname,
+      server: resolve(__dirname, '../server'),
+      shared: resolve(__dirname, '../shared'),
     },
   },
   build: {
     ssr: true,
     emptyOutDir: true,
-    outDir: resolve(__dirname, `../../../${PATH_DIST_SERVER}`),
+    outDir: `../../dist/${PATH_SERVER}`,
     rollupOptions: {
       input: {
         [HtmlEntries.MAIN]: ENTRY_PATH_MAIN,

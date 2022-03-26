@@ -6,15 +6,16 @@ import type { Request, Response } from 'express'
 import { renderToString } from 'react-dom/server'
 import { createServer, ModuleNode, ViteDevServer } from 'vite'
 
+import { PATH_RESOLVED_INDEX_HTML } from 'shared/constants/paths'
 import { InternalServerException } from 'shared/exceptions/exceptions'
 import { renderServerMainTemplate as RenderServerMainTemplate } from 'client/src/entries/main.server.entry'
 import { renderInternalErrorTemplate as RenderInternalErrorTemplate } from 'client/src/entries/internalError.entry'
+import viteDevServerConfig from 'client/vite.config.server'
 import { CONFIG_ENTRIES } from 'server/config'
-import viteDevServerConfig from 'client/config/vite.server.config'
-import { PATH_RESOLVED_DEV_INDEX_HTML } from 'shared/constants/paths'
 import { HtmlEntries, HtmlMarks } from 'server/src/common/constants/html'
 import { DevelopmentAssetCollectorService } from '../assetCollector'
 import { HttpClientService } from '../httpClient'
+import { UserAgentParserService } from '../userAgentParser'
 import { fetchPageProps } from './utils/fetchPageProps'
 import { writeTemplate } from './utils/writeTemplate'
 import { RenderService } from './render.service'
@@ -26,9 +27,10 @@ export class DevelopmentRenderService extends RenderService {
   constructor(
     protected readonly config: ConfigService,
     protected readonly httpClient: HttpClientService,
-    protected assetCollector: DevelopmentAssetCollectorService,
+    protected readonly assetCollector: DevelopmentAssetCollectorService,
+    protected readonly userAgentParser: UserAgentParserService,
   ) {
-    super(config, httpClient, assetCollector)
+    super(config, httpClient, assetCollector, userAgentParser)
   }
 
   /**
@@ -73,32 +75,41 @@ export class DevelopmentRenderService extends RenderService {
   }
 
   private readHtmlSync(): string {
-    return readFileSync(PATH_RESOLVED_DEV_INDEX_HTML, 'utf-8')
+    return readFileSync(PATH_RESOLVED_INDEX_HTML, 'utf-8')
   }
 
   async renderMainEntry(req: Request, res: Response): Promise<void> {
-    const { url } = req
     const { entryDevPath, moduleDevPath } = CONFIG_ENTRIES[HtmlEntries.MAIN]
+
+    // Client config
+
+    const clientConfig = {
+      deviceType: this.getDeviceType(req),
+    }
+
+    // Render client
 
     let html = this.readHtmlSync()
     html = this.assetCollector.injectUrls(html, [{ url: moduleDevPath, isEntry: true }])
 
     const [template, appModule, { renderServerMainTemplate }] = await this.renderTemplate<{
       renderServerMainTemplate: typeof RenderServerMainTemplate
-    }>(url, entryDevPath, html)
+    }>(req.url, entryDevPath, html)
 
-    const serverSideProps = await fetchPageProps(url, this.httpClient)
+    const serverSideProps = await fetchPageProps(req.url, this.httpClient)
+    const app = renderServerMainTemplate(req.url, clientConfig, serverSideProps)
+
+    // Inject assets
 
     html = template
     html = this.assetCollector.injectByModule(template, appModule)
 
-    const app = renderServerMainTemplate(url, serverSideProps)
+    // Write
 
-    writeTemplate({ html, app, res, serverSideProps })
+    writeTemplate({ html, app, res, clientConfig, serverSideProps })
   }
 
   async renderInternalErrorEntry(req: Request, res: Response): Promise<void> {
-    const { url } = req
     const { entryDevPath, moduleDevPath } = CONFIG_ENTRIES[HtmlEntries.INTERNAL_ERROR]
 
     let html = this.readHtmlSync()
@@ -106,7 +117,7 @@ export class DevelopmentRenderService extends RenderService {
 
     const [template, appModule, { renderInternalErrorTemplate }] = await this.renderTemplate<{
       renderInternalErrorTemplate: typeof RenderInternalErrorTemplate
-    }>(url, entryDevPath, html)
+    }>(req.url, entryDevPath, html)
 
     html = template
     html = this.assetCollector.injectByModule(html, appModule)

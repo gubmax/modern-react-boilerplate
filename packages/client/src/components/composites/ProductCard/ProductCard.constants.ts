@@ -1,4 +1,4 @@
-import * as s from './ProductCardList.css'
+import * as s from './ProductCard.css'
 
 export enum ProductBackgrounds {
   bg0 = 'bg0',

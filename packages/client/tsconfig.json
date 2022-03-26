@@ -4,6 +4,7 @@
     "types": [
       "react/next",
       "react-dom/next",
+      "vite/client",
       "vite-plugin-pwa/client",
       "reflect-metadata"
     ],

@@ -5,9 +5,9 @@
     "url": "https://github.com/gubmax/modern-react-boilerplate.git",
     "directory": "packages/client"
   },
-  "scripts": { 
-    "build:static": "vite build -c config/vite.config.ts",
-    "build:render": "vite build -c config/vite.server.config.ts"
+  "scripts": {
+    "build": "cross-env PATHS=build vite build -c vite.config.ts",
+    "build:server": "cross-env PATHS=build vite build -c vite.config.server.ts"
   },
   "dependencies": {
     "@vanilla-extract/css": "1.6.8",

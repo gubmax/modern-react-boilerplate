@@ -2,19 +2,18 @@ import { spawn } from 'child_process'
 import { yellow } from 'chalk'
 import watcher from '@parcel/watcher'
 
-import serverPackage from 'server/package.json'
-
 import {
-  PATH_RESOLVED_PACKAGES,
+  PATH_RESOLVED_CLIENT,
   PATH_RESOLVED_SERVER,
   PATH_RESOLVED_SHARED,
 } from 'shared/constants/paths'
+import serverPackage from 'server/package.json'
 
 const DIRECTORIES = [PATH_RESOLVED_SERVER, PATH_RESOLVED_SHARED]
 const OPTIONS = {
   ignore: [
-    `${PATH_RESOLVED_PACKAGES}/client/node_modules/.vite`,
-    `${PATH_RESOLVED_PACKAGES}/server/node_modules/.vite`,
+    `${PATH_RESOLVED_CLIENT}/node_modules/.vite`,
+    `${PATH_RESOLVED_SERVER}/node_modules/.vite`,
   ],
 }
 
