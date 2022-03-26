@@ -1,6 +1,7 @@
 FROM node:16-alpine
 
 COPY ./packages ./packages
+COPY ./scripts ./scripts
 COPY ./package*.json .
 COPY ./tsconfig.json .
 
