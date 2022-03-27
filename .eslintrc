@@ -38,6 +38,10 @@
     {
       "files": "packages/client/**/*",
       "extends": "plugin:react-hooks/recommended"
+    },
+    {
+      "files": "*.d.ts",
+      "rules": { "no-var": "off" }
     }
   ],
   "ignorePatterns": [
