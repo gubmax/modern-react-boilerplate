@@ -1,7 +1,7 @@
 import { VFC } from 'react'
 
 import { useInject } from 'client/src/common/hooks/useInject'
-import { useObservableState } from 'client/src/common/hooks/useObservableState'
+import { useBehaviorSubjectSubscription } from 'client/src/common/hooks/useBehaviorSubjectSubscription'
 import { H3 } from 'client/src/components/typography/Heading'
 import { ProductList } from './components/ProductList'
 import { EmptyMessage } from './components/EmptyMessage'
@@ -12,9 +12,7 @@ import * as s from './Cart.css'
 
 const Cart: VFC<CartProps> = ({ loading }) => {
   const { products$, totalPrice } = useInject(CartModel)
-  const products = products$.value
-
-  useObservableState(products$)
+  const products = useBehaviorSubjectSubscription(products$)
 
   if (loading) return <CartSkeleton />
 

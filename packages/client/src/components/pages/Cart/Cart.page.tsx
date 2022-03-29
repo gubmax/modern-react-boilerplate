@@ -2,7 +2,7 @@ import { FC, lazy, Suspense } from 'react'
 
 import { useDocumentTitle } from 'client/src/common/hooks/useDocumentTitle'
 import { useInject } from 'client/src/common/hooks/useInject'
-import { useObservableState } from 'client/src/common/hooks/useObservableState'
+import { useBehaviorSubjectSubscription } from 'client/src/common/hooks/useBehaviorSubjectSubscription'
 import { useServerSidePropsQueryLoader } from 'client/src/common/hooks/useServerSidePropsQueryLoader'
 import { PageLoader } from 'client/src/components/composites/PageLoader'
 import { H1 } from 'client/src/components/typography/Heading'
@@ -17,13 +17,13 @@ const CartPage: FC = () => {
   const sspQueryModel = useInject(CartSspQueryModel)
 
   useServerSidePropsQueryLoader(sspQueryModel)
-  useObservableState(sspQueryModel.query$)
+  const { loading } = useBehaviorSubjectSubscription(sspQueryModel.query$)
 
   return (
     <>
       <H1>{PAGE_TITLE}</H1>
       <Suspense fallback={<PageLoader />}>
-        <Cart loading={sspQueryModel.query$.value.loading} />
+        <Cart loading={loading} />
       </Suspense>
     </>
   )

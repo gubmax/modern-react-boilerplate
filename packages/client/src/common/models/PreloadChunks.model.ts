@@ -33,10 +33,6 @@ export class PreloadChunksModel<T = unknown> extends QueryModel<Chunk> {
 
   // Public
 
-  get status() {
-    return this.query$.value.status
-  }
-
   preload = (options: PreloadOptions<T>): void => {
     this.#preloadSubject$.next(options)
   }
