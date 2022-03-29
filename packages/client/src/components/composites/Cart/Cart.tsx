@@ -3,14 +3,14 @@ import { VFC } from 'react'
 import { useInject } from 'client/src/common/hooks/useInject'
 import { useObservableState } from 'client/src/common/hooks/useObservableState'
 import { H3 } from 'client/src/components/typography/Heading'
-import { LoadingProp } from 'client/src/common/typings'
 import { ProductList } from './components/ProductList'
 import { EmptyMessage } from './components/EmptyMessage'
 import { CartModel } from './models'
 import { CartSkeleton } from './Cart.skeleton'
+import { CartProps } from './Cart.types'
 import * as s from './Cart.css'
 
-const Cart: VFC<LoadingProp> = ({ loading }) => {
+const Cart: VFC<CartProps> = ({ loading }) => {
   const { products$, totalPrice } = useInject(CartModel)
   const products = products$.value
 

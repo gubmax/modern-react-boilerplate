@@ -8,6 +8,7 @@ export interface QueryState<T> {
 }
 
 export type QueryAction<T> =
+  | { type: QueryStatuses.IDLE }
   | { type: QueryStatuses.LOADING }
   | { type: QueryStatuses.SUCCESS; payload: T }
   | { type: QueryStatuses.FAILURE; payload: unknown }

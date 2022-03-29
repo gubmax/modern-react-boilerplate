@@ -4,13 +4,21 @@ import { QueryStatuses } from './query.constants'
 import { QueryState, QueryAction } from './query.types'
 
 export abstract class QueryModel<R> {
-  readonly state$ = new BehaviorSubject<QueryState<R>>({
+  readonly query$ = new BehaviorSubject<QueryState<R>>({
     status: QueryStatuses.IDLE,
     loading: false,
   })
 
-  #getActionState = (action: QueryAction<R>) => {
+  #reduce = (action: QueryAction<R>) => {
     switch (action.type) {
+      case QueryStatuses.IDLE:
+        return {
+          status: QueryStatuses.IDLE,
+          loading: false,
+          response: undefined,
+          error: undefined,
+        }
+
       case QueryStatuses.LOADING:
         return {
           status: QueryStatuses.LOADING,
@@ -35,23 +43,29 @@ export abstract class QueryModel<R> {
     }
   }
 
-  #reduce = (action: QueryAction<R>): void => {
-    this.state$.next(this.#getActionState(action))
-  }
-
-  setLoading(): void {
-    this.#reduce({ type: QueryStatuses.LOADING })
+  #dispatch = (action: QueryAction<R>): void => {
+    this.query$.next(this.#reduce(action))
   }
 
   protected async run(callback: () => Promise<R>): Promise<R> {
     try {
-      this.#reduce({ type: QueryStatuses.LOADING })
+      this.#dispatch({ type: QueryStatuses.LOADING })
       const res = await callback()
-      this.#reduce({ type: QueryStatuses.SUCCESS, payload: res })
+      this.#dispatch({ type: QueryStatuses.SUCCESS, payload: res })
       return res
     } catch (error: unknown) {
-      this.#reduce({ type: QueryStatuses.FAILURE, payload: error })
+      this.#dispatch({ type: QueryStatuses.FAILURE, payload: error })
       throw error
     }
+  }
+
+  // Public
+
+  reset(): void {
+    this.#dispatch({ type: QueryStatuses.IDLE })
+  }
+
+  setLoading(): void {
+    this.#dispatch({ type: QueryStatuses.LOADING })
   }
 }

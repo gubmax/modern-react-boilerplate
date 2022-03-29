@@ -3,6 +3,7 @@ import { CONFIG_SSR_ROUTES } from 'server/config'
 import { InternalServerException } from 'shared/exceptions'
 import { HttpClientImpl } from 'shared/http/types'
 import { GetServerSideProps } from 'shared/utils/serverSideProps'
+import { PATH_RESOLVED_CLIENT } from 'shared/constants/paths'
 
 export async function fetchPageProps(
   url: string,
@@ -12,7 +13,7 @@ export async function fetchPageProps(
 
   if (!path) return {}
 
-  const { getServerSideProps } = (await require(path)) as {
+  const { getServerSideProps } = (await require(`${PATH_RESOLVED_CLIENT}/${path}`)) as {
     getServerSideProps?: GetServerSideProps<ServerSideProps>
   }
 

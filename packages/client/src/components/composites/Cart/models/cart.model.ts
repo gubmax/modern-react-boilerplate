@@ -25,7 +25,7 @@ export class CartModel {
   ) {
     this.products$ = new BehaviorSubject(serverSideProps.products || [])
 
-    cartSspQueryModel.state$.subscribe(({ response: { products } = {} }) => {
+    cartSspQueryModel.query$.subscribe(({ response: { products } = {} }) => {
       products && this.products$.next(products)
     })
 

@@ -27,7 +27,7 @@ export function useServerSidePropsQueryLoader<T>(
   })
 
   useEffect(() => {
-    if (model.state$.value.loading) {
+    if (model.query$.value.loading) {
       void model.send()
     }
   }, [model])

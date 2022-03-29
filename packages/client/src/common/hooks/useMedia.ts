@@ -9,10 +9,10 @@ function matchMedia(query: string): boolean {
 
 export const useMedia = (query: string): boolean => {
   const [value, setValue] = useState(matchMedia(query))
-  const windowResizeObserverModel = useInject(WindowResizeObserverModel)
+  const { resize$ } = useInject(WindowResizeObserverModel)
 
   useEffect(() => {
-    const unsubscribe = windowResizeObserverModel.subscribe(() => {
+    const subscription = resize$.subscribe(() => {
       const matches = matchMedia(query)
 
       if (matches !== value) {
@@ -20,8 +20,8 @@ export const useMedia = (query: string): boolean => {
       }
     })
 
-    return () => unsubscribe()
-  }, [query, value, windowResizeObserverModel])
+    return () => subscription.unsubscribe()
+  }, [query, resize$, value])
 
   return value
 }

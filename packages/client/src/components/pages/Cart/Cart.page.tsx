@@ -1,4 +1,4 @@
-import { lazy, FC, Suspense } from 'react'
+import { FC, lazy, Suspense } from 'react'
 
 import { useDocumentTitle } from 'client/src/common/hooks/useDocumentTitle'
 import { useInject } from 'client/src/common/hooks/useInject'
@@ -17,13 +17,13 @@ const CartPage: FC = () => {
   const sspQueryModel = useInject(CartSspQueryModel)
 
   useServerSidePropsQueryLoader(sspQueryModel)
-  useObservableState(sspQueryModel.state$)
+  useObservableState(sspQueryModel.query$)
 
   return (
     <>
       <H1>{PAGE_TITLE}</H1>
       <Suspense fallback={<PageLoader />}>
-        <Cart loading={sspQueryModel.state$.value.loading} />
+        <Cart loading={sspQueryModel.query$.value.loading} />
       </Suspense>
     </>
   )
