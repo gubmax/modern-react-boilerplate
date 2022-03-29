@@ -1,16 +1,19 @@
 import type { Response } from 'express'
-// @ts-expect-error: TODO: Add type
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { renderToPipeableStream as render } from 'react-dom/server'
 
 import { CLIENT_CONFIG, ClientConfig } from 'shared/constants/clientConfig'
 import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
-import { HtmlMarks } from 'server/src/common/constants/html'
+import { HtmlEntries, HtmlMarks } from 'server/src/common/constants/html'
+import { PATH_RESOLVED_CLIENT } from 'shared/constants/paths'
 
 const renderToPipeableStream = render as (
   children: JSX.Element,
   options: {
-    onCompleteShell(): void
-    onError(error: unknown): void
+    onAllReady(): void
+    onShellError(error: unknown): void
+    onFatalError(error: unknown): void
   },
 ) => {
   pipe: (writable: Response) => void
@@ -31,11 +34,9 @@ export function writeTemplate({
   clientConfig = {},
   serverSideProps = {},
 }: WriteTemplateArg): void {
-  let didError = false
-
   const stream = renderToPipeableStream(app, {
-    onCompleteShell() {
-      res.statusCode = didError ? 500 : 200
+    onAllReady() {
+      res.statusCode = 200
       res.setHeader('Content-type', 'text/html')
 
       //  Initial data
@@ -58,9 +59,15 @@ export function writeTemplate({
       stream.pipe(res)
       res.write(batches[1])
     },
-    onError(error) {
+    onShellError(error) {
+      res.statusCode = 500
+      res.sendFile(`${PATH_RESOLVED_CLIENT}/${HtmlEntries.MAIN}.html`)
       console.error(error) // TODO: replace with logger
-      didError = true
+    },
+    onFatalError(error) {
+      res.statusCode = 500
+      res.sendFile(`${PATH_RESOLVED_CLIENT}/${HtmlEntries.INTERNAL_ERROR}.html`)
+      console.error(error) // TODO: replace with logger
     },
   })
 }

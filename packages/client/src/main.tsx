@@ -1,4 +1,4 @@
-import { hydrateRoot } from 'react-dom'
+import { hydrateRoot } from 'react-dom/client'
 // import { registerSW } from 'virtual:pwa-register'
 
 import { ClientConfig, CLIENT_CONFIG } from 'shared/constants/clientConfig'
@@ -14,9 +14,7 @@ const serverSideProps: ServerSideProps = window[SERVER_SIDE_PROPS] || {}
 // Bootstrap
 
 const container = document.getElementById('root') || document.body
-const root = hydrateRoot(container, [])
-
-root.render(renderMainTemplate(clientConfig, serverSideProps))
+hydrateRoot(container, renderMainTemplate(clientConfig, serverSideProps))
 
 // Service Worker
 // registerSW()

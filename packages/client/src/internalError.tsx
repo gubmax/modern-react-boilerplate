@@ -1,10 +1,8 @@
-import { hydrateRoot } from 'react-dom'
+import { hydrateRoot } from 'react-dom/client'
 
 import { renderInternalErrorTemplate } from './entries/internalError.entry'
 
 // Bootstrap
 
 const container = document.getElementById('root') || document.body
-const root = hydrateRoot(container, [])
-
-root.render(renderInternalErrorTemplate())
+hydrateRoot(container, renderInternalErrorTemplate())
