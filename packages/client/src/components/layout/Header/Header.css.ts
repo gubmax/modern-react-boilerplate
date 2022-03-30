@@ -17,6 +17,10 @@ export const wrapper = style([
       [MediaQueries.MIN_WIDTH_MOBILE]: {
         padding: `${vars.space.s1} ${vars.space.s3}`,
       },
+
+      [MediaQueries.MIN_WIDTH_TABLET]: {
+        padding: `${vars.space.s1} ${vars.space.s4}`,
+      },
     },
   },
 ])
