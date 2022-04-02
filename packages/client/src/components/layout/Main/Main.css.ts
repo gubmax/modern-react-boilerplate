@@ -26,6 +26,7 @@ export const header = style({
   zIndex: 1,
 })
 
+const PADDING_TOP = vars.space.s2
 const PADDING_BOTTOM = '5rem'
 
 export const main = style({
@@ -36,11 +37,11 @@ export const main = style({
 
   '@media': {
     [MediaQueries.MIN_WIDTH_MOBILE]: {
-      padding: `0 ${vars.space.s3} ${PADDING_BOTTOM} ${vars.space.s3}`,
+      padding: `${PADDING_TOP} ${vars.space.s3} ${PADDING_BOTTOM}`,
     },
 
     [MediaQueries.MIN_WIDTH_TABLET]: {
-      padding: `0 ${vars.space.s4} ${PADDING_BOTTOM} ${vars.space.s3}`,
+      padding: `${PADDING_TOP} ${vars.space.s4} ${PADDING_BOTTOM} ${vars.space.s3}`,
     },
   },
 })
@@ -58,8 +59,8 @@ export const sidebar = style({
       position: 'sticky',
       top: vars.sizes.headerHeight,
       bottom: 'unset',
-      height: `calc(100vh - ${vars.sizes.headerHeight})`,
-      paddingLeft: vars.space.s3,
+      height: `calc(100vh - ${vars.sizes.headerHeight} - ${PADDING_TOP})`,
+      padding: `${PADDING_TOP} 0 0 ${vars.space.s3}`,
     },
 
     [MediaQueries.MIN_WIDTH_TABLET]: {

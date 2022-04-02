@@ -39,5 +39,14 @@ export const linkLogo = style([
 ])
 
 export const linkRepo = style({
+  margin: `0 ${vars.space.s3}`,
+})
+
+export const search = style({
+  maxWidth: '32rem',
+  margin: '0 auto',
+})
+
+export const navigationMenu = style({
   marginLeft: vars.space.s3,
 })

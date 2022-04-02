@@ -1,9 +1,9 @@
 import { FC } from 'react'
 
 import { cn } from 'client/src/common/helpers/classNames'
+import { wrapperStyleVariants } from 'client/src/common/styles/elements/wrapper.css'
 import { WrapperVariants } from './Wrapper.constants'
 import { BaseWrapperProps, WrapperProps } from './Wrapper.types'
-import * as s from './Wrapper.css'
 
 const baseWrapper: FC<BaseWrapperProps> = ({
   as: Tag = 'div',
@@ -14,7 +14,7 @@ const baseWrapper: FC<BaseWrapperProps> = ({
   ...rest
 }) => {
   return (
-    <Tag className={cn(s.wrapperVariants[variant], className)} ref={innerRef} {...rest}>
+    <Tag className={cn(wrapperStyleVariants[variant], className)} ref={innerRef} {...rest}>
       {children}
     </Tag>
   )

@@ -1,25 +1,26 @@
-import { FC } from 'react'
+import { VFC } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { PageRoutes } from 'client/src/browser/http/constants'
-import { cn } from 'client/src/common/helpers/classNames'
 import { noop } from 'client/src/common/helpers/noop'
-import { NavigationIcon } from '../../elements/NavigationIcon'
-import { ShoppingCardIcon, NotificationIcon, UserIcon } from '../../icons'
-import * as s from './NavigationMenu.css'
-import { Modal } from '../../auxiliary/Modal'
+import { cn } from 'client/src/common/helpers/classNames'
 import { useToggle } from 'client/src/common/hooks/useToggle'
+import { StyledProps } from 'client/src/common/typings'
+import { ShoppingCardIcon, NotificationIcon, UserIcon } from 'client/src/components/icons'
+import { NavigationIcon } from 'client/src/components/elements/NavigationIcon'
+import { Modal } from 'client/src/components/auxiliary/Modal'
+import * as s from './NavigationMenu.css'
 
-const NavigationMenu: FC = () => {
+const NavigationMenu: VFC<StyledProps> = ({ className, style }) => {
   const { pathname } = useLocation()
   const navigate = useNavigate()
 
   const [shown, toggleShown] = useToggle()
 
   return (
-    <>
+    <div className={cn(s.wrapper, className)} style={style}>
       <NavigationIcon
-        className={cn(s.icon, s.marginLeft)}
+        className={s.icon}
         onClick={() => navigate(PageRoutes.CART)}
         text="Shopping cart"
       >
@@ -34,7 +35,7 @@ const NavigationMenu: FC = () => {
       <Modal active={shown} onClose={toggleShown}>
         The quick brown fox jumps over the lazy dog.
       </Modal>
-    </>
+    </div>
   )
 }
 

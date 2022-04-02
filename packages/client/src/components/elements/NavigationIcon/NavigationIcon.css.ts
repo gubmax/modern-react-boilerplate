@@ -18,7 +18,7 @@ export const wrapper = style({
 
 export const text = style({
   display: 'none',
-  textAlign: 'center',
+  whiteSpace: 'nowrap',
 
   '@media': {
     [MediaQueries.MIN_WIDTH_MOBILE]: {

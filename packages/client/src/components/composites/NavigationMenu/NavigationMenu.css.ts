@@ -3,7 +3,7 @@ import { style } from '@vanilla-extract/css'
 import { MediaQueries } from 'client/src/common/constants/media'
 import { gridAtom, vars } from 'client/src/common/styles'
 
-export const marginLeft = gridAtom({ marginLeft: 'auto' })
+export const wrapper = gridAtom({ display: 'flex' })
 
 export const icon = style({
   '@media': {

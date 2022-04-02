@@ -5,16 +5,15 @@
 
 import { assignVars, createGlobalTheme, createThemeContract } from '@vanilla-extract/css'
 
-const FONT_SIZE = 14
-
-const size = (val: number) => `${(val / FONT_SIZE).toFixed(2)}rem`
+import { pxToRem } from 'client/src/common/helpers/pxToRem'
+import { FONT_SIZE_DEFAULT } from 'client/src/common/constants/fonts'
 
 const commonVars = createGlobalTheme(':root', {
   fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
   sizes: {
-    font: `${FONT_SIZE}px`,
-    headerHeight: size(70),
+    font: `${FONT_SIZE_DEFAULT}px`,
+    headerHeight: pxToRem(70),
   },
   color: {
     transparentBorder: 'rgba(0, 0, 0, 0.01)',
@@ -50,67 +49,67 @@ const varsContract = createThemeContract({
 
 export const desktopVars = assignVars(varsContract, {
   fontSize: {
-    primary: size(14),
-    secondary: size(13),
-    accent: size(16),
-    h3: size(20),
-    h2: size(24),
-    h1: size(48),
+    primary: pxToRem(14),
+    secondary: pxToRem(13),
+    accent: pxToRem(16),
+    h3: pxToRem(20),
+    h2: pxToRem(24),
+    h1: pxToRem(48),
   },
   space: {
-    s0: size(8),
-    s1: size(14),
-    s2: size(16),
-    s3: size(24),
-    s4: size(42),
+    s0: pxToRem(8),
+    s1: pxToRem(14),
+    s2: pxToRem(16),
+    s3: pxToRem(24),
+    s4: pxToRem(42),
   },
   icons: {
-    small: size(24),
-    huge: size(112),
+    small: pxToRem(24),
+    huge: pxToRem(112),
   },
 })
 
 export const tabletVars = assignVars(varsContract, {
   fontSize: {
-    primary: size(14),
-    secondary: size(13),
-    accent: size(16),
-    h3: size(20),
-    h2: size(24),
-    h1: size(34),
+    primary: pxToRem(14),
+    secondary: pxToRem(13),
+    accent: pxToRem(16),
+    h3: pxToRem(20),
+    h2: pxToRem(24),
+    h1: pxToRem(34),
   },
   space: {
-    s0: size(4),
-    s1: size(10),
-    s2: size(12),
-    s3: size(20),
-    s4: size(38),
+    s0: pxToRem(4),
+    s1: pxToRem(10),
+    s2: pxToRem(12),
+    s3: pxToRem(20),
+    s4: pxToRem(38),
   },
   icons: {
-    small: size(24),
-    huge: size(112),
+    small: pxToRem(24),
+    huge: pxToRem(112),
   },
 })
 
 export const mobileVars = assignVars(varsContract, {
   fontSize: {
-    primary: size(14),
-    secondary: size(13),
-    accent: size(16),
-    h3: size(20),
-    h2: size(24),
-    h1: size(34),
+    primary: pxToRem(14),
+    secondary: pxToRem(13),
+    accent: pxToRem(16),
+    h3: pxToRem(20),
+    h2: pxToRem(24),
+    h1: pxToRem(34),
   },
   space: {
-    s0: size(4),
-    s1: size(10),
-    s2: size(12),
-    s3: size(20),
-    s4: size(38),
+    s0: pxToRem(4),
+    s1: pxToRem(10),
+    s2: pxToRem(12),
+    s3: pxToRem(20),
+    s4: pxToRem(38),
   },
   icons: {
-    small: size(28),
-    huge: size(112),
+    small: pxToRem(28),
+    huge: pxToRem(112),
   },
 })
 

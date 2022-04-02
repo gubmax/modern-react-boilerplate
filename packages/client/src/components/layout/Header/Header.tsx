@@ -3,6 +3,7 @@ import { VFC } from 'react'
 import { cn } from 'client/src/common/helpers/classNames'
 import { StyledProps } from 'client/src/common/typings'
 import { PageRoutes } from 'client/src/browser/http/constants'
+import { SearchField } from 'client/src/components/layout/SearchField'
 import { NavigationMenu } from 'client/src/components/composites/NavigationMenu'
 import { GlassWrapper } from 'client/src/components/surfaces/Wrapper'
 import { Link } from 'client/src/components/auxiliary/Link'
@@ -20,7 +21,8 @@ const Header: VFC<StyledProps> = ({ className, ...rest }) => {
       <A href={LINK_REPO} className={s.linkRepo} target="_blank" rel="noreferrer noopener">
         GitHub
       </A>
-      <NavigationMenu />
+      <SearchField className={s.search} />
+      <NavigationMenu className={s.navigationMenu} />
     </GlassWrapper>
   )
 }
