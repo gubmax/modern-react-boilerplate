@@ -13,10 +13,11 @@ import {
   PATH_RESOLVED_BUILD,
 } from 'shared/constants/paths'
 import { CONFIG_ENTRIES, CONFIG_SSG_ROUTES } from 'server/config'
-import { HtmlEntries, HtmlMarks } from 'server/src/common/constants/html'
+import { HtmlMarks } from 'server/src/common/constants/html'
 import { AssetCollectorService } from 'server/src/modules/assetCollector'
 import { renderServerMainTemplate as RenderServerMainTemplate } from 'client/src/entries/main.server.entry'
 import { renderInternalErrorTemplate as RenderInternalErrorTemplate } from 'client/src/entries/internalError.entry'
+import { HtmlEntries } from 'shared/constants/entries'
 
 const logInfo = (fileName: string) => console.log(`  ${dim(`${PATH_CLIENT}/`)}${green(fileName)}`)
 

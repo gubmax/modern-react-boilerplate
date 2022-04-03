@@ -11,13 +11,13 @@ import {
   PATH_RESOLVED_CLIENT_MANIFEST,
 } from 'shared/constants/paths'
 import { CONFIG_ENTRIES, CONFIG_SSG_ROUTES, CONFIG_SSR_ROUTES } from 'server/config'
-import { HtmlEntries } from 'server/src/common/constants/html'
 import { renderServerMainTemplate as RenderServerMainTemplate } from 'client/src/entries/main.server.entry'
 import { HttpClientService } from '../httpClient'
 import { AssetCollectorService } from '../assetCollector'
 import { UserAgentParserService } from '../userAgentParser'
 import { fetchPageProps } from './utils/fetchPageProps'
 import { writeTemplate } from './utils/writeTemplate'
+import { HtmlEntries } from 'shared/constants/entries'
 
 @Injectable()
 export class RenderService {

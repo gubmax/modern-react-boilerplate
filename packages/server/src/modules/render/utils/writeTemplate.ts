@@ -5,7 +5,8 @@ import { renderToPipeableStream as render } from 'react-dom/server'
 
 import { CLIENT_CONFIG, ClientConfig } from 'shared/constants/clientConfig'
 import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
-import { HtmlEntries, HtmlMarks } from 'server/src/common/constants/html'
+import { HtmlMarks } from 'server/src/common/constants/html'
+import { HtmlEntries } from 'shared/constants/entries'
 import { PATH_RESOLVED_CLIENT } from 'shared/constants/paths'
 
 const renderToPipeableStream = render as (

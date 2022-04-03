@@ -1,4 +1,4 @@
-import { InternalError } from 'client/src/components/composites/InternalError'
+import { InternalError } from 'client/src/modules/layout/internalError'
 
 import 'client/src/common/styles/global.css'
 

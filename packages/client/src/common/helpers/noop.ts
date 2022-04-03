@@ -1,2 +1,2 @@
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-export function noop(): void {}
+/* istanbul ignore next */
+export function noop(): void {} // eslint-disable-line @typescript-eslint/no-empty-function

@@ -5,8 +5,8 @@ import react from '@vitejs/plugin-react'
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 import { visualizer } from 'rollup-plugin-visualizer'
 
+import { HtmlEntries } from '../shared/constants/entries'
 import { PATH_CLIENT } from '../shared/constants/paths'
-import { HtmlEntries } from '../server/src/common/constants/html'
 import manifest from './public/manifest.json'
 
 const VISUALIZE_MODE = !!process.env.VISUALIZE_MODE

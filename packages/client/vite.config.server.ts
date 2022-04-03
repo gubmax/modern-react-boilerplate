@@ -3,8 +3,8 @@ import { resolve } from 'path'
 import react from '@vitejs/plugin-react'
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 
+import { HtmlEntries } from '../shared/constants/entries'
 import { PATH_SERVER } from '../shared/constants/paths'
-import { HtmlEntries } from '../server/src/common/constants/html'
 
 const ENTRY_PATH_MAIN = `./src/entries/${HtmlEntries.MAIN}.server.entry.tsx`
 const ENTRY_PATH_INTERNAL_ERROR = `./src/entries/${HtmlEntries.INTERNAL_ERROR}.entry.tsx`

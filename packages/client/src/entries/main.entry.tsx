@@ -1,7 +1,7 @@
 import { ServerSideProps, SERVER_SIDE_PROPS } from 'shared/constants/serverSideProps'
 import { ClientConfig, CLIENT_CONFIG } from 'shared/constants/clientConfig'
-import { App } from 'client/src/components/layout/App'
-import { BrowserRouter } from 'client/src/components/auxiliary/BrowserRouter'
+import { App } from 'client/src/modules/layout/app'
+import { BrowserRouter } from 'client/src/common/components/addons/BrowserRouter'
 import { IocContainerContext } from 'client/src/common/contexts/IocContainerContext'
 import { iocContainer } from 'client/src/utils/ioc'
 

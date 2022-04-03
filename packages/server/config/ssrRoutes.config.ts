@@ -9,7 +9,7 @@ export const CONFIG_SSR_ROUTES: Record<string, { path?: string; imports: string[
     imports: ['src/main.tsx'],
   },
   [PageRoutes.CART]: {
-    path: 'src/components/pages/Cart/Cart.server',
-    imports: ['src/components/composites/Cart/cart.chunk.ts'],
+    path: 'src/modules/pages/cart/dataFetching',
+    imports: ['src/modules/cart/cart.chunk.ts'],
   },
 }

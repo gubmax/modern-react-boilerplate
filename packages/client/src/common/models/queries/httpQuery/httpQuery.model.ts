@@ -1,5 +1,5 @@
 import { HttpRequestResponse, HttpRequestBody, HttpRequestInit } from 'shared/http/types'
-import { HttpClientModel } from '../../http'
+import { HttpClientModel } from '../../httpClient.model'
 import { QueryModel } from '../query'
 
 export abstract class HttpQueryModel<

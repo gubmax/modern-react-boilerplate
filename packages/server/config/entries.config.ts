@@ -1,4 +1,4 @@
-import { HtmlEntries } from 'server/src/common/constants/html'
+import { HtmlEntries } from 'shared/constants/entries'
 import { PATH_RESOLVED_CLIENT, PATH_RESOLVED_SERVER } from 'shared/constants/paths'
 
 interface Entry {
