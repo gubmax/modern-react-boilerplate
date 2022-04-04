@@ -1,11 +1,10 @@
 import { style, styleVariants } from '@vanilla-extract/css'
 
-import { vars } from '../vars.css'
-import { palette } from '../palette.css'
+import { dt } from '../designTokens'
 
 const base = style({
-  padding: `${vars.space.s2} ${vars.space.s3}`,
-  borderRadius: vars.borderRadius.primary,
+  padding: `${dt.vars.space.s2} ${dt.vars.space.s3}`,
+  borderRadius: dt.vars.borderRadius.primary,
 })
 
 export const surfaces = styleVariants(
@@ -14,21 +13,21 @@ export const surfaces = styleVariants(
     flat: [
       base,
       {
-        background: palette.color.surface0,
-        borderRadius: vars.borderRadius.primary,
+        background: dt.vars.theme.color.surface0,
+        borderRadius: dt.vars.borderRadius.primary,
       },
     ],
     glass: [
       base,
       {
-        background: palette.color.transparentBg0,
+        background: dt.vars.theme.color.transparentBg0,
         backdropFilter: 'blur(0.5rem)',
       },
     ],
     outline: [
       base,
       {
-        boxShadow: `inset 0 0 0 0.1rem ${palette.color.border}`,
+        boxShadow: `inset 0 0 0 0.1rem ${dt.vars.theme.color.border}`,
       },
     ],
   },

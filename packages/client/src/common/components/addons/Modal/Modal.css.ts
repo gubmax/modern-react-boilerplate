@@ -1,8 +1,6 @@
 import { keyframes, style } from '@vanilla-extract/css'
 
-import { MediaQueries } from 'client/src/common/constants/media'
-import { ScreenSizes } from 'client/src/common/constants/screen'
-import { palette, vars } from 'client/src/common/styles'
+import { dt } from 'client/src/common/styles/designTokens'
 import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 import { TRANSITION_TIMEOUT } from './Modal.constants'
 
@@ -36,33 +34,33 @@ export const wrapper = style([
     left: 0,
     right: 0,
     minHeight: '24rem',
-    maxWidth: ScreenSizes.TABLET,
+    maxWidth: dt.vars.size.screen.tablet,
     margin: '0 auto',
     padding: 0,
-    border: `0.1rem solid ${palette.color.borderLight}`,
-    borderRadius: `${vars.borderRadius.primary} ${vars.borderRadius.primary} 0 0`,
+    border: `0.1rem solid ${dt.vars.theme.color.borderLight}`,
+    borderRadius: `${dt.vars.borderRadius.primary} ${dt.vars.borderRadius.primary} 0 0`,
     overflow: 'hidden',
 
     '@media': {
-      [MediaQueries.MIN_WIDTH_MOBILE]: {
-        top: vars.space.s4,
+      [dt.media.minWidth.mobile]: {
+        top: dt.vars.space.s4,
         bottom: 'unset',
-        left: vars.space.s4,
-        right: vars.space.s4,
+        left: dt.vars.space.s4,
+        right: dt.vars.space.s4,
         minHeight: 'unset',
-        borderRadius: vars.borderRadius.primary,
+        borderRadius: dt.vars.borderRadius.primary,
       },
     },
   },
 ])
 
 export const header = style({
-  padding: `${vars.space.s0} ${vars.space.s3}`,
-  background: palette.color.borderLight,
+  padding: `${dt.vars.space.s0} ${dt.vars.space.s3}`,
+  background: dt.vars.theme.color.borderLight,
 })
 
 export const body = style({
-  padding: vars.space.s3,
+  padding: dt.vars.space.s3,
 })
 
 export const closeButton = style({

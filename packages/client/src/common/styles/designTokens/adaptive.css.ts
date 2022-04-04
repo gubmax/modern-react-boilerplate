@@ -3,29 +3,11 @@
  * @link https://material.io/design/typography/the-type-system.html#type-scale
  */
 
-import { assignVars, createGlobalTheme, createThemeContract } from '@vanilla-extract/css'
+import { assignVars, createThemeContract } from '@vanilla-extract/css'
 
 import { pxToRem } from 'client/src/common/helpers/pxToRem'
-import { FONT_SIZE_DEFAULT } from 'client/src/common/constants/fonts'
 
-const commonVars = createGlobalTheme(':root', {
-  fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
-  sizes: {
-    font: `${FONT_SIZE_DEFAULT}px`,
-    headerHeight: pxToRem(70),
-  },
-  color: {
-    transparentBorder: 'rgba(0, 0, 0, 0.01)',
-    white: 'rgb(224, 224, 224)',
-    black: 'rgb(64, 64, 64)',
-  },
-  borderRadius: {
-    primary: '20px',
-  },
-})
-
-const varsContract = createThemeContract({
+export const adaptiveVarsContract = createThemeContract({
   fontSize: {
     h1: null,
     h2: null,
@@ -47,7 +29,7 @@ const varsContract = createThemeContract({
   },
 })
 
-export const desktopVars = assignVars(varsContract, {
+export const desktopVars = assignVars(adaptiveVarsContract, {
   fontSize: {
     h1: pxToRem(48),
     h2: pxToRem(24),
@@ -69,7 +51,7 @@ export const desktopVars = assignVars(varsContract, {
   },
 })
 
-export const tabletVars = assignVars(varsContract, {
+export const tabletVars = assignVars(adaptiveVarsContract, {
   fontSize: {
     h1: pxToRem(34),
     h2: pxToRem(24),
@@ -91,7 +73,7 @@ export const tabletVars = assignVars(varsContract, {
   },
 })
 
-export const mobileVars = assignVars(varsContract, {
+export const mobileVars = assignVars(adaptiveVarsContract, {
   fontSize: {
     h1: pxToRem(34),
     h2: pxToRem(24),
@@ -112,5 +94,3 @@ export const mobileVars = assignVars(varsContract, {
     huge: pxToRem(112),
   },
 })
-
-export const vars = { ...commonVars, ...varsContract }

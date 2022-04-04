@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css'
 
-import { MediaQueries } from 'client/src/common/constants/media'
-import { gridAtom, vars } from 'client/src/common/styles'
+import { dt } from 'client/src/common/styles/designTokens'
+import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 import { typography } from 'client/src/common/styles/shared/typography.css'
 
@@ -15,16 +15,16 @@ export const wrapper = style([
 export const title = style([
   typography.h1,
   {
-    marginBottom: vars.space.s1,
-    color: vars.color.white,
+    marginBottom: dt.vars.space.s1,
+    color: dt.vars.color.white,
   },
 ])
 
 export const subtitle = style([
   typography.h2,
   {
-    marginBottom: vars.space.s3,
-    color: vars.color.white,
+    marginBottom: dt.vars.space.s3,
+    color: dt.vars.color.white,
   },
 ])
 
@@ -33,14 +33,14 @@ export const buttonsGroup = gridAtom({
 })
 
 export const button = style({
-  marginRight: vars.space.s1,
+  marginRight: dt.vars.space.s1,
   width: '100%',
   minWidth: 'unset',
 
   ':last-child': { marginRight: 0 },
 
   '@media': {
-    [MediaQueries.MIN_WIDTH_MOBILE]: {
+    [dt.media.minWidth.mobile]: {
       width: 'unset',
       minWidth: '10rem',
     },

@@ -1,6 +1,8 @@
 import { globalStyle, style } from '@vanilla-extract/css'
 
-import { gridAtom, scrollbar, vars } from 'client/src/common/styles'
+import { dt } from 'client/src/common/styles/designTokens'
+import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
+import { scrollbar } from 'client/src/common/styles/shared/scrollbar.css'
 
 export const wrapper = style([
   gridAtom({ display: 'flex' }),
@@ -8,7 +10,7 @@ export const wrapper = style([
   {
     overflowX: 'auto',
     overscrollBehaviorX: 'contain',
-    paddingBottom: vars.space.s2,
+    paddingBottom: dt.vars.space.s2,
     scrollBehavior: 'smooth',
     scrollPadding: '0',
     scrollSnapType: 'x mandatory',

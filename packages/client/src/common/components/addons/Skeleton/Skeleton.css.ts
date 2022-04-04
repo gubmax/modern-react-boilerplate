@@ -1,12 +1,12 @@
 import { style, keyframes } from '@vanilla-extract/css'
 
-import { vars, palette } from 'client/src/common/styles'
+import { dt } from 'client/src/common/styles/designTokens'
 
 export const wrapper = style({
   width: '100%',
   height: '1.5rem',
-  background: palette.color.bg0,
-  borderRadius: vars.borderRadius.primary,
+  background: dt.vars.theme.color.bg0,
+  borderRadius: dt.vars.borderRadius.primary,
 })
 
 export const margin = style({
@@ -29,7 +29,7 @@ export const shim = style({
     width: '100%',
     height: '100%',
     transform: 'translateX(-100%)',
-    background: `linear-gradient(90deg, transparent, ${palette.color.surface1}, transparent)`,
+    background: `linear-gradient(90deg, transparent, ${dt.vars.theme.color.surface1}, transparent)`,
     animation: `${shimmmer} 1s ease-in-out infinite`,
   },
 })

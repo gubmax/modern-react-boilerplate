@@ -1,12 +1,12 @@
 import { style } from '@vanilla-extract/css'
-import { vars, palette } from 'client/src/common/styles'
+import { dt } from 'client/src/common/styles/designTokens'
 import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 
 export const wrapper = style([
   surfaces.base,
   {
-    background: palette.color.borderLight,
-    padding: vars.space.s0,
+    background: dt.vars.theme.color.borderLight,
+    padding: dt.vars.space.s0,
   },
 ])
 

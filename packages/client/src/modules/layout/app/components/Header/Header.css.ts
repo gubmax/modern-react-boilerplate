@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css'
-import { MediaQueries } from 'client/src/common/constants/media'
 
-import { gridAtom, vars } from 'client/src/common/styles'
+import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
+import { dt } from 'client/src/common/styles/designTokens'
 import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 
 export const wrapper = style([
@@ -11,17 +11,17 @@ export const wrapper = style([
     alignItems: 'center',
   }),
   {
-    height: vars.sizes.headerHeight,
+    height: dt.vars.size.headerHeight,
     padding: 0,
-    borderRadius: `0 0 ${vars.borderRadius.primary} ${vars.borderRadius.primary}`,
+    borderRadius: `0 0 ${dt.vars.borderRadius.primary} ${dt.vars.borderRadius.primary}`,
 
     '@media': {
-      [MediaQueries.MIN_WIDTH_MOBILE]: {
-        padding: `${vars.space.s1} ${vars.space.s3}`,
+      [dt.media.minWidth.mobile]: {
+        padding: `${dt.vars.space.s1} ${dt.vars.space.s3}`,
       },
 
-      [MediaQueries.MIN_WIDTH_TABLET]: {
-        padding: `${vars.space.s1} ${vars.space.s4}`,
+      [dt.media.minWidth.tablet]: {
+        padding: `${dt.vars.space.s1} ${dt.vars.space.s4}`,
       },
     },
   },
@@ -30,10 +30,10 @@ export const wrapper = style([
 export const linkLogo = style([
   gridAtom({ flexShrink: 0 }),
   {
-    marginLeft: vars.space.s2,
+    marginLeft: dt.vars.space.s2,
 
     '@media': {
-      [MediaQueries.MIN_WIDTH_MOBILE]: {
+      [dt.media.minWidth.mobile]: {
         marginLeft: 'unset',
       },
     },
@@ -41,7 +41,7 @@ export const linkLogo = style([
 ])
 
 export const linkRepo = style({
-  margin: `0 ${vars.space.s3}`,
+  margin: `0 ${dt.vars.space.s3}`,
 })
 
 export const search = style({
@@ -50,5 +50,5 @@ export const search = style({
 })
 
 export const navigationMenu = style({
-  marginLeft: vars.space.s3,
+  marginLeft: dt.vars.space.s3,
 })

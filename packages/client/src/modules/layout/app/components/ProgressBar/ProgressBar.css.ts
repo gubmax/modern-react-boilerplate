@@ -1,6 +1,6 @@
 import { keyframes, style } from '@vanilla-extract/css'
 
-import { palette } from 'client/src/common/styles'
+import { dt } from 'client/src/common/styles/designTokens'
 import {
   LOADING_WIDTH_TRANSITION_DELAY,
   LOADING_OPACITY_TRANSITION_DELAY,
@@ -10,7 +10,7 @@ export const wrapper = style({
   position: 'fixed',
   width: 0,
   height: '0.15rem',
-  background: palette.color.accent,
+  background: dt.vars.theme.color.accent,
   userSelect: 'none',
   zIndex: 2,
 })

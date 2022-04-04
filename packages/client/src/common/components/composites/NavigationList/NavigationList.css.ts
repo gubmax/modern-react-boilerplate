@@ -1,8 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
-import { MediaQueries } from 'client/src/common/constants/media'
-import { ScreenSizes } from 'client/src/common/constants/screen'
-import { vars, palette } from 'client/src/common/styles'
+import { dt } from 'client/src/common/styles/designTokens'
 import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 
 export const wrapper = style([
@@ -10,20 +8,20 @@ export const wrapper = style([
   {
     display: 'flex',
     width: '100%',
-    minWidth: ScreenSizes.MIN,
+    minWidth: dt.vars.size.screen.min,
     justifyContent: 'space-around',
-    padding: vars.space.s1,
-    borderTop: `1px solid ${palette.color.borderLight}`,
-    borderRadius: `${vars.borderRadius.primary} ${vars.borderRadius.primary} 0 0`,
+    padding: dt.vars.space.s1,
+    borderTop: `1px solid ${dt.vars.theme.color.borderLight}`,
+    borderRadius: `${dt.vars.borderRadius.primary} ${dt.vars.borderRadius.primary} 0 0`,
 
     '@media': {
-      [MediaQueries.MIN_WIDTH_MOBILE]: {
+      [dt.media.minWidth.mobile]: {
         flexDirection: 'column',
         minWidth: 'unset',
-        padding: `${vars.space.s2} ${vars.space.s1}`,
-        background: palette.color.surface0,
+        padding: `${dt.vars.space.s2} ${dt.vars.space.s1}`,
+        background: dt.vars.theme.color.surface0,
         border: 'none',
-        borderRadius: vars.borderRadius.primary,
+        borderRadius: dt.vars.borderRadius.primary,
         backdropFilter: 'none',
       },
     },
@@ -32,22 +30,22 @@ export const wrapper = style([
 
 export const text = style({
   display: 'none',
-  marginLeft: vars.space.s1,
+  marginLeft: dt.vars.space.s1,
 
   '@media': {
-    [MediaQueries.MIN_WIDTH_DESKTOP]: { display: 'unset' },
+    [dt.media.minWidth.desktop]: { display: 'unset' },
   },
 })
 
 export const listItem = style({
   display: 'flex',
   alignItems: 'center',
-  padding: vars.space.s1,
+  padding: dt.vars.space.s1,
 
   ':last-child': { marginBottom: 0 },
 
   '@media': {
-    [MediaQueries.MIN_WIDTH_MOBILE]: { marginBottom: vars.space.s0 },
+    [dt.media.minWidth.desktop]: { marginBottom: dt.vars.space.s0 },
   },
 })
 

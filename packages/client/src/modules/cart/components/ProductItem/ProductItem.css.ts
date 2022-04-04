@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css'
 
-import { palette, vars, gridAtom } from 'client/src/common/styles'
+import { dt } from 'client/src/common/styles/designTokens'
+import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 import { typography } from 'client/src/common/styles/shared/typography.css'
 
@@ -9,7 +10,7 @@ export const wrapper = style([gridAtom({ display: 'flex' }), surfaces.base])
 export const title = style([
   typography.h3,
   {
-    marginRight: vars.space.s3,
+    marginRight: dt.vars.space.s3,
   },
 ])
 
@@ -18,7 +19,7 @@ export const body = style([
   { width: '100%' },
 ])
 
-export const header = style([gridAtom({ display: 'flex' }), { marginBottom: vars.space.s1 }])
+export const header = style([gridAtom({ display: 'flex' }), { marginBottom: dt.vars.space.s1 }])
 
 export const footer = style([
   gridAtom({ display: 'flex', justifyContent: 'flex-end' }),
@@ -35,10 +36,10 @@ export const imageBox = style([
     flexShrink: 0,
     width: '8rem',
     height: '8rem',
-    marginRight: vars.space.s3,
+    marginRight: dt.vars.space.s3,
     fontSize: '5rem',
     borderRadius: '12px',
-    backgroundColor: palette.color.bg0,
+    backgroundColor: dt.vars.theme.color.bg0,
     userSelect: 'none',
   },
 ])
@@ -47,7 +48,7 @@ export const price = style([
   gridAtom({ marginLeft: 'auto' }),
   {
     minWidth: '4rem',
-    fontSize: vars.fontSize.h3,
+    fontSize: dt.vars.fontSize.h3,
     fontWeight: 500,
     textAlign: 'end',
   },
@@ -58,7 +59,7 @@ export const counter = style([
   {
     width: '2.5rem',
     textAlign: 'center',
-    fontSize: vars.fontSize.h3,
+    fontSize: dt.vars.fontSize.h3,
   },
 ])
 

@@ -1,20 +1,19 @@
 import { style } from '@vanilla-extract/css'
 
-import { palette } from '../palette.css'
-import { vars } from '../vars.css'
+import { dt } from '../designTokens'
 
 export const scrollbar = style({
   scrollbarColor: 'red blue',
   scrollbarWidth: 'thin',
 
   '::-webkit-scrollbar-thumb': {
-    backgroundColor: palette.color.border,
-    borderRadius: vars.borderRadius.primary,
+    backgroundColor: dt.vars.theme.color.border,
+    borderRadius: dt.vars.borderRadius.primary,
   },
 
   '::-webkit-scrollbar-track': {
-    backgroundColor: palette.color.surface0,
-    borderRadius: vars.borderRadius.primary,
+    backgroundColor: dt.vars.theme.color.surface0,
+    borderRadius: dt.vars.borderRadius.primary,
   },
 
   '::-webkit-scrollbar': {
@@ -24,7 +23,7 @@ export const scrollbar = style({
 
   selectors: {
     '&::-webkit-scrollbar-thumb:active': {
-      backgroundColor: palette.color.accentLight,
+      backgroundColor: dt.vars.theme.color.accentLight,
     },
   },
 })

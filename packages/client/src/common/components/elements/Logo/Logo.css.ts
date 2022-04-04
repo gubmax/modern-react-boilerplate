@@ -1,6 +1,5 @@
 import { style } from '@vanilla-extract/css'
-import { MediaQueries } from 'client/src/common/constants/media'
-import { vars, palette } from 'client/src/common/styles'
+import { dt } from 'client/src/common/styles/designTokens'
 
 export const text = style({
   fontSize: '1.8em',
@@ -12,7 +11,7 @@ export const title = style({
   display: 'none',
 
   '@media': {
-    [MediaQueries.MIN_WIDTH_TABLET]: { display: 'unset' },
+    [dt.media.minWidth.tablet]: { display: 'unset' },
   },
 })
 
@@ -20,9 +19,9 @@ export const highlight = style({
   position: 'relative',
   display: 'inline-block',
   width: '2.5rem',
-  marginLeft: vars.space.s0,
+  marginLeft: dt.vars.space.s0,
   textAlign: 'center',
-  background: palette.color.bg0,
+  background: dt.vars.theme.color.bg0,
   borderRadius: '0.6rem',
 
   ':before': {
@@ -34,7 +33,7 @@ export const highlight = style({
     right: '-0.35rem',
     borderRadius: '0.6rem',
     transform: 'rotate(6deg)',
-    background: palette.gradient.accent,
+    background: dt.vars.theme.gradient.accent,
     zIndex: -1,
   },
 })

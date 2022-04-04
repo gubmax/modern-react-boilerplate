@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
-import { palette } from 'client/src/common/styles'
+import { dt } from 'client/src/common/styles/designTokens'
 import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 
 export const wrapper = style([
@@ -11,5 +11,5 @@ export const wrapper = style([
 ])
 
 export const active = style({
-  background: palette.color.accentLight,
+  background: dt.vars.theme.color.accentLight,
 })

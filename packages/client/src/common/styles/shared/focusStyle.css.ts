@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
-import { palette } from '../palette.css'
+import { dt } from '../designTokens'
 
 export const focusStyle = style({
   position: 'relative',
@@ -8,7 +8,7 @@ export const focusStyle = style({
   zIndex: 0,
 
   ':after': {
-    background: palette.color.accentLight,
+    background: dt.vars.theme.color.accentLight,
     borderRadius: '50%',
     content: '""',
     display: 'block',

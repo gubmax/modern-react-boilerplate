@@ -1,8 +1,7 @@
 import { style } from '@vanilla-extract/css'
 
-import { vars } from 'client/src/common/styles'
+import { dt } from 'client/src/common/styles/designTokens'
 import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
-import { typography } from 'client/src/common/styles/shared/typography.css'
 
 export const wrapper = style([
   surfaces.outline,
@@ -11,14 +10,7 @@ export const wrapper = style([
     display: 'flex',
     alignItems: 'center',
     textAlign: 'center',
-    padding: vars.space.s4,
-  },
-])
-
-export const text = style([
-  typography.h2,
-  {
-    margin: 0,
+    padding: dt.vars.space.s4,
   },
 ])
 

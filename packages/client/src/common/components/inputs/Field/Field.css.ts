@@ -1,23 +1,23 @@
 import { style } from '@vanilla-extract/css'
 
 import { pxToRem } from 'client/src/common/helpers/pxToRem'
-import { palette, vars } from 'client/src/common/styles'
+import { dt } from 'client/src/common/styles/designTokens'
 
 export const input = style({
   height: pxToRem(46),
-  fontSize: vars.fontSize.subtitle1,
+  fontSize: dt.vars.fontSize.subtitle1,
   lineHeight: 1,
   width: '100%',
   border: `${pxToRem(1)} solid transparent`,
   transition: '0.1s color, 0.1s border-color, 0.1s box-shadow',
 
   '::placeholder': {
-    color: palette.color.secondary,
+    color: dt.vars.theme.color.secondary,
   },
 
   ':focus': {
-    boxShadow: `0 0 0 ${pxToRem(4)} ${palette.color.accentLight}`,
-    borderColor: palette.color.accent,
+    boxShadow: `0 0 0 ${pxToRem(4)} ${dt.vars.theme.color.accentLight}`,
+    borderColor: dt.vars.theme.color.accent,
   },
 })
 
@@ -30,7 +30,7 @@ export const label = style({
   position: 'absolute',
   top: pxToRem(12),
   left: pxToRem(16),
-  color: palette.color.secondary,
+  color: dt.vars.theme.color.secondary,
 })
 
 export const wrapper = style({

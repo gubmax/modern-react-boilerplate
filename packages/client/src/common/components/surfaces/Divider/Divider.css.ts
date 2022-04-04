@@ -1,9 +1,9 @@
 import { style } from '@vanilla-extract/css'
 
-import { palette } from 'client/src/common/styles'
+import { dt } from 'client/src/common/styles/designTokens'
 
 export const divider = style({
   height: '1px',
-  background: palette.color.borderLight,
+  background: dt.vars.theme.color.borderLight,
   borderWidth: 0,
 })

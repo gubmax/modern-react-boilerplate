@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
-import { vars } from 'client/src/common/styles'
+import { dt } from 'client/src/common/styles/designTokens'
 import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 
 export const wrapper = style([
@@ -11,5 +11,5 @@ export const wrapper = style([
 ])
 
 export const divider = style({
-  margin: `0 ${vars.space.s3}`,
+  margin: `0 ${dt.vars.space.s3}`,
 })

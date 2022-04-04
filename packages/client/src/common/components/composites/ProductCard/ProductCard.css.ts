@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css'
 
-import { gridAtom, vars, palette } from 'client/src/common/styles'
+import { dt } from 'client/src/common/styles/designTokens'
+import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 
 export const wrapper = style([
@@ -9,7 +10,7 @@ export const wrapper = style([
     flexGrow: 1,
     maxWidth: '16rem',
     padding: 0,
-    background: palette.color.surface0,
+    background: dt.vars.theme.color.surface0,
   },
 ])
 
@@ -24,7 +25,7 @@ export const imageBox = style([
     width: '100%',
     height: '12rem',
     fontSize: '8rem',
-    borderRadius: vars.borderRadius.primary,
+    borderRadius: dt.vars.borderRadius.primary,
     userSelect: 'none',
   },
 ])
@@ -38,7 +39,7 @@ export const info = style([
 
 export const cost = style({
   position: 'absolute',
-  right: vars.space.s1,
+  right: dt.vars.space.s1,
   top: '-1.25rem',
 })
 

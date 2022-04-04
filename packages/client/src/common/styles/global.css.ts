@@ -1,14 +1,14 @@
 import { globalStyle, keyframes } from '@vanilla-extract/css'
-import { MediaQueries } from '../constants/media'
 
-import { darkPalette, ligthPalette, palette } from './palette.css'
-import { desktopVars, mobileVars, tabletVars, vars } from './vars.css'
+import { dt } from './designTokens'
+import { desktopVars, mobileVars, tabletVars } from './designTokens/adaptive.css'
+import { darkThemeVars, ligthThemeVars } from './designTokens/theme.css'
 
 globalStyle('*, *::before, *::after', {
   boxSizing: 'border-box',
 
   '@media': {
-    [MediaQueries.MOTION_REDUCE]: {
+    [dt.media.prefersReducedMotion.reduce]: {
       animationDuration: '0.01ms !important',
       animationIterationCount: '1 !important',
       scrollBehavior: 'auto',
@@ -18,14 +18,14 @@ globalStyle('*, *::before, *::after', {
 })
 
 globalStyle('html', {
-  fontSize: vars.sizes.font,
+  fontSize: dt.vars.size.font,
 })
 
 globalStyle('html:focus-within', {
   scrollBehavior: 'smooth',
 
   '@media': {
-    [MediaQueries.MOTION_REDUCE]: { scrollBehavior: 'auto' },
+    [dt.media.prefersReducedMotion.reduce]: { scrollBehavior: 'auto' },
   },
 })
 
@@ -35,9 +35,9 @@ globalStyle('body, root', {
 })
 
 globalStyle('body', {
-  color: palette.color.primary,
-  background: palette.color.bg0,
-  fontFamily: vars.fontFamily,
+  color: dt.vars.theme.color.primary,
+  background: dt.vars.theme.color.bg0,
+  fontFamily: dt.vars.fontFamily,
   overscrollBehavior: 'none',
 
   MozOsxFontSmoothing: 'grayscale',
@@ -47,13 +47,13 @@ globalStyle('body', {
 
 globalStyle(':root', {
   colorScheme: 'light',
-  vars: { ...mobileVars, ...ligthPalette },
+  vars: { ...mobileVars, ...ligthThemeVars },
   '@media': {
-    [MediaQueries.MIN_WIDTH_MOBILE]: { vars: tabletVars },
-    [MediaQueries.MIN_WIDTH_TABLET]: { vars: desktopVars },
+    [dt.media.minWidth.mobile]: { vars: tabletVars },
+    [dt.media.minWidth.tablet]: { vars: desktopVars },
     '(prefers-color-scheme: dark)': {
       colorScheme: 'dark',
-      vars: darkPalette,
+      vars: darkThemeVars,
     },
   },
 })

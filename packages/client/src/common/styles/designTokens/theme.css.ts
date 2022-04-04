@@ -1,6 +1,6 @@
 import { createThemeContract, assignVars } from '@vanilla-extract/css'
 
-export const palette = createThemeContract({
+export const themeVars = createThemeContract({
   color: {
     primary: null,
     secondary: null,
@@ -19,7 +19,7 @@ export const palette = createThemeContract({
   },
 })
 
-export const ligthPalette = assignVars(palette, {
+export const ligthThemeVars = assignVars(themeVars, {
   color: {
     primary: 'rgb(64, 64, 64)',
     secondary: 'rgb(118, 118, 118)',
@@ -38,7 +38,7 @@ export const ligthPalette = assignVars(palette, {
   },
 })
 
-export const darkPalette = assignVars(palette, {
+export const darkThemeVars = assignVars(themeVars, {
   color: {
     primary: 'rgb(224, 224, 224)',
     secondary: 'rgb(64, 64, 64)',

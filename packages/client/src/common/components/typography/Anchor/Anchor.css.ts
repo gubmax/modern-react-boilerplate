@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css'
 
-import { palette } from 'client/src/common/styles'
+import { dt } from 'client/src/common/styles/designTokens'
 
 export const link = style({
-  borderBottom: `1px dashed ${palette.color.primary}`,
+  borderBottom: `1px dashed ${dt.vars.theme.color.primary}`,
 })

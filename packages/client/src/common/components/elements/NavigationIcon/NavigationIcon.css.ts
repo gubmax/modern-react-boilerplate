@@ -1,16 +1,16 @@
 import { style } from '@vanilla-extract/css'
-import { MediaQueries } from 'client/src/common/constants/media'
-import { vars } from 'client/src/common/styles'
+
+import { dt } from 'client/src/common/styles/designTokens'
 
 export const wrapper = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   cursor: 'pointer',
-  padding: vars.space.s1,
+  padding: dt.vars.space.s1,
 
   '@media': {
-    [MediaQueries.MIN_WIDTH_MOBILE]: {
+    [dt.media.minWidth.mobile]: {
       padding: 0,
     },
   },
@@ -21,10 +21,10 @@ export const text = style({
   whiteSpace: 'nowrap',
 
   '@media': {
-    [MediaQueries.MIN_WIDTH_MOBILE]: {
+    [dt.media.minWidth.mobile]: {
       display: 'unset',
       marginTop: '0.25rem',
-      fontSize: vars.fontSize.body2,
+      fontSize: dt.vars.fontSize.body2,
     },
   },
 })
