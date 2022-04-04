@@ -1,7 +1,7 @@
 import { ReactElement } from 'react'
 
-import { WrapperProps } from 'client/src/common/components/surfaces/Wrapper'
+import { AsProp, StyledProps } from 'client/src/common/typings'
 
-export interface ListProps extends WrapperProps {
+export interface ListProps extends StyledProps, AsProp<'div' | 'section'> {
   children: ReactElement[]
 }

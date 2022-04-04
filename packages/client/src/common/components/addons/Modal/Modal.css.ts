@@ -3,6 +3,7 @@ import { keyframes, style } from '@vanilla-extract/css'
 import { MediaQueries } from 'client/src/common/constants/media'
 import { ScreenSizes } from 'client/src/common/constants/screen'
 import { palette, vars } from 'client/src/common/styles'
+import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 import { TRANSITION_TIMEOUT } from './Modal.constants'
 
 export const noScroll = style({
@@ -10,44 +11,50 @@ export const noScroll = style({
   overflow: 'hidden',
 })
 
-export const background = style({
-  position: 'fixed',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
-  overflowY: 'auto',
-  willChange: 'scroll-position',
-  zIndex: 1,
-})
+export const background = style([
+  surfaces.glass,
+  {
+    position: 'fixed',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    overflowY: 'auto',
+    willChange: 'scroll-position',
+    zIndex: 1,
+  },
+])
 
-export const wrapper = style({
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
-  right: 0,
-  minHeight: '24rem',
-  maxWidth: ScreenSizes.TABLET,
-  margin: '0 auto',
-  padding: 0,
-  border: `0.1rem solid ${palette.color.borderLight}`,
-  borderRadius: `${vars.borderRadius.primary} ${vars.borderRadius.primary} 0 0`,
-  overflow: 'hidden',
+export const wrapper = style([
+  surfaces.flat,
+  {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    minHeight: '24rem',
+    maxWidth: ScreenSizes.TABLET,
+    margin: '0 auto',
+    padding: 0,
+    border: `0.1rem solid ${palette.color.borderLight}`,
+    borderRadius: `${vars.borderRadius.primary} ${vars.borderRadius.primary} 0 0`,
+    overflow: 'hidden',
 
-  '@media': {
-    [MediaQueries.MIN_WIDTH_MOBILE]: {
-      top: vars.space.s4,
-      bottom: 'unset',
-      left: vars.space.s4,
-      right: vars.space.s4,
-      minHeight: 'unset',
-      borderRadius: vars.borderRadius.primary,
+    '@media': {
+      [MediaQueries.MIN_WIDTH_MOBILE]: {
+        top: vars.space.s4,
+        bottom: 'unset',
+        left: vars.space.s4,
+        right: vars.space.s4,
+        minHeight: 'unset',
+        borderRadius: vars.borderRadius.primary,
+      },
     },
   },
-})
+])
 
 export const header = style({
   padding: `${vars.space.s0} ${vars.space.s3}`,

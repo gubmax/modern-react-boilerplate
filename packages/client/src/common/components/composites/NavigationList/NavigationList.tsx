@@ -2,7 +2,6 @@ import { VFC } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { IW } from 'client/src/common/components/inputs/InteractiveWrapper'
-import { GlassWrapper } from 'client/src/common/components/surfaces/Wrapper'
 import { ROUTES } from './NavigationList.constants'
 import * as s from './NavigationList.css'
 
@@ -11,7 +10,7 @@ const NavigationList: VFC = () => {
   const navigate = useNavigate()
 
   return (
-    <GlassWrapper as="ul" className={s.wrapper}>
+    <ul className={s.wrapper}>
       {ROUTES.map(({ to, icon: Icon, text }) => {
         const active = to === pathname
         const goTo = () => navigate(to)
@@ -23,7 +22,7 @@ const NavigationList: VFC = () => {
           </IW>
         )
       })}
-    </GlassWrapper>
+    </ul>
   )
 }
 

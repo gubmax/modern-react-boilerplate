@@ -24,7 +24,7 @@ export const text = style({
     [MediaQueries.MIN_WIDTH_MOBILE]: {
       display: 'unset',
       marginTop: '0.25rem',
-      fontSize: vars.fontSize.secondary,
+      fontSize: vars.fontSize.body2,
     },
   },
 })

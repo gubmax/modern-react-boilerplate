@@ -11,11 +11,6 @@ import {
 import { cn } from 'client/src/common/helpers/classNames'
 import { useFadeTransition } from 'client/src/common/hooks/useFadeTransition'
 import { RoundedButton } from 'client/src/common/components/inputs/buttons/RoundedButton'
-import {
-  FlatWrapper,
-  GlassWrapper,
-  WrapperHtmlElements,
-} from 'client/src/common/components/surfaces/Wrapper'
 import { noop } from 'client/src/common/helpers/noop'
 import { CloseIcon } from '../../icons'
 import { Portal } from '../Portal'
@@ -33,7 +28,7 @@ function toggleBodyStyles(active: boolean, positionTop: number): void {
 
 const Modal: FC<ModalProps> = ({ children, active = false, onClose = noop }) => {
   const positionTopRef = useRef(0)
-  const wrapperRef = useRef<WrapperHtmlElements>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
 
   const [fadeWrapperProps, , setVisible] = useFadeTransition(active, { fadeIn: s.animateWrapper })
   const [fadeBgProps, isVisible, setBgVisible] = useFadeTransition(active, { fadeIn: s.animateBg })
@@ -74,16 +69,16 @@ const Modal: FC<ModalProps> = ({ children, active = false, onClose = noop }) => 
 
   return (
     <Portal disabled={!isVisible}>
-      <GlassWrapper
-        innerRef={backgroundRef}
+      <div
+        ref={backgroundRef}
         className={cn(s.background, s.animationBase, fadeBgProps.className)}
         tabIndex={0}
         onClick={onClose}
         onKeyDown={handleKeyDown}
         onAnimationEnd={fadeBgProps.onAnimationEnd}
       >
-        <FlatWrapper
-          innerRef={wrapperRef}
+        <div
+          ref={wrapperRef}
           className={cn(s.wrapper, s.animationBase, fadeWrapperProps.className)}
           role="dialog"
           aria-modal="true"
@@ -97,8 +92,8 @@ const Modal: FC<ModalProps> = ({ children, active = false, onClose = noop }) => 
             </RoundedButton>
           </div>
           <div className={s.body}>{children}</div>
-        </FlatWrapper>
-      </GlassWrapper>
+        </div>
+      </div>
     </Portal>
   )
 }

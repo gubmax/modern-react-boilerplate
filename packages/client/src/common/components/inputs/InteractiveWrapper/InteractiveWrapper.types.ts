@@ -1,5 +1,8 @@
-import { WrapperProps } from 'client/src/common/components/surfaces/Wrapper'
+import { MouseEventHandler } from 'react'
 
-export interface InteractiveWrapperProps extends WrapperProps {
+import { AsProp, StyledProps } from 'client/src/common/typings'
+
+export interface InteractiveWrapperProps extends StyledProps, AsProp<'div' | 'li'> {
   active?: boolean
+  onClick: MouseEventHandler<HTMLDivElement & HTMLLIElement>
 }

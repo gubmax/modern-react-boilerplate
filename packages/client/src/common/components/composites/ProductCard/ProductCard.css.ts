@@ -1,13 +1,17 @@
 import { style } from '@vanilla-extract/css'
 
 import { gridAtom, vars, palette } from 'client/src/common/styles'
+import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 
-export const wrapper = style({
-  flexGrow: 1,
-  maxWidth: '16rem',
-  padding: 0,
-  background: palette.color.surface0,
-})
+export const wrapper = style([
+  surfaces.base,
+  {
+    flexGrow: 1,
+    maxWidth: '16rem',
+    padding: 0,
+    background: palette.color.surface0,
+  },
+])
 
 export const imageBox = style([
   gridAtom({
@@ -25,9 +29,12 @@ export const imageBox = style([
   },
 ])
 
-export const info = style({
-  position: 'relative',
-})
+export const info = style([
+  surfaces.base,
+  {
+    position: 'relative',
+  },
+])
 
 export const cost = style({
   position: 'absolute',

@@ -1,7 +1,7 @@
 import { memo, VFC } from 'react'
 
 import { cn } from 'client/src/common/helpers/classNames'
-import { wrapperStyleVariants } from 'client/src/common/styles/elements/wrapper.css'
+import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 import { FieldProps } from './Field.types'
 import * as s from './Field.css'
 
@@ -21,7 +21,7 @@ const Field: VFC<FieldProps> = ({
 }) => {
   const template = (
     <input
-      className={cn(wrapperStyleVariants.flat, s.input, label && s.withLabel, className)}
+      className={cn(surfaces.flat, s.input, label && s.withLabel, className)}
       name={name}
       placeholder={placeholder}
       readOnly={!onChange}

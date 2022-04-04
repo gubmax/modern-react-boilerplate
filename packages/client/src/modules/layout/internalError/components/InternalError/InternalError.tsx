@@ -1,15 +1,15 @@
 import { FC } from 'react'
 
+import { typography } from 'client/src/common/styles/shared/typography.css'
 import * as s from './InternalError.css'
-import { H1, H2 } from 'client/src/common/components/typography/Heading'
 
 const InternalError: FC = () => {
   return (
     <section className={s.wrapper}>
-      <H1>Oops!</H1>
-      <H2>
+      <h1 className={typography.h1}>Oops!</h1>
+      <h2 className={typography.h2}>
         Something went wrong. <br /> Please try again later.
-      </H2>
+      </h2>
     </section>
   )
 }

@@ -4,7 +4,7 @@ import { createBrowserHistory, Update } from 'history'
 
 import { useInject } from 'client/src/common/hooks/useInject'
 import { HistoryContext } from 'client/src/common/contexts/HistoryContext'
-import { PreloadChunksModel } from 'client/src/common/models/PreloadChunks.model'
+import { PreloadChunksModel } from 'client/src/common/models/preloadChunks.model'
 import { dynamicRoutes } from './dynamicRoutes'
 
 const BrowserRouter: FC = ({ children }) => {

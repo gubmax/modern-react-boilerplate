@@ -27,12 +27,12 @@ const commonVars = createGlobalTheme(':root', {
 
 const varsContract = createThemeContract({
   fontSize: {
-    primary: null,
-    secondary: null,
-    accent: null,
     h1: null,
     h2: null,
     h3: null,
+    subtitle1: null,
+    body1: null,
+    body2: null,
   },
   space: {
     s0: null,
@@ -49,12 +49,12 @@ const varsContract = createThemeContract({
 
 export const desktopVars = assignVars(varsContract, {
   fontSize: {
-    primary: pxToRem(14),
-    secondary: pxToRem(13),
-    accent: pxToRem(16),
-    h3: pxToRem(20),
-    h2: pxToRem(24),
     h1: pxToRem(48),
+    h2: pxToRem(24),
+    h3: pxToRem(20),
+    subtitle1: pxToRem(16),
+    body1: pxToRem(14),
+    body2: pxToRem(13),
   },
   space: {
     s0: pxToRem(8),
@@ -71,12 +71,12 @@ export const desktopVars = assignVars(varsContract, {
 
 export const tabletVars = assignVars(varsContract, {
   fontSize: {
-    primary: pxToRem(14),
-    secondary: pxToRem(13),
-    accent: pxToRem(16),
-    h3: pxToRem(20),
-    h2: pxToRem(24),
     h1: pxToRem(34),
+    h2: pxToRem(24),
+    h3: pxToRem(20),
+    subtitle1: pxToRem(16),
+    body1: pxToRem(14),
+    body2: pxToRem(13),
   },
   space: {
     s0: pxToRem(4),
@@ -93,12 +93,12 @@ export const tabletVars = assignVars(varsContract, {
 
 export const mobileVars = assignVars(varsContract, {
   fontSize: {
-    primary: pxToRem(14),
-    secondary: pxToRem(13),
-    accent: pxToRem(16),
-    h3: pxToRem(20),
-    h2: pxToRem(24),
     h1: pxToRem(34),
+    h2: pxToRem(24),
+    h3: pxToRem(20),
+    subtitle1: pxToRem(16),
+    body1: pxToRem(14),
+    body2: pxToRem(13),
   },
   space: {
     s0: pxToRem(4),

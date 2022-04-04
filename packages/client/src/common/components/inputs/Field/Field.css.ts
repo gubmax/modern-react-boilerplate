@@ -5,7 +5,7 @@ import { palette, vars } from 'client/src/common/styles'
 
 export const input = style({
   height: pxToRem(46),
-  fontSize: vars.fontSize.accent,
+  fontSize: vars.fontSize.subtitle1,
   lineHeight: 1,
   width: '100%',
   border: `${pxToRem(1)} solid transparent`,

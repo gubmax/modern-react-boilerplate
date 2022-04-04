@@ -4,8 +4,8 @@ import { useDocumentTitle } from 'client/src/common/hooks/useDocumentTitle'
 import { useInject } from 'client/src/common/hooks/useInject'
 import { useBehaviorSubjectSubscription } from 'client/src/common/hooks/useBehaviorSubjectSubscription'
 import { useServerSidePropsQueryLoader } from 'client/src/common/hooks/useServerSidePropsQueryLoader'
+import { PageTitle } from 'client/src/common/components/elements/PageTitle'
 import { PageLoader } from 'client/src/common/components/composites/PageLoader'
-import { H1 } from 'client/src/common/components/typography/Heading'
 import { CartSspQueryModel } from '../models/cartSspQuery.model'
 import { PAGE_TITLE } from './Cart.constants'
 
@@ -21,7 +21,7 @@ const CartPage: FC = () => {
 
   return (
     <>
-      <H1>{PAGE_TITLE}</H1>
+      <PageTitle>{PAGE_TITLE}</PageTitle>
       <Suspense fallback={<PageLoader />}>
         <Cart loading={loading} />
       </Suspense>

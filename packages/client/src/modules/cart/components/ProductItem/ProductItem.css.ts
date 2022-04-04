@@ -1,10 +1,17 @@
 import { style } from '@vanilla-extract/css'
 
 import { palette, vars, gridAtom } from 'client/src/common/styles'
+import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
+import { typography } from 'client/src/common/styles/shared/typography.css'
 
-export const wrapper = gridAtom({ display: 'flex' })
+export const wrapper = style([gridAtom({ display: 'flex' }), surfaces.base])
 
-export const title = style({ marginRight: vars.space.s3 })
+export const title = style([
+  typography.h3,
+  {
+    marginRight: vars.space.s3,
+  },
+])
 
 export const body = style([
   gridAtom({ display: 'flex', flexDirection: 'column' }),

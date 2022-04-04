@@ -2,8 +2,10 @@ import { style } from '@vanilla-extract/css'
 import { MediaQueries } from 'client/src/common/constants/media'
 
 import { gridAtom, vars } from 'client/src/common/styles'
+import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 
 export const wrapper = style([
+  surfaces.glass,
   gridAtom({
     display: 'flex',
     alignItems: 'center',
