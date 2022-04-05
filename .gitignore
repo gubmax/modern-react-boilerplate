@@ -4,4 +4,3 @@ coverage
 dist
 visualizer
 node_modules
-package-lock.json

@@ -7,7 +7,7 @@ Bootstrapped with [Vite](https://github.com/vitejs/vite.git).
 ## Install Dependencies
 Install with npm:
 ```sh
-npm i --force
+npm i
 ```
 
 ## Available Scripts

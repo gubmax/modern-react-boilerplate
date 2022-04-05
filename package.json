@@ -27,7 +27,7 @@
     "visualize": "cross-env VISUALIZE_MODE=on npm run build:client",
     "test": "jest",
     "coverage": "jest --coverage",
-    "typecheck": "(tsc -p packages/client --noEmit) & (tsc -p packages/server --noEmit)",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint packages --ext .ts,.tsx",
     "prepare": "husky install",
     "docker": "npm run docker:build && npm run docker:run",
@@ -41,8 +41,8 @@
     "react-dom": "18.0.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "5.17.0",
-    "@typescript-eslint/parser": "5.17.0",
+    "@typescript-eslint/eslint-plugin": "5.18.0",
+    "@typescript-eslint/parser": "5.18.0",
     "autoprefixer": "10.4.4",
     "chalk": "4.1.2",
     "chokidar": "3.5.3",
@@ -54,7 +54,7 @@
     "husky": "7.0.4",
     "jest": "27.5.1",
     "lint-staged": "12.3.7",
-    "prettier": "2.6.1",
+    "prettier": "2.6.2",
     "ts-node": "10.7.0",
     "typescript": "4.6.3"
   }
