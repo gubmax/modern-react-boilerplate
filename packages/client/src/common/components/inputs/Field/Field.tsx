@@ -21,7 +21,7 @@ const Field: VFC<FieldProps> = ({
 }) => {
   const template = (
     <input
-      className={cn(surfaces.flat, s.input, label && s.withLabel, className)}
+      className={cn(s.input, label && s.withLabel, className)}
       name={name}
       placeholder={placeholder}
       readOnly={!onChange}

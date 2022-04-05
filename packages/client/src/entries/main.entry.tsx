@@ -5,6 +5,7 @@ import { BrowserRouter } from 'client/src/common/components/addons/BrowserRouter
 import { IocContainerContext } from 'client/src/common/contexts/IocContainerContext'
 import { iocContainer } from 'client/src/utils/ioc'
 
+import 'client/src/common/styles/reset.css'
 import 'client/src/common/styles/global.css'
 
 export function renderMainTemplate(

@@ -14,6 +14,8 @@ export const button = recipe({
     {
       borderRadius: dt.vars.borderRadius.primary,
       cursor: 'pointer',
+      fontFamily: 'inherit',
+      fontSize: dt.vars.fontSize.body1,
       fontWeight: 500,
       height: '3rem',
       minWidth: '10rem',
@@ -25,21 +27,25 @@ export const button = recipe({
     type: {
       [ButtonTypes.DEFAULT]: {
         border: `1px solid ${dt.vars.theme.color.accent}`,
+        background: 'transparent',
         color: dt.vars.theme.color.accent,
       },
       [ButtonTypes.DEFAULT_WHITE]: {
         border: `1px solid ${dt.vars.color.white}`,
+        background: 'transparent',
         color: dt.vars.color.white,
 
         ':after': { background: 'rgba(255, 255, 255, 0.25)' },
       },
       [ButtonTypes.PRIMARY]: {
+        border: 0,
         background: dt.vars.theme.color.accent,
         color: dt.vars.theme.color.surface0,
 
         ':after': { background: 'rgba(255, 255, 255, 0.25)' },
       },
       [ButtonTypes.PRIMARY_WHITE]: {
+        border: 0,
         background: dt.vars.color.white,
         color: dt.vars.color.black,
 

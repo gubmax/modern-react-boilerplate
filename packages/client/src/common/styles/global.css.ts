@@ -19,6 +19,7 @@ globalStyle('*, *::before, *::after', {
 
 globalStyle('html', {
   fontSize: dt.vars.size.font,
+  WebkitTextSizeAdjust: '100%',
 })
 
 globalStyle('html:focus-within', {
@@ -63,7 +64,9 @@ globalStyle(':focus', {
 })
 
 globalStyle('a', {
+  color: 'unset',
   cursor: 'pointer',
+  textDecoration: 'none',
 })
 
 const autofill = keyframes({

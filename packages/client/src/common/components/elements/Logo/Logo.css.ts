@@ -21,6 +21,7 @@ export const highlight = style({
   width: '2.5rem',
   marginLeft: dt.vars.space.s0,
   textAlign: 'center',
+  lineHeight: 1.25,
   background: dt.vars.theme.color.bg0,
   borderRadius: '0.6rem',
 

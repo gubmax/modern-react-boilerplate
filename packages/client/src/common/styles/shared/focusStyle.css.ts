@@ -23,7 +23,7 @@ export const focusStyle = style({
   },
 
   selectors: {
-    '&:focus:after': {
+    '&:focus:after, &:active:after': {
       opacity: 1,
       paddingTop: '120%',
       width: '120%',

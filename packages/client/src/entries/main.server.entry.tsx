@@ -6,6 +6,7 @@ import { App } from 'client/src/modules/layout/app'
 import { IocContainerContext } from 'client/src/common/contexts/IocContainerContext'
 import { iocContainer } from 'client/src/utils/ioc'
 
+import 'client/src/common/styles/reset.css'
 import 'client/src/common/styles/global.css'
 
 export function renderServerMainTemplate(
