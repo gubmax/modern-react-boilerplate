@@ -6,11 +6,9 @@ import { DEFAULT_SIZE, IconSizes, IconVariants } from './withIcon.constants'
 import { iconSizeStyles, iconStateStyles } from './withIcon.css'
 
 export function withIcon(Component: ElementType<IconProps>): ElementType<IconProps> {
-  const Icon: VFC<IconProps> = ({ active, accent, size, className, ...rest }) => {
+  const Icon: VFC<IconProps> = ({ variant = IconVariants.PRIMARY, size, className, ...rest }) => {
     const classNames = cn(
-      iconStateStyles[
-        (active && IconVariants.ACTIVE) || (accent && IconVariants.ACCENT) || IconVariants.PRIMARY
-      ],
+      iconStateStyles[variant],
       iconSizeStyles[size || IconSizes.SMALL],
       className,
     )

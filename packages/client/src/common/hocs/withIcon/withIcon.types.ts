@@ -1,8 +1,7 @@
 import { StyledProps } from 'client/src/common/typings'
-import { IconSizes } from './withIcon.constants'
+import { IconSizes, IconVariants } from './withIcon.constants'
 
 export interface IconProps extends StyledProps {
-  active?: boolean
-  accent?: boolean
+  variant?: IconVariants
   size?: IconSizes
 }

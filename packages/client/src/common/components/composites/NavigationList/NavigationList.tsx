@@ -1,6 +1,7 @@
 import { VFC } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
+import { IconVariants } from 'client/src/common/hocs/withIcon'
 import { IW } from 'client/src/common/components/inputs/InteractiveWrapper'
 import { ROUTES } from './NavigationList.constants'
 import * as s from './NavigationList.css'
@@ -17,7 +18,7 @@ const NavigationList: VFC = () => {
 
         return (
           <IW key={to} as="li" className={s.listItem} active={active} onClick={goTo}>
-            <Icon className={s.routeIcon} active={active} />
+            <Icon className={s.routeIcon} variant={active ? IconVariants.ACTIVE : undefined} />
             <span className={s.text}>{text}</span>
           </IW>
         )

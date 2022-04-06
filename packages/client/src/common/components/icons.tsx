@@ -1,5 +1,11 @@
 import { withIcon } from 'client/src/common/hocs/withIcon'
 
+export const AddIcon = withIcon((props) => (
+  <svg {...props}>
+    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+  </svg>
+))
+
 export const ChevronLeftIcon = withIcon((props) => (
   <svg {...props}>
     <path d="M14.71 6.71c-.39-.39-1.02-.39-1.41 0L8.71 11.3c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L10.83 12l3.88-3.88c.39-.39.38-1.03 0-1.41z" />
@@ -33,6 +39,12 @@ export const EmptyShoppingCartIcon = withIcon((props) => (
 export const NotificationIcon = withIcon((props) => (
   <svg {...props}>
     <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z" />
+  </svg>
+))
+
+export const RemoveIcon = withIcon((props) => (
+  <svg {...props}>
+    <path d="M19 13H5v-2h14v2z" />
   </svg>
 ))
 

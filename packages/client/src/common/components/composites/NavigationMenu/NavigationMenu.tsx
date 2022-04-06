@@ -1,12 +1,13 @@
 import { VFC } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { PageRoutes } from 'client/src/browser/http/constants'
 import { noop } from 'client/src/common/helpers/noop'
 import { cn } from 'client/src/common/helpers/classNames'
+import { PageRoutes } from 'client/src/browser/http/constants'
 import { useToggle } from 'client/src/common/hooks/useToggle'
 import { StyledProps } from 'client/src/common/typings'
 import { ShoppingCardIcon, NotificationIcon, UserIcon } from 'client/src/common/components/icons'
+import { IconVariants } from 'client/src/common/hocs/withIcon'
 import { NavigationIcon } from 'client/src/common/components/elements/NavigationIcon'
 import { Modal } from 'client/src/common/components/addons/Modal'
 import * as s from './NavigationMenu.css'
@@ -24,7 +25,9 @@ const NavigationMenu: VFC<StyledProps> = ({ className, style }) => {
         onClick={() => navigate(PageRoutes.CART)}
         text="Shopping cart"
       >
-        <ShoppingCardIcon active={pathname === PageRoutes.CART} />
+        <ShoppingCardIcon
+          variant={pathname === PageRoutes.CART ? IconVariants.ACTIVE : undefined}
+        />
       </NavigationIcon>
       <NavigationIcon className={s.icon} text="Notifications" onClick={noop}>
         <NotificationIcon />

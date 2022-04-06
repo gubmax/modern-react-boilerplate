@@ -15,6 +15,7 @@ export const iconStateStyles = styleVariants({
     },
   },
   [IconVariants.PRIMARY]: { fill: dt.vars.theme.color.primary },
+  [IconVariants.SECONDARY]: { fill: dt.vars.theme.color.secondary },
 })
 
 // Sizes

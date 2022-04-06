@@ -1,6 +1,7 @@
 import { VFC } from 'react'
 
 import { useInject } from 'client/src/common/hooks/useInject'
+import { AddIcon, RemoveIcon } from 'client/src/common/components/icons'
 import { Button } from 'client/src/common/components/inputs/buttons/Button'
 import { ButtonVariants } from 'client/src/common/components/inputs/buttons/BaseButton'
 import { RoundedButton } from 'client/src/common/components/inputs/buttons/RoundedButton'
@@ -28,11 +29,11 @@ const ProductItem: VFC<ProductItemProps> = ({ product: { id, icon, title, price,
             Delete
           </Button>
           <RoundedButton variant={ButtonVariants.PRIMARY} onClick={decrease}>
-            -
+            <RemoveIcon />
           </RoundedButton>
           <span className={s.counter}>{amount}</span>
           <RoundedButton variant={ButtonVariants.PRIMARY} onClick={increase}>
-            +
+            <AddIcon />
           </RoundedButton>
         </div>
       </div>
