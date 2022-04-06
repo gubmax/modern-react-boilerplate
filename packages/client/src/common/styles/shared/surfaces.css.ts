@@ -14,7 +14,6 @@ export const surfaces = styleVariants(
       base,
       {
         background: dt.vars.theme.color.surface0,
-        borderRadius: dt.vars.borderRadius.primary,
       },
     ],
     glass: [

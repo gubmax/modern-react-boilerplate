@@ -3,6 +3,7 @@ import { FC, useRef } from 'react'
 import { useSlideTransition } from 'client/src/common/hooks/useSlideTransition'
 import { ChevronLeftIcon, ChevronRightIcon } from 'client/src/common/components/icons'
 import { RoundedButton } from 'client/src/common/components/inputs/buttons/RoundedButton'
+import { ButtonVariants } from 'client/src/common/components/inputs/buttons/BaseButton'
 import { typography } from 'client/src/common/styles/shared/typography.css'
 import { GroupSliderProps } from '../GroupSlider.types'
 import * as s from './GroupSliderDesktop.css'
@@ -21,11 +22,15 @@ const GroupSlider: FC<GroupSliderProps> = ({ className, style, title, children }
       <div className={s.header}>
         <h2 className={typography.h2}>{title}</h2>
         <div className={s.buttonsGroup}>
-          <RoundedButton className={s.prevButton} onClick={handlePrevButtonClick}>
-            <ChevronLeftIcon accent />
+          <RoundedButton
+            variant={ButtonVariants.FLAT}
+            className={s.prevButton}
+            onClick={handlePrevButtonClick}
+          >
+            <ChevronLeftIcon />
           </RoundedButton>
-          <RoundedButton onClick={handleNextButtonClick}>
-            <ChevronRightIcon accent />
+          <RoundedButton variant={ButtonVariants.FLAT} onClick={handleNextButtonClick}>
+            <ChevronRightIcon />
           </RoundedButton>
         </div>
       </div>

@@ -8,11 +8,12 @@ import {
   useRef,
 } from 'react'
 
+import { noop } from 'client/src/common/helpers/noop'
 import { cn } from 'client/src/common/helpers/classNames'
 import { useFadeTransition } from 'client/src/common/hooks/useFadeTransition'
 import { RoundedButton } from 'client/src/common/components/inputs/buttons/RoundedButton'
-import { noop } from 'client/src/common/helpers/noop'
-import { CloseIcon } from '../../icons'
+import { ButtonVariants } from 'client/src/common/components/inputs/buttons/BaseButton'
+import { CloseIcon } from 'client/src/common/components/icons'
 import { Portal } from '../Portal'
 import { ModalProps } from './Modal.types'
 import * as s from './Modal.css'
@@ -87,8 +88,12 @@ const Modal: FC<ModalProps> = ({ children, active = false, onClose = noop }) => 
           onAnimationEnd={fadeWrapperProps.onAnimationEnd}
         >
           <div className={s.header}>
-            <RoundedButton className={s.closeButton} onClick={onClose}>
-              <CloseIcon accent />
+            <RoundedButton
+              variant={ButtonVariants.FLAT}
+              className={s.closeButton}
+              onClick={onClose}
+            >
+              <CloseIcon />
             </RoundedButton>
           </div>
           <div className={s.body}>{children}</div>
