@@ -1,7 +1,12 @@
 import { ChangeEventHandler, FC, memo, useCallback, useState } from 'react'
 
+import { cn } from 'client/src/common/helpers/classNames'
+import { IconVariants } from 'client/src/common/hocs/withIcon'
 import { StyledProps } from 'client/src/common/typings'
+import { CloseIcon, SearchIcon } from 'client/src/common/components/icons'
 import { Field } from 'client/src/common/components/inputs/Field'
+import { RoundedButton } from 'client/src/common/components/inputs/buttons/RoundedButton'
+import * as s from './SearchField.css'
 
 const SearchField: FC<StyledProps> = ({ className, style }) => {
   const [searchText, setSearchText] = useState('')
@@ -11,15 +16,27 @@ const SearchField: FC<StyledProps> = ({ className, style }) => {
     [],
   )
 
+  const handleClickOnReset = useCallback(() => setSearchText(''), [])
+
   return (
-    <Field
-      className={className}
-      name="search"
-      placeholder="Search..."
-      style={style}
-      value={searchText}
-      onChange={handleChange}
-    />
+    <div className={cn(s.wrapper, className)}>
+      <RoundedButton className={s.searchIcon}>
+        <SearchIcon variant={IconVariants.SECONDARY} />
+      </RoundedButton>
+      <Field
+        className={s.field}
+        name="search"
+        placeholder="Search..."
+        style={style}
+        value={searchText}
+        onChange={handleChange}
+      />
+      {searchText && (
+        <RoundedButton className={s.resetIcon} onClick={handleClickOnReset}>
+          <CloseIcon />
+        </RoundedButton>
+      )}
+    </div>
   )
 }
 
