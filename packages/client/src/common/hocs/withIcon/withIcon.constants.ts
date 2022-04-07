@@ -5,6 +5,7 @@ export enum IconVariants {
   ACCENT = 'accent',
   ACTIVE = 'active',
   SECONDARY = 'secondary',
+  WHITE = 'white',
 }
 
 export enum IconSizes {

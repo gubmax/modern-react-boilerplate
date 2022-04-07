@@ -30,7 +30,7 @@ const NavigationMenu: VFC<StyledProps> = ({ className, style }) => {
         />
       </NavigationIcon>
       <NavigationIcon className={s.icon} text="Notifications" onClick={noop}>
-        <NotificationIcon />
+        <NotificationIcon variant={IconVariants.SECONDARY} />
       </NavigationIcon>
       <NavigationIcon className={s.icon} text="Sign in" onClick={toggleShown}>
         <UserIcon />
