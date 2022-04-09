@@ -1,9 +1,9 @@
 import { FC } from 'react'
 
-import { useLink } from 'client/src/common/hooks/useLink'
-import { Button } from 'client/src/common/components/inputs/buttons/Button'
-import { ButtonVariants } from 'client/src/common/components/inputs/buttons/BaseButton'
 import { PageRoutes } from 'client/src/browser/http/constants'
+import { ButtonVariants } from 'client/src/common/components/inputs/buttons/BaseButton'
+import { Button } from 'client/src/common/components/inputs/buttons/Button'
+import { useLink } from 'client/src/common/hooks/useLink'
 import * as s from './NotFound.css'
 
 const NotFound: FC = () => {

@@ -8,10 +8,10 @@ import {
 } from '../assetCollector'
 import { HttpClientService } from '../httpClient'
 import { UserAgentParserService } from '../userAgentParser'
-import { RenderController } from './render.controller'
-import { RenderService } from './render.service'
-import { DevelopmentRenderService } from './render.development.service'
 import { renderServiceSymbol } from './render.constants'
+import { RenderController } from './render.controller'
+import { DevelopmentRenderService } from './render.development.service'
+import { RenderService } from './render.service'
 
 const renderServiceFactory: FactoryProvider<RenderService> = {
   provide: renderServiceSymbol,

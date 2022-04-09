@@ -1,25 +1,26 @@
 import { readFileSync } from 'fs'
+
+import { renderToString } from 'react-dom/server'
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { NestExpressApplication } from '@nestjs/platform-express'
 import type { Request, Response } from 'express'
-import { renderToString } from 'react-dom/server'
 import { createServer, ModuleNode, ViteDevServer } from 'vite'
 
-import { HtmlEntries } from 'shared/constants/entries'
-import { PATH_RESOLVED_INDEX_HTML } from 'shared/constants/paths'
-import { InternalServerException } from 'shared/exceptions/exceptions'
-import { renderServerMainTemplate as RenderServerMainTemplate } from 'client/src/entries/main.server.entry'
 import { renderInternalErrorTemplate as RenderInternalErrorTemplate } from 'client/src/entries/internalError.entry'
+import { renderServerMainTemplate as RenderServerMainTemplate } from 'client/src/entries/main.server.entry'
 import viteDevServerConfig from 'client/vite.config.server'
 import { CONFIG_ENTRIES } from 'server/config'
 import { HtmlMarks } from 'server/src/common/constants/html'
+import { HtmlEntries } from 'shared/constants/entries'
+import { PATH_RESOLVED_INDEX_HTML } from 'shared/constants/paths'
+import { InternalServerException } from 'shared/exceptions/exceptions'
 import { DevelopmentAssetCollectorService } from '../assetCollector'
 import { HttpClientService } from '../httpClient'
 import { UserAgentParserService } from '../userAgentParser'
+import { RenderService } from './render.service'
 import { fetchPageProps } from './utils/fetchPageProps'
 import { writeTemplate } from './utils/writeTemplate'
-import { RenderService } from './render.service'
 
 @Injectable()
 export class DevelopmentRenderService extends RenderService {

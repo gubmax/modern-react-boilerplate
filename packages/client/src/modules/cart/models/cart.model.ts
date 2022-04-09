@@ -1,13 +1,13 @@
-import { singleton, inject } from 'tsyringe'
 import { BehaviorSubject } from 'rxjs'
+import { inject, singleton } from 'tsyringe'
 
-import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
-import { CartSspQueryModel } from 'client/src/modules/pages/cart/models/cartSspQuery.model'
 import { UpdateAmountQueryModel } from 'client/src/common/models/queries/updateAmount'
-import { UpdateAmountPaths } from 'shared/http/requests'
+import { CartSspQueryModel } from 'client/src/modules/pages/cart/models/cartSspQuery.model'
+import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
 import { JSONPatchOperations } from 'shared/http/jsonPatch'
-import { CartService } from '../domain/services/cart.service'
+import { UpdateAmountPaths } from 'shared/http/requests'
 import { Product } from '../domain/entities/product.entity'
+import { CartService } from '../domain/services/cart.service'
 
 @singleton()
 export class CartModel {

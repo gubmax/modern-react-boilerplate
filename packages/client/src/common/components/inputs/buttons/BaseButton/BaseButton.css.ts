@@ -1,7 +1,7 @@
 import { style, styleVariants } from '@vanilla-extract/css'
 
-import { dt } from 'client/src/common/styles/designTokens'
 import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
+import { dt } from 'client/src/common/styles/designTokens'
 import { ButtonVariants } from './BaseButton.constants'
 
 export const baseButton = style([

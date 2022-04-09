@@ -1,6 +1,6 @@
 import { ApiRoutes, HttpRequestMethods } from '../constants'
-import { HttpRequestInit } from '../types'
 import { JSONPatch, JSONPatchOperations } from '../jsonPatch'
+import { HttpRequestInit } from '../types'
 
 export enum UpdateAmountPaths {
   increase = '/increase',

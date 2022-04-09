@@ -2,8 +2,8 @@ import { FC } from 'react'
 import { useOutlet } from 'react-router-dom'
 
 import { NavigationList } from 'client/src/common/components/composites/NavigationList'
-import { ProgressBar } from '../ProgressBar'
 import { Header } from '../Header'
+import { ProgressBar } from '../ProgressBar'
 import * as s from './Main.css'
 
 const Main: FC = () => {

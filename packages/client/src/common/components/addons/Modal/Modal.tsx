@@ -8,12 +8,12 @@ import {
   useRef,
 } from 'react'
 
-import { noop } from 'client/src/common/helpers/noop'
-import { cn } from 'client/src/common/helpers/classNames'
-import { useFadeTransition } from 'client/src/common/hooks/useFadeTransition'
-import { RoundedButton } from 'client/src/common/components/inputs/buttons/RoundedButton'
-import { ButtonVariants } from 'client/src/common/components/inputs/buttons/BaseButton'
 import { CloseIcon } from 'client/src/common/components/icons'
+import { ButtonVariants } from 'client/src/common/components/inputs/buttons/BaseButton'
+import { RoundedButton } from 'client/src/common/components/inputs/buttons/RoundedButton'
+import { cn } from 'client/src/common/helpers/classNames'
+import { noop } from 'client/src/common/helpers/noop'
+import { useFadeTransition } from 'client/src/common/hooks/useFadeTransition'
 import { Portal } from '../Portal'
 import { ModalProps } from './Modal.types'
 import * as s from './Modal.css'

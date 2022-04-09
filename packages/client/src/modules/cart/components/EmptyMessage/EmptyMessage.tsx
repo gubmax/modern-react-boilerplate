@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
-import { IconSizes } from 'client/src/common/hocs/withIcon'
 import { EmptyShoppingCartIcon } from 'client/src/common/components/icons'
+import { IconSizes } from 'client/src/common/hocs/withIcon'
 import { typography } from 'client/src/common/styles/shared/typography.css'
 import * as s from './EmptyMessage.css'
 

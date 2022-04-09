@@ -1,5 +1,5 @@
-import { Exceptions, ExceptionLevels } from './exceptions.constants'
 import { ExceptionImpl } from './ExceptionImpl'
+import { ExceptionLevels, Exceptions } from './exceptions.constants'
 
 export class Warning extends ExceptionImpl {
   type = Exceptions.WARNING

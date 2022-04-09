@@ -1,11 +1,11 @@
 import { VFC } from 'react'
 
-import { useInject } from 'client/src/common/hooks/useInject'
 import { useBehaviorSubjectSubscription } from 'client/src/common/hooks/useBehaviorSubjectSubscription'
+import { useInject } from 'client/src/common/hooks/useInject'
 import { typography } from 'client/src/common/styles/shared/typography.css'
 import { CartModel } from '../../models/cart.model'
-import { ProductList } from '../ProductList'
 import { EmptyMessage } from '../EmptyMessage'
+import { ProductList } from '../ProductList'
 import { CartSkeleton } from './Cart.skeleton'
 import { CartProps } from './Cart.types'
 import * as s from './Cart.css'

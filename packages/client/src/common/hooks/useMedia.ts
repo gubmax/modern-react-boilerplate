@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
+
 import { WindowResizeObserverModel } from '../models/WindowResizeObserver.model'
 import { useInject } from './useInject'
 

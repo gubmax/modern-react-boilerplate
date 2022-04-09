@@ -1,8 +1,8 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 
-import { RequestLoggerMiddleware } from 'server/src/common/middlewares'
 import { CONFIG_ENV } from 'server/config'
+import { RequestLoggerMiddleware } from 'server/src/common/middlewares'
 import { AssetCollectorModule } from './assetCollector'
 import { CartModule } from './cart'
 import { LoggerModule } from './logger'

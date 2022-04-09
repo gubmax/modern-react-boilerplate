@@ -1,7 +1,7 @@
-import { hydrateRoot } from 'react-dom/client'
 // import { registerSW } from 'virtual:pwa-register'
+import { hydrateRoot } from 'react-dom/client'
 
-import { ClientConfig, CLIENT_CONFIG } from 'shared/constants/clientConfig'
+import { CLIENT_CONFIG, ClientConfig } from 'shared/constants/clientConfig'
 import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
 import { reportWebVitals } from './browser/http/reportWebVitals'
 import { renderMainTemplate } from './entries/main.entry'

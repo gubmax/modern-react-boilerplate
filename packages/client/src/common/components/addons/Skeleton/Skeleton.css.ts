@@ -1,4 +1,4 @@
-import { style, keyframes } from '@vanilla-extract/css'
+import { keyframes, style } from '@vanilla-extract/css'
 
 import { dt } from 'client/src/common/styles/designTokens'
 

@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { BehaviorSubject } from 'rxjs'
-import { useSubscription, Subscription } from 'use-subscription'
+import { Subscription, useSubscription } from 'use-subscription'
 
 /**
  * Safely manages subscriptions in concurrent mode.

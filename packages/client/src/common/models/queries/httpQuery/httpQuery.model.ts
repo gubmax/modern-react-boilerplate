@@ -1,4 +1,4 @@
-import { HttpRequestResponse, HttpRequestBody, HttpRequestInit } from 'shared/http/types'
+import { HttpRequestBody, HttpRequestInit, HttpRequestResponse } from 'shared/http/types'
 import { HttpClientModel } from '../../httpClient.model'
 import { QueryModel } from '../query'
 

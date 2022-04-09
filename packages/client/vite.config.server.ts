@@ -1,7 +1,8 @@
-import { UserConfig } from 'vite'
 import { resolve } from 'path'
-import react from '@vitejs/plugin-react'
+
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
+import react from '@vitejs/plugin-react'
+import { UserConfig } from 'vite'
 
 import { HtmlEntries } from '../shared/constants/entries'
 import { PATH_SERVER } from '../shared/constants/paths'

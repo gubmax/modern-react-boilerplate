@@ -1,7 +1,7 @@
 import { BehaviorSubject } from 'rxjs'
 
 import { QueryStatuses } from './query.constants'
-import { QueryState, QueryAction } from './query.types'
+import { QueryAction, QueryState } from './query.types'
 
 export abstract class QueryModel<R> {
   readonly query$ = new BehaviorSubject<QueryState<R>>({

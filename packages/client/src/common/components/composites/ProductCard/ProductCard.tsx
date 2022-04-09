@@ -2,9 +2,9 @@ import { VFC } from 'react'
 
 import { cn } from 'client/src/common/helpers/classNames'
 import { Cost } from './components/Cost'
+import { backgrounds } from './ProductCard.constants'
 import { ProductCardProps } from './ProductCard.types'
 import * as s from './ProductCard.css'
-import { backgrounds } from './ProductCard.constants'
 
 const ProductCard: VFC<ProductCardProps> = ({ className, bg, style, icon, price, onClick }) => {
   return (

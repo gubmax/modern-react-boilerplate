@@ -1,10 +1,10 @@
 import { FC } from 'react'
 
-import { ClientConfig, CLIENT_CONFIG, DeviceType } from 'shared/constants/clientConfig'
 import { useInject } from 'client/src/common/hooks/useInject'
+import { CLIENT_CONFIG, ClientConfig, DeviceType } from 'shared/constants/clientConfig'
 import { GroupSliderDesktop } from './desktop'
-import { GroupSliderTouch } from './touch'
 import { GroupSliderProps } from './GroupSlider.types'
+import { GroupSliderTouch } from './touch'
 
 const GroupSlider: FC<GroupSliderProps> = (props) => {
   const { deviceType } = useInject<ClientConfig>(CLIENT_CONFIG)

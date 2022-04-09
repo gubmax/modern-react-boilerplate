@@ -1,11 +1,10 @@
 import { StaticRouter } from 'react-router-dom/server'
 
-import { ClientConfig, CLIENT_CONFIG } from 'shared/constants/clientConfig'
-import { ServerSideProps, SERVER_SIDE_PROPS } from 'shared/constants/serverSideProps'
-import { App } from 'client/src/modules/layout/app'
 import { IocContainerContext } from 'client/src/common/contexts/IocContainerContext'
+import { App } from 'client/src/modules/layout/app'
 import { iocContainer } from 'client/src/utils/ioc'
-
+import { CLIENT_CONFIG, ClientConfig } from 'shared/constants/clientConfig'
+import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
 import 'client/src/common/styles/reset.css'
 import 'client/src/common/styles/global.css'
 

@@ -1,5 +1,5 @@
-import { adaptiveVarsContract } from './adaptive.css'
 import { MEDIA } from './media'
+import { adaptiveVarsContract } from './adaptive.css'
 import { systemVars } from './system.css'
 import { themeVars } from './theme.css'
 

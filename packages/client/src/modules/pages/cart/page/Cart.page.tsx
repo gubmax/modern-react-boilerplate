@@ -1,11 +1,11 @@
 import { FC, lazy, Suspense } from 'react'
 
+import { PageLoader } from 'client/src/common/components/composites/PageLoader'
+import { PageTitle } from 'client/src/common/components/elements/PageTitle'
+import { useBehaviorSubjectSubscription } from 'client/src/common/hooks/useBehaviorSubjectSubscription'
 import { useDocumentTitle } from 'client/src/common/hooks/useDocumentTitle'
 import { useInject } from 'client/src/common/hooks/useInject'
-import { useBehaviorSubjectSubscription } from 'client/src/common/hooks/useBehaviorSubjectSubscription'
 import { useServerSidePropsQueryLoader } from 'client/src/common/hooks/useServerSidePropsQueryLoader'
-import { PageTitle } from 'client/src/common/components/elements/PageTitle'
-import { PageLoader } from 'client/src/common/components/composites/PageLoader'
 import { CartSspQueryModel } from '../models/cartSspQuery.model'
 import { PAGE_TITLE } from './Cart.constants'
 

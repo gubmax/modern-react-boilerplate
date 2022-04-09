@@ -1,9 +1,9 @@
-import pino, { P } from 'pino'
 import { LoggerService as NestLoggerService } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
+import pino, { P } from 'pino'
 
-import { prettifier } from './prettifier'
 import { HttpExceptionImpl } from 'shared/exceptions'
+import { prettifier } from './prettifier'
 
 type MsgData = string | { msg: string }
 

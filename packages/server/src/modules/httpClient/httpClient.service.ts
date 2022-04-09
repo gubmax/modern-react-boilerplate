@@ -1,15 +1,15 @@
-import { fetch } from 'undici'
 import { Injectable, Logger } from '@nestjs/common'
+import { fetch } from 'undici'
 
+import { CONFIG_ENV } from 'server/config'
+import { TransportMarks, Transports } from 'server/src/common/constants/transports'
+import { InternalServerException } from 'shared/exceptions'
 import {
   HttpClientImpl,
   HttpRequestBody,
   HttpRequestInit,
   HttpRequestResponse,
 } from 'shared/http/types'
-import { InternalServerException } from 'shared/exceptions'
-import { CONFIG_ENV } from 'server/config'
-import { TransportMarks, Transports } from 'server/src/common/constants/transports'
 
 @Injectable()
 export class HttpClientService implements HttpClientImpl {

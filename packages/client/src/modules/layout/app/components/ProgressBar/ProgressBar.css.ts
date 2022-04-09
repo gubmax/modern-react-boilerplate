@@ -2,8 +2,8 @@ import { keyframes, style } from '@vanilla-extract/css'
 
 import { dt } from 'client/src/common/styles/designTokens'
 import {
-  LOADING_WIDTH_TRANSITION_DELAY,
   LOADING_OPACITY_TRANSITION_DELAY,
+  LOADING_WIDTH_TRANSITION_DELAY,
 } from './ProgressBar.constants'
 
 export const wrapper = style({

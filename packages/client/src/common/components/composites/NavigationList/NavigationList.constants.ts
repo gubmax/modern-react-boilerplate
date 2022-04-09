@@ -1,6 +1,5 @@
 import { ElementType } from 'react'
 
-import { IconProps } from 'client/src/common/hocs/withIcon'
 import { PageRoutes } from 'client/src/browser/http/constants'
 import {
   CollectionIcon,
@@ -8,6 +7,7 @@ import {
   ScheduleIcon,
   ShowcaseIcon,
 } from 'client/src/common/components/icons'
+import { IconProps } from 'client/src/common/hocs/withIcon'
 
 export const ROUTES: Array<{
   to: PageRoutes

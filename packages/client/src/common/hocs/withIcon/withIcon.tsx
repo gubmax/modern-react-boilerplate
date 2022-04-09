@@ -1,8 +1,8 @@
 import { ElementType, VFC } from 'react'
 
 import { cn } from 'client/src/common/helpers/classNames'
-import { IconProps } from './withIcon.types'
 import { DEFAULT_SIZE, IconSizes, IconVariants } from './withIcon.constants'
+import { IconProps } from './withIcon.types'
 import { iconSizeStyles, iconStateStyles } from './withIcon.css'
 
 export function withIcon(Component: ElementType<IconProps>): ElementType<IconProps> {

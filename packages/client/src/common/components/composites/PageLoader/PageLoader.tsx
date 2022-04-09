@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 import { Loader } from 'client/src/common/components/elements/Loader'
 import * as s from './PageLoader.css'

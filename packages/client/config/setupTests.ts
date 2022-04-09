@@ -1,3 +1,4 @@
+import React from 'react'
 /**
  * 'jest-dom' adds custom jest matchers for asserting on DOM nodes.
  * Allows you to do things like:
@@ -6,5 +7,4 @@
  */
 import '@testing-library/jest-dom'
 
-import React from 'react'
 global.React = React

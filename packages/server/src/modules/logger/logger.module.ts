@@ -1,8 +1,8 @@
 import { FactoryProvider, Module } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 
-import { LoggerService } from './logger.service'
 import { loggerServiceSymbol } from './logger.constants'
+import { LoggerService } from './logger.service'
 
 const LoggerValueProvider: FactoryProvider<LoggerService> = {
   provide: loggerServiceSymbol,

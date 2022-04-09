@@ -1,13 +1,13 @@
-import type { Response } from 'express'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { renderToPipeableStream as render } from 'react-dom/server'
+import type { Response } from 'express'
 
-import { CLIENT_CONFIG, ClientConfig } from 'shared/constants/clientConfig'
-import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
 import { HtmlMarks } from 'server/src/common/constants/html'
+import { CLIENT_CONFIG, ClientConfig } from 'shared/constants/clientConfig'
 import { HtmlEntries } from 'shared/constants/entries'
 import { PATH_RESOLVED_CLIENT } from 'shared/constants/paths'
+import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
 
 const renderToPipeableStream = render as (
   children: JSX.Element,

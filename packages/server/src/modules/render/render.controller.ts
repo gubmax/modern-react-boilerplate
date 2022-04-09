@@ -1,10 +1,10 @@
 import { Controller, Get, Inject, Req, Res, UseFilters } from '@nestjs/common'
 import { Request, Response } from 'express'
 
-import { ApiRoutes } from 'shared/http/constants'
 import { RenderExceptionsFilter } from 'server/src/common/filters'
-import { RenderService } from './render.service'
+import { ApiRoutes } from 'shared/http/constants'
 import { renderServiceSymbol } from './render.constants'
+import { RenderService } from './render.service'
 
 @Controller(ApiRoutes.RENDER)
 export class RenderController {

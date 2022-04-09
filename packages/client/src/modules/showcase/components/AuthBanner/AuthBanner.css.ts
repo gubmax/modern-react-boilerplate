@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css'
 
-import { dt } from 'client/src/common/styles/designTokens'
 import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
+import { dt } from 'client/src/common/styles/designTokens'
 import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 import { typography } from 'client/src/common/styles/shared/typography.css'
 

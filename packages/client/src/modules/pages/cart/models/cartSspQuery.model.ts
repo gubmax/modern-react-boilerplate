@@ -1,8 +1,8 @@
 import { inject, singleton } from 'tsyringe'
 
-import { GetProductsResponse } from 'shared/http/requests'
-import { ServerSidePropsQueryModel } from 'client/src/common/models/queries/serverSideProps'
 import { HttpClientModel } from 'client/src/common/models/httpClient.model'
+import { ServerSidePropsQueryModel } from 'client/src/common/models/queries/serverSideProps'
+import { GetProductsResponse } from 'shared/http/requests'
 import { getServerSideProps } from '../dataFetching'
 
 @singleton()

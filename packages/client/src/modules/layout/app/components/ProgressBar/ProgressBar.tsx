@@ -1,8 +1,8 @@
 import { FC } from 'react'
 
 import { cn } from 'client/src/common/helpers/classNames'
-import { useInject } from 'client/src/common/hooks/useInject'
 import { useBehaviorSubjectSubscription } from 'client/src/common/hooks/useBehaviorSubjectSubscription'
+import { useInject } from 'client/src/common/hooks/useInject'
 import { PreloadChunksModel } from 'client/src/common/models/preloadChunks.model'
 import { QueryStatuses } from 'client/src/common/models/queries/query'
 import { ProgressBarFadeTransitionModel } from '../../models/progressBarFadeTransition.model'

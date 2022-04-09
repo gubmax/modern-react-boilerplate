@@ -1,10 +1,10 @@
 import { VFC } from 'react'
 
-import { cn } from 'client/src/common/helpers/classNames'
+import { ButtonVariants } from 'client/src/common/components/inputs/buttons/BaseButton'
 import { Button } from 'client/src/common/components/inputs/buttons/Button'
+import { cn } from 'client/src/common/helpers/classNames'
 import { StyledProps } from 'client/src/common/typings'
 import * as s from './AuthBanner.css'
-import { ButtonVariants } from 'client/src/common/components/inputs/buttons/BaseButton'
 
 const AuthBanner: VFC<StyledProps> = ({ className, style }) => {
   return (

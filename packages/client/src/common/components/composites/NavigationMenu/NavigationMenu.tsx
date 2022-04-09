@@ -1,15 +1,15 @@
 import { VFC } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { noop } from 'client/src/common/helpers/noop'
-import { cn } from 'client/src/common/helpers/classNames'
 import { PageRoutes } from 'client/src/browser/http/constants'
+import { Modal } from 'client/src/common/components/addons/Modal'
+import { NavigationIcon } from 'client/src/common/components/elements/NavigationIcon'
+import { NotificationIcon, ShoppingCardIcon, UserIcon } from 'client/src/common/components/icons'
+import { cn } from 'client/src/common/helpers/classNames'
+import { noop } from 'client/src/common/helpers/noop'
+import { IconVariants } from 'client/src/common/hocs/withIcon'
 import { useToggle } from 'client/src/common/hooks/useToggle'
 import { StyledProps } from 'client/src/common/typings'
-import { ShoppingCardIcon, NotificationIcon, UserIcon } from 'client/src/common/components/icons'
-import { IconVariants } from 'client/src/common/hocs/withIcon'
-import { NavigationIcon } from 'client/src/common/components/elements/NavigationIcon'
-import { Modal } from 'client/src/common/components/addons/Modal'
 import * as s from './NavigationMenu.css'
 
 const NavigationMenu: VFC<StyledProps> = ({ className, style }) => {

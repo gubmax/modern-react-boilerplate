@@ -1,9 +1,9 @@
-import { useRef, useState, useLayoutEffect, FC } from 'react'
+import { FC, useLayoutEffect, useRef, useState } from 'react'
 import { Router } from 'react-router-dom'
 import { createBrowserHistory, Update } from 'history'
 
-import { useInject } from 'client/src/common/hooks/useInject'
 import { HistoryContext } from 'client/src/common/contexts/HistoryContext'
+import { useInject } from 'client/src/common/hooks/useInject'
 import { PreloadChunksModel } from 'client/src/common/models/preloadChunks.model'
 import { dynamicRoutes } from './dynamicRoutes'
 

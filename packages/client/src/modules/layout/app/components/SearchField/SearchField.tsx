@@ -1,11 +1,11 @@
 import { ChangeEventHandler, FC, memo, useCallback, useState } from 'react'
 
+import { CloseIcon, SearchIcon } from 'client/src/common/components/icons'
+import { RoundedButton } from 'client/src/common/components/inputs/buttons/RoundedButton'
+import { Field } from 'client/src/common/components/inputs/Field'
 import { cn } from 'client/src/common/helpers/classNames'
 import { IconVariants } from 'client/src/common/hocs/withIcon'
 import { StyledProps } from 'client/src/common/typings'
-import { CloseIcon, SearchIcon } from 'client/src/common/components/icons'
-import { Field } from 'client/src/common/components/inputs/Field'
-import { RoundedButton } from 'client/src/common/components/inputs/buttons/RoundedButton'
 import * as s from './SearchField.css'
 
 const SearchField: FC<StyledProps> = ({ className, style }) => {

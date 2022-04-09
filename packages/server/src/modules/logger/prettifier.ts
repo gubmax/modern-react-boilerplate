@@ -1,8 +1,8 @@
 import chalk from 'chalk'
 
-import { HttpExceptions, HttpStatus } from 'shared/exceptions'
-import { levelByNumber, colorByType, LogLevelWeights } from './logger.constants'
 import { TransportMarks } from 'server/src/common/constants/transports'
+import { HttpExceptions, HttpStatus } from 'shared/exceptions'
+import { colorByType, levelByNumber, LogLevelWeights } from './logger.constants'
 
 interface Transport {
   transport: string

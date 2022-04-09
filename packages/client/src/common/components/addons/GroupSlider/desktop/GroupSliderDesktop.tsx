@@ -1,9 +1,9 @@
 import { FC, useRef } from 'react'
 
-import { useSlideTransition } from 'client/src/common/hooks/useSlideTransition'
 import { ChevronLeftIcon, ChevronRightIcon } from 'client/src/common/components/icons'
-import { RoundedButton } from 'client/src/common/components/inputs/buttons/RoundedButton'
 import { ButtonVariants } from 'client/src/common/components/inputs/buttons/BaseButton'
+import { RoundedButton } from 'client/src/common/components/inputs/buttons/RoundedButton'
+import { useSlideTransition } from 'client/src/common/hooks/useSlideTransition'
 import { typography } from 'client/src/common/styles/shared/typography.css'
 import { GroupSliderProps } from '../GroupSlider.types'
 import * as s from './GroupSliderDesktop.css'

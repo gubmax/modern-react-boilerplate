@@ -1,7 +1,6 @@
 import { memo, VFC } from 'react'
 
 import { cn } from 'client/src/common/helpers/classNames'
-import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 import { FieldProps } from './Field.types'
 import * as s from './Field.css'
 

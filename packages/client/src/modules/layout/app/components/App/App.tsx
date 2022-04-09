@@ -1,6 +1,5 @@
-import { VFC, StrictMode } from 'react'
+import { StrictMode, VFC } from 'react'
 import { useRoutes } from 'react-router'
-import 'reflect-metadata'
 
 import { CommonSvg } from '../CommonSvg'
 import { ROUTES } from './App.constants'

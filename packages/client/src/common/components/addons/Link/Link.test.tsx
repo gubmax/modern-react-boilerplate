@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 
-import { noop as mockNoop } from 'client/src/common/helpers/noop'
 import { PageRoutes } from 'client/src/browser/http/constants'
+import { noop as mockNoop } from 'client/src/common/helpers/noop'
 import Link from './Link'
 
 const TEXT = 'some text'

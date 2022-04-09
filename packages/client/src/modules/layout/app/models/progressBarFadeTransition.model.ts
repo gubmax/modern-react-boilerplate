@@ -1,8 +1,8 @@
 import { delay, filter, tap } from 'rxjs'
 import { inject, singleton } from 'tsyringe'
 
-import { QueryStatuses } from 'client/src/common/models/queries/query'
 import { PreloadChunksModel } from 'client/src/common/models/preloadChunks.model'
+import { QueryStatuses } from 'client/src/common/models/queries/query'
 import { LOADING_OPACITY_TRANSITION_DELAY } from '../components/ProgressBar'
 
 @singleton()

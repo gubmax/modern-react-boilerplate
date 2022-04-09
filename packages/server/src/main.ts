@@ -1,6 +1,6 @@
 import { CONFIG_ENV } from '../config'
-import { LoggerService, loggerServiceSymbol } from './modules/logger'
 import { bootstrap } from './bootstrap'
+import { LoggerService, loggerServiceSymbol } from './modules/logger'
 
 // Bootstrap
 if (!CONFIG_ENV.isTestEnv) {

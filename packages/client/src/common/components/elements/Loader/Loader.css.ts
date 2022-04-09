@@ -1,7 +1,7 @@
-import { style, keyframes } from '@vanilla-extract/css'
+import { keyframes, style } from '@vanilla-extract/css'
 
-import { dt } from 'client/src/common/styles/designTokens'
 import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
+import { dt } from 'client/src/common/styles/designTokens'
 
 const borderRadius = style({ borderRadius: '50%' })
 

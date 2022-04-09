@@ -1,23 +1,24 @@
 import { readFileSync } from 'fs'
+
+import { matchPath } from 'react-router'
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import type { Request, Response } from 'express'
-import { matchPath } from 'react-router'
 import { Manifest } from 'vite'
 
+import { renderServerMainTemplate as RenderServerMainTemplate } from 'client/src/entries/main.server.entry'
+import { CONFIG_ENTRIES, CONFIG_SSG_ROUTES, CONFIG_SSR_ROUTES } from 'server/config'
+import { HtmlEntries } from 'shared/constants/entries'
 import {
   PATH_RESOLVED_CLIENT,
-  PATH_RESOLVED_INDEX_HTML,
   PATH_RESOLVED_CLIENT_MANIFEST,
+  PATH_RESOLVED_INDEX_HTML,
 } from 'shared/constants/paths'
-import { CONFIG_ENTRIES, CONFIG_SSG_ROUTES, CONFIG_SSR_ROUTES } from 'server/config'
-import { renderServerMainTemplate as RenderServerMainTemplate } from 'client/src/entries/main.server.entry'
-import { HttpClientService } from '../httpClient'
 import { AssetCollectorService } from '../assetCollector'
+import { HttpClientService } from '../httpClient'
 import { UserAgentParserService } from '../userAgentParser'
 import { fetchPageProps } from './utils/fetchPageProps'
 import { writeTemplate } from './utils/writeTemplate'
-import { HtmlEntries } from 'shared/constants/entries'
 
 @Injectable()
 export class RenderService {

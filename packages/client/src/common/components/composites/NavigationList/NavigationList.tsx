@@ -1,8 +1,8 @@
 import { VFC } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { IconVariants } from 'client/src/common/hocs/withIcon'
 import { IW } from 'client/src/common/components/inputs/InteractiveWrapper'
+import { IconVariants } from 'client/src/common/hocs/withIcon'
 import { ROUTES } from './NavigationList.constants'
 import * as s from './NavigationList.css'
 

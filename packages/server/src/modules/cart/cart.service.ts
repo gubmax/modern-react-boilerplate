@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 
-import { BadRequestException } from 'shared/exceptions'
 import { wait } from 'server/src/common/helpers/wait'
+import { BadRequestException } from 'shared/exceptions'
 
 @Injectable()
 export class CartService {

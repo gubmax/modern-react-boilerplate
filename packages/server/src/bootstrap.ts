@@ -1,14 +1,14 @@
+import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
 import { NestExpressApplication } from '@nestjs/platform-express'
-import { ConfigService } from '@nestjs/config'
 import compression from 'compression'
 import serve from 'serve-static'
 
 import { PATH_RESOLVED_CLIENT } from 'shared/constants/paths'
-import { AppModule } from './modules/app.module'
-import { DevelopmentRenderService, RenderService, renderServiceSymbol } from './modules/render'
-import { LoggerService, loggerServiceSymbol } from './modules/logger'
 import { AllExceptionsFilter } from './common/filters'
+import { AppModule } from './modules/app.module'
+import { LoggerService, loggerServiceSymbol } from './modules/logger'
+import { DevelopmentRenderService, RenderService, renderServiceSymbol } from './modules/render'
 
 export async function bootstrap(): Promise<NestExpressApplication> {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, { bufferLogs: true })

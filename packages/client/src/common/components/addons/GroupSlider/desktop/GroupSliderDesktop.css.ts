@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css'
 
-import { dt } from 'client/src/common/styles/designTokens'
 import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
+import { dt } from 'client/src/common/styles/designTokens'
 import { hideScrollbar } from 'client/src/common/styles/shared/hideScrollbar.css'
 
 export const wrapper = style([

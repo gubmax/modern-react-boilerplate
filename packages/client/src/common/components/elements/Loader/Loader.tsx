@@ -1,4 +1,4 @@
-import { VFC, memo } from 'react'
+import { memo, VFC } from 'react'
 
 import { cn } from 'client/src/common/helpers/classNames'
 import { LoaderProps } from './Loader.types'

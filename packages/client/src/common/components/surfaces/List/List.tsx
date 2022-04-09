@@ -1,4 +1,4 @@
-import { FC, Children } from 'react'
+import { Children, FC } from 'react'
 
 import { cn } from 'client/src/common/helpers/classNames'
 import { Divider } from '../Divider'

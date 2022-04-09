@@ -1,5 +1,5 @@
-import { NestMiddleware, Logger } from '@nestjs/common'
-import { Request, Response, NextFunction } from 'express'
+import { Logger, NestMiddleware } from '@nestjs/common'
+import { NextFunction, Request, Response } from 'express'
 
 import { TransportMarks, Transports } from '../constants/transports'
 

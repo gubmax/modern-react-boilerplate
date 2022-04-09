@@ -1,8 +1,8 @@
 import { FC, MouseEvent } from 'react'
 
-import { noop } from 'client/src/common/helpers/noop'
-import { cn } from 'client/src/common/helpers/classNames'
 import { Loader } from 'client/src/common/components/elements/Loader'
+import { cn } from 'client/src/common/helpers/classNames'
+import { noop } from 'client/src/common/helpers/noop'
 import { BaseButton } from '../BaseButton'
 import { ButtonProps } from './Button.types'
 import * as s from './Button.css'
