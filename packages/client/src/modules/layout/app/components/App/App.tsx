@@ -1,10 +1,10 @@
-import { StrictMode, VFC } from 'react'
+import { FC, StrictMode } from 'react'
 import { useRoutes } from 'react-router'
 
 import { CommonSvg } from '../CommonSvg'
 import { ROUTES } from './App.constants'
 
-const App: VFC = () => {
+const App: FC = () => {
   const element = useRoutes(ROUTES)
 
   return (

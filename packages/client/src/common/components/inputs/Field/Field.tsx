@@ -1,10 +1,10 @@
-import { memo, VFC } from 'react'
+import { FC, memo } from 'react'
 
 import { cn } from 'client/src/common/helpers/classNames'
 import { FieldProps } from './Field.types'
 import * as s from './Field.css'
 
-const Field: VFC<FieldProps> = ({
+const Field: FC<FieldProps> = ({
   autoComplete,
   autoFocus = false,
   className,

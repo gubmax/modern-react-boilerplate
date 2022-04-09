@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 
 import { PageRoutes } from 'client/src/browser/http/constants'
 import { Link } from 'client/src/common/components/addons/Link'
@@ -11,7 +11,7 @@ import { SearchField } from 'client/src/modules/layout/app/components/SearchFiel
 import { LINK_REPO } from './Header.constants'
 import * as s from './Header.css'
 
-const Header: VFC<StyledProps> = ({ className, ...rest }) => {
+const Header: FC<StyledProps> = ({ className, ...rest }) => {
   return (
     <div className={cn(s.wrapper, className)} {...rest}>
       <Link className={s.linkLogo} to={PageRoutes.ROOT}>

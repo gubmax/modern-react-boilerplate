@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "types": [
-      "react-dom/next",
+      "react-dom",
       "reflect-metadata",
     ]
   }

@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { PageRoutes } from 'client/src/browser/http/constants'
@@ -12,7 +12,7 @@ import { useToggle } from 'client/src/common/hooks/useToggle'
 import { StyledProps } from 'client/src/common/typings'
 import * as s from './NavigationMenu.css'
 
-const NavigationMenu: VFC<StyledProps> = ({ className, style }) => {
+const NavigationMenu: FC<StyledProps> = ({ className, style }) => {
   const { pathname } = useLocation()
   const navigate = useNavigate()
 

@@ -5,9 +5,10 @@ import { createBrowserHistory, Update } from 'history'
 import { HistoryContext } from 'client/src/common/contexts/HistoryContext'
 import { useInject } from 'client/src/common/hooks/useInject'
 import { PreloadChunksModel } from 'client/src/common/models/preloadChunks.model'
+import { ChildrenProp } from 'client/src/common/typings'
 import { dynamicRoutes } from './dynamicRoutes'
 
-const BrowserRouter: FC = ({ children }) => {
+const BrowserRouter: FC<ChildrenProp> = ({ children }) => {
   const preloadChunksModel = useInject<PreloadChunksModel<Update>>(PreloadChunksModel)
 
   const { current: history } = useRef(createBrowserHistory({ window }))

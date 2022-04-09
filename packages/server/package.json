@@ -11,12 +11,12 @@
     "debug": "node -r esbuild-register --inspect-brk src/main"
   },
   "dependencies": {
-    "@nestjs/common": "8.4.3",
+    "@nestjs/common": "8.4.4",
     "@nestjs/config": "2.0.0",
-    "@nestjs/core": "8.4.3",
-    "@nestjs/platform-express": "8.4.3",
+    "@nestjs/core": "8.4.4",
+    "@nestjs/platform-express": "8.4.4",
     "compression": "1.7.4",
-    "pino": "7.9.2",
+    "pino": "7.10.0",
     "reflect-metadata": "0.1.13",
     "serve-static": "1.15.0",
     "ua-parser-js": "1.0.2",

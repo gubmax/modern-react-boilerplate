@@ -2,8 +2,8 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "types": [
-      "react/next",
-      "react-dom/next",
+      "react",
+      "react-dom",
       "vite/client",
       "vite-plugin-pwa/client",
       "reflect-metadata"

@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 
 import { useBehaviorSubjectSubscription } from 'client/src/common/hooks/useBehaviorSubjectSubscription'
 import { useInject } from 'client/src/common/hooks/useInject'
@@ -10,7 +10,7 @@ import { CartSkeleton } from './Cart.skeleton'
 import { CartProps } from './Cart.types'
 import * as s from './Cart.css'
 
-const Cart: VFC<CartProps> = ({ loading }) => {
+const Cart: FC<CartProps> = ({ loading }) => {
   const { products$, totalPrice } = useInject(CartModel)
   const products = useBehaviorSubjectSubscription(products$)
 
