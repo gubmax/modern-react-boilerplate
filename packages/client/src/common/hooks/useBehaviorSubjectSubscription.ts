@@ -1,22 +1,19 @@
-import { useMemo } from 'react'
+import { useMemo, useSyncExternalStore } from 'react'
 import { BehaviorSubject } from 'rxjs'
-import { Subscription, useSubscription } from 'use-subscription'
 
 /**
  * Safely manages subscriptions in concurrent mode.
- * @link https://github.com/facebook/react/tree/main/packages/use-subscription
  */
 export function useBehaviorSubjectSubscription<T>(behaviorSubject: BehaviorSubject<T>): T {
-  const subscription = useMemo<Subscription<T>>(
-    () => ({
-      getCurrentValue: () => behaviorSubject.getValue(),
-      subscribe: (callback) => {
-        const subscription = behaviorSubject.subscribe(callback)
+  const [getSnapshot, subscribe] = useMemo(() => {
+    return [
+      () => behaviorSubject.getValue(),
+      (onStoreChange: () => void) => {
+        const subscription = behaviorSubject.subscribe(onStoreChange)
         return () => subscription.unsubscribe()
       },
-    }),
-    [behaviorSubject],
-  )
+    ]
+  }, [behaviorSubject])
 
-  return useSubscription(subscription)
+  return useSyncExternalStore(subscribe, getSnapshot, getSnapshot)
 }
