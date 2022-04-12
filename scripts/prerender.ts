@@ -83,7 +83,8 @@ void (async () => {
     readFileSync(`${PATH_RESOLVED_BUILD}/${PATH_CLIENT}/manifest.json`, 'utf-8'),
   ) as Manifest
 
-  const assetCollector = new AssetCollectorService(manifest)
+  const assetCollector = new AssetCollectorService()
+  assetCollector.manifest = manifest
 
   console.log(`${cyan('pre-render script')} ${green('generating html files...')}`)
 

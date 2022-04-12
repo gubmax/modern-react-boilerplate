@@ -1,11 +1,11 @@
-import { useEffect } from 'react'
+import { useInsertionEffect } from 'react'
 
 const TITLE_DEFAULT = 'Boilerplate'
 
 export const useDocumentTitle = (title?: string): string => {
   const currTitle = title?.length ? `${title} · ${TITLE_DEFAULT}` : TITLE_DEFAULT
 
-  useEffect(() => {
+  useInsertionEffect(() => {
     document.title = currTitle
   }, [currTitle])
 

@@ -8,6 +8,7 @@ import { Manifest } from 'vite'
 
 import { renderServerMainTemplate as RenderServerMainTemplate } from 'client/src/entries/main.server.entry'
 import { CONFIG_ENTRIES, CONFIG_SSG_ROUTES, CONFIG_SSR_ROUTES } from 'server/config'
+import { DeviceType } from 'shared/constants/clientConfig'
 import { HtmlEntries } from 'shared/constants/entries'
 import {
   PATH_RESOLVED_CLIENT,
@@ -38,10 +39,10 @@ export class RenderService {
     this.indexHtml = readFileSync(PATH_RESOLVED_INDEX_HTML, 'utf-8')
   }
 
-  protected getDeviceType(req: Request): string | undefined {
+  protected getDeviceType(req: Request): string {
     const userAgent = this.userAgentParser.create(req.headers['user-agent'])
     const { type } = userAgent.getDevice()
-    return type
+    return type || DeviceType.DESKTOP
   }
 
   private sendPreRenderedTemplate(url: string, res: Response): boolean {

@@ -2,10 +2,15 @@ import { style } from '@vanilla-extract/css'
 
 import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
-import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 import { typography } from 'client/src/common/styles/shared/typography.css'
 
-export const wrapper = style([gridAtom({ display: 'flex' }), surfaces.base])
+export const wrapper = style([
+  gridAtom({ display: 'flex' }),
+  {
+    padding: `${dt.vars.space.s2} ${dt.vars.space.s3}`,
+    borderRadius: dt.vars.borderRadius.primary,
+  },
+])
 
 export const title = style([
   typography.h3,

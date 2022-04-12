@@ -49,7 +49,7 @@ export const buttonVariants = styleVariants({
     background: dt.vars.color.white,
     color: dt.vars.color.black,
 
-    ':after': { background: 'rgba(0, 0, 0, 0.25)' },
+    ':after': { background: 'rgba(0, 0, 0, 0.1)' },
   },
   [ButtonVariants.OUTLINE]: {
     border: `1px solid ${dt.vars.theme.color.accent}`,

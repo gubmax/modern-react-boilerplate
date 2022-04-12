@@ -2,15 +2,13 @@ import { style } from '@vanilla-extract/css'
 
 import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
-import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 import { typography } from 'client/src/common/styles/shared/typography.css'
 
-export const wrapper = style([
-  surfaces.base,
-  {
-    background: 'linear-gradient(-45deg, #a655f6, #6565f1)',
-  },
-])
+export const wrapper = style({
+  background: 'linear-gradient(-45deg, #a655f6, #6565f1)',
+  padding: `${dt.vars.space.s2} ${dt.vars.space.s3}`,
+  borderRadius: dt.vars.borderRadius.primary,
+})
 
 export const title = style([
   typography.h1,

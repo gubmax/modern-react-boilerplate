@@ -4,15 +4,13 @@ import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
 import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 
-export const wrapper = style([
-  surfaces.base,
-  {
-    flexGrow: 1,
-    maxWidth: '16rem',
-    padding: 0,
-    background: dt.vars.theme.color.surface0,
-  },
-])
+export const wrapper = style({
+  flexGrow: 1,
+  maxWidth: '16rem',
+  padding: 0,
+  background: dt.vars.theme.color.surface0,
+  borderRadius: dt.vars.borderRadius.primary,
+})
 
 export const imageBox = style([
   gridAtom({
@@ -30,12 +28,11 @@ export const imageBox = style([
   },
 ])
 
-export const info = style([
-  surfaces.base,
-  {
-    position: 'relative',
-  },
-])
+export const info = style({
+  position: 'relative',
+  padding: `${dt.vars.space.s2} ${dt.vars.space.s3}`,
+  borderRadius: dt.vars.borderRadius.primary,
+})
 
 export const cost = style({
   position: 'absolute',

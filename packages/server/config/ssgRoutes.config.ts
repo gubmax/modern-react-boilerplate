@@ -5,9 +5,11 @@ import { PageRoutes } from 'client/src/browser/http/constants'
  */
 export const CONFIG_SSG_ROUTES: Record<string, string> = {
   // route: filename
-  [PageRoutes.ROOT]: 'showcase',
+  [PageRoutes.ABOUT]: 'about',
   [PageRoutes.COLLECTION]: 'collection',
+  [PageRoutes.HELP]: 'help',
   [PageRoutes.SALES]: 'sales',
   [PageRoutes.SCHEDULE]: 'schedule',
+  [PageRoutes.SETTINGS]: 'settings',
   $$NOT_FOUND: 'notFound',
 }

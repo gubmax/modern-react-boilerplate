@@ -6,6 +6,7 @@ import { Field } from 'client/src/common/components/inputs/Field'
 import { cn } from 'client/src/common/helpers/classNames'
 import { IconVariants } from 'client/src/common/hocs/withIcon'
 import { StyledProps } from 'client/src/common/typings'
+import { FIELD_NAME, FIELD_PLACEHOLDER } from './SearchField.constants'
 import * as s from './SearchField.css'
 
 const SearchField: FC<StyledProps> = ({ className, style }) => {
@@ -25,8 +26,8 @@ const SearchField: FC<StyledProps> = ({ className, style }) => {
       </RoundedButton>
       <Field
         className={s.field}
-        name="search"
-        placeholder="Search..."
+        name={FIELD_NAME}
+        placeholder={FIELD_PLACEHOLDER}
         style={style}
         value={searchText}
         onChange={handleChange}

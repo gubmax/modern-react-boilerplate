@@ -7,12 +7,8 @@ export type PreloadUrl = { url: string; isEntry?: boolean }
 
 @Injectable()
 export class AssetCollectorService {
-  #manifest: Manifest
+  #manifest: Manifest = {}
   #mark = HtmlMarks.ASSETS
-
-  constructor(manifest: Manifest = {}) {
-    this.#manifest = manifest
-  }
 
   set manifest(val: Manifest) {
     this.#manifest = val

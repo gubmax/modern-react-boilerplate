@@ -6,5 +6,4 @@ export const SCREEN_SIZES = {
   tablet: pxToRem(768),
   laptop: pxToRem(1024),
   desktop: pxToRem(1200),
-  max: pxToRem(1440),
 }

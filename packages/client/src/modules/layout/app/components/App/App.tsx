@@ -2,6 +2,7 @@ import { FC, StrictMode } from 'react'
 import { useRoutes } from 'react-router'
 
 import { CommonSvg } from '../CommonSvg'
+import { ProgressBar } from '../ProgressBar'
 import { ROUTES } from './App.constants'
 
 const App: FC = () => {
@@ -9,6 +10,7 @@ const App: FC = () => {
 
   return (
     <StrictMode>
+      <ProgressBar />
       {element}
       <CommonSvg />
     </StrictMode>

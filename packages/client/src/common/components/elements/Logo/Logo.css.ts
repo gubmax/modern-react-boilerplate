@@ -3,9 +3,15 @@ import { style } from '@vanilla-extract/css'
 import { dt } from 'client/src/common/styles/designTokens'
 
 export const text = style({
+  marginBottom: 0,
+  padding: `${dt.vars.space.s0} ${dt.vars.space.s0} ${dt.vars.space.s0} 0`,
   fontSize: '1.8em',
   fontWeight: 500,
-  marginBottom: 0,
+  whiteSpace: 'nowrap',
+
+  '@media': {
+    [dt.media.maxWidth.mobile]: { fontSize: '1.5em' },
+  },
 })
 
 export const title = style({
@@ -37,5 +43,18 @@ export const highlight = style({
     transform: 'rotate(6deg)',
     background: dt.vars.theme.gradient.accent,
     zIndex: -1,
+  },
+
+  '@media': {
+    [dt.media.maxWidth.mobile]: {
+      width: '2rem',
+
+      ':before': {
+        top: '-0.25rem',
+        bottom: '-0.25rem',
+        left: '-0.25rem',
+        right: '-0.25rem',
+      },
+    },
   },
 })
