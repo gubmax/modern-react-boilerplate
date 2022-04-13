@@ -31,7 +31,7 @@
     "lint": "eslint packages --ext .ts,.tsx",
     "prepare": "husky install",
     "docker": "npm run docker:build && npm run docker:run",
-    "docker:build": "docker build . --no-cache -t modern-react-boilerplate -f infra/docker/Dockerfile",
+    "docker:build": "docker build . -t modern-react-boilerplate -f infra/docker/Dockerfile",
     "docker:run": "docker run -p 8080:3000 --rm modern-react-boilerplate"
   },
   "dependencies": {
@@ -41,8 +41,8 @@
     "react-dom": "18.0.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "5.18.0",
-    "@typescript-eslint/parser": "5.18.0",
+    "@typescript-eslint/eslint-plugin": "5.19.0",
+    "@typescript-eslint/parser": "5.19.0",
     "autoprefixer": "10.4.4",
     "chalk": "4.1.2",
     "chokidar": "3.5.3",
