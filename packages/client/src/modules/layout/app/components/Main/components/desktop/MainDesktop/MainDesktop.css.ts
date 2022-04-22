@@ -24,13 +24,12 @@ export const header = style({
   position: 'sticky',
   gridArea: 'header',
   top: 0,
-  width: '100%',
-  padding: `0 ${dt.vars.space.s4} 0 ${dt.vars.space.s3}`,
+  paddingRight: dt.vars.space.s4,
   zIndex: 1,
 
   '@media': {
     [dt.media.maxWidth.tablet]: {
-      padding: `0 ${dt.vars.space.s3} 0 ${dt.vars.space.s3}`,
+      paddingRight: dt.vars.space.s3,
     },
   },
 })
@@ -40,13 +39,15 @@ export const logo = style({
   alignItems: 'center',
   flexShrink: 0,
   height: pxToRem(70),
-  margin: `0 ${dt.vars.space.s2} ${dt.vars.space.s3}`,
+  paddingRight: dt.vars.space.s2,
+  margin: `0 0 ${dt.vars.space.s4} ${dt.vars.space.s2}`,
+  borderBottom: `${pxToRem(1)} solid ${dt.vars.theme.color.border}`,
 })
 
 export const main = style({
   gridArea: 'main',
   width: '100%',
-  padding: `${dt.vars.space.s3} ${dt.vars.space.s4} ${dt.vars.space.s4} ${dt.vars.space.s3}`,
+  padding: `${dt.vars.space.s4} ${dt.vars.space.s4} ${dt.vars.space.s4} ${dt.vars.space.s3}`,
   zIndex: 0,
 
   '@media': {

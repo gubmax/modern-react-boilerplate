@@ -9,8 +9,10 @@ import * as s from './HeaderDesktop.css'
 const Header: FC<StyledProps> = ({ className, ...rest }) => {
   return (
     <div className={cn(s.wrapper, className)} {...rest}>
-      <SearchField className={s.search} />
-      <NavigationMenu className={s.navigationMenu} />
+      <div className={s.bar}>
+        <SearchField className={s.search} />
+        <NavigationMenu className={s.navigationMenu} />
+      </div>
     </div>
   )
 }
