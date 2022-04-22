@@ -1,6 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { renderToPipeableStream as render } from 'react-dom/server'
+import { renderToPipeableStream } from 'react-dom/server'
 import type { Response } from 'express'
 
 import { HtmlMarks } from 'server/src/common/constants/html'
@@ -8,17 +6,6 @@ import { CLIENT_CONFIG, ClientConfig } from 'shared/constants/clientConfig'
 import { HtmlEntries } from 'shared/constants/entries'
 import { PATH_RESOLVED_CLIENT } from 'shared/constants/paths'
 import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
-
-const renderToPipeableStream = render as (
-  children: JSX.Element,
-  options: {
-    onAllReady(): void
-    onShellError(error: unknown): void
-    onFatalError(error: unknown): void
-  },
-) => {
-  pipe: (writable: Response) => void
-}
 
 interface WriteTemplateArg {
   html: string
@@ -65,7 +52,7 @@ export function writeTemplate({
       res.sendFile(`${PATH_RESOLVED_CLIENT}/${HtmlEntries.MAIN}.html`)
       console.error(error) // TODO: replace with logger
     },
-    onFatalError(error) {
+    onError(error) {
       res.statusCode = 500
       res.sendFile(`${PATH_RESOLVED_CLIENT}/${HtmlEntries.INTERNAL_ERROR}.html`)
       console.error(error) // TODO: replace with logger
