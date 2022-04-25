@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react'
+import { Children, FC, useRef } from 'react'
 
 import { ChevronLeftIcon, ChevronRightIcon } from 'client/src/common/components/icons'
 import { ButtonVariants } from 'client/src/common/components/inputs/buttons/BaseButton'
@@ -16,6 +16,8 @@ const GroupSlider: FC<GroupSliderProps> = ({ className, style, title, children }
 
   const handlePrevButtonClick = () => runTransition(true)
   const handleNextButtonClick = () => runTransition()
+
+  const childrenArr = Children.toArray(children)
 
   return (
     <div className={className} style={style}>
@@ -36,7 +38,11 @@ const GroupSlider: FC<GroupSliderProps> = ({ className, style, title, children }
       </div>
       <div className={s.wrapper} ref={wrapperRef}>
         <div className={s.box} ref={innerRef}>
-          {children}
+          {childrenArr.map((child, i) => (
+            <div key={i} className={s.item}>
+              {child}
+            </div>
+          ))}
         </div>
       </div>
     </div>

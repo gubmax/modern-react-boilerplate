@@ -13,12 +13,12 @@ const Showcase: FC = () => {
       <AuthBanner className={s.mainBanner} />
       <GroupSlider className={s.groupSlider} title={TITLE_RECOMMENDED}>
         {recommendedProducts.map((props, index) => (
-          <ProductCard key={index} className={s.productCard} {...props} />
+          <ProductCard key={index} {...props} />
         ))}
       </GroupSlider>
       <GroupSlider className={s.groupSlider} title={TITLE_TRENDING}>
         {trendingProducts.map((props, index) => (
-          <ProductCard key={index} className={s.productCard} {...props} />
+          <ProductCard key={index} {...props} />
         ))}
       </GroupSlider>
     </>

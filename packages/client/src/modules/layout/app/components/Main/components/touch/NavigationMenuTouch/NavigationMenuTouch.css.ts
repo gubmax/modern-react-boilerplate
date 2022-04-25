@@ -8,8 +8,7 @@ export const wrapper = style([
   {
     display: 'flex',
     justifyContent: 'space-around',
-    padding: dt.vars.space.s1,
-    borderTop: `1px solid ${dt.vars.theme.color.borderLight}`,
+    padding: `${dt.vars.space.s0} ${dt.vars.space.s1}`,
     borderRadius: `${dt.vars.borderRadius.primary} ${dt.vars.borderRadius.primary} 0 0`,
   },
 ])

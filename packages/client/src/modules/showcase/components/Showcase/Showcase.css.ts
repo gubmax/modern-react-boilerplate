@@ -14,11 +14,3 @@ export const productCardList = style({
   paddingBottom: dt.vars.space.s1,
   marginBottom: dt.vars.space.s3,
 })
-
-export const productCard = style({
-  marginRight: dt.vars.space.s1,
-
-  ':last-child': {
-    marginRight: 'unset',
-  },
-})
