@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
+import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { dt } from 'client/src/common/styles/designTokens'
 
 export const text = style({
@@ -22,24 +23,28 @@ export const title = style({
   },
 })
 
+const borderRadius = pxToRem(8)
+const posDesktop = `-${pxToRem(4)}`
+const posMobile = `-${pxToRem(3)}`
+
 export const highlight = style({
   position: 'relative',
   display: 'inline-block',
-  width: '2.5rem',
+  width: pxToRem(36),
   marginLeft: dt.vars.space.s0,
   textAlign: 'center',
   lineHeight: 1.25,
   background: dt.vars.theme.color.bg0,
-  borderRadius: '0.6rem',
+  borderRadius,
 
   ':before': {
     content: '""',
     position: 'absolute',
-    top: '-0.35rem',
-    bottom: '-0.35rem',
-    left: '-0.35rem',
-    right: '-0.35rem',
-    borderRadius: '0.6rem',
+    top: posDesktop,
+    bottom: posDesktop,
+    left: posDesktop,
+    right: posDesktop,
+    borderRadius,
     transform: 'rotate(6deg)',
     background: dt.vars.theme.gradient.accent,
     zIndex: -1,
@@ -47,13 +52,13 @@ export const highlight = style({
 
   '@media': {
     [dt.media.maxWidth.mobile]: {
-      width: '2rem',
+      width: pxToRem(28),
 
       ':before': {
-        top: '-0.25rem',
-        bottom: '-0.25rem',
-        left: '-0.25rem',
-        right: '-0.25rem',
+        top: posMobile,
+        bottom: posMobile,
+        left: posMobile,
+        right: posMobile,
       },
     },
   },

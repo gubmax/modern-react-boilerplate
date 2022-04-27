@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
+import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
 import { typography } from 'client/src/common/styles/shared/typography.css'
@@ -55,8 +56,8 @@ export const imageBox = style([
   {
     flexShrink: 0,
     width: '100%',
-    height: '16rem',
-    fontSize: '8rem',
+    height: pxToRem(224),
+    fontSize: pxToRem(112),
     borderRadius: dt.vars.borderRadius.primary,
     userSelect: 'none',
   },

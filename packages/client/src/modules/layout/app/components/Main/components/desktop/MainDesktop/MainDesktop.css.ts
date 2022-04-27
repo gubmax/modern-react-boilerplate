@@ -41,7 +41,7 @@ export const logo = style({
   height: pxToRem(70),
   paddingRight: dt.vars.space.s2,
   margin: `0 0 ${dt.vars.space.s4} ${dt.vars.space.s2}`,
-  borderBottom: `${pxToRem(1)} solid ${dt.vars.theme.color.border}`,
+  borderBottom: `${pxToRem(1.25)} solid ${dt.vars.theme.color.border}`,
 })
 
 export const main = style({

@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
+import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
 import { typography } from 'client/src/common/styles/shared/typography.css'
@@ -39,11 +40,11 @@ export const imageBox = style([
   }),
   {
     flexShrink: 0,
-    width: '8rem',
-    height: '8rem',
+    width: pxToRem(112),
+    height: pxToRem(112),
     marginRight: dt.vars.space.s3,
-    fontSize: '5rem',
-    borderRadius: '12px',
+    fontSize: pxToRem(68),
+    borderRadius: dt.vars.borderRadius.primary,
     backgroundColor: dt.vars.theme.color.bg0,
     userSelect: 'none',
   },
@@ -52,7 +53,7 @@ export const imageBox = style([
 export const price = style([
   gridAtom({ marginLeft: 'auto' }),
   {
-    minWidth: '4rem',
+    minWidth: pxToRem(56),
     fontSize: dt.vars.fontSize.h3,
     fontWeight: 500,
     textAlign: 'end',
@@ -62,7 +63,7 @@ export const price = style([
 export const counter = style([
   gridAtom({ alignSelf: 'center' }),
   {
-    width: '2.5rem',
+    width: pxToRem(36),
     textAlign: 'center',
     fontSize: dt.vars.fontSize.h3,
   },

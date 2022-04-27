@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
+import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { dt } from '../designTokens'
 
 export const scrollbar = style({
@@ -17,8 +18,8 @@ export const scrollbar = style({
   },
 
   '::-webkit-scrollbar': {
-    width: '0.65rem',
-    height: '0.65rem',
+    width: pxToRem(12),
+    height: pxToRem(12),
   },
 
   selectors: {

@@ -11,7 +11,7 @@ export const input = style([
     fontSize: dt.vars.fontSize.subtitle1,
     lineHeight: 1,
     width: '100%',
-    border: `${pxToRem(1)} solid transparent`,
+    border: `${pxToRem(1.25)} solid transparent`,
     borderRadius: dt.vars.borderRadius.primary,
     transition: '0.1s color, 0.1s border-color, 0.1s box-shadow',
 

@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
+import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
 import { typography } from 'client/src/common/styles/shared/typography.css'
@@ -20,7 +21,7 @@ export const wrapper = style([
 ])
 
 export const title = style({
-  fontSize: '8rem',
+  fontSize: pxToRem(112),
   fontWeight: 'bold',
 })
 

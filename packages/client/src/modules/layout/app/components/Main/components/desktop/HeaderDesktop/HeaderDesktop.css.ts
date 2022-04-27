@@ -22,7 +22,7 @@ export const bar = style([
     width: 'inherit',
     height: pxToRem(70),
     paddingLeft: dt.vars.space.s3,
-    borderBottom: `${pxToRem(1)} solid ${dt.vars.theme.color.border}`,
+    borderBottom: `${pxToRem(1.25)} solid ${dt.vars.theme.color.border}`,
   },
 ])
 

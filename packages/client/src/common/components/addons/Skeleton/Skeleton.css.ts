@@ -1,16 +1,17 @@
 import { keyframes, style } from '@vanilla-extract/css'
 
+import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { dt } from 'client/src/common/styles/designTokens'
 
 export const wrapper = style({
   width: '100%',
-  height: '1.5rem',
+  height: pxToRem(20),
   background: dt.vars.theme.color.bg0,
   borderRadius: dt.vars.borderRadius.primary,
 })
 
 export const margin = style({
-  marginBottom: '10px',
+  marginBottom: pxToRem(10),
 })
 
 const shimmmer = keyframes({

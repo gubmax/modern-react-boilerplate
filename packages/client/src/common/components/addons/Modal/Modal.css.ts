@@ -1,5 +1,6 @@
 import { keyframes, style } from '@vanilla-extract/css'
 
+import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { dt } from 'client/src/common/styles/designTokens'
 import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 import { TRANSITION_TIMEOUT } from './Modal.constants'
@@ -33,11 +34,10 @@ export const wrapper = style([
     bottom: 0,
     left: 0,
     right: 0,
-    minHeight: '24rem',
+    minHeight: pxToRem(320),
     maxWidth: dt.vars.size.screen.tablet,
     margin: '0 auto',
-    padding: 0,
-    border: `0.1rem solid ${dt.vars.theme.color.borderLight}`,
+    border: `${pxToRem(1.25)} solid ${dt.vars.theme.color.borderLight}`,
     borderRadius: `${dt.vars.borderRadius.primary} ${dt.vars.borderRadius.primary} 0 0`,
     overflow: 'hidden',
 
@@ -70,7 +70,7 @@ export const closeButton = style({
 // Fade-in transition
 
 const fadeInWrapper = keyframes({
-  from: { opacity: 0, transform: 'translateY(3rem) scale(0.9)' },
+  from: { opacity: 0, transform: `translateY(${pxToRem(72)}) scale(0.9)` },
   to: { opacity: 1, transform: 'translateY(0) scale(1)' },
 })
 

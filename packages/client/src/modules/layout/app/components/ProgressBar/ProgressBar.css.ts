@@ -1,5 +1,6 @@
 import { keyframes, style } from '@vanilla-extract/css'
 
+import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { dt } from 'client/src/common/styles/designTokens'
 import {
   LOADING_OPACITY_TRANSITION_DELAY,
@@ -9,7 +10,7 @@ import {
 export const wrapper = style({
   position: 'fixed',
   width: 0,
-  height: '0.15rem',
+  height: pxToRem(3),
   background: dt.vars.theme.color.accent,
   userSelect: 'none',
   zIndex: 2,

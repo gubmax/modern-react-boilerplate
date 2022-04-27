@@ -1,5 +1,6 @@
 import { keyframes, style } from '@vanilla-extract/css'
 
+import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
 
@@ -14,10 +15,10 @@ export const spinner = style([
   borderRadius,
   {
     boxSizing: 'border-box',
-    width: '44px',
-    height: '44px',
+    width: pxToRem(44),
+    height: pxToRem(44),
     margin: 'auto',
-    borderWidth: '3px',
+    borderWidth: pxToRem(3),
     borderStyle: 'solid',
     borderColor: `transparent ${dt.vars.theme.color.accent}`,
     animation: `${spin} 0.65s infinite linear`,
@@ -31,9 +32,9 @@ export const loader = style([
 ])
 
 export const spinnerSmall = style({
-  width: '20px',
-  height: '20px',
-  borderWidth: '2px',
+  width: pxToRem(20),
+  height: pxToRem(20),
+  borderWidth: pxToRem(2),
 })
 
 export const spinnerSecondary = style({

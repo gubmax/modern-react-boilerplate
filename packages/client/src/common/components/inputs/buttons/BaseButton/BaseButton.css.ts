@@ -1,5 +1,6 @@
 import { style, styleVariants } from '@vanilla-extract/css'
 
+import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
 import { ButtonVariants } from './BaseButton.constants'
@@ -16,8 +17,8 @@ export const baseButton = style([
     fontFamily: 'inherit',
     fontSize: dt.vars.fontSize.body1,
     fontWeight: 500,
-    height: '3rem',
-    minWidth: '10rem',
+    height: pxToRem(42),
+    minWidth: pxToRem(140),
     padding: `0 ${dt.vars.theme.color.primary}`,
   },
 ])
@@ -52,12 +53,12 @@ export const buttonVariants = styleVariants({
     ':after': { background: 'rgba(0, 0, 0, 0.1)' },
   },
   [ButtonVariants.OUTLINE]: {
-    border: `1px solid ${dt.vars.theme.color.accent}`,
+    border: `${pxToRem(1.25)} solid ${dt.vars.theme.color.accent}`,
     background: 'transparent',
     color: dt.vars.theme.color.accent,
   },
   [ButtonVariants.OUTLINE_WHITE]: {
-    border: `1px solid ${dt.vars.color.white}`,
+    border: `${pxToRem(1.25)} solid ${dt.vars.color.white}`,
     background: 'transparent',
     color: dt.vars.color.white,
 

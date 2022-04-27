@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
+import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { dt } from 'client/src/common/styles/designTokens'
 
 export const wrapper = style({
@@ -23,7 +24,7 @@ export const text = style({
   '@media': {
     [dt.media.minWidth.mobile]: {
       display: 'unset',
-      marginTop: '0.25rem',
+      marginTop: pxToRem(3),
       fontSize: dt.vars.fontSize.body2,
     },
   },
