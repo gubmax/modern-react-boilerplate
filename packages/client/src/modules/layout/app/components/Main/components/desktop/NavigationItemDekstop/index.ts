@@ -1,2 +1,2 @@
-export * from './NabigationItemDesktop.types'
 export { default as NavigationItemDesktop } from './NavigationItemDesktop'
+export * from './NavigationItemDesktop.types'

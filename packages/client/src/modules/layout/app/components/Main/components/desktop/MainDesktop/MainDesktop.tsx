@@ -18,7 +18,9 @@ const MainDesktop: FC<ChildrenProp> = ({ children }) => {
         </Link>
         <NavigationMenuDesktop />
       </aside>
-      <main className={s.main}>{children}</main>
+      <main id="main" className={s.main}>
+        {children}
+      </main>
     </div>
   )
 }

@@ -16,7 +16,7 @@ const NavigationMenuTouch: FC<StyledProps> = ({ className, style }) => {
     <ul className={cn(s.wrapper, className)} style={style}>
       {ROUTES.map(({ to, icon: Icon, text }) => {
         const active = to === pathname
-        const goTo = () => navigate(to)
+        const navigateTo = () => navigate(to)
 
         return (
           <IW
@@ -24,8 +24,8 @@ const NavigationMenuTouch: FC<StyledProps> = ({ className, style }) => {
             as="li"
             className={s.listItem}
             active={active}
-            onClick={goTo}
-            onKeyPress={goTo}
+            onClick={navigateTo}
+            onKeyPress={navigateTo}
           >
             <Icon className={s.routeIcon} variant={active ? IconVariants.ACTIVE : undefined} />
             <span className={s.text}>{text}</span>

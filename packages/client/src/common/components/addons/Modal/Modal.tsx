@@ -1,12 +1,4 @@
-import {
-  FC,
-  KeyboardEventHandler,
-  MouseEventHandler,
-  RefCallback,
-  useCallback,
-  useEffect,
-  useRef,
-} from 'react'
+import { FC, KeyboardEventHandler, MouseEventHandler, RefCallback, useRef } from 'react'
 
 import { CloseIcon } from 'client/src/common/components/icons'
 import { ButtonVariants } from 'client/src/common/components/inputs/buttons/BaseButton'
@@ -14,40 +6,51 @@ import { RoundedButton } from 'client/src/common/components/inputs/buttons/Round
 import { cn } from 'client/src/common/helpers/classNames'
 import { noop } from 'client/src/common/helpers/noop'
 import { useFadeTransition } from 'client/src/common/hooks/useFadeTransition'
+import { useIsomorphicLayoutEffect } from 'client/src/common/hooks/useIsomorphicLayoutEffect'
+import { useUnmount } from 'client/src/common/hooks/useUnmount'
 import { Portal } from '../Portal'
 import { ModalProps } from './Modal.types'
 import * as s from './Modal.css'
 
-function toggleBodyStyles(active: boolean, positionTop: number): void {
-  const {
-    body: { style, classList },
-  } = document
+function toggleStyle(active: boolean) {
+  const { scrollTop, scrollLeft } = document.documentElement
+  const contentEl = document.getElementById('main')
 
-  style.top = active ? `-${positionTop}px` : ''
-  classList.toggle(s.noScroll, active)
+  if (contentEl !== null) {
+    contentEl.classList.toggle(s.content, active)
+    contentEl.style.top = active ? `-${scrollTop}px` : ''
+    contentEl.style.left = active ? `-${scrollLeft}px` : ''
+  }
+
+  document.body.classList.toggle(s.noScroll, active)
 }
 
 const Modal: FC<ModalProps> = ({ children, active = false, onClose = noop }) => {
-  const positionTopRef = useRef(0)
   const wrapperRef = useRef<HTMLDivElement>(null)
 
   const [fadeWrapperProps, , setVisible] = useFadeTransition(active, { fadeIn: s.animateWrapper })
   const [fadeBgProps, isVisible, setBgVisible] = useFadeTransition(active, { fadeIn: s.animateBg })
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     setVisible(active)
     setBgVisible(active)
   }, [active, setBgVisible, setVisible])
 
-  useEffect(() => {
-    const { scrollLeft, scrollTop } = document.documentElement
+  useIsomorphicLayoutEffect(() => {
+    if (active) {
+      toggleStyle(true)
+    } else {
+      const contentEl = document.getElementById('main')
+      const top = Math.abs(parseInt(contentEl?.style.top || '0'))
+      const left = Math.abs(parseInt(contentEl?.style.left || '0'))
 
-    active && (positionTopRef.current = scrollTop)
-    toggleBodyStyles(active, positionTopRef.current)
-    !active && window.scrollTo(scrollLeft, positionTopRef.current)
+      toggleStyle(false)
+
+      window.scrollTo(left, top)
+    }
   }, [active])
 
-  useEffect(() => () => toggleBodyStyles(false, 0), [])
+  useUnmount(() => toggleStyle(false))
 
   const backgroundRef: RefCallback<HTMLDivElement> = (node) => {
     if (node) {
@@ -63,10 +66,8 @@ const Modal: FC<ModalProps> = ({ children, active = false, onClose = noop }) => 
     }
   }
 
-  const handleClickInsideModal = useCallback<MouseEventHandler<HTMLDivElement>>(
-    (event) => event.stopPropagation(),
-    [],
-  )
+  const handleClickInsideModal: MouseEventHandler<HTMLDivElement> = (event) =>
+    event.stopPropagation()
 
   return (
     <Portal disabled={!isVisible}>

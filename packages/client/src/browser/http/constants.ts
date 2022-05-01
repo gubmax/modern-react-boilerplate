@@ -9,6 +9,7 @@ export enum PageRoutes {
   COLLECTION = '/collection',
   HELP = '/help',
   SALES = '/sales',
+  SIGN_IN = '/sign-in',
   SCHEDULE = '/schedule',
   SETTINGS = '/settings',
 }

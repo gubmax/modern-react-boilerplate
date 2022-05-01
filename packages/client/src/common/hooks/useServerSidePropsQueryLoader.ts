@@ -3,14 +3,14 @@ import { Action } from 'history'
 
 import { ServerSidePropsQueryModel } from 'client/src/common/models/queries/serverSideProps'
 import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
-import { useHistory } from './useHistory'
+import { useAction } from './useAction'
 import { useInit } from './useInit'
 import { useInject } from './useInject'
 
 export function useServerSidePropsQueryLoader<T>(
   sspQueryModel: ServerSidePropsQueryModel<T>,
 ): void {
-  const { action } = useHistory()
+  const action = useAction()
   const serverSideProps = useInject<ServerSideProps>(SERVER_SIDE_PROPS)
 
   const model = useInit(() => {

@@ -19,7 +19,9 @@ export class PreloadChunksModel<T = unknown> extends QueryModel<Chunk> {
   #preloadSubject$ = new Subject<PreloadOptions<T>>()
 
   #preloadObservable$ = this.#preloadSubject$.pipe(
+    // Reset query state
     tap(() => this.reset()),
+    // Preload chunk
     switchMap(({ payload, loadable }) => {
       if (!loadable || this.#loadedChunks.has(loadable)) {
         return of(payload)

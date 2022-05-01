@@ -1,22 +1,19 @@
-import { MouseEvent } from 'react'
+import { SyntheticEvent, useCallback } from 'react'
 import { useNavigate } from 'react-router'
 
-import { PageRoutes } from 'client/src/browser/http/constants'
-import { noop } from '../helpers/noop'
+import type { NavigateOptions } from '../typings'
 
-type HandleClick<T extends MouseEvent> = (event: T) => void
-
-export function useLink<T extends MouseEvent>(
-  to: PageRoutes,
-  onClick: HandleClick<T> | undefined = noop,
-): HandleClick<T> {
+export function useLink<T extends Element>(
+  to = '',
+  options?: NavigateOptions,
+): (event?: SyntheticEvent<T>) => void {
   const navigate = useNavigate()
 
-  const handleClick = (event: T): void => {
-    event.preventDefault()
-    onClick(event)
-    navigate(to)
-  }
-
-  return handleClick
+  return useCallback(
+    (event) => {
+      event?.preventDefault()
+      navigate(to, options)
+    },
+    [navigate, options, to],
+  )
 }

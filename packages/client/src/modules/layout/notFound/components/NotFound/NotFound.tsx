@@ -7,13 +7,13 @@ import { useLink } from 'client/src/common/hooks/useLink'
 import * as s from './NotFound.css'
 
 const NotFound: FC = () => {
-  const navigate = useLink(PageRoutes.ROOT)
+  const navigateToRootPage = useLink(PageRoutes.ROOT)
 
   return (
     <section className={s.wrapper}>
       <span className={s.title}>404</span>
       <h1 className={s.text}>Page Not Found</h1>
-      <Button as="a" variant={ButtonVariants.PRIMARY} onClick={navigate}>
+      <Button as="a" variant={ButtonVariants.PRIMARY} onClick={navigateToRootPage}>
         Go home
       </Button>
     </section>

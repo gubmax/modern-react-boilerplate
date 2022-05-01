@@ -8,6 +8,12 @@ import { TRANSITION_TIMEOUT } from './Modal.constants'
 export const noScroll = style({
   position: 'fixed',
   overflow: 'hidden',
+  width: '100%',
+  top: 0,
+})
+
+export const content = style({
+  position: 'relative',
 })
 
 export const background = style([
@@ -16,7 +22,7 @@ export const background = style([
     position: 'fixed',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     top: 0,
     left: 0,
     width: '100%',
@@ -30,25 +36,24 @@ export const background = style([
 export const wrapper = style([
   surfaces.flat,
   {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    minHeight: pxToRem(320),
-    maxWidth: dt.vars.size.screen.tablet,
-    margin: '0 auto',
     border: `${pxToRem(1.25)} solid ${dt.vars.theme.color.borderLight}`,
     borderRadius: `${dt.vars.borderRadius.primary} ${dt.vars.borderRadius.primary} 0 0`,
+    display: 'inline-block',
+    marginTop: 'auto',
+    minHeight: pxToRem(320),
     overflow: 'hidden',
+    width: '100%',
 
     '@media': {
       [dt.media.minWidth.mobile]: {
-        top: dt.vars.space.s4,
+        borderRadius: dt.vars.borderRadius.primary,
         bottom: 'unset',
         left: dt.vars.space.s4,
-        right: dt.vars.space.s4,
+        margin: `${dt.vars.space.s4} auto`,
         minHeight: 'unset',
-        borderRadius: dt.vars.borderRadius.primary,
+        right: dt.vars.space.s4,
+        top: dt.vars.space.s4,
+        width: 'unset',
       },
     },
   },

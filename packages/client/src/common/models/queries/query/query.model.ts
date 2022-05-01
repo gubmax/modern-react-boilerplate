@@ -47,6 +47,8 @@ export abstract class QueryModel<R> {
     this.query$.next(this.#reduce(action))
   }
 
+  // Public
+
   protected async run(callback: () => Promise<R>): Promise<R> {
     try {
       this.#dispatch({ type: QueryStatuses.LOADING })
@@ -58,8 +60,6 @@ export abstract class QueryModel<R> {
       throw error
     }
   }
-
-  // Public
 
   reset(): void {
     this.#dispatch({ type: QueryStatuses.IDLE })

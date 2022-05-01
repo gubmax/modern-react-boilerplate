@@ -1,0 +1,35 @@
+import { FC, useCallback } from 'react'
+import { useLocation, useNavigate, useRoutes } from 'react-router'
+import { Action } from 'history'
+
+import { Modal } from 'client/src/common/components/addons/Modal'
+import { useAction } from 'client/src/common/hooks/useAction'
+import { NavigationState } from 'client/src/common/typings'
+import { BACKGROUND_ROUTES, ROUTES } from './Content.constants'
+
+const Router: FC = () => {
+  const action = useAction()
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  const { backgroundLocation } = (location.state as NavigationState) || {}
+  const routes = backgroundLocation && action === Action.Push ? BACKGROUND_ROUTES : ROUTES
+
+  const routeEl = useRoutes(routes, location)
+  const backgroundRouteEl = useRoutes(ROUTES, backgroundLocation)
+
+  const withTransition = action === Action.Push && !!backgroundLocation
+
+  const navigateBack = useCallback(() => navigate(-1), [navigate])
+
+  return (
+    <>
+      {withTransition ? backgroundRouteEl : routeEl}
+      <Modal active={withTransition} onClose={navigateBack}>
+        {routeEl}
+      </Modal>
+    </>
+  )
+}
+
+export default Router

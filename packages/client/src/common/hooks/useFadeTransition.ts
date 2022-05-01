@@ -1,4 +1,6 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
+
+import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
 
 interface Options {
   fadeIn?: string
@@ -16,16 +18,16 @@ export function useFadeTransition(
 ): [FadeProps, boolean, Dispatch<SetStateAction<boolean>>] {
   // CSS animation control
   const [transition, setTransition] = useState(initialValue)
-  // Toggle visability after animation
+  // Toggle visibility after animation
   const [isVisible, setVisible] = useState(transition)
 
   // Update visibility immediately if fadeOut is not defined
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     !fadeOut && setVisible(false)
   }, [transition, fadeOut])
 
   // Update visibility when transition changes
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     transition && setVisible(true)
   }, [transition])
 

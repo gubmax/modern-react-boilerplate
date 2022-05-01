@@ -1,5 +1,6 @@
 export * from './asProp'
 export * from './childrenProp'
+export * from './history'
 export * from './loadingProp'
 export * from './refProp'
 export * from './styledProps'

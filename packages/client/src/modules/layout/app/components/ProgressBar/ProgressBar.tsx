@@ -20,7 +20,7 @@ const ProgressBar: FC = () => {
         status === QueryStatuses.LOADING && s.loading,
         status === QueryStatuses.SUCCESS && s.loadingEnd,
       )}
-    ></div>
+    />
   )
 }
 

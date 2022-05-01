@@ -9,7 +9,7 @@ const MainTouch: FC<ChildrenProp> = ({ children }) => {
   return (
     <div className={s.wrapper}>
       <HeaderTouch />
-      <main>{children}</main>
+      <main id="main">{children}</main>
       <NavigationMenuTouch className={s.navigationMenu} />
     </div>
   )
