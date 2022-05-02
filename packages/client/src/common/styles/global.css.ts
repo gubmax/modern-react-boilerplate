@@ -2,7 +2,7 @@ import { globalStyle, keyframes } from '@vanilla-extract/css'
 
 import { dt } from './designTokens'
 import { desktopVars, mobileVars, tabletVars } from './designTokens/adaptive.css'
-import { darkThemeVars, ligthThemeVars } from './designTokens/theme.css'
+import { darkThemeVars, lightThemeVars } from './designTokens/theme.css'
 
 globalStyle('*, *::before, *::after', {
   boxSizing: 'border-box',
@@ -48,7 +48,7 @@ globalStyle('body', {
 
 globalStyle(':root', {
   colorScheme: 'light',
-  vars: { ...mobileVars, ...ligthThemeVars },
+  vars: { ...mobileVars, ...lightThemeVars },
   '@media': {
     [dt.media.minWidth.mobile]: { vars: tabletVars },
     [dt.media.minWidth.tablet]: { vars: desktopVars },

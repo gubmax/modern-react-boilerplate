@@ -19,40 +19,40 @@ export const themeVars = createThemeContract({
   },
 })
 
-export const ligthThemeVars = assignVars(themeVars, {
+export const lightThemeVars = assignVars(themeVars, {
   color: {
-    primary: 'rgb(64, 64, 64)',
-    secondary: 'rgb(118, 118, 118)',
-    accent: 'rgb(63, 81, 181)',
-    accentLight: 'rgb(208, 214, 231)',
-    bg0: 'rgb(230, 230, 230)',
-    bg1: 'rgb(245, 245, 245)',
-    transparentBg0: 'rgba(230, 230, 230, 0.85)',
-    surface0: 'rgb(245, 245, 245)',
-    surface1: 'rgb(255, 255, 255)',
-    border: 'rgb(190, 190, 190)',
-    borderLight: 'rgb(235, 235, 235)',
+    primary: '#404040',
+    secondary: '#767676',
+    accent: '#3f51b5',
+    accentLight: '#d0d6e7',
+    bg0: '#e6e6e6',
+    bg1: '#f5f5f5',
+    transparentBg0: '#e6e6e6d9',
+    surface0: '#f5f5f5',
+    surface1: '#ffffff',
+    border: '#bebebe',
+    borderLight: '#ebebeb',
   },
   gradient: {
-    accent: 'linear-gradient(-45deg, #00b5dd, #6153f9)',
+    accent: 'linear-gradient(315deg, #7f53ac 0%, #647dee 74%)',
   },
 })
 
 export const darkThemeVars = assignVars(themeVars, {
   color: {
-    primary: 'rgb(224, 224, 224)',
-    secondary: 'rgb(64, 64, 64)',
-    accent: 'rgb(92, 107, 192)',
-    accentLight: 'rgb(39, 43, 59)',
-    bg0: 'rgb(17, 17, 17)',
-    bg1: 'rgb(12, 12, 12)',
-    transparentBg0: 'rgba(17, 17, 17, 0.85)',
-    surface0: 'rgb(26, 26, 26)',
-    surface1: 'rgb(33, 33, 33)',
-    border: 'rgb(40, 40, 40)',
-    borderLight: 'rgb(20, 20, 20)',
+    primary: '#e0e0e0',
+    secondary: '#404040',
+    accent: '#647dee',
+    accentLight: '#272b3b',
+    bg0: '#111111',
+    bg1: '#0c0c0c',
+    transparentBg0: '#111111d9',
+    surface0: '#1a1a1a',
+    surface1: '#212121',
+    border: '#282828',
+    borderLight: '#141414',
   },
   gradient: {
-    accent: 'linear-gradient(-45deg, #66e3ff, #7064f9)',
+    accent: 'linear-gradient(315deg, #7f53ac 0%, #647dee 74%)',
   },
 })

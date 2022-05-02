@@ -6,12 +6,12 @@ const CommonSvg: FC = () => (
   <svg className={s.hide}>
     <defs>
       <linearGradient id="lg-accent-light" gradientTransform="rotate(45)">
-        <stop stopColor="#6153f9"></stop>
-        <stop offset="1" stopColor="#00b5dd"></stop>
+        <stop offset="74%" stopColor="#3f51b5"></stop>
+        <stop offset="100%" stopColor="#7f53ac"></stop>
       </linearGradient>
       <linearGradient id="lg-accent-dark" gradientTransform="rotate(45)">
-        <stop stopColor="#7064f9"></stop>
-        <stop offset="1" stopColor="#66e3ff"></stop>
+        <stop offset="74%" stopColor="#647dee"></stop>
+        <stop offset="100%" stopColor="#7f53ac"></stop>
       </linearGradient>
     </defs>
   </svg>

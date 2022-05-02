@@ -90,17 +90,21 @@ export const title = style({
 })
 
 export const productCardBg0 = style({
-  background: 'linear-gradient(-45deg, #faca12, #f97915)',
+  backgroundColor: '#f39f86',
+  backgroundImage: 'linear-gradient(315deg, #f39f86 0%, #f9d976 74%)',
 })
 
 export const productCardBg1 = style({
-  background: 'linear-gradient(-45deg, #39bbf7, #616af1)',
+  backgroundColor: '#63a4ff',
+  backgroundImage: 'linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%)',
 })
 
 export const productCardBg2 = style({
-  background: 'linear-gradient(-45deg, #ec4898, #f43e5f)',
+  backgroundColor: '#fc5296',
+  backgroundImage: 'linear-gradient(315deg, #fc5296 0%, #f67062 74%)',
 })
 
 export const productCardBg3 = style({
-  background: 'linear-gradient(-45deg, #48dd82, #19b6c2)',
+  backgroundColor: '#70b2d9',
+  backgroundImage: 'linear-gradient(315deg, #70b2d9 0%, #39e5b6 74%)',
 })

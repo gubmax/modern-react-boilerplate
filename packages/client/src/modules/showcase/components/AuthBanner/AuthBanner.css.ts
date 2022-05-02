@@ -6,7 +6,8 @@ import { dt } from 'client/src/common/styles/designTokens'
 import { typography } from 'client/src/common/styles/shared/typography.css'
 
 export const wrapper = style({
-  background: 'linear-gradient(-45deg, #a655f6, #6565f1)',
+  backgroundColor: '#7f53ac',
+  backgroundImage: 'linear-gradient(315deg, #7f53ac 0%, #647dee 74%)',
   padding: `${dt.vars.space.s2} ${dt.vars.space.s3}`,
   borderRadius: dt.vars.borderRadius.primary,
 })
