@@ -1,17 +1,18 @@
 import { FC } from 'react'
 
-import { PageTitle } from 'client/src/common/components/elements/PageTitle'
+import { Logo } from 'client/src/common/components/elements/Logo'
 import { useDocumentTitle } from 'client/src/common/hooks/useDocumentTitle'
 import { SignIn } from 'client/src/modules/auth'
 import { PAGE_TITLE } from './SignIn.constants'
+import * as s from './SignIn.css'
 
 const SignInPage: FC = () => {
   useDocumentTitle(PAGE_TITLE)
   return (
-    <>
-      <PageTitle>{PAGE_TITLE}</PageTitle>
-      <SignIn />
-    </>
+    <div className={s.wrapper}>
+      <Logo className={s.logo} />
+      <SignIn className={s.form} />
+    </div>
   )
 }
 

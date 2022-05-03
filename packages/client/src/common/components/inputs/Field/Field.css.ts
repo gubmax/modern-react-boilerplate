@@ -11,6 +11,7 @@ export const input = style([
     fontSize: dt.vars.fontSize.subtitle1,
     lineHeight: 1,
     width: '100%',
+    background: dt.vars.theme.color.surface1,
     border: `${pxToRem(1.25)} solid transparent`,
     borderRadius: dt.vars.borderRadius.primary,
     transition: '0.1s color, 0.1s border-color, 0.1s box-shadow',
@@ -27,14 +28,14 @@ export const input = style([
 ])
 
 export const withLabel = style({
-  paddingTop: pxToRem(28),
+  padding: `${dt.vars.space.s2} ${dt.vars.space.s2} 0`,
   height: pxToRem(64),
 })
 
 export const label = style({
   position: 'absolute',
-  top: pxToRem(12),
-  left: pxToRem(16),
+  top: dt.vars.space.s1,
+  left: dt.vars.space.s2,
   color: dt.vars.theme.color.secondary,
 })
 

@@ -47,12 +47,8 @@ export const wrapper = style([
     '@media': {
       [dt.media.minWidth.mobile]: {
         borderRadius: dt.vars.borderRadius.primary,
-        bottom: 'unset',
-        left: dt.vars.space.s4,
         margin: `${dt.vars.space.s4} auto`,
         minHeight: 'unset',
-        right: dt.vars.space.s4,
-        top: dt.vars.space.s4,
         width: 'unset',
       },
     },
