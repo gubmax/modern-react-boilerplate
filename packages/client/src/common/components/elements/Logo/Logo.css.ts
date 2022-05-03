@@ -5,7 +5,7 @@ import { dt } from 'client/src/common/styles/designTokens'
 
 export const text = style({
   marginBottom: 0,
-  padding: `${dt.vars.space.s0} ${dt.vars.space.s0} ${dt.vars.space.s0} 0`,
+  padding: `${dt.vars.space.s0} 0 ${dt.vars.space.s0} ${dt.vars.space.s0}`,
   fontSize: '1.8em',
   fontWeight: 500,
   whiteSpace: 'nowrap',
@@ -31,11 +31,12 @@ export const highlight = style({
   position: 'relative',
   display: 'inline-block',
   width: pxToRem(36),
-  marginLeft: dt.vars.space.s0,
+  marginRight: dt.vars.space.s1,
   textAlign: 'center',
   lineHeight: 1.25,
-  background: dt.vars.theme.color.bg0,
+  color: dt.vars.color.white,
   borderRadius,
+  zIndex: 0,
 
   ':before': {
     content: '""',
