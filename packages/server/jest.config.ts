@@ -8,7 +8,6 @@ const config: Config.InitialOptions = {
   ...baseConfig,
   displayName: NAME,
   moduleFileExtensions: ['js', 'ts'],
-  name: NAME,
   testEnvironment: 'node',
   transform: {
     '^.+\\.ts?$': 'esbuild-jest',

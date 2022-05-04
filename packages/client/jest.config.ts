@@ -9,7 +9,6 @@ const config: Config.InitialOptions = {
   ...baseConfig,
   displayName: NAME,
   moduleFileExtensions: ['js', 'ts', 'tsx'],
-  name: NAME,
   setupFilesAfterEnv: [`${CLIENT_PATH}/config/setupTests.ts`],
   testEnvironment: 'jsdom',
   transform: {
