@@ -4,4 +4,5 @@ import { RefProp } from 'client/src/common/typings'
 
 export interface LinkProps extends RefProp<HTMLAnchorElement>, Omit<AnchorProps, 'href'> {
   to: PageRoutes
+  background?: boolean
 }

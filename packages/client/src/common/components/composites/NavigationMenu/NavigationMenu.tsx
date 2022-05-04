@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import { PageRoutes } from 'client/src/browser/http/constants'
-import { LinkModal } from 'client/src/common/components/addons/LinkModal'
+import { Link } from 'client/src/common/components/addons/Link'
 import { NavigationIcon } from 'client/src/common/components/elements/NavigationIcon'
 import { NotificationIcon, ShoppingCardIcon, UserIcon } from 'client/src/common/components/icons'
 import { cn } from 'client/src/common/helpers/classNames'
@@ -26,11 +26,11 @@ const NavigationMenu: FC<StyledProps> = ({ className, style }) => {
       <NavigationIcon className={s.icon} text="Notifications" onClick={noop}>
         <NotificationIcon variant={IconVariants.SECONDARY} />
       </NavigationIcon>
-      <LinkModal to={PageRoutes.SIGN_IN} className={s.icon}>
+      <Link to={PageRoutes.SIGN_IN} className={s.icon} background>
         <NavigationIcon text="Sign in">
           <UserIcon />
         </NavigationIcon>
-      </LinkModal>
+      </Link>
     </div>
   )
 }
