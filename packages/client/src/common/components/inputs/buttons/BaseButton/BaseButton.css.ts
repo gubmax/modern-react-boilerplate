@@ -41,7 +41,7 @@ export const buttonVariants = styleVariants({
   [ButtonVariants.PRIMARY]: {
     border: 0,
     background: dt.vars.theme.color.accent,
-    color: dt.vars.theme.color.surface0,
+    color: dt.vars.color.white,
 
     ':after': { background: 'rgba(255, 255, 255, 0.25)' },
   },
