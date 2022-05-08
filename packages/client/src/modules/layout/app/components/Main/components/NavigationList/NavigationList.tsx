@@ -1,6 +1,6 @@
 import { FC, memo, useMemo } from 'react'
 
-import { NavigationItemDesktop } from '../desktop/NavigationItemDekstop'
+import { NavigationItemDesktop } from '../desktop/NavigationItemDesktop'
 import { NavigationListProps } from './NavigationList.types'
 import * as s from './NavigationList.css'
 

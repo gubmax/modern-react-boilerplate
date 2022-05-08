@@ -8,7 +8,7 @@ import {
   SettingsIcon,
   ShowcaseIcon,
 } from 'client/src/common/components/icons'
-import { NavigationItemDesktopProps } from '../NavigationItemDekstop'
+import { NavigationItemDesktopProps } from '../NavigationItemDesktop'
 
 export const MAIN_ROUTES: NavigationItemDesktopProps[] = [
   { to: PageRoutes.ROOT, icon: ShowcaseIcon, text: 'Showcase' },
