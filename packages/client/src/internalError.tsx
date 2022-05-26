@@ -4,5 +4,5 @@ import { renderInternalErrorTemplate } from './entries/internalError.entry'
 
 // Bootstrap
 
-const container = document.getElementById('root') || document.body
+const container = document.getElementById('root') ?? document.body
 hydrateRoot(container, renderInternalErrorTemplate())

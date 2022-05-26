@@ -12,7 +12,7 @@ export class LoggerService implements NestLoggerService {
 
   constructor(private readonly configService: ConfigService) {
     const isProdEnv = this.configService.get<boolean>('isProdEnv')
-    const logLevel = this.configService.get<string>('logLevel') || 'trace'
+    const logLevel = this.configService.get<string>('logLevel') ?? 'trace'
 
     this.logger = pino({ prettyPrint: !isProdEnv, prettifier })
     this.logger.level = logLevel

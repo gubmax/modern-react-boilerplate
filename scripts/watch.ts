@@ -19,6 +19,7 @@ const watcher = watch(WATCH_PATHS, WATCH_OPTIONS)
 function clearCache() {
   Object.keys(require.cache).forEach((id) => {
     if (id.includes(PATH_RESOLVED_SERVER) || id.includes(PATH_RESOLVED_SHARED)) {
+      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
       delete require.cache[id]
     }
   })

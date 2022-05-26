@@ -51,7 +51,7 @@ export function prettifier(): (inputData: InputData) => string {
       // Request
       const requestMarks: string[] = [TransportMarks.REQ, TransportMarks.REQ_INTERNAL]
       if (requestMarks.includes(msg)) {
-        const colorFn = { [TransportMarks.REQ_INTERNAL]: cyan }[msg] || dim
+        const colorFn = { [TransportMarks.REQ_INTERNAL]: cyan }[msg] ?? dim
         return joinMsg(prettyTransport, colorFn('<--'), method, dim('xxx'), url)
       }
 
@@ -60,7 +60,7 @@ export function prettifier(): (inputData: InputData) => string {
       if (responseMarks.includes(msg)) {
         const code = Number(statusCode)
         const statusColorFn = code >= 500 ? red : code >= 300 ? yellow : green
-        const colorFn = { [TransportMarks.RES_INTERNAL]: cyan }[msg] || statusColorFn
+        const colorFn = { [TransportMarks.RES_INTERNAL]: cyan }[msg] ?? statusColorFn
         const ms = executionTime ? dim(`${executionTime}ms`) : ''
 
         return joinMsg(prettyTransport, colorFn('-->'), method, statusColorFn(statusCode), url, ms)

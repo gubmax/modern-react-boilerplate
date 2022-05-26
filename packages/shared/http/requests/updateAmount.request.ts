@@ -1,5 +1,5 @@
 import { ApiRoutes, HttpRequestMethods } from '../constants'
-import { JSONPatch, JSONPatchOperations } from '../jsonPatch'
+import { JSONPatch } from '../jsonPatch'
 import { HttpRequestInit } from '../types'
 
 export enum UpdateAmountPaths {
@@ -7,12 +7,7 @@ export enum UpdateAmountPaths {
   decrease = '/decrease',
 }
 
-export type UpdateAmountBody = JSONPatch<
-  { id: string },
-  JSONPatchOperations.replace,
-  UpdateAmountPaths,
-  never
->
+export type UpdateAmountBody = JSONPatch<{ id: string }, UpdateAmountPaths, never>
 
 export const updateAmountInit: HttpRequestInit<ApiRoutes> = {
   input: ApiRoutes.CART_AMOUNT,

@@ -28,7 +28,7 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint packages --ext .ts,.tsx",
+    "lint": "eslint packages scripts --ext .ts,.tsx",
     "prepare": "husky install",
     "docker": "npm run docker:build && npm run docker:run",
     "docker:build": "docker build . -t modern-react-boilerplate -f infra/docker/Dockerfile",

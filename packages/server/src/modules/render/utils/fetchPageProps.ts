@@ -9,7 +9,7 @@ export async function fetchPageProps(
   url: string,
   httpClient: HttpClientImpl,
 ): Promise<ServerSideProps> {
-  const { path } = CONFIG_SSR_ROUTES[url] || {}
+  const { path } = CONFIG_SSR_ROUTES[url] ?? {}
 
   if (!path) return {}
 

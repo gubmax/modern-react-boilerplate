@@ -3,7 +3,10 @@ import { Manifest } from 'vite'
 
 import { HtmlMarks } from 'server/src/common/constants/html'
 
-export type PreloadUrl = { url: string; isEntry?: boolean }
+export interface PreloadUrl {
+  url: string
+  isEntry?: boolean
+}
 
 @Injectable()
 export class AssetCollectorService {

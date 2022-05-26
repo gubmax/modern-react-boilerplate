@@ -9,7 +9,7 @@ export function withIcon(Component: ElementType<IconProps>): ElementType<IconPro
   const Icon: FC<IconProps> = ({ variant = IconVariants.PRIMARY, size, className, ...rest }) => {
     const classNames = cn(
       iconStateStyles[variant],
-      iconSizeStyles[size || IconSizes.SMALL],
+      iconSizeStyles[size ?? IconSizes.SMALL],
       className,
     )
 

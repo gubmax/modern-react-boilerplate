@@ -42,7 +42,7 @@ export class RenderService {
   protected getDeviceType(req: Request): string {
     const userAgent = this.userAgentParser.create(req.headers['user-agent'])
     const { type } = userAgent.getDevice()
-    return type || DeviceType.DESKTOP
+    return type ?? DeviceType.DESKTOP
   }
 
   private sendPreRenderedTemplate(url: string, res: Response): boolean {
@@ -84,7 +84,7 @@ export class RenderService {
 
     // Inject assets
 
-    const { imports = [] } = CONFIG_SSR_ROUTES[req.url] || {}
+    const { imports = [] } = CONFIG_SSR_ROUTES[req.url] ?? {}
     const html = this.assetCollector.injectByModulePaths(this.indexHtml, imports)
 
     // Write

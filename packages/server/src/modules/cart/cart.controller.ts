@@ -3,7 +3,8 @@ import { Body, Controller, Get, Inject, Patch } from '@nestjs/common'
 import { BadRequestException } from 'shared/exceptions'
 import { ApiRoutes } from 'shared/http/constants'
 import { JSONPatchOperations } from 'shared/http/jsonPatch'
-import { GetProductsResponse, UpdateAmountBody, UpdateAmountPaths } from 'shared/http/requests'
+import type { GetProductsResponse, UpdateAmountBody } from 'shared/http/requests'
+import { UpdateAmountPaths } from 'shared/http/requests'
 import { CartService } from './cart.service'
 import { MOCK_PRODUCTS } from './products.mock'
 
@@ -22,7 +23,7 @@ export class CartController {
       throw new BadRequestException('Unexpected operation')
     }
 
-    const { id = '' } = value || {}
+    const { id = '' } = value ?? {}
 
     return {
       [UpdateAmountPaths.increase]: () => this.cartService.increaseAmount(id),

@@ -20,12 +20,16 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:@typescript-eslint/strict",
     "plugin:react/recommended"
   ],
   "settings": {
     "react": { "version": "detect" }
   },
   "rules": {
+    "@typescript-eslint/array-type": ["warn", { "default": "array-simple" }],
+    "@typescript-eslint/no-extraneous-class": ["warn", { "allowWithDecorator": true }],
+    "@typescript-eslint/no-invalid-void-type": "off",
     "jsx-quotes": ["error", "prefer-double"],
     "object-curly-spacing": ["error", "always"],
     "prettier/prettier": "error",

@@ -18,13 +18,13 @@ export class HttpClientModel implements HttpClientImpl {
     try {
       const res = await fetch(input, {
         ...init,
-        headers: headers || HEADERS_DEFAULT,
+        headers: headers ?? HEADERS_DEFAULT,
         body: JSON.stringify(body),
       })
 
       const contentType = res.headers.get('content-type')
       const promise =
-        !!contentType && contentType.indexOf('application/json') !== -1 ? res.json() : res.text()
+        !!contentType && contentType.includes('application/json') ? res.json() : res.text()
 
       return promise as Promise<R>
     } catch (error: unknown) {

@@ -41,8 +41,8 @@ const Modal: FC<ModalProps> = ({ children, active = false, onClose = noop }) => 
       toggleStyle(true)
     } else {
       const contentEl = document.getElementById('main')
-      const top = Math.abs(parseInt(contentEl?.style.top || '0'))
-      const left = Math.abs(parseInt(contentEl?.style.left || '0'))
+      const top = Math.abs(parseInt(contentEl?.style.top ?? '0'))
+      const left = Math.abs(parseInt(contentEl?.style.left ?? '0'))
 
       toggleStyle(false)
 

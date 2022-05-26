@@ -1,9 +1,9 @@
-import { build } from 'esbuild'
 import { cyan, dim, green } from 'chalk'
+import { build } from 'esbuild'
 
-import { PATH_SERVER, PATH_RESOLVED_SERVER } from 'shared/constants/paths'
-import serverPackage from 'server/package.json'
 import clientPackage from 'client/package.json'
+import serverPackage from 'server/package.json'
+import { PATH_RESOLVED_SERVER, PATH_SERVER } from 'shared/constants/paths'
 
 const ENTRY_MAIN = 'packages/server/src/main.ts'
 const OUTFILE_NAME = 'index.js'

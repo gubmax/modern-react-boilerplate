@@ -12,7 +12,7 @@ const Router: FC = () => {
   const location = useLocation()
   const navigate = useNavigate()
 
-  const { backgroundLocation } = (location.state as NavigationState) || {}
+  const { backgroundLocation } = (location.state as NavigationState | undefined) ?? {}
   const routes = backgroundLocation && action === Action.Push ? BACKGROUND_ROUTES : ROUTES
 
   const routeEl = useRoutes(routes, location)

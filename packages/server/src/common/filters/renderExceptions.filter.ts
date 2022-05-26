@@ -20,6 +20,6 @@ export class RenderExceptionsFilter implements ExceptionFilter {
 
     this.logger.error(error)
 
-    void this.renderService.renderInternalErrorEntry(req, res)
+    this.renderService.renderInternalErrorEntry(req, res)
   }
 }

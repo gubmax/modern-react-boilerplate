@@ -7,6 +7,6 @@ export const serverSidePropsModelFactorySymbol = Symbol('Factory<ServerSideProps
 
 // Types
 
-export interface ServerSidePropsModelFactory {
-  <T>(getServerSideProps: GetServerSideProps<T>): ServerSidePropsQueryModel<T>
-}
+export type ServerSidePropsModelFactory = <T>(
+  getServerSideProps: GetServerSideProps<T>,
+) => ServerSidePropsQueryModel<T>

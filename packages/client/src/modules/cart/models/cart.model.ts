@@ -3,7 +3,8 @@ import { inject, singleton } from 'tsyringe'
 
 import { UpdateAmountQueryModel } from 'client/src/common/models/queries/updateAmount'
 import { CartSspQueryModel } from 'client/src/modules/pages/cart/models/cartSspQuery.model'
-import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
+import type { ServerSideProps } from 'shared/constants/serverSideProps'
+import { SERVER_SIDE_PROPS } from 'shared/constants/serverSideProps'
 import { JSONPatchOperations } from 'shared/http/jsonPatch'
 import { UpdateAmountPaths } from 'shared/http/requests'
 import { Product } from '../domain/entities/product.entity'
@@ -23,7 +24,7 @@ export class CartModel {
     @inject(CartService)
     private readonly cartService: CartService,
   ) {
-    this.products$ = new BehaviorSubject(serverSideProps.products || [])
+    this.products$ = new BehaviorSubject(serverSideProps.products ?? [])
 
     cartSspQueryModel.query$.subscribe(({ response: { products } = {} }) => {
       products && this.products$.next(products)

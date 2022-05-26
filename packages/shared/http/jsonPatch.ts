@@ -10,13 +10,8 @@ export enum JSONPatchOperations {
 /**
  * @link https://datatracker.ietf.org/doc/html/rfc6902
  */
-export interface JSONPatch<
-  V,
-  O extends JSONPatchOperations = JSONPatchOperations,
-  P extends string = string,
-  F extends string = string,
-> {
-  op: O
+export interface JSONPatch<V, P extends string = string, F extends string = string> {
+  op: JSONPatchOperations
   path: P
   from?: F
   value?: V

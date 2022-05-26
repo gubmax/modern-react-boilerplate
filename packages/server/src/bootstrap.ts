@@ -23,7 +23,7 @@ export async function bootstrap(): Promise<NestExpressApplication> {
   // Config
   const config = app.get(ConfigService)
   const isProdEnv = config.get<boolean>('isProdEnv')
-  const port = config.get<number>('port') || NaN
+  const port = config.get<number>('port') ?? NaN
 
   // Production
   if (isProdEnv) {

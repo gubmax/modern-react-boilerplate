@@ -3,7 +3,7 @@ import { PageRoutes } from 'client/src/browser/http/constants'
 /**
  * Dynamic Rendering / Server-side Rendering routes
  */
-export const CONFIG_SSR_ROUTES: Record<string, { path?: string; imports: string[] }> = {
+export const CONFIG_SSR_ROUTES: Record<string, { path?: string; imports: string[] } | undefined> = {
   // route: pages/:path
   [PageRoutes.ROOT]: {
     imports: ['src/main.tsx'],
