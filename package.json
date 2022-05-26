@@ -41,22 +41,22 @@
     "react-dom": "18.1.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "5.22.0",
-    "@typescript-eslint/parser": "5.22.0",
+    "@typescript-eslint/eslint-plugin": "5.26.0",
+    "@typescript-eslint/parser": "5.26.0",
     "autoprefixer": "10.4.7",
     "chalk": "4.1.2",
     "chokidar": "3.5.3",
     "esbuild-jest": "0.5.0",
-    "eslint": "8.14.0",
+    "eslint": "8.16.0",
     "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-react": "7.29.4",
+    "eslint-plugin-react": "7.30.0",
     "eslint-plugin-react-hooks": "4.5.0",
     "eslint-plugin-simple-import-sort": "7.0.0",
-    "husky": "7.0.4",
-    "jest": "28.0.3",
-    "lint-staged": "12.4.1",
+    "husky": "8.0.1",
+    "jest": "28.1.0",
+    "lint-staged": "12.4.2",
     "prettier": "2.6.2",
-    "ts-node": "10.7.0",
-    "typescript": "4.6.4"
+    "ts-node": "10.8.0",
+    "typescript": "4.7.2"
   }
 }
