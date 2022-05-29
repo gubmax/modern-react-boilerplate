@@ -4,15 +4,16 @@ import { BrowserRouter } from 'client/src/common/components/addons/BrowserRouter
 import { IocContainerContext } from 'client/src/common/contexts/IocContainerContext'
 import { App } from 'client/src/modules/layout/app'
 import { iocContainer } from 'client/src/utils/ioc'
-import { CLIENT_CONFIG, ClientConfig } from 'shared/constants/clientConfig'
-import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
+import { CLIENT_CONFIG } from 'shared/constants/clientConfig'
+import { SERVER_SIDE_PROPS } from 'shared/constants/serverSideProps'
+import { RenderTemplate } from 'shared/typings/renderTemplate'
 import 'client/src/common/styles/reset.css'
 import 'client/src/common/styles/global.css'
 
-export function renderMainTemplate(
-  clientConfig: ClientConfig = {},
-  serverSideProps: ServerSideProps = {},
-): JSX.Element {
+export const renderTemplate: RenderTemplate = ({
+  clientConfig = {},
+  serverSideProps = {},
+} = {}) => {
   iocContainer.register(CLIENT_CONFIG, { useValue: clientConfig })
   iocContainer.register(SERVER_SIDE_PROPS, { useValue: serverSideProps })
 

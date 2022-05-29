@@ -7,14 +7,13 @@ import { NestExpressApplication } from '@nestjs/platform-express'
 import type { Request, Response } from 'express'
 import { createServer, ModuleNode, ViteDevServer } from 'vite'
 
-import { renderInternalErrorTemplate as RenderInternalErrorTemplate } from 'client/src/entries/internalError.entry'
-import { renderServerMainTemplate as RenderServerMainTemplate } from 'client/src/entries/main.server.entry'
 import viteDevServerConfig from 'client/vite.config.server'
 import { CONFIG_ENTRIES } from 'server/config'
 import { HtmlMarks } from 'server/src/common/constants/html'
 import { HtmlEntries } from 'shared/constants/entries'
 import { PATH_RESOLVED_INDEX_HTML } from 'shared/constants/paths'
 import { InternalServerException } from 'shared/exceptions/exceptions'
+import { RenderTemplate } from 'shared/typings/renderTemplate'
 import { DevelopmentAssetCollectorService } from '../assetCollector'
 import { HttpClientService } from '../httpClient'
 import { UserAgentParserService } from '../userAgentParser'
@@ -48,11 +47,11 @@ export class DevelopmentRenderService extends RenderService {
    * Development render function.
    * Before use, you need to call fn setupDevServer once.
    */
-  private async renderTemplate<RendeModule extends Record<string, unknown>>(
+  private async renderTemplate<RenderModule extends Record<string, unknown>>(
     url: string,
     entryDevPath: string,
     html: string,
-  ): Promise<[string, ModuleNode | undefined, RendeModule]> {
+  ): Promise<[string, ModuleNode | undefined, RenderModule]> {
     const { devServer } = this
 
     if (!devServer) {
@@ -63,7 +62,7 @@ export class DevelopmentRenderService extends RenderService {
       const [template, appModule, templateModule] = await Promise.all([
         devServer.transformIndexHtml(url, html),
         devServer.moduleGraph.getModuleByUrl(entryDevPath),
-        devServer.ssrLoadModule(entryDevPath) as Promise<RendeModule>,
+        devServer.ssrLoadModule(entryDevPath) as Promise<RenderModule>,
       ])
 
       return [template, appModule, templateModule]
@@ -94,16 +93,15 @@ export class DevelopmentRenderService extends RenderService {
     let html = this.readHtmlSync()
     html = this.assetCollector.injectUrls(html, [{ url: moduleDevPath, isEntry: true }])
 
-    const [template, appModule, { renderServerMainTemplate }] = await this.renderTemplate<{
-      renderServerMainTemplate: typeof RenderServerMainTemplate
+    const [template, appModule, { renderTemplate }] = await this.renderTemplate<{
+      renderTemplate: RenderTemplate
     }>(req.url, entryDevPath, html)
 
     const serverSideProps = await fetchPageProps(req.url, this.httpClient)
-    const app = renderServerMainTemplate(req.url, clientConfig, serverSideProps)
+    const app = renderTemplate({ url: req.url, clientConfig, serverSideProps })
 
     // Inject assets
 
-    html = template
     html = this.assetCollector.injectByModule(template, appModule)
 
     // Write
@@ -117,17 +115,17 @@ export class DevelopmentRenderService extends RenderService {
     let html = this.readHtmlSync()
     html = this.assetCollector.injectUrls(html, [{ url: moduleDevPath, isEntry: true }])
 
-    const [template, appModule, { renderInternalErrorTemplate }] = await this.renderTemplate<{
-      renderInternalErrorTemplate: typeof RenderInternalErrorTemplate
+    const [template, appModule, { renderTemplate }] = await this.renderTemplate<{
+      renderTemplate: RenderTemplate
     }>(req.url, entryDevPath, html)
 
     html = template
     html = this.assetCollector.injectByModule(html, appModule)
 
-    const app = renderInternalErrorTemplate()
+    const app = renderTemplate()
     const markup = renderToString(app)
 
-    html = html.replace(HtmlMarks.SSR_OUTLER, markup)
+    html = html.replace(HtmlMarks.SSR_OUTLET, markup)
 
     res.status(500).set({ 'Content-Type': 'text/html' }).send(html)
   }

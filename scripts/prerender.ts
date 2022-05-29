@@ -7,8 +7,6 @@ import { renderToString } from 'react-dom/server'
 import { cyan, dim, green } from 'chalk'
 import { Manifest } from 'vite'
 
-import { renderInternalErrorTemplate as RenderInternalErrorTemplate } from 'client/src/entries/internalError.entry'
-import { renderServerMainTemplate as RenderServerMainTemplate } from 'client/src/entries/main.server.entry'
 import { CONFIG_ENTRIES, CONFIG_SSG_ROUTES } from 'server/config'
 import { HtmlMarks } from 'server/src/common/constants/html'
 import { AssetCollectorService } from 'server/src/modules/assetCollector'
@@ -19,6 +17,7 @@ import {
   PATH_RESOLVED_CLIENT,
   PATH_RESOLVED_INDEX_HTML,
 } from 'shared/constants/paths'
+import { RenderTemplate } from 'shared/typings/renderTemplate'
 
 const logInfo = (fileName: string) => console.log(`  ${dim(`${PATH_CLIENT}/`)}${green(fileName)}`)
 
@@ -37,7 +36,7 @@ function writeEntry({
 }) {
   const ssrOutlet = renderToString(app)
 
-  let html = indexHtml.replace(HtmlMarks.SSR_OUTLER, ssrOutlet)
+  let html = indexHtml.replace(HtmlMarks.SSR_OUTLET, ssrOutlet)
   html = assetCollector.injectByModulePaths(html, [modulePath])
 
   writeFileSync(`${PATH_RESOLVED_CLIENT}/${fileName}`, html)
@@ -48,13 +47,13 @@ async function renderMainEntry(indexHtml: string, assetCollector: AssetCollector
 
   const { entryPath, modulePath } = CONFIG_ENTRIES[HtmlEntries.MAIN]
 
-  const { renderServerMainTemplate } = (await require(entryPath)) as {
-    renderServerMainTemplate: typeof RenderServerMainTemplate
+  const { renderTemplate } = (await require(entryPath)) as {
+    renderTemplate: RenderTemplate
   }
 
   // Pre-render each route...
   for (const route in CONFIG_SSG_ROUTES) {
-    const app = renderServerMainTemplate(route)
+    const app = renderTemplate({ url: route })
     const fileName = `${CONFIG_SSG_ROUTES[route]}.html`
 
     writeEntry({ app, indexHtml, assetCollector, modulePath, fileName })
@@ -67,11 +66,11 @@ async function renderInternalErrorEntry(indexHtml: string, assetCollector: Asset
 
   const { entryPath, modulePath } = CONFIG_ENTRIES[HtmlEntries.INTERNAL_ERROR]
 
-  const { renderInternalErrorTemplate } = (await require(entryPath)) as {
-    renderInternalErrorTemplate: typeof RenderInternalErrorTemplate
+  const { renderTemplate } = (await require(entryPath)) as {
+    renderTemplate: RenderTemplate
   }
 
-  const app = renderInternalErrorTemplate()
+  const app = renderTemplate()
   const fileName = `${HtmlEntries.INTERNAL_ERROR}.html`
 
   writeEntry({ app, indexHtml, assetCollector, modulePath, fileName })

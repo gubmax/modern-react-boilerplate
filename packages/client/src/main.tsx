@@ -4,7 +4,7 @@ import { hydrateRoot } from 'react-dom/client'
 import { CLIENT_CONFIG, ClientConfig } from 'shared/constants/clientConfig'
 import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
 import { reportWebVitals } from './browser/http/reportWebVitals'
-import { renderMainTemplate } from './entries/main.entry'
+import { renderTemplate } from './entries/main.entry'
 
 // Initial data
 
@@ -14,7 +14,7 @@ const serverSideProps: ServerSideProps = window[SERVER_SIDE_PROPS] ?? {}
 // Bootstrap
 
 const container = document.getElementById('root') ?? document.body
-hydrateRoot(container, renderMainTemplate(clientConfig, serverSideProps))
+hydrateRoot(container, renderTemplate({ clientConfig, serverSideProps }))
 
 // Service Worker
 // registerSW()

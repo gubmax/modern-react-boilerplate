@@ -6,8 +6,7 @@ import { ConfigService } from '@nestjs/config'
 import type { Request, Response } from 'express'
 import { Manifest } from 'vite'
 
-import { renderServerMainTemplate as RenderServerMainTemplate } from 'client/src/entries/main.server.entry'
-import { CONFIG_ENTRIES, CONFIG_SSG_ROUTES, CONFIG_SSR_ROUTES } from 'server/config'
+import { CONFIG_ENTRIES, CONFIG_SSG_ROUTES } from 'server/config'
 import { DeviceType } from 'shared/constants/clientConfig'
 import { HtmlEntries } from 'shared/constants/entries'
 import {
@@ -15,6 +14,7 @@ import {
   PATH_RESOLVED_CLIENT_MANIFEST,
   PATH_RESOLVED_INDEX_HTML,
 } from 'shared/constants/paths'
+import { RenderTemplate } from 'shared/typings/renderTemplate'
 import { AssetCollectorService } from '../assetCollector'
 import { HttpClientService } from '../httpClient'
 import { UserAgentParserService } from '../userAgentParser'
@@ -71,21 +71,20 @@ export class RenderService {
 
     // Render client
 
-    const { entryPath } = CONFIG_ENTRIES[HtmlEntries.MAIN]
+    const { entryPath, modulePath } = CONFIG_ENTRIES[HtmlEntries.MAIN]
 
-    const [serverSideProps, { renderServerMainTemplate }] = await Promise.all([
+    const [serverSideProps, { renderTemplate }] = await Promise.all([
       fetchPageProps(req.url, this.httpClient),
       (await require(entryPath)) as {
-        renderServerMainTemplate: typeof RenderServerMainTemplate
+        renderTemplate: RenderTemplate
       },
     ])
 
-    const app = renderServerMainTemplate(req.url, clientConfig, serverSideProps)
+    const app = renderTemplate({ url: req.url, clientConfig, serverSideProps })
 
     // Inject assets
 
-    const { imports = [] } = CONFIG_SSR_ROUTES[req.url] ?? {}
-    const html = this.assetCollector.injectByModulePaths(this.indexHtml, imports)
+    const html = this.assetCollector.injectByModulePaths(this.indexHtml, [modulePath])
 
     // Write
 

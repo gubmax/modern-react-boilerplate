@@ -41,7 +41,7 @@ export function writeTemplate({
 
       //  Writing
 
-      const batches = html.split(HtmlMarks.SSR_OUTLER)
+      const batches = html.split(HtmlMarks.SSR_OUTLET)
 
       res.write(batches[0])
       stream.pipe(res)

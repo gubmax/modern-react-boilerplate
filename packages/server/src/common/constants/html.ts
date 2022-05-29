@@ -1,4 +1,4 @@
 export enum HtmlMarks {
   ASSETS = '<!--assets-->',
-  SSR_OUTLER = '<!--ssr-outlet-->',
+  SSR_OUTLET = '<!--ssr-outlet-->',
 }
