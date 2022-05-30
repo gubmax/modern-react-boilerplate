@@ -5,6 +5,7 @@ import { CONFIG_ENV } from 'server/config'
 import { RequestLoggerMiddleware } from 'server/src/common/middlewares'
 import { AssetCollectorModule } from './assetCollector'
 import { CartModule } from './cart'
+import { ClientConfigModule } from './clientConfig'
 import { LoggerModule } from './logger'
 import { RenderModule } from './render'
 import { UserAgentParserModule } from './userAgentParser'
@@ -17,6 +18,7 @@ import { UserAgentParserModule } from './userAgentParser'
       isGlobal: true,
       load: [() => CONFIG_ENV],
     }),
+    ClientConfigModule,
     LoggerModule,
     RenderModule,
     UserAgentParserModule,

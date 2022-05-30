@@ -7,7 +7,6 @@ import type { Request, Response } from 'express'
 import { Manifest } from 'vite'
 
 import { CONFIG_ENTRIES, CONFIG_SSG_ROUTES } from 'server/config'
-import { DeviceType } from 'shared/constants/clientConfig'
 import { HtmlEntries } from 'shared/constants/entries'
 import {
   PATH_RESOLVED_CLIENT,
@@ -16,8 +15,8 @@ import {
 } from 'shared/constants/paths'
 import { RenderTemplate } from 'shared/typings/renderTemplate'
 import { AssetCollectorService } from '../assetCollector'
+import { ClientConfigService } from '../clientConfig'
 import { HttpClientService } from '../httpClient'
-import { UserAgentParserService } from '../userAgentParser'
 import { fetchPageProps } from './utils/fetchPageProps'
 import { writeTemplate } from './utils/writeTemplate'
 
@@ -26,10 +25,10 @@ export class RenderService {
   protected indexHtml = ''
 
   constructor(
+    protected readonly assetCollector: AssetCollectorService,
+    protected readonly clientConfig: ClientConfigService,
     protected readonly config: ConfigService,
     protected readonly httpClient: HttpClientService,
-    protected readonly assetCollector: AssetCollectorService,
-    protected readonly userAgentParser: UserAgentParserService,
   ) {}
 
   init(): void {
@@ -37,12 +36,6 @@ export class RenderService {
 
     this.assetCollector.manifest = manifest
     this.indexHtml = readFileSync(PATH_RESOLVED_INDEX_HTML, 'utf-8')
-  }
-
-  protected getDeviceType(req: Request): string {
-    const userAgent = this.userAgentParser.create(req.headers['user-agent'])
-    const { type } = userAgent.getDevice()
-    return type ?? DeviceType.DESKTOP
   }
 
   private sendPreRenderedTemplate(url: string, res: Response): boolean {
@@ -65,9 +58,7 @@ export class RenderService {
 
     // Client config
 
-    const clientConfig = {
-      deviceType: this.getDeviceType(req),
-    }
+    const clientConfig = this.clientConfig.create(req)
 
     // Render client
 

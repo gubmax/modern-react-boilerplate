@@ -15,8 +15,8 @@ import { PATH_RESOLVED_INDEX_HTML } from 'shared/constants/paths'
 import { InternalServerException } from 'shared/exceptions/exceptions'
 import { RenderTemplate } from 'shared/typings/renderTemplate'
 import { DevelopmentAssetCollectorService } from '../assetCollector'
+import { ClientConfigService } from '../clientConfig'
 import { HttpClientService } from '../httpClient'
-import { UserAgentParserService } from '../userAgentParser'
 import { RenderService } from './render.service'
 import { fetchPageProps } from './utils/fetchPageProps'
 import { writeTemplate } from './utils/writeTemplate'
@@ -26,12 +26,12 @@ export class DevelopmentRenderService extends RenderService {
   private devServer?: ViteDevServer
 
   constructor(
+    protected readonly assetCollector: DevelopmentAssetCollectorService,
+    protected readonly clientConfig: ClientConfigService,
     protected readonly config: ConfigService,
     protected readonly httpClient: HttpClientService,
-    protected readonly assetCollector: DevelopmentAssetCollectorService,
-    protected readonly userAgentParser: UserAgentParserService,
   ) {
-    super(config, httpClient, assetCollector, userAgentParser)
+    super(assetCollector, clientConfig, config, httpClient)
   }
 
   /**
@@ -84,9 +84,7 @@ export class DevelopmentRenderService extends RenderService {
 
     // Client config
 
-    const clientConfig = {
-      deviceType: this.getDeviceType(req),
-    }
+    const clientConfig = this.clientConfig.create(req)
 
     // Render client
 
