@@ -61,17 +61,21 @@ async function renderMainEntry(indexHtml: string, assetCollector: AssetCollector
   }
 }
 
-async function renderInternalErrorEntry(indexHtml: string, assetCollector: AssetCollectorService) {
-  console.log(HtmlEntries.INTERNAL_ERROR)
+async function renderBaseEntry(
+  entry: HtmlEntries,
+  indexHtml: string,
+  assetCollector: AssetCollectorService,
+) {
+  console.log(entry)
 
-  const { entryPath, modulePath } = CONFIG_ENTRIES[HtmlEntries.INTERNAL_ERROR]
+  const { entryPath, modulePath } = CONFIG_ENTRIES[entry]
 
   const { renderTemplate } = (await require(entryPath)) as {
     renderTemplate: RenderTemplate
   }
 
   const app = renderTemplate()
-  const fileName = `${HtmlEntries.INTERNAL_ERROR}.html`
+  const fileName = `${entry}.html`
 
   writeEntry({ app, indexHtml, assetCollector, modulePath, fileName })
   logInfo(fileName)
@@ -89,5 +93,6 @@ void (async () => {
   console.log(`${cyan('pre-render script')} ${green('generating html files...')}`)
 
   await renderMainEntry(indexHtml, assetCollector)
-  await renderInternalErrorEntry(indexHtml, assetCollector)
+  await renderBaseEntry(HtmlEntries.INTERNAL_ERROR, indexHtml, assetCollector)
+  await renderBaseEntry(HtmlEntries.NOT_FOUND, indexHtml, assetCollector)
 })()

@@ -1,8 +1,10 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
+import { ServeStaticModule } from '@nestjs/serve-static'
 
 import { CONFIG_ENV } from 'server/config'
 import { RequestLoggerMiddleware } from 'server/src/common/middlewares'
+import { PATH_RESOLVED_PUBLIC } from 'shared/constants/paths'
 import { AssetCollectorModule } from './assetCollector'
 import { CartModule } from './cart'
 import { ClientConfigModule } from './clientConfig'
@@ -14,13 +16,18 @@ import { UserAgentParserModule } from './userAgentParser'
   imports: [
     AssetCollectorModule,
     CartModule,
+    ClientConfigModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: [() => CONFIG_ENV],
     }),
-    ClientConfigModule,
     LoggerModule,
     RenderModule,
+    ServeStaticModule.forRoot({
+      rootPath: PATH_RESOLVED_PUBLIC,
+      renderPath: '/',
+      serveStaticOptions: { index: false },
+    }),
     UserAgentParserModule,
   ],
 })

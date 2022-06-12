@@ -107,24 +107,34 @@ export class DevelopmentRenderService extends RenderService {
     writeTemplate({ html, app, res, clientConfig, serverSideProps })
   }
 
+  private renderBaseEntry(status: number, entry: HtmlEntries) {
+    return async (req: Request, res: Response): Promise<void> => {
+      const { entryDevPath, moduleDevPath } = CONFIG_ENTRIES[entry]
+
+      let html = this.readHtmlSync()
+      html = this.assetCollector.injectUrls(html, [{ url: moduleDevPath, isEntry: true }])
+
+      const [template, appModule, { renderTemplate }] = await this.renderTemplate<{
+        renderTemplate: RenderTemplate
+      }>(req.url, entryDevPath, html)
+
+      html = template
+      html = this.assetCollector.injectByModule(html, appModule)
+
+      const app = renderTemplate()
+      const markup = renderToString(app)
+
+      html = html.replace(HtmlMarks.SSR_OUTLET, markup)
+
+      res.status(status).set({ 'Content-Type': 'text/html' }).send(html)
+    }
+  }
+
   async renderInternalErrorEntry(req: Request, res: Response): Promise<void> {
-    const { entryDevPath, moduleDevPath } = CONFIG_ENTRIES[HtmlEntries.INTERNAL_ERROR]
+    return this.renderBaseEntry(500, HtmlEntries.INTERNAL_ERROR)(req, res)
+  }
 
-    let html = this.readHtmlSync()
-    html = this.assetCollector.injectUrls(html, [{ url: moduleDevPath, isEntry: true }])
-
-    const [template, appModule, { renderTemplate }] = await this.renderTemplate<{
-      renderTemplate: RenderTemplate
-    }>(req.url, entryDevPath, html)
-
-    html = template
-    html = this.assetCollector.injectByModule(html, appModule)
-
-    const app = renderTemplate()
-    const markup = renderToString(app)
-
-    html = html.replace(HtmlMarks.SSR_OUTLET, markup)
-
-    res.status(500).set({ 'Content-Type': 'text/html' }).send(html)
+  async renderNotFoundEntry(req: Request, res: Response): Promise<void> {
+    return this.renderBaseEntry(404, HtmlEntries.NOT_FOUND)(req, res)
   }
 }

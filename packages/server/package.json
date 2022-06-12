@@ -15,10 +15,10 @@
     "@nestjs/config": "2.1.0",
     "@nestjs/core": "8.4.6",
     "@nestjs/platform-express": "8.4.6",
+    "@nestjs/serve-static": "2.2.2",
     "compression": "1.7.4",
     "pino": "7.11.0",
     "reflect-metadata": "0.1.13",
-    "serve-static": "1.15.0",
     "ua-parser-js": "1.0.2",
     "undici": "5.4.0"
   },

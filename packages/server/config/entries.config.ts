@@ -25,4 +25,12 @@ export const CONFIG_ENTRIES: Record<string, Entry> = {
     entryDevPath: `${PATH_RESOLVED_CLIENT}/src/entries/${HtmlEntries.INTERNAL_ERROR}.entry.tsx`,
     moduleDevPath: `${PATH_RESOLVED_CLIENT}/src/${HtmlEntries.MAIN}.tsx`,
   },
+  [HtmlEntries.NOT_FOUND]: {
+    // Production
+    entryPath: `${PATH_RESOLVED_SERVER}/${HtmlEntries.NOT_FOUND}.js`,
+    modulePath: `src/${HtmlEntries.NOT_FOUND}.tsx`,
+    // Development
+    entryDevPath: `${PATH_RESOLVED_CLIENT}/src/entries/${HtmlEntries.NOT_FOUND}.entry.tsx`,
+    moduleDevPath: `${PATH_RESOLVED_CLIENT}/src/${HtmlEntries.NOT_FOUND}.tsx`,
+  },
 }

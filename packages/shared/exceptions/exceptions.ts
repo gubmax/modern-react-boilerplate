@@ -18,3 +18,9 @@ export class InternalServerException extends HttpExceptionImpl {
     )
   }
 }
+
+export class NotFoundException extends HttpExceptionImpl {
+  constructor(message: string, stack?: string) {
+    super(HttpStatus.NOT_FOUND_ERROR, HttpExceptions.NOT_FOUND, 'Not found error', message, stack)
+  }
+}

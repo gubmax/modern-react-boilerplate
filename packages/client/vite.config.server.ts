@@ -9,6 +9,7 @@ import { PATH_SERVER } from '../shared/constants/paths'
 
 const ENTRY_PATH_MAIN = `./src/entries/${HtmlEntries.MAIN}.server.entry.tsx`
 const ENTRY_PATH_INTERNAL_ERROR = `./src/entries/${HtmlEntries.INTERNAL_ERROR}.entry.tsx`
+const ENTRY_PATH_NOT_FOUND = `./src/entries/${HtmlEntries.NOT_FOUND}.entry.tsx`
 
 /**
  * @link https://vitejs.dev/config/
@@ -32,6 +33,7 @@ const config: UserConfig = {
       input: {
         [HtmlEntries.MAIN]: ENTRY_PATH_MAIN,
         [HtmlEntries.INTERNAL_ERROR]: ENTRY_PATH_INTERNAL_ERROR,
+        [HtmlEntries.NOT_FOUND]: ENTRY_PATH_NOT_FOUND,
       },
     },
   },

@@ -13,6 +13,7 @@ const VISUALIZE_MODE = !!process.env.VISUALIZE_MODE
 
 const ENTRY_PATH_MAIN = `./src/${HtmlEntries.MAIN}.tsx`
 const ENTRY_PATH_INTERNAL_ERROR = `./src/${HtmlEntries.INTERNAL_ERROR}.tsx`
+const ENTRY_PATH_NOT_FOUND = `./src/${HtmlEntries.NOT_FOUND}.tsx`
 
 /**
  * @link https://vitejs.dev/config/
@@ -45,6 +46,7 @@ const config: UserConfig = {
       input: {
         [HtmlEntries.MAIN]: ENTRY_PATH_MAIN,
         [HtmlEntries.INTERNAL_ERROR]: ENTRY_PATH_INTERNAL_ERROR,
+        [HtmlEntries.NOT_FOUND]: ENTRY_PATH_NOT_FOUND,
       },
     },
   },

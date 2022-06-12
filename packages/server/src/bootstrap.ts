@@ -6,6 +6,7 @@ import serve from 'serve-static'
 
 import { PATH_RESOLVED_CLIENT } from 'shared/constants/paths'
 import { AllExceptionsFilter } from './common/filters'
+import { NotFoundExceptionFilter } from './common/filters/notFoundException.filter'
 import { AppModule } from './modules/app.module'
 import { LoggerService, loggerServiceSymbol } from './modules/logger'
 import { DevelopmentRenderService, RenderService, renderServiceSymbol } from './modules/render'
@@ -29,8 +30,9 @@ export async function bootstrap(): Promise<NestExpressApplication> {
   if (isProdEnv) {
     const render = app.get<RenderService>(renderServiceSymbol)
 
+    app.useGlobalFilters(new NotFoundExceptionFilter(render))
+
     app.use(compression())
-    app.use(serve(PATH_RESOLVED_CLIENT, { index: false }))
 
     render.init()
     await app.listen(port)
@@ -41,6 +43,8 @@ export async function bootstrap(): Promise<NestExpressApplication> {
   // Development
 
   const render = app.get<DevelopmentRenderService>(renderServiceSymbol)
+
+  app.useGlobalFilters(new NotFoundExceptionFilter(render))
 
   await render.setupDevServer(app)
   await app.listen(port)

@@ -83,6 +83,14 @@ export class RenderService {
   }
 
   renderInternalErrorEntry(req: Request, res: Response): void {
+    res.statusCode = 500
+    res.set({ 'Content-Type': 'text/html' })
     res.sendFile(`${PATH_RESOLVED_CLIENT}/${HtmlEntries.INTERNAL_ERROR}.html`)
+  }
+
+  renderNotFoundEntry(req: Request, res: Response): void {
+    res.statusCode = 404
+    res.set({ 'Content-Type': 'text/html' })
+    res.sendFile(`${PATH_RESOLVED_CLIENT}/${HtmlEntries.NOT_FOUND}.html`)
   }
 }
