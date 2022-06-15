@@ -1,4 +1,5 @@
-import chalk from 'chalk'
+import chalk, { cyan, dim, green, red, yellow } from 'chalk'
+import { PinoPretty } from 'pino-pretty'
 
 import { TransportMarks } from 'server/src/common/constants/transports'
 import { HttpExceptions, HttpStatus } from 'shared/exceptions'
@@ -30,59 +31,74 @@ interface InputData extends Partial<ErrorData & HttpTransportData> {
   hostname: string
 }
 
-export function prettifier(): (inputData: InputData) => string {
-  return function (input: InputData): string {
-    const { dim, green, red, yellow, cyan } = chalk
-    const { status = HttpStatus.INTERNAL_SERVER_ERROR, time, level, msg } = input
+const baseColor = (level: string | number, description: string) => {
+  const levelText = levelByNumber[level]
+  const baseColorFn = chalk[colorByType[levelText]]
+  return baseColorFn(description)
+}
 
-    const levelText = levelByNumber[level]
-    const baseColorFn = chalk[colorByType[levelText]]
-    const prettyTime = dim(new Date(time).toLocaleTimeString())
-    const baseStr = `${prettyTime} ${baseColorFn(levelText)}`
-    const joinMsg = (...arr: Array<string | undefined>): string =>
-      [baseStr].concat([...arr.filter((item): item is string => !!item), '\n']).join(' ')
+export const timePrettifier: PinoPretty.Prettifier = (time) => {
+  if (typeof time === 'object') return ''
 
-    // Http transport
-    const marks: string[] = Object.values(TransportMarks)
-    if (marks.includes(msg)) {
-      const { transport, url, method, statusCode, executionTime } = input
-      const prettyTransport = transport ? dim(transport) : ''
+  return dim(new Date(time).toLocaleTimeString())
+}
 
-      // Request
-      const requestMarks: string[] = [TransportMarks.REQ, TransportMarks.REQ_INTERNAL]
-      if (requestMarks.includes(msg)) {
-        const colorFn = { [TransportMarks.REQ_INTERNAL]: cyan }[msg] ?? dim
-        return joinMsg(prettyTransport, colorFn('<--'), method, dim('xxx'), url)
-      }
+export const levelPrettifier: PinoPretty.Prettifier = (level) => {
+  if (typeof level === 'object') return ''
 
-      // Response
-      const responseMarks: string[] = [TransportMarks.RES, TransportMarks.RES_INTERNAL]
-      if (responseMarks.includes(msg)) {
-        const code = Number(statusCode)
-        const statusColorFn = code >= 500 ? red : code >= 300 ? yellow : green
-        const colorFn = { [TransportMarks.RES_INTERNAL]: cyan }[msg] ?? statusColorFn
-        const ms = executionTime ? dim(`${executionTime}ms`) : ''
+  const levelText = levelByNumber[level]
 
-        return joinMsg(prettyTransport, colorFn('-->'), method, statusColorFn(statusCode), url, ms)
-      }
+  return baseColor(level, levelText)
+}
+
+const joinMsg = (...arr: Array<string | undefined>): string =>
+  arr.filter((item): item is string => !!item).join(' ')
+
+export const messageFormat: PinoPretty.MessageFormatFunc = (log, messageKey) => {
+  const input = log as unknown as InputData
+  const msg = log[messageKey] as string
+
+  // Http transport
+  const marks: string[] = Object.values(TransportMarks)
+  if (marks.includes(msg)) {
+    const { transport, url, method, statusCode, executionTime } = input
+    const prettyTransport = transport ? dim(transport) : ''
+
+    // Request
+    const requestMarks: string[] = [TransportMarks.REQ, TransportMarks.REQ_INTERNAL]
+    if (requestMarks.includes(msg)) {
+      const colorFn = { [TransportMarks.REQ_INTERNAL]: cyan }[msg] ?? dim
+      return joinMsg(prettyTransport, colorFn('<--'), method, dim('xxx'), url)
     }
 
-    // Error
-    if (input.stack) {
-      const { type = HttpExceptions.INTERNAL, description = 'Uncaught error', stack } = input
-      const prettyType = dim(type)
-      const prettyDesc = baseColorFn(`${status} (${description}):`)
+    // Response
+    const responseMarks: string[] = [TransportMarks.RES, TransportMarks.RES_INTERNAL]
+    if (responseMarks.includes(msg)) {
+      const code = Number(statusCode)
+      const statusColorFn = code >= 500 ? red : code >= 300 ? yellow : green
+      const colorFn = { [TransportMarks.RES_INTERNAL]: cyan }[msg] ?? statusColorFn
+      const ms = executionTime ? dim(`${executionTime}ms`) : ''
 
-      let stackStr = ''
-      stack.split('\n').forEach((line, index) => {
-        if (index === 0) return
-        stackStr = `${stackStr}${line}\n`
-      })
-
-      return joinMsg(prettyType, prettyDesc, msg).concat(stackStr)
+      return joinMsg(prettyTransport, colorFn('-->'), method, statusColorFn(statusCode), url, ms)
     }
-
-    // Info
-    return joinMsg(msg)
   }
+
+  // Error
+  if (input.stack) {
+    const { level, type = HttpExceptions.INTERNAL, description = 'Uncaught error', stack } = input
+
+    const prettyType = dim(type)
+    const prettyDesc = baseColor(level, description)
+
+    let stackStr = ''
+    stack.split('\n').forEach((line, index) => {
+      if (index === 0) return
+      stackStr = `${stackStr}${line}\n`
+    })
+
+    return joinMsg(prettyType, prettyDesc, msg).concat(stackStr)
+  }
+
+  // Info
+  return joinMsg(msg)
 }

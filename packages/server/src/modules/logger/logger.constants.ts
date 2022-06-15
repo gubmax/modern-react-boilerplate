@@ -20,7 +20,7 @@ export enum LogLevelWeights {
   FATAL = 60,
 }
 
-export const colorByType: Record<LogLevelTexts, typeof ForegroundColor> = {
+export const colorByType: Record<string, typeof ForegroundColor> = {
   [LogLevelTexts.TRACE]: 'cyan',
   [LogLevelTexts.DEBUG]: 'green',
   [LogLevelTexts.INFO]: 'blue',
@@ -29,7 +29,7 @@ export const colorByType: Record<LogLevelTexts, typeof ForegroundColor> = {
   [LogLevelTexts.FATAL]: 'magenta',
 }
 
-export const levelByNumber: Record<LogLevelWeights, LogLevelTexts> = {
+export const levelByNumber: Record<string, LogLevelTexts> = {
   [LogLevelWeights.TRACE]: LogLevelTexts.TRACE,
   [LogLevelWeights.DEBUG]: LogLevelTexts.DEBUG,
   [LogLevelWeights.INFO]: LogLevelTexts.INFO,

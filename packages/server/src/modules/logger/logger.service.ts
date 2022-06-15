@@ -1,20 +1,37 @@
 import { LoggerService as NestLoggerService } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import pino, { P } from 'pino'
+import pino, { Logger } from 'pino'
+import pretty from 'pino-pretty'
 
 import { HttpExceptionImpl } from 'shared/exceptions'
-import { prettifier } from './prettifier'
+import { levelPrettifier, messageFormat, timePrettifier } from './prettifier'
 
 type MsgData = string | { msg: string }
 
 export class LoggerService implements NestLoggerService {
-  protected readonly logger: P.Logger
+  protected readonly logger: Logger
 
   constructor(private readonly configService: ConfigService) {
     const isProdEnv = this.configService.get<boolean>('isProdEnv')
     const logLevel = this.configService.get<string>('logLevel') ?? 'trace'
 
-    this.logger = pino({ prettyPrint: !isProdEnv, prettifier })
+    if (isProdEnv) {
+      this.logger = pino()
+    } else {
+      const stream = pretty({
+        colorize: false,
+        hideObject: true,
+        ignore: 'hostname,pid,name,caller',
+        messageFormat,
+        customPrettifiers: {
+          time: timePrettifier,
+          level: levelPrettifier,
+        },
+      })
+
+      this.logger = pino(stream)
+    }
+
     this.logger.level = logLevel
   }
 
