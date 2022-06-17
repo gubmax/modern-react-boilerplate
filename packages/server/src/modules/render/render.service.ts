@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs'
+import { readFileSync } from 'node:fs'
 
 import { matchPath } from 'react-router'
 import { Injectable } from '@nestjs/common'

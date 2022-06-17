@@ -1,4 +1,4 @@
-import { resolve } from 'path'
+import { resolve } from 'node:path'
 
 export const PATH_RESOLVED_PROD = resolve(`${__dirname}/../../dist`)
 export const PATH_RESOLVED_BUILD = resolve(`${__dirname}/../../../dist`)

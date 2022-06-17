@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs'
+import { readFileSync } from 'node:fs'
 
 import { renderToString } from 'react-dom/server'
 import { Injectable } from '@nestjs/common'

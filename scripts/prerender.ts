@@ -1,7 +1,7 @@
 /**
  * Pre-render the app into static HTML.
  */
-import { readFileSync, writeFileSync } from 'fs'
+import { readFileSync, writeFileSync } from 'node:fs'
 
 import { renderToString } from 'react-dom/server'
 import { cyan, dim, green } from 'chalk'

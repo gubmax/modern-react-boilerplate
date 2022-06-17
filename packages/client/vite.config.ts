@@ -1,6 +1,7 @@
+import { resolve } from 'node:path'
+
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 import react from '@vitejs/plugin-react'
-import { resolve } from 'node:path'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { UserConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
