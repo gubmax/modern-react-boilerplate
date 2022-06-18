@@ -1,6 +1,5 @@
 import { readFileSync } from 'node:fs'
 
-import { renderToString } from 'react-dom/server'
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { NestExpressApplication } from '@nestjs/platform-express'
@@ -9,7 +8,6 @@ import { createServer, ModuleNode, ViteDevServer } from 'vite'
 
 import viteDevServerConfig from 'client/vite.config.server'
 import { CONFIG_ENTRIES } from 'server/config'
-import { HtmlMarks } from 'server/src/common/constants/html'
 import { HtmlEntries } from 'shared/constants/entries'
 import { PATH_RESOLVED_INDEX_HTML } from 'shared/constants/paths'
 import { InternalServerException } from 'shared/exceptions/exceptions'
@@ -18,8 +16,6 @@ import { DevelopmentAssetCollectorService } from '../assetCollector'
 import { ClientConfigService } from '../clientConfig'
 import { HttpClientService } from '../httpClient'
 import { RenderService } from './render.service'
-import { fetchPageProps } from './utils/fetchPageProps'
-import { writeTemplate } from './utils/writeTemplate'
 
 @Injectable()
 export class DevelopmentRenderService extends RenderService {
@@ -79,62 +75,35 @@ export class DevelopmentRenderService extends RenderService {
     return readFileSync(PATH_RESOLVED_INDEX_HTML, 'utf-8')
   }
 
-  async renderMainEntry(req: Request, res: Response): Promise<void> {
-    const { entryDevPath, moduleDevPath } = CONFIG_ENTRIES[HtmlEntries.MAIN]
-
-    // Client config
-
-    const clientConfig = this.clientConfig.create(req)
-
-    // Render client
-
-    let html = this.readHtmlSync()
-    html = this.assetCollector.injectUrls(html, [{ url: moduleDevPath, isEntry: true }])
-
-    const [template, appModule, { renderTemplate }] = await this.renderTemplate<{
-      renderTemplate: RenderTemplate
-    }>(req.url, entryDevPath, html)
-
-    const serverSideProps = await fetchPageProps(req.url, this.httpClient)
-    const app = renderTemplate({ url: req.url, clientConfig, serverSideProps })
-
-    // Inject assets
-
-    html = this.assetCollector.injectByModule(template, appModule)
-
-    // Write
-
-    writeTemplate({ html, app, res, clientConfig, serverSideProps })
-  }
-
-  private renderBaseEntry(status: number, entry: HtmlEntries) {
+  protected renderBaseEntry(statusCode: number, entry: HtmlEntries) {
     return async (req: Request, res: Response): Promise<void> => {
+      // Client config
+
+      const clientConfig = this.clientConfig.create(req)
+
+      // Render client
+
       const { entryDevPath, moduleDevPath } = CONFIG_ENTRIES[entry]
 
       let html = this.readHtmlSync()
       html = this.assetCollector.injectUrls(html, [{ url: moduleDevPath, isEntry: true }])
 
-      const [template, appModule, { renderTemplate }] = await this.renderTemplate<{
-        renderTemplate: RenderTemplate
-      }>(req.url, entryDevPath, html)
+      const [serverSideProps, [template, appModule, { renderTemplate }]] = await Promise.all([
+        this.fetchPageProps(req.url, this.httpClient),
+        this.renderTemplate<{
+          renderTemplate: RenderTemplate
+        }>(req.url, entryDevPath, html),
+      ])
 
-      html = template
-      html = this.assetCollector.injectByModule(html, appModule)
+      const app = renderTemplate({ url: req.url, clientConfig, serverSideProps })
 
-      const app = renderTemplate()
-      const markup = renderToString(app)
+      // Inject assets
 
-      html = html.replace(HtmlMarks.SSR_OUTLET, markup)
+      html = this.assetCollector.injectByModule(template, appModule)
 
-      res.status(status).set({ 'Content-Type': 'text/html' }).send(html)
+      // Write
+
+      this.writeTemplate({ statusCode, html, app, res, clientConfig, serverSideProps })
     }
-  }
-
-  async renderInternalErrorEntry(req: Request, res: Response): Promise<void> {
-    return this.renderBaseEntry(500, HtmlEntries.INTERNAL_ERROR)(req, res)
-  }
-
-  async renderNotFoundEntry(req: Request, res: Response): Promise<void> {
-    return this.renderBaseEntry(404, HtmlEntries.NOT_FOUND)(req, res)
   }
 }

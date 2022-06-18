@@ -20,6 +20,6 @@ export class NotFoundExceptionFilter implements ExceptionFilter {
     const req = ctx.getRequest<Request>()
     const res = ctx.getResponse<Response>()
 
-    this.renderService.renderNotFoundEntry(req, res)
+    void this.renderService.renderNotFoundEntry(req, res)
   }
 }
