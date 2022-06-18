@@ -18,7 +18,6 @@ export const baseButton = style([
     fontSize: dt.vars.fontSize.body1,
     fontWeight: 500,
     height: pxToRem(42),
-    minWidth: pxToRem(140),
     padding: `0 ${dt.vars.theme.color.primary}`,
   },
 ])
