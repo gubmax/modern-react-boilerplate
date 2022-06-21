@@ -40,7 +40,7 @@ export const logo = style({
   flexShrink: 0,
   height: pxToRem(70),
   paddingRight: dt.vars.space.s2,
-  margin: `0 0 ${dt.vars.space.s4} ${dt.vars.space.s2}`,
+  marginBottom: dt.vars.space.s4,
   borderBottom: `${pxToRem(1.25)} solid ${dt.vars.theme.color.border}`,
 })
 
