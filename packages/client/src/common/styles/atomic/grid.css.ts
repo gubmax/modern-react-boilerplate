@@ -9,8 +9,9 @@ const gridStyles = defineProperties({
     justifyContent: ['center', 'space-between', 'flex-start', 'flex-end'],
     alignItems: ['center'],
     alignSelf: ['center'],
-    marginLeft: ['auto'],
+    marginTop: ['auto'],
     marginRight: ['auto'],
+    marginLeft: ['auto'],
   },
   shorthands: {
     marginX: ['marginLeft', 'marginRight'],

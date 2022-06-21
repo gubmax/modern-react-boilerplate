@@ -12,6 +12,24 @@ export const wrapper = style({
   borderRadius: dt.vars.borderRadius.primary,
 })
 
+export const group = gridAtom({
+  display: 'flex',
+})
+
+export const content = style([
+  gridAtom({
+    display: 'flex',
+    flexDirection: 'column',
+  }),
+  {
+    '@media': {
+      [dt.media.minWidth.mobile]: { paddingRight: dt.vars.space.s3 },
+    },
+  },
+])
+
+export const buttonsGroup = style([gridAtom({ marginTop: 'auto' }), group])
+
 export const title = style([
   typography.h1,
   {
@@ -28,9 +46,14 @@ export const subtitle = style([
   },
 ])
 
-export const buttonsGroup = gridAtom({
-  display: 'flex',
-})
+export const diamond = style([
+  gridAtom({
+    flexShrink: 0,
+  }),
+  {
+    position: 'relative',
+  },
+])
 
 export const button = style({
   marginRight: dt.vars.space.s1,
