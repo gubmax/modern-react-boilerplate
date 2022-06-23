@@ -8,29 +8,41 @@ import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 export const wrapper = style([
   surfaces.glass,
   {
-    height: pxToRem(70),
+    background: dt.vars.theme.color.surface0,
   },
 ])
 
 export const bar = style([
   gridAtom({
     display: 'flex',
-    justifyContent: 'space-between',
     alignItems: 'center',
+    marginX: 'auto',
   }),
   {
     width: 'inherit',
-    height: pxToRem(70),
-    paddingLeft: dt.vars.space.s3,
-    borderBottom: `${pxToRem(1.25)} solid ${dt.vars.theme.color.border}`,
+    height: pxToRem(64),
+    maxWidth: dt.vars.size.screen.desktop,
+    padding: `0 ${dt.vars.space.s4}`,
   },
 ])
 
+export const link = style({
+  width: pxToRem(244),
+
+  '@media': {
+    [dt.media.maxWidth.tablet]: {
+      width: 'unset',
+    },
+  },
+})
+
 export const search = style({
   maxWidth: pxToRem(380),
+  marginLeft: dt.vars.space.s3,
+  marginRight: dt.vars.space.s4,
 })
 
 export const navigationMenu = style({
   justifySelf: 'flex-end',
-  marginLeft: dt.vars.space.s4,
+  marginLeft: 'auto',
 })
