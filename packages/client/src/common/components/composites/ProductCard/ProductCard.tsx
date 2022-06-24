@@ -6,11 +6,13 @@ import { IconVariants } from 'client/src/common/hocs/withIcon'
 import { ButtonVariants } from '../../inputs/buttons/BaseButton'
 import { RoundedButton } from '../../inputs/buttons/RoundedButton'
 import { Cost } from './components/Cost'
-import { backgrounds } from './ProductCard.constants'
+import { backgrounds, fill, icons } from './ProductCard.constants'
 import { ProductCardProps } from './ProductCard.types'
 import * as s from './ProductCard.css'
 
-const ProductCard: FC<ProductCardProps> = ({ className, bg, style, icon, price, onClick }) => {
+const ProductCard: FC<ProductCardProps> = ({ className, bg, style, price, onClick }) => {
+  const IconComponent = icons[bg]
+
   return (
     <div className={cn(s.wrapper, className)} style={style} onClick={onClick}>
       <div className={s.header}>
@@ -26,7 +28,9 @@ const ProductCard: FC<ProductCardProps> = ({ className, bg, style, icon, price, 
         </RoundedButton>
         <span className={s.likesCounter}>123</span>
       </div>
-      <i className={cn(s.imageBox, backgrounds[bg])}>{icon}</i>
+      <i className={cn(s.imageBox, backgrounds[bg])}>
+        <IconComponent className={cn(s.icon, fill[bg])} />
+      </i>
       <div className={s.itemInfo}>
         <span className={s.title}>The quick brown fox jumps over the lazy dog</span>
         <div className={s.footer}>

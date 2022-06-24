@@ -63,6 +63,11 @@ export const imageBox = style([
   },
 ])
 
+export const icon = style({
+  width: '75%',
+  height: '75%',
+})
+
 export const itemInfo = style({
   position: 'relative',
   padding: `${dt.vars.space.s0} ${dt.vars.space.s1} ${dt.vars.space.s1}`,
@@ -89,22 +94,20 @@ export const title = style({
   whiteSpace: 'nowrap',
 })
 
-export const productCardBg0 = style({
-  backgroundColor: '#f39f86',
-  backgroundImage: 'linear-gradient(315deg, #f39f86 0%, #f9d976 74%)',
-})
+export const productCardBg0 = style({ backgroundColor: '#ffadad' })
+export const productCardBg1 = style({ backgroundColor: '#ffd6a5' })
+export const productCardBg2 = style({ backgroundColor: '#fdffb6' })
+export const productCardBg3 = style({ backgroundColor: '#caffbf' })
+export const productCardBg4 = style({ backgroundColor: '#9bf6ff' })
+export const productCardBg5 = style({ backgroundColor: '#a0c4ff' })
+export const productCardBg6 = style({ backgroundColor: '#bdb2ff' })
+export const productCardBg7 = style({ backgroundColor: '#ffc6ff' })
 
-export const productCardBg1 = style({
-  backgroundColor: '#63a4ff',
-  backgroundImage: 'linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%)',
-})
-
-export const productCardBg2 = style({
-  backgroundColor: '#fc5296',
-  backgroundImage: 'linear-gradient(315deg, #fc5296 0%, #f67062 74%)',
-})
-
-export const productCardBg3 = style({
-  backgroundColor: '#70b2d9',
-  backgroundImage: 'linear-gradient(315deg, #70b2d9 0%, #39e5b6 74%)',
-})
+export const productCardIcon0 = style({ fill: '#ff9494' })
+export const productCardIcon1 = style({ fill: '#ffc37a' })
+export const productCardIcon2 = style({ fill: '#e9ec93' })
+export const productCardIcon3 = style({ fill: '#a7f098' })
+export const productCardIcon4 = style({ fill: '#75e5f0' })
+export const productCardIcon5 = style({ fill: '#80b0ff' })
+export const productCardIcon6 = style({ fill: '#a899ff' })
+export const productCardIcon7 = style({ fill: '#ffa8ff' })
