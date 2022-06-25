@@ -57,7 +57,7 @@ export const wrapper = style([
 
 export const header = style({
   padding: `${dt.vars.space.s0} ${dt.vars.space.s3}`,
-  background: dt.vars.theme.color.borderLight,
+  background: dt.vars.theme.color.bg0,
 })
 
 export const body = style({

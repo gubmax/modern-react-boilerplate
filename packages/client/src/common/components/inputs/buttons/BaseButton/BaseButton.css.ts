@@ -35,7 +35,7 @@ export const buttonVariants = styleVariants({
   },
   [ButtonVariants.FLAT]: {
     border: 0,
-    background: dt.vars.theme.color.surface1,
+    background: dt.vars.theme.color.surface0,
   },
   [ButtonVariants.PRIMARY]: {
     border: 0,

@@ -18,9 +18,13 @@ const NavigationMenu: FC<StyledProps> = ({ className, style }) => {
 
   return (
     <div className={cn(s.wrapper, className)} style={style}>
-      <NavigationIcon className={s.icon} onClick={navigateToCartPage} text="Shopping cart">
+      <NavigationIcon
+        className={cn(s.icon, pathname === PageRoutes.CART && s.iconActive)}
+        onClick={navigateToCartPage}
+        text="Shopping cart"
+      >
         <ShoppingCardIcon
-          variant={pathname === PageRoutes.CART ? IconVariants.ACTIVE : undefined}
+          variant={pathname === PageRoutes.CART ? IconVariants.ACTIVE : IconVariants.SECONDARY}
         />
       </NavigationIcon>
       <NavigationIcon className={s.icon} text="Notifications" onClick={noop}>
@@ -28,7 +32,7 @@ const NavigationMenu: FC<StyledProps> = ({ className, style }) => {
       </NavigationIcon>
       <Link to={PageRoutes.SIGN_IN} className={s.icon} background>
         <NavigationIcon text="Sign in">
-          <UserIcon />
+          <UserIcon variant={IconVariants.SECONDARY} />
         </NavigationIcon>
       </Link>
     </div>

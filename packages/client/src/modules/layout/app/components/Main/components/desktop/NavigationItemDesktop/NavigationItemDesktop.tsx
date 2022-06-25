@@ -16,7 +16,7 @@ const NavigationItemDesktop: FC<NavigationItemDesktopProps> = ({ to, icon: Icon,
   const handleEnterPress = useEnterPress(handleClick)
 
   const isActive = to === pathname
-  const iconVariant = isActive ? IconVariants.ACTIVE : undefined
+  const iconVariant = isActive ? IconVariants.ACTIVE : IconVariants.SECONDARY
 
   return (
     <IW

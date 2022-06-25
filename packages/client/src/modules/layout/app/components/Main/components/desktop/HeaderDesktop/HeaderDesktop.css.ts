@@ -8,7 +8,7 @@ import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 export const wrapper = style([
   surfaces.glass,
   {
-    background: dt.vars.theme.color.surface0,
+    background: dt.vars.theme.color.transparentBg0,
   },
 ])
 
@@ -26,15 +26,18 @@ export const bar = style([
   },
 ])
 
-export const link = style({
-  width: pxToRem(244),
+export const link = style([
+  gridAtom({ flexShrink: 0 }),
+  {
+    width: pxToRem(244),
 
-  '@media': {
-    [dt.media.maxWidth.tablet]: {
-      width: 'unset',
+    '@media': {
+      [dt.media.maxWidth.tablet]: {
+        width: 'unset',
+      },
     },
   },
-})
+])
 
 export const search = style({
   maxWidth: pxToRem(380),

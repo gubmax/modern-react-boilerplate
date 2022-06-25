@@ -6,7 +6,7 @@ import { dt } from 'client/src/common/styles/designTokens'
 export const text = style({
   marginBottom: 0,
   padding: `${dt.vars.space.s0} 0 ${dt.vars.space.s0} ${dt.vars.space.s0}`,
-  fontSize: '1.8em',
+  fontSize: dt.vars.fontSize.h2,
   fontWeight: 500,
   whiteSpace: 'nowrap',
 
@@ -30,7 +30,7 @@ const posMobile = `-${pxToRem(3)}`
 export const highlight = style({
   position: 'relative',
   display: 'inline-block',
-  width: pxToRem(36),
+  width: pxToRem(32),
   marginRight: dt.vars.space.s1,
   textAlign: 'center',
   lineHeight: 1.25,

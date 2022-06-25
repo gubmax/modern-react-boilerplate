@@ -39,5 +39,5 @@ export const spinnerSmall = style({
 
 export const spinnerSecondary = style({
   borderRightColor: dt.vars.theme.color.bg0,
-  borderLeftColor: dt.vars.theme.color.bg1,
+  borderLeftColor: dt.vars.theme.color.bg0,
 })

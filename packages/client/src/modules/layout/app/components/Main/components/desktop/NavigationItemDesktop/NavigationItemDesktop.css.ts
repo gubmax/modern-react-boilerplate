@@ -7,10 +7,13 @@ export const wrapper = style({
   alignItems: 'center',
   padding: `${dt.vars.space.s1} ${dt.vars.space.s2}`,
   whiteSpace: 'nowrap',
+  color: dt.vars.theme.color.secondary,
+  fontWeight: 500,
 })
 
 export const wrapperActive = style({
   background: dt.vars.theme.color.surface0,
+  color: dt.vars.theme.color.primary,
 })
 
 export const icon = style({
