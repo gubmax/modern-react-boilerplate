@@ -14,13 +14,14 @@ export const input = style([
     background: dt.vars.theme.color.surface1,
     border: `${pxToRem(1.25)} solid transparent`,
     borderRadius: dt.vars.borderRadius.primary,
-    transition: '0.1s color, 0.1s border-color, 0.1s box-shadow',
+    transition: '0.1s background, 0.1s border-color, 0.1s box-shadow',
 
     '::placeholder': {
       color: dt.vars.theme.color.secondary,
     },
 
     ':focus': {
+      background: dt.vars.theme.color.surface0,
       boxShadow: `0 0 0 ${pxToRem(4)} ${dt.vars.theme.color.accentLight}`,
       borderColor: dt.vars.theme.color.accent,
     },
