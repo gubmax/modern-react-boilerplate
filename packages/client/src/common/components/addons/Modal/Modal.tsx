@@ -5,6 +5,7 @@ import { ButtonVariants } from 'client/src/common/components/inputs/buttons/Base
 import { RoundedButton } from 'client/src/common/components/inputs/buttons/RoundedButton'
 import { cn } from 'client/src/common/helpers/classNames'
 import { noop } from 'client/src/common/helpers/noop'
+import { useEvent } from 'client/src/common/hooks/useEvent'
 import { useFadeTransition } from 'client/src/common/hooks/useFadeTransition'
 import { useIsomorphicLayoutEffect } from 'client/src/common/hooks/useIsomorphicLayoutEffect'
 import { useUnmount } from 'client/src/common/hooks/useUnmount'
@@ -59,15 +60,16 @@ const Modal: FC<ModalProps> = ({ children, active = false, onClose = noop }) => 
     }
   }
 
-  const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
+  const handleKeyDown = useEvent<KeyboardEventHandler<HTMLDivElement>>((event) => {
     if (event.key === 'Escape') {
       event.stopPropagation()
       onClose()
     }
-  }
+  })
 
-  const handleClickInsideModal: MouseEventHandler<HTMLDivElement> = (event) =>
-    event.stopPropagation()
+  const handleClickInsideModal = useEvent<MouseEventHandler<HTMLDivElement>>((event) =>
+    event.stopPropagation(),
+  )
 
   return (
     <Portal disabled={!isVisible}>

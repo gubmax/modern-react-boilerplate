@@ -3,6 +3,7 @@ import { Children, FC, useRef } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from 'client/src/common/components/icons'
 import { ButtonVariants } from 'client/src/common/components/inputs/buttons/BaseButton'
 import { RoundedButton } from 'client/src/common/components/inputs/buttons/RoundedButton'
+import { useEvent } from 'client/src/common/hooks/useEvent'
 import { useSlideTransition } from 'client/src/common/hooks/useSlideTransition'
 import { typography } from 'client/src/common/styles/shared/typography.css'
 import { GroupSliderProps } from '../GroupSlider.types'
@@ -14,8 +15,8 @@ const GroupSlider: FC<GroupSliderProps> = ({ className, style, title, children }
 
   const runTransition = useSlideTransition(wrapperRef, innerRef)
 
-  const handlePrevButtonClick = () => runTransition(true)
-  const handleNextButtonClick = () => runTransition()
+  const handlePrevButtonClick = useEvent(() => runTransition(true))
+  const handleNextButtonClick = useEvent(() => runTransition())
 
   const childrenArr = Children.toArray(children)
 
