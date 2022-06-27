@@ -7,11 +7,13 @@ import * as s from './MainTouch.css'
 
 const MainTouch: FC<ChildrenProp> = ({ children }) => {
   return (
-    <div className={s.wrapper}>
+    <>
       <HeaderTouch />
-      <main id="main">{children}</main>
+      <main id="main" className={s.main}>
+        {children}
+      </main>
       <NavigationMenuTouch className={s.navigationMenu} />
-    </div>
+    </>
   )
 }
 

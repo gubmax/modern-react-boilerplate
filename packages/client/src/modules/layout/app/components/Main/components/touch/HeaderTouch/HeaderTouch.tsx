@@ -11,15 +11,15 @@ import * as s from './HeaderTouch.css'
 
 const Header: FC<StyledProps> = ({ className, ...rest }) => {
   return (
-    <>
-      <div className={cn(s.wrapper, className)} {...rest}>
+    <div className={cn(s.wrapper, className)} {...rest}>
+      <div className={s.header}>
         <Link to={PageRoutes.ROOT}>
           <Logo />
         </Link>
         <NavigationMenu className={s.navigationMenu} />
       </div>
-      <SearchField className={s.search} />
-    </>
+      <SearchField />
+    </div>
   )
 }
 

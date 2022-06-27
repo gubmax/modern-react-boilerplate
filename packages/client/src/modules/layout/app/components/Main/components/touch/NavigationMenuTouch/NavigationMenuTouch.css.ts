@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
+import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { dt } from 'client/src/common/styles/designTokens'
 import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 
@@ -9,7 +10,7 @@ export const wrapper = style([
     display: 'flex',
     justifyContent: 'space-around',
     padding: `${dt.vars.space.s0} ${dt.vars.space.s1}`,
-    borderRadius: `${dt.vars.borderRadius.primary} ${dt.vars.borderRadius.primary} 0 0`,
+    borderTop: `${pxToRem(1.25)} solid ${dt.vars.theme.color.border}`,
   },
 ])
 
