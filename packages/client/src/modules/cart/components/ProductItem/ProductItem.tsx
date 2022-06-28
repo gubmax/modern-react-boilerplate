@@ -1,5 +1,6 @@
 import { FC } from 'react'
 
+import { MockProduct } from 'client/src/common/components/elements/MockProduct'
 import { AddIcon, RemoveIcon } from 'client/src/common/components/icons'
 import { ButtonVariants } from 'client/src/common/components/inputs/buttons/BaseButton'
 import { Button } from 'client/src/common/components/inputs/buttons/Button'
@@ -11,7 +12,7 @@ import { CartModel } from '../../models/cart.model'
 import { ProductItemProps } from './ProductItem.types'
 import * as s from './ProductItem.css'
 
-const ProductItem: FC<ProductItemProps> = ({ product: { id, icon, title, price, amount } }) => {
+const ProductItem: FC<ProductItemProps> = ({ product: { id, variant, title, price, amount } }) => {
   const { increaseAmount, decreaseAmount, remove } = useInject(CartModel)
 
   const increase = useEvent(() => increaseAmount(id))
@@ -20,7 +21,7 @@ const ProductItem: FC<ProductItemProps> = ({ product: { id, icon, title, price, 
 
   return (
     <div className={s.wrapper}>
-      <i className={s.imageBox}>{icon}</i>
+      <MockProduct className={s.imageBox} variant={variant} />
       <div className={s.body}>
         <div className={s.header}>
           <h3 className={s.title}>{title}</h3>

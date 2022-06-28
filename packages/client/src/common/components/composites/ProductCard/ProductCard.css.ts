@@ -47,25 +47,11 @@ export const username = style({
   whiteSpace: 'nowrap',
 })
 
-export const imageBox = style([
-  gridAtom({
-    display: 'inline-flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  }),
-  {
-    flexShrink: 0,
-    width: '100%',
-    height: pxToRem(224),
-    fontSize: pxToRem(112),
-    borderRadius: dt.vars.borderRadius.primary,
-    userSelect: 'none',
-  },
-])
-
-export const icon = style({
-  width: '75%',
-  height: '75%',
+export const imageBox = style({
+  flexShrink: 0,
+  width: '100%',
+  height: pxToRem(224),
+  borderRadius: dt.vars.borderRadius.primary,
 })
 
 export const itemInfo = style({
@@ -93,21 +79,3 @@ export const title = style({
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
 })
-
-export const productCardBg0 = style({ backgroundColor: '#ffadad' })
-export const productCardBg1 = style({ backgroundColor: '#ffd6a5' })
-export const productCardBg2 = style({ backgroundColor: '#fdffb6' })
-export const productCardBg3 = style({ backgroundColor: '#caffbf' })
-export const productCardBg4 = style({ backgroundColor: '#9bf6ff' })
-export const productCardBg5 = style({ backgroundColor: '#a0c4ff' })
-export const productCardBg6 = style({ backgroundColor: '#bdb2ff' })
-export const productCardBg7 = style({ backgroundColor: '#ffc6ff' })
-
-export const productCardIcon0 = style({ fill: '#ff9494' })
-export const productCardIcon1 = style({ fill: '#ffc37a' })
-export const productCardIcon2 = style({ fill: '#e9ec93' })
-export const productCardIcon3 = style({ fill: '#a7f098' })
-export const productCardIcon4 = style({ fill: '#75e5f0' })
-export const productCardIcon5 = style({ fill: '#80b0ff' })
-export const productCardIcon6 = style({ fill: '#a899ff' })
-export const productCardIcon7 = style({ fill: '#ffa8ff' })

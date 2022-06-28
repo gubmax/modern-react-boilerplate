@@ -3,16 +3,14 @@ import { FC } from 'react'
 import { FavoriteIcon, UserIcon } from 'client/src/common/components/icons'
 import { cn } from 'client/src/common/helpers/classNames'
 import { IconVariants } from 'client/src/common/hocs/withIcon'
+import { MockProduct } from '../../elements/MockProduct'
 import { ButtonVariants } from '../../inputs/buttons/BaseButton'
 import { RoundedButton } from '../../inputs/buttons/RoundedButton'
 import { Cost } from './components/Cost'
-import { backgrounds, fill, icons } from './ProductCard.constants'
 import { ProductCardProps } from './ProductCard.types'
 import * as s from './ProductCard.css'
 
-const ProductCard: FC<ProductCardProps> = ({ className, bg, style, price, onClick }) => {
-  const IconComponent = icons[bg]
-
+const ProductCard: FC<ProductCardProps> = ({ className, variant, style, price, onClick }) => {
   return (
     <div className={cn(s.wrapper, className)} style={style} onClick={onClick}>
       <div className={s.header}>
@@ -28,9 +26,7 @@ const ProductCard: FC<ProductCardProps> = ({ className, bg, style, price, onClic
         </RoundedButton>
         <span className={s.likesCounter}>123</span>
       </div>
-      <i className={cn(s.imageBox, backgrounds[bg])}>
-        <IconComponent className={cn(s.icon, fill[bg])} />
-      </i>
+      <MockProduct className={s.imageBox} variant={variant} />
       <div className={s.itemInfo}>
         <span className={s.title}>The quick brown fox jumps over the lazy dog</span>
         <div className={s.footer}>

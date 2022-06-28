@@ -1,7 +1,9 @@
+import { ProductVariant } from 'shared/http/requests/getProducts.request'
+
 export interface Product {
   id: string
-  icon: string
-  title: string
-  price: number
   amount: number
+  price: number
+  title: string
+  variant: ProductVariant
 }

@@ -1,4 +1,4 @@
-import { ProductDto } from 'shared/http/requests'
+import { ProductDto } from 'shared/http/requests/getProducts.request'
 
 export const SERVER_SIDE_PROPS = '__SERVER_SIDE_PROPS__'
 

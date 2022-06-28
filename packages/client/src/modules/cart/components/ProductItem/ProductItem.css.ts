@@ -32,23 +32,14 @@ export const footer = style([
   { marginTop: 'auto' },
 ])
 
-export const imageBox = style([
-  gridAtom({
-    display: 'inline-flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  }),
-  {
-    flexShrink: 0,
-    width: pxToRem(112),
-    height: pxToRem(112),
-    marginRight: dt.vars.space.s3,
-    fontSize: pxToRem(68),
-    borderRadius: dt.vars.borderRadius.primary,
-    backgroundColor: dt.vars.theme.color.bg0,
-    userSelect: 'none',
-  },
-])
+export const imageBox = style({
+  flexShrink: 0,
+  width: pxToRem(112),
+  height: pxToRem(112),
+  marginRight: dt.vars.space.s3,
+  fontSize: pxToRem(68),
+  borderRadius: dt.vars.borderRadius.primary,
+})
 
 export const price = style([
   gridAtom({ marginLeft: 'auto' }),

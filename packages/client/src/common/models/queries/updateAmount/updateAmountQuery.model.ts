@@ -1,6 +1,6 @@
 import { inject, singleton } from 'tsyringe'
 
-import { UpdateAmountBody, updateAmountInit } from 'shared/http/requests'
+import { UpdateAmountBody, updateAmountInit } from 'shared/http/requests/updateAmount.request'
 import { HttpClientModel } from '../../httpClient.model'
 import { HttpQueryModel } from '../httpQuery'
 
