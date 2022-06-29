@@ -46,6 +46,7 @@
     "autoprefixer": "10.4.7",
     "chalk": "4.1.2",
     "chokidar": "3.5.3",
+    "critical": "4.0.1",
     "esbuild-jest": "0.5.0",
     "eslint": "8.18.0",
     "eslint-plugin-prettier": "4.0.0",

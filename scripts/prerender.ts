@@ -18,6 +18,9 @@ import {
   PATH_RESOLVED_INDEX_HTML,
 } from 'shared/constants/paths'
 import { RenderTemplate } from 'shared/typings/renderTemplate'
+import { generateCriticalCss } from './criticalCss'
+
+const prerenderedHtml: string[] = []
 
 const logInfo = (fileName: string) => console.log(`  ${dim(`${PATH_CLIENT}/`)}${green(fileName)}`)
 
@@ -40,6 +43,8 @@ function writeEntry({
   html = assetCollector.injectByModulePaths(html, [modulePath])
 
   writeFileSync(`${PATH_RESOLVED_CLIENT}/${fileName}`, html)
+
+  prerenderedHtml.push(fileName)
 }
 
 async function renderMainEntry(indexHtml: string, assetCollector: AssetCollectorService) {
@@ -90,9 +95,16 @@ void (async () => {
   const assetCollector = new AssetCollectorService()
   assetCollector.manifest = manifest
 
-  console.log(`${cyan('pre-render script')} ${green('generating html files...')}`)
+  console.log(`${cyan('pre-render script')} ${green('generating HTML files...')}`)
 
   await renderMainEntry(indexHtml, assetCollector)
   await renderBaseEntry(HtmlEntries.INTERNAL_ERROR, indexHtml, assetCollector)
   await renderBaseEntry(HtmlEntries.NOT_FOUND, indexHtml, assetCollector)
+
+  console.log(`\n${cyan('critical')} ${green('inlining critical CSS to HTML...')}`)
+
+  for await (const src of prerenderedHtml) {
+    logInfo(src)
+    await generateCriticalCss(src)
+  }
 })()
