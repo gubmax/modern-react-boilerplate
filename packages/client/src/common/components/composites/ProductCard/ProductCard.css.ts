@@ -72,6 +72,13 @@ export const cost = style({
   marginLeft: 'auto',
 })
 
+export const hint = style([
+  typography.subtitle1,
+  {
+    color: dt.vars.theme.color.secondary,
+  },
+])
+
 export const title = style({
   display: 'block',
   marginBottom: dt.vars.space.s0,

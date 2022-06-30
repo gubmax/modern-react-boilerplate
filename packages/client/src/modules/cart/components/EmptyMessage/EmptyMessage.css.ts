@@ -12,6 +12,7 @@ export const wrapper = style([
     textAlign: 'center',
     padding: dt.vars.space.s4,
     borderRadius: dt.vars.borderRadius.primary,
+    color: dt.vars.theme.color.secondary,
   },
 ])
 

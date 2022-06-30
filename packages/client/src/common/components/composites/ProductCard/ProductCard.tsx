@@ -4,9 +4,9 @@ import { FavoriteIcon, UserIcon } from 'client/src/common/components/icons'
 import { cn } from 'client/src/common/helpers/classNames'
 import { IconVariants } from 'client/src/common/hocs/withIcon'
 import { MockProduct } from '../../elements/MockProduct'
+import { Price } from '../../elements/Price'
 import { ButtonVariants } from '../../inputs/buttons/BaseButton'
 import { RoundedButton } from '../../inputs/buttons/RoundedButton'
-import { Cost } from './components/Cost'
 import { ProductCardProps } from './ProductCard.types'
 import * as s from './ProductCard.css'
 
@@ -31,7 +31,10 @@ const ProductCard: FC<ProductCardProps> = ({ className, variant, style, price, o
         <span className={s.title}>The quick brown fox jumps over the lazy dog</span>
         <div className={s.footer}>
           <span className={s.timer}>12:34:56</span>
-          <Cost className={s.cost}>{price}</Cost>
+          <div className={s.cost}>
+            <span className={s.hint}>Last: </span>
+            <Price value={price} />
+          </div>
         </div>
       </div>
     </div>

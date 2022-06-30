@@ -14,10 +14,14 @@ export class CartService {
     return this.#totalPrice
   }
 
+  roundAmount = (val: number): number => {
+    return Math.round((val + Number.EPSILON) * 100) / 100
+  }
+
   calcTotalPrice = (): void => {
     let total = 0
     this.products.forEach(({ price, amount }) => (total += price * amount))
-    this.#totalPrice = total
+    this.#totalPrice = this.roundAmount(total)
   }
 
   getProductAmount = (id: string): number | undefined => {

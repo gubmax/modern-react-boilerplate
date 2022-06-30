@@ -4,22 +4,22 @@ export const MOCK_PRODUCTS: ProductDto[] = [
   {
     id: '1',
     variant: ProductVariant.bg1,
-    title: 'Computer Monitor with 23.8-Inch IPS Display (1080p)',
-    price: 170,
+    title: 'The quick brown fox jumps over the lazy dog',
+    price: 1.02,
     amount: 2,
   },
   {
     id: '2',
     variant: ProductVariant.bg6,
-    title: 'Portable External Hard Drive HDD, USB 3.0, Compatible with PC, Mac, PS4 & Xbox',
-    price: 78,
+    title: 'The quick brown fox jumps over the lazy dog',
+    price: 0.05,
     amount: 1,
   },
   {
     id: '3',
     variant: ProductVariant.bg4,
-    title: 'Comfortable, USB Mouse and Keyboard Combo',
-    price: 144,
+    title: 'The quick brown fox jumps over the lazy dog',
+    price: 0.8,
     amount: 4,
   },
 ]

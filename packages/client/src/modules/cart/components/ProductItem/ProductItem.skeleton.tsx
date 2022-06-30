@@ -9,7 +9,7 @@ const size = pxToRem(112)
 const ProductItemSkeleton: FC = () => {
   return (
     <div className={s.wrapper}>
-      <Skeleton width={size} height={size} className={s.imageBox} withoutMargin />
+      <Skeleton width={size} height={size} className={s.productBox} withoutMargin />
       <div className={s.body}>
         <Skeleton width="85%" />
         <Skeleton width="65%" />

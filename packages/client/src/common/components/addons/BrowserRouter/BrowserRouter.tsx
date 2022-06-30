@@ -19,12 +19,16 @@ const BrowserRouter: FC<ChildrenProp> = ({ children }) => {
 
   useLayoutEffect(() => {
     preloadChunksModel.subscribe((update) => update && setHistory(update))
+  }, [preloadChunksModel])
 
+  useLayoutEffect(() => {
     history.listen((update) => {
-      const loadable = dynamicRoutes[update.location.pathname]
-      preloadChunksModel.preload({ loadable, payload: update })
+      if (update.location.pathname !== location.pathname) {
+        const loadable = dynamicRoutes[update.location.pathname]
+        preloadChunksModel.preload({ loadable, payload: update })
+      }
     })
-  }, [history, preloadChunksModel])
+  }, [history, location.pathname, preloadChunksModel])
 
   return (
     <Router location={location} navigator={history}>

@@ -10,6 +10,12 @@ export const wrapper = style([
   {
     padding: `${dt.vars.space.s2} ${dt.vars.space.s3}`,
     borderRadius: dt.vars.borderRadius.primary,
+
+    '@media': {
+      [dt.media.maxWidth.mobile]: {
+        padding: `${dt.vars.space.s1} ${dt.vars.space.s2}`,
+      },
+    },
   },
 ])
 
@@ -17,6 +23,13 @@ export const title = style([
   typography.h3,
   {
     marginRight: dt.vars.space.s3,
+
+    '@media': {
+      [dt.media.maxWidth.mobile]: {
+        marginRight: dt.vars.space.s1,
+        fontSize: dt.vars.fontSize.subtitle1,
+      },
+    },
   },
 ])
 
@@ -28,35 +41,49 @@ export const body = style([
 export const header = style([gridAtom({ display: 'flex' }), { marginBottom: dt.vars.space.s1 }])
 
 export const footer = style([
-  gridAtom({ display: 'flex', justifyContent: 'flex-end' }),
+  gridAtom({ display: 'flex', justifyContent: 'flex-end', flexWrap: 'wrap' }),
   { marginTop: 'auto' },
 ])
 
-export const imageBox = style({
+export const productBox = style({
   flexShrink: 0,
   width: pxToRem(112),
   height: pxToRem(112),
   marginRight: dt.vars.space.s3,
   fontSize: pxToRem(68),
   borderRadius: dt.vars.borderRadius.primary,
+
+  '@media': {
+    [dt.media.maxWidth.mobile]: {
+      width: pxToRem(72),
+      height: pxToRem(72),
+      marginRight: dt.vars.space.s1,
+    },
+  },
 })
 
 export const price = style([
-  gridAtom({ marginLeft: 'auto' }),
+  gridAtom({ marginLeft: 'auto', flexShrink: 0 }),
+  typography.subtitle1,
   {
-    minWidth: pxToRem(56),
-    fontSize: dt.vars.fontSize.h3,
-    fontWeight: 500,
+    minWidth: pxToRem(72),
     textAlign: 'end',
+    lineHeight: '1.5',
   },
 ])
 
-export const counter = style([
+export const amount = style([
   gridAtom({ alignSelf: 'center' }),
+  typography.subtitle1,
   {
     width: pxToRem(36),
     textAlign: 'center',
-    fontSize: dt.vars.fontSize.h3,
+
+    '@media': {
+      [dt.media.maxWidth.mobile]: {
+        width: pxToRem(24),
+      },
+    },
   },
 ])
 

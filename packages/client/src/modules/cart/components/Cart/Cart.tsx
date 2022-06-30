@@ -1,5 +1,6 @@
 import { FC } from 'react'
 
+import { Price } from 'client/src/common/components/elements/Price'
 import { useBehaviorSubjectSubscription } from 'client/src/common/hooks/useBehaviorSubjectSubscription'
 import { useInject } from 'client/src/common/hooks/useInject'
 import { typography } from 'client/src/common/styles/shared/typography.css'
@@ -25,7 +26,12 @@ const Cart: FC<CartProps> = ({ loading }) => {
   return (
     <section className={s.wrapper}>
       {listTemplate}
-      {!!products.length && <h3 className={typography.h3}>Total price: ${totalPrice}</h3>}
+      {!!products.length && (
+        <span className={typography.h3}>
+          <span>Total price: </span>
+          <Price value={totalPrice} />
+        </span>
+      )}
     </section>
   )
 }
