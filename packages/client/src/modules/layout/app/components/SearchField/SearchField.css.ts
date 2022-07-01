@@ -15,6 +15,7 @@ export const field = style({
 })
 
 export const searchIcon = style({
+  width: '3rem',
   position: 'absolute',
   pointerEvents: 'none',
   left: PADDING,

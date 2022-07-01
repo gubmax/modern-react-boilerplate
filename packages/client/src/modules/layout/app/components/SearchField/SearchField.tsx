@@ -21,9 +21,7 @@ const SearchField: FC<StyledProps> = ({ className, style }) => {
 
   return (
     <div className={cn(s.wrapper, className)}>
-      <RoundedButton className={s.searchIcon}>
-        <SearchIcon variant={IconVariants.SECONDARY} />
-      </RoundedButton>
+      <SearchIcon className={s.searchIcon} variant={IconVariants.SECONDARY} />
       <Field
         className={s.field}
         name={FIELD_NAME}

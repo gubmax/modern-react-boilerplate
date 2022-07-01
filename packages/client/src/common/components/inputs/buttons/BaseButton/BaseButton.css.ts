@@ -3,6 +3,7 @@ import { style, styleVariants } from '@vanilla-extract/css'
 import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
+import { focusStyle } from 'client/src/common/styles/shared/focusStyle.css'
 import { ButtonVariants } from './BaseButton.constants'
 
 export const baseButton = style([
@@ -11,7 +12,9 @@ export const baseButton = style([
     alignItems: 'center',
     justifyContent: 'center',
   }),
+  focusStyle,
   {
+    width: '100%',
     borderRadius: dt.vars.borderRadius.primary,
     cursor: 'pointer',
     fontFamily: 'inherit',

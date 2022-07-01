@@ -41,8 +41,7 @@ export const link = style([
 
 export const search = style({
   maxWidth: pxToRem(380),
-  marginLeft: dt.vars.space.s3,
-  marginRight: dt.vars.space.s4,
+  margin: `0 ${dt.vars.space.s3}`,
 })
 
 export const navigationMenu = style({
