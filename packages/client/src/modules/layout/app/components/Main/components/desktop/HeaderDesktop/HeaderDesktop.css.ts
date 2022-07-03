@@ -26,7 +26,7 @@ export const bar = style([
   },
 ])
 
-export const link = style([
+export const linkWrapper = style([
   gridAtom({ flexShrink: 0 }),
   {
     width: pxToRem(244),
@@ -40,7 +40,6 @@ export const link = style([
 ])
 
 export const search = style({
-  maxWidth: pxToRem(380),
   margin: `0 ${dt.vars.space.s3}`,
 })
 

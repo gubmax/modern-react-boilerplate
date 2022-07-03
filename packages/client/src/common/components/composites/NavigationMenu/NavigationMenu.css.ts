@@ -9,13 +9,14 @@ export const icon = style({
   color: dt.vars.theme.color.secondary,
   fontWeight: 500,
 
-  '@media': {
-    [dt.media.minWidth.mobile]: {
-      marginRight: dt.vars.space.s2,
+  ':last-child': {
+    marginRight: `calc(-1 * ${dt.vars.space.s0})`,
+  },
 
-      ':last-child': {
-        marginRight: 0,
-      },
+  '@media': {
+    [dt.media.maxWidth.mobile]: {
+      marginRight: dt.vars.space.s0,
+      ':last-child': { marginRight: 'unset' },
     },
   },
 })

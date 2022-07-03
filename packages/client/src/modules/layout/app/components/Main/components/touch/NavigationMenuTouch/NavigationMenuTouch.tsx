@@ -1,7 +1,7 @@
 import { FC, memo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { IW } from 'client/src/common/components/inputs/InteractiveWrapper'
+import { RoundedButton } from 'client/src/common/components/inputs/buttons/RoundedButton'
 import { cn } from 'client/src/common/helpers/classNames'
 import { IconVariants } from 'client/src/common/hocs/withIcon'
 import { StyledProps } from 'client/src/common/typings'
@@ -13,26 +13,25 @@ const NavigationMenuTouch: FC<StyledProps> = ({ className, style }) => {
   const navigate = useNavigate()
 
   return (
-    <ul className={cn(s.wrapper, className)} style={style}>
+    <nav className={cn(s.wrapper, className)} style={style}>
       {ROUTES.map(({ to, icon: Icon, text }) => {
         const active = to === pathname
         const navigateTo = () => navigate(to)
 
         return (
-          <IW
+          <RoundedButton
             key={to}
-            as="li"
+            as="a"
             className={s.listItem}
-            active={active}
             onClick={navigateTo}
             onKeyPress={navigateTo}
           >
-            <Icon className={s.routeIcon} variant={active ? IconVariants.ACTIVE : undefined} />
+            <Icon variant={active ? IconVariants.ACTIVE : IconVariants.SECONDARY} />
             <span className={s.text}>{text}</span>
-          </IW>
+          </RoundedButton>
         )
       })}
-    </ul>
+    </nav>
   )
 }
 

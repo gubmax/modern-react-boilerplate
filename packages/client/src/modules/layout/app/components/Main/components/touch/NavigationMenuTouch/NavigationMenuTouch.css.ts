@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css'
 
 import { pxToRem } from 'client/src/common/helpers/pxToRem'
+import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
 import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 
@@ -19,14 +20,8 @@ export const text = style({
   marginLeft: dt.vars.space.s1,
 })
 
-export const listItem = style({
+export const listItem = gridAtom({
   display: 'flex',
   alignItems: 'center',
-  padding: dt.vars.space.s1,
-
-  ':last-child': { marginBottom: 0 },
-})
-
-export const routeIcon = style({
   flexShrink: 0,
 })

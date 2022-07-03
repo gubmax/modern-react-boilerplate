@@ -1,42 +1,51 @@
-import { FC } from 'react'
+import { FC, memo, useCallback } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import { PageRoutes } from 'client/src/browser/http/constants'
-import { Link } from 'client/src/common/components/addons/Link'
 import { NavigationIcon } from 'client/src/common/components/elements/NavigationIcon'
 import { NotificationIcon, ShoppingCardIcon, UserIcon } from 'client/src/common/components/icons'
 import { cn } from 'client/src/common/helpers/classNames'
-import { noop } from 'client/src/common/helpers/noop'
 import { IconVariants } from 'client/src/common/hocs/withIcon'
+import { useComponentVariant } from 'client/src/common/hooks/useComponentVariant'
 import { useLink } from 'client/src/common/hooks/useLink'
 import { StyledProps } from 'client/src/common/typings'
+import { RoundedButton } from '../../inputs/buttons/RoundedButton'
 import * as s from './NavigationMenu.css'
 
 const NavigationMenu: FC<StyledProps> = ({ className, style }) => {
   const { pathname } = useLocation()
+  const IconComponent = useComponentVariant(RoundedButton, NavigationIcon)
   const navigateToCartPage = useLink(PageRoutes.CART)
+  const navigateToSignInPage = useLink(PageRoutes.SIGN_IN, { background: true })
+
+  const getIconVariant = useCallback(
+    (route: PageRoutes) => (pathname === route ? IconVariants.ACTIVE : IconVariants.SECONDARY),
+    [pathname],
+  )
 
   return (
     <div className={cn(s.wrapper, className)} style={style}>
-      <NavigationIcon
+      <IconComponent
         className={cn(s.icon, pathname === PageRoutes.CART && s.iconActive)}
         onClick={navigateToCartPage}
+        onKeyPress={navigateToCartPage}
         text="Shopping cart"
       >
-        <ShoppingCardIcon
-          variant={pathname === PageRoutes.CART ? IconVariants.ACTIVE : IconVariants.SECONDARY}
-        />
-      </NavigationIcon>
-      <NavigationIcon className={s.icon} text="Notifications" onClick={noop}>
+        <ShoppingCardIcon variant={getIconVariant(PageRoutes.CART)} />
+      </IconComponent>
+      <IconComponent className={s.icon} text="Notifications">
         <NotificationIcon variant={IconVariants.SECONDARY} />
-      </NavigationIcon>
-      <Link to={PageRoutes.SIGN_IN} className={s.icon} background>
-        <NavigationIcon text="Sign in">
-          <UserIcon variant={IconVariants.SECONDARY} />
-        </NavigationIcon>
-      </Link>
+      </IconComponent>
+      <IconComponent
+        text="Sign in"
+        className={s.icon}
+        onClick={navigateToSignInPage}
+        onKeyPress={navigateToSignInPage}
+      >
+        <UserIcon variant={getIconVariant(PageRoutes.SIGN_IN)} />
+      </IconComponent>
     </div>
   )
 }
 
-export default NavigationMenu
+export default memo(NavigationMenu)

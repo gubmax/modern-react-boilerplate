@@ -1,15 +1,18 @@
 import { FC } from 'react'
 
+import { PageRoutes } from 'client/src/browser/http/constants'
 import { ButtonVariants } from 'client/src/common/components/inputs/buttons/BaseButton'
 import { Button } from 'client/src/common/components/inputs/buttons/Button'
 import { cn } from 'client/src/common/helpers/classNames'
 import { useComponentVariant } from 'client/src/common/hooks/useComponentVariant'
+import { useLink } from 'client/src/common/hooks/useLink'
 import { StyledProps } from 'client/src/common/typings'
 import { Diamond } from '../Diamond'
 import * as s from './AuthBanner.css'
 
 const AuthBanner: FC<StyledProps> = ({ className, style }) => {
   const DiamondDesktop = useComponentVariant(null, Diamond)
+  const navigateToSignInPage = useLink(PageRoutes.SIGN_IN, { background: true })
 
   return (
     <div className={cn(s.wrapper, className)} style={style}>
@@ -21,7 +24,12 @@ const AuthBanner: FC<StyledProps> = ({ className, style }) => {
             <Button className={s.button} variant={ButtonVariants.PRIMARY_WHITE}>
               Sign Up
             </Button>
-            <Button className={s.button} variant={ButtonVariants.OUTLINE_WHITE}>
+            <Button
+              className={s.button}
+              variant={ButtonVariants.OUTLINE_WHITE}
+              onClick={navigateToSignInPage}
+              onKeyPress={navigateToSignInPage}
+            >
               Sign In
             </Button>
           </div>
