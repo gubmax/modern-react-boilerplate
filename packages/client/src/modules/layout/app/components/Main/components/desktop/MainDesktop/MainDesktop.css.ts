@@ -5,24 +5,22 @@ import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
 
 const PADDING_TOP = pxToRem(100)
+const PADDING_BOTTOM = pxToRem(64)
 
-export const page = style({
+export const wrapper = style({
   position: 'relative',
-  display: 'grid',
-  gridTemplateColumns: `${pxToRem(244)} 1fr`,
-  gridTemplateAreas: '"aside main main"',
-  minWidth: dt.vars.size.screen.tablet,
-  maxWidth: dt.vars.size.screen.desktop,
   minHeight: '100vh',
-  margin: '0 auto',
-  padding: `0 ${dt.vars.space.s4}`,
-
-  '@media': {
-    [dt.media.maxWidth.tablet]: {
-      gridTemplateColumns: 'min-content 1fr',
-    },
-  },
 })
+
+export const page = style([
+  gridAtom({ display: 'flex' }),
+  {
+    minWidth: dt.vars.size.screen.tablet,
+    maxWidth: dt.vars.size.screen.desktop,
+    margin: '0 auto',
+    padding: `0 ${dt.vars.space.s4}`,
+  },
+])
 
 export const header = style({
   position: 'fixed',
@@ -34,23 +32,25 @@ export const header = style({
 })
 
 export const main = style({
-  gridArea: 'main',
   width: '100%',
-  padding: `${PADDING_TOP} 0 ${dt.vars.space.s4} ${dt.vars.space.s3}`,
+  padding: `${PADDING_TOP} 0 ${PADDING_BOTTOM} ${dt.vars.space.s3}`,
   zIndex: 0,
+  overflow: 'hidden',
 })
 
 export const aside = style([
-  gridAtom({
-    display: 'flex',
-    flexDirection: 'column',
-  }),
+  gridAtom({ flexShrink: 0 }),
   {
     position: 'sticky',
-    gridArea: 'aside',
     top: 0,
-    paddingTop: PADDING_TOP,
-    height: '100vh',
+    padding: `${PADDING_TOP} 0 ${PADDING_BOTTOM}`,
+    height: '100%',
+
+    '@media': {
+      [dt.media.minWidth.tablet]: {
+        width: pxToRem(244),
+      },
+    },
   },
 ])
 

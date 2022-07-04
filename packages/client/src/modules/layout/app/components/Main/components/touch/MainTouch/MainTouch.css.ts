@@ -5,7 +5,7 @@ import { dt } from 'client/src/common/styles/designTokens'
 
 export const main = style({
   minWidth: dt.vars.size.screen.min,
-  padding: `0 ${dt.vars.space.s1} ${pxToRem(80)}`,
+  padding: `0 ${dt.vars.space.s1} ${pxToRem(48)}`,
   overflowX: 'hidden',
 })
 
