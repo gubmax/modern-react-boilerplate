@@ -1,7 +1,7 @@
 import { RouteObject } from 'react-router'
 
 import { PageRoutes } from 'client/src/browser/http/constants'
-import { SignIn } from 'client/src/modules/auth'
+import { SignIn } from 'client/src/modules/features/auth'
 import { NotFound } from 'client/src/modules/layout/notFound'
 import { AboutPage } from 'client/src/modules/pages/about'
 import { CartPage } from 'client/src/modules/pages/cart'

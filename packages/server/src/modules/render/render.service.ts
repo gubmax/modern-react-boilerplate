@@ -16,10 +16,10 @@ import {
   PATH_RESOLVED_CLIENT_MANIFEST,
   PATH_RESOLVED_INDEX_HTML,
 } from 'shared/constants/paths'
-import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
 import { InternalServerException } from 'shared/exceptions'
 import { HttpClientImpl } from 'shared/http/types'
 import { RenderTemplate } from 'shared/typings/renderTemplate'
+import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/utils/serverSideProps'
 import { AssetCollectorService } from '../assetCollector'
 import { ClientConfigService } from '../clientConfig'
 import { HttpClientService } from '../httpClient'

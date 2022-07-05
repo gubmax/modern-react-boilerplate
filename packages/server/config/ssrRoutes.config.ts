@@ -1,6 +1,6 @@
 import { PageRoutes } from 'client/src/browser/http/constants'
 import { getServerSideProps as getCartSSP } from 'client/src/modules/pages/cart/dataFetching'
-import { ServerSideProps } from 'shared/constants/serverSideProps'
+import { ServerSideProps } from 'shared/utils/serverSideProps'
 import { GetServerSideProps } from 'shared/utils/serverSideProps'
 
 interface RouteOptions {

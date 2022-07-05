@@ -9,7 +9,7 @@ import { useServerSidePropsQueryLoader } from 'client/src/common/hooks/useServer
 import { CartSspQueryModel } from '../models/cartSspQuery.model'
 import { PAGE_TITLE } from './Cart.constants'
 
-const Cart = lazy(() => import('client/src/modules/cart/cart.chunk'))
+const Cart = lazy(() => import('client/src/modules/features/cart/cart.chunk'))
 
 const CartPage: FC = () => {
   useDocumentTitle(PAGE_TITLE)

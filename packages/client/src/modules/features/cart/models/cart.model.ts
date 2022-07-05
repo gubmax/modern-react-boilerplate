@@ -3,10 +3,10 @@ import { inject, singleton } from 'tsyringe'
 
 import { UpdateAmountQueryModel } from 'client/src/common/models/queries/updateAmount'
 import { CartSspQueryModel } from 'client/src/modules/pages/cart/models/cartSspQuery.model'
-import type { ServerSideProps } from 'shared/constants/serverSideProps'
-import { SERVER_SIDE_PROPS } from 'shared/constants/serverSideProps'
 import { JSONPatchOperations } from 'shared/http/jsonPatch'
 import { UpdateAmountPaths } from 'shared/http/requests/updateAmount.request'
+import type { ServerSideProps } from 'shared/utils/serverSideProps'
+import { SERVER_SIDE_PROPS } from 'shared/utils/serverSideProps'
 import { Product } from '../domain/entities/product.entity'
 import { CartService } from '../domain/services/cart.service'
 

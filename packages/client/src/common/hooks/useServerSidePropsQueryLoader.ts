@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Action } from 'history'
 
 import { ServerSidePropsQueryModel } from 'client/src/common/models/queries/serverSideProps'
-import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
+import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/utils/serverSideProps'
 import { useAction } from './useAction'
 import { useInject } from './useInject'
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'

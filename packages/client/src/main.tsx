@@ -2,7 +2,7 @@
 import { hydrateRoot } from 'react-dom/client'
 
 import { CLIENT_CONFIG, ClientConfig } from 'shared/constants/clientConfig'
-import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/constants/serverSideProps'
+import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/utils/serverSideProps'
 import { reportWebVitals } from './browser/http/reportWebVitals'
 import { renderTemplate } from './entries/main.entry'
 

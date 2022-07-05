@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 import { useDocumentTitle } from 'client/src/common/hooks/useDocumentTitle'
-import { Showcase } from 'client/src/modules/showcase'
+import { Showcase } from 'client/src/modules/features/showcase'
 
 const ShowcasePage: FC = () => {
   useDocumentTitle()
