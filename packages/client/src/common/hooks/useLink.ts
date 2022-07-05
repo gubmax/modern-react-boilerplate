@@ -1,6 +1,7 @@
 import { SyntheticEvent } from 'react'
 import { useNavigate } from 'react-router'
 
+import { isBrowser } from '../helpers/environment'
 import type { NavigateOptions } from '../typings'
 import { useEvent } from './useEvent'
 
@@ -19,7 +20,7 @@ export function useLink<T extends Element>(
 
     const options: NavigateOptions = {
       state: {
-        backgroundLocation: typeof window !== 'undefined' && background ? location.pathname : '',
+        backgroundLocation: isBrowser && background ? location.pathname : '',
       },
     }
 

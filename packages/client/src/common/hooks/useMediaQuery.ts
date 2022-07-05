@@ -1,10 +1,12 @@
 import { useMemo, useSyncExternalStore } from 'react'
 
+import { isBrowser } from '../helpers/environment'
+
 export function useMediaQuery(query: string, serverFallback = false): boolean {
   const getServerSnapshot = () => serverFallback
 
   const [getSnapshot, subscribe] = useMemo(() => {
-    const mediaQueryList = typeof window !== 'undefined' ? window.matchMedia(query) : undefined
+    const mediaQueryList = isBrowser ? window.matchMedia(query) : null
 
     return [
       () => !!mediaQueryList?.matches,
