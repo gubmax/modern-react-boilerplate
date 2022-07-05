@@ -30,7 +30,7 @@ export const shim = style({
     width: '100%',
     height: '100%',
     transform: 'translateX(-100%)',
-    background: `linear-gradient(90deg, transparent, ${dt.vars.theme.color.surface1}, transparent)`,
-    animation: `${shimmmer} 1s ease-in-out infinite`,
+    background: `linear-gradient(90deg, transparent, ${dt.vars.theme.color.surface0}, transparent)`,
+    animation: `${shimmmer} 2s ease-out infinite`,
   },
 })
