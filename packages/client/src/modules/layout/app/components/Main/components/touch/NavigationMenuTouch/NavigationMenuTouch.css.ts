@@ -11,7 +11,7 @@ export const wrapper = style([
     display: 'flex',
     justifyContent: 'space-around',
     padding: `${dt.vars.space.s0} ${dt.vars.space.s1}`,
-    borderTop: `${pxToRem(1.25)} solid ${dt.vars.theme.color.border}`,
+    borderTop: `${dt.vars.border.width.regular} solid ${dt.vars.theme.color.border}`,
   },
 ])
 

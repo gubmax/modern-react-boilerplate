@@ -7,5 +7,8 @@ export const rounded = style({
   width: pxToRem(42),
   minWidth: pxToRem(42),
   fontSize: dt.vars.fontSize.h3,
+})
+
+export const inner = style({
   borderRadius: '50%',
 })

@@ -9,7 +9,7 @@ export const wrapper = style({
   backgroundColor: '#7f53ac',
   backgroundImage: 'linear-gradient(315deg, #7f53ac 0%, #647dee 74%)',
   padding: `${dt.vars.space.s2} ${dt.vars.space.s3}`,
-  borderRadius: dt.vars.borderRadius.primary,
+  borderRadius: dt.vars.border.radius.regular,
 })
 
 export const group = gridAtom({

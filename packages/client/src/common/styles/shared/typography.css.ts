@@ -34,7 +34,7 @@ export const typography = styleVariants({
       letterSpacing: 0.15,
     },
   ],
-  subtitle1: { fontSize: dt.vars.fontSize.subtitle1 },
+  subtitle1: { fontSize: dt.vars.fontSize.subtitle1, lineHeight: 1.5 },
   body1: { fontSize: dt.vars.fontSize.body1 },
   body2: { fontSize: dt.vars.fontSize.body2 },
 })

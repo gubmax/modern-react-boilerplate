@@ -8,6 +8,7 @@ export const wrapper = style({
   background: dt.vars.theme.color.surface0,
   padding: `0 ${dt.vars.space.s1} ${dt.vars.space.s2}`,
   marginBottom: dt.vars.space.s3,
+  borderBottom: `${dt.vars.border.width.regular} solid ${dt.vars.theme.color.border}`,
 })
 
 export const header = style([

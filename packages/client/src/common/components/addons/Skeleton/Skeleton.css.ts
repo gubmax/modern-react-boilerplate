@@ -7,7 +7,7 @@ export const wrapper = style({
   width: '100%',
   height: pxToRem(20),
   background: dt.vars.theme.color.bg0,
-  borderRadius: dt.vars.borderRadius.primary,
+  borderRadius: dt.vars.border.radius.regular,
 })
 
 export const margin = style({

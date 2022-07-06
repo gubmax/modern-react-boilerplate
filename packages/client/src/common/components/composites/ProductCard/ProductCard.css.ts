@@ -3,24 +3,23 @@ import { style } from '@vanilla-extract/css'
 import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
+import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 import { typography } from 'client/src/common/styles/shared/typography.css'
 
-export const wrapper = style({
-  fontWeight: 500,
-  flexGrow: 1,
-  background: dt.vars.theme.color.surface0,
-  borderRadius: dt.vars.borderRadius.primary,
-})
-
-export const header = style([
-  gridAtom({
-    display: 'flex',
-    alignItems: 'center',
-  }),
+export const wrapper = style([
+  surfaces.flat,
   {
-    padding: `0 ${dt.vars.space.s1} ${dt.vars.space.s1}`,
+    padding: dt.vars.space.s1,
+    fontWeight: 500,
+    flexGrow: 1,
+    borderRadius: dt.vars.border.radius.regular,
   },
 ])
+
+export const header = gridAtom({
+  display: 'flex',
+  alignItems: 'center',
+})
 
 export const favoriteIcon = style({
   marginLeft: 'auto',
@@ -47,13 +46,14 @@ export const imageBox = style({
   flexShrink: 0,
   width: '100%',
   height: pxToRem(224),
-  borderRadius: dt.vars.borderRadius.primary,
+  borderRadius: dt.vars.border.radius.regular,
+  boxShadow: `0 0 0 ${dt.vars.border.width.regular} ${dt.vars.color.transparentBorder}`,
 })
 
 export const itemInfo = style({
   position: 'relative',
-  padding: dt.vars.space.s1,
-  borderRadius: dt.vars.borderRadius.primary,
+  padding: `${dt.vars.space.s1} 0 ${dt.vars.space.s0}`,
+  borderRadius: dt.vars.border.radius.regular,
 })
 
 export const footer = style([

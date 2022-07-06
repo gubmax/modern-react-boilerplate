@@ -1,11 +1,17 @@
 import { createGlobalTheme } from '@vanilla-extract/css'
 
+import { pxToRem } from '../../helpers/pxToRem'
 import { FONT_SIZE_DEFAULT } from '../constants/font'
 import { SCREEN_SIZES } from '../constants/screens'
 
 export const systemVars = createGlobalTheme(':root', {
-  borderRadius: {
-    primary: '20px',
+  border: {
+    width: {
+      regular: pxToRem(1.25),
+    },
+    radius: {
+      regular: pxToRem(16),
+    },
   },
   color: {
     transparentBorder: 'rgba(0, 0, 0, 0.01)',

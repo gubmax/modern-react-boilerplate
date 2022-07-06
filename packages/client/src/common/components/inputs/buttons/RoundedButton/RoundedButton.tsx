@@ -5,7 +5,7 @@ import { BaseButton, BaseButtonProps } from '../BaseButton'
 import * as s from './RoundedButton.css'
 
 const RoundedButton: FC<BaseButtonProps> = ({ className, ...rest }) => (
-  <BaseButton className={cn(s.rounded, className)} {...rest} />
+  <BaseButton className={cn(s.rounded, className)} innerClassName={s.inner} {...rest} />
 )
 
 export default RoundedButton

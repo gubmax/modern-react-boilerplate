@@ -36,8 +36,8 @@ export const background = style([
 export const wrapper = style([
   surfaces.flat,
   {
-    border: `${pxToRem(1.25)} solid ${dt.vars.theme.color.borderLight}`,
-    borderRadius: `${dt.vars.borderRadius.primary} ${dt.vars.borderRadius.primary} 0 0`,
+    border: `${dt.vars.border.width.regular} solid ${dt.vars.theme.color.borderLight}`,
+    borderRadius: `${dt.vars.border.radius.regular} ${dt.vars.border.radius.regular} 0 0`,
     display: 'inline-block',
     marginTop: 'auto',
     minHeight: pxToRem(320),
@@ -46,7 +46,7 @@ export const wrapper = style([
 
     '@media': {
       [dt.media.minWidth.mobile]: {
-        borderRadius: dt.vars.borderRadius.primary,
+        borderRadius: dt.vars.border.radius.regular,
         margin: `${dt.vars.space.s4} auto`,
         minHeight: 'unset',
         width: 'unset',
@@ -56,8 +56,8 @@ export const wrapper = style([
 ])
 
 export const header = style({
-  padding: `${dt.vars.space.s0} ${dt.vars.space.s3}`,
-  background: dt.vars.theme.color.bg0,
+  padding: `${dt.vars.space.s0} ${dt.vars.space.s2}`,
+  borderBottom: `${dt.vars.border.width.regular} solid ${dt.vars.theme.color.borderLight}`,
 })
 
 export const body = style({

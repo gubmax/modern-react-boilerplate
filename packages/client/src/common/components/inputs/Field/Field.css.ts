@@ -12,8 +12,8 @@ export const input = style([
     lineHeight: 1,
     width: '100%',
     background: dt.vars.theme.color.surface1,
-    border: `${pxToRem(1.25)} solid transparent`,
-    borderRadius: dt.vars.borderRadius.primary,
+    border: `${dt.vars.border.width.regular} solid transparent`,
+    borderRadius: dt.vars.border.radius.regular,
     transition: '0.1s background, 0.1s border-color, 0.1s box-shadow',
 
     '::placeholder': {

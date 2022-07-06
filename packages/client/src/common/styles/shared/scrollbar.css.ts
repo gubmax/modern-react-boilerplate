@@ -9,12 +9,12 @@ export const scrollbar = style({
 
   '::-webkit-scrollbar-thumb': {
     backgroundColor: dt.vars.theme.color.border,
-    borderRadius: dt.vars.borderRadius.primary,
+    borderRadius: dt.vars.border.radius.regular,
   },
 
   '::-webkit-scrollbar-track': {
     backgroundColor: dt.vars.theme.color.surface0,
-    borderRadius: dt.vars.borderRadius.primary,
+    borderRadius: dt.vars.border.radius.regular,
   },
 
   '::-webkit-scrollbar': {

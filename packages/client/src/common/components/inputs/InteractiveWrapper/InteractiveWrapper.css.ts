@@ -4,7 +4,7 @@ import { dt } from 'client/src/common/styles/designTokens'
 
 export const wrapper = style({
   cursor: 'pointer',
-  borderRadius: dt.vars.borderRadius.primary,
+  borderRadius: dt.vars.border.radius.regular,
 })
 
 export const active = style({

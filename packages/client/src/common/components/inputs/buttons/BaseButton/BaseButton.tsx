@@ -9,13 +9,14 @@ const BaseButton: FC<BaseButtonProps> = ({
   as: Tag = 'button',
   variant = ButtonVariants.DEFAULT,
   className,
+  innerClassName,
   style,
   ...rest
 }) => {
   return (
     <div className={className} style={style}>
       <Tag
-        className={cn(s.baseButton, s.buttonVariants[variant])}
+        className={cn(s.baseButton, s.buttonVariants[variant], innerClassName)}
         tabIndex={Tag === 'a' ? 0 : undefined}
         {...rest}
       />

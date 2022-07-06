@@ -28,7 +28,7 @@ export const lightThemeVars = assignVars(themeVars, {
     transparentBg0: '#ffffffd9',
     surface0: '#ffffff',
     surface1: '#f2f2f2',
-    border: '#e3e3e3',
+    border: '#ededed',
     borderLight: '#f5f5f5',
   },
   gradient: {
@@ -46,7 +46,7 @@ export const darkThemeVars = assignVars(themeVars, {
     transparentBg0: '#202123d9',
     surface0: '#202123',
     surface1: '#2b2c2e',
-    border: '#2a2b2d',
+    border: '#252627',
     borderLight: '#27282a',
   },
   gradient: {

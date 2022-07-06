@@ -9,7 +9,7 @@ export const wrapper = style([
   gridAtom({ display: 'flex' }),
   {
     padding: `${dt.vars.space.s2} ${dt.vars.space.s3}`,
-    borderRadius: dt.vars.borderRadius.primary,
+    borderRadius: dt.vars.border.radius.regular,
 
     '@media': {
       [dt.media.maxWidth.mobile]: {
@@ -51,7 +51,7 @@ export const productBox = style({
   height: pxToRem(112),
   marginRight: dt.vars.space.s3,
   fontSize: pxToRem(68),
-  borderRadius: dt.vars.borderRadius.primary,
+  borderRadius: dt.vars.border.radius.regular,
 
   '@media': {
     [dt.media.maxWidth.mobile]: {

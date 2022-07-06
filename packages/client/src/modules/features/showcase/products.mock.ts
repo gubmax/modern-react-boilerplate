@@ -15,8 +15,8 @@ export const recommendedProducts: ProductCardProps[] = [
 export const trendingProducts: ProductCardProps[] = [
   { variant: ProductVariant.bg6, price: 0.001 },
   { variant: ProductVariant.bg2, price: 0.025 },
-  { variant: ProductVariant.bg0, price: 0.3 },
-  { variant: ProductVariant.bg4, price: 0.03 },
+  { variant: ProductVariant.bg4, price: 0.3 },
+  { variant: ProductVariant.bg0, price: 0.03 },
   { variant: ProductVariant.bg5, price: 0.2 },
   { variant: ProductVariant.bg7, price: 1.2 },
   { variant: ProductVariant.bg1, price: 2 },

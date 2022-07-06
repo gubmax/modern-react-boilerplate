@@ -15,7 +15,6 @@ export const baseButton = style([
   focusStyle,
   {
     width: '100%',
-    borderRadius: dt.vars.borderRadius.primary,
     cursor: 'pointer',
     fontFamily: 'inherit',
     fontSize: dt.vars.fontSize.body1,
@@ -37,7 +36,7 @@ export const buttonVariants = styleVariants({
     ':after': { background: 'rgba(255, 255, 255, 0.25)' },
   },
   [ButtonVariants.FLAT]: {
-    border: 0,
+    border: `${dt.vars.border.width.regular} solid ${dt.vars.theme.color.border}`,
     background: dt.vars.theme.color.surface0,
   },
   [ButtonVariants.PRIMARY]: {
@@ -55,12 +54,12 @@ export const buttonVariants = styleVariants({
     ':after': { background: 'rgba(0, 0, 0, 0.1)' },
   },
   [ButtonVariants.OUTLINE]: {
-    border: `${pxToRem(1.25)} solid ${dt.vars.theme.color.accent}`,
+    border: `${dt.vars.border.width.regular} solid ${dt.vars.theme.color.accent}`,
     background: 'transparent',
     color: dt.vars.theme.color.accent,
   },
   [ButtonVariants.OUTLINE_WHITE]: {
-    border: `${pxToRem(1.25)} solid ${dt.vars.color.white}`,
+    border: `${dt.vars.border.width.regular} solid ${dt.vars.color.white}`,
     background: 'transparent',
     color: dt.vars.color.white,
 

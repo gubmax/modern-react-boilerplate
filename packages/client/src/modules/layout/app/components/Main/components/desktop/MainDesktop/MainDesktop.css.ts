@@ -28,7 +28,7 @@ export const header = style({
   right: 0,
   left: 0,
   zIndex: 1,
-  borderBottom: `${pxToRem(1)} solid ${dt.vars.theme.color.border}`,
+  borderBottom: `${dt.vars.border.width.regular} solid ${dt.vars.theme.color.border}`,
 })
 
 export const main = style({

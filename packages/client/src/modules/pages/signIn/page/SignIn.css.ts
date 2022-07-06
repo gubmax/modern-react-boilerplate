@@ -21,7 +21,7 @@ export const form = style([
   surfaces.flat,
   {
     padding: `${dt.vars.space.s2} ${dt.vars.space.s3}`,
-    borderRadius: dt.vars.borderRadius.primary,
+    borderRadius: dt.vars.border.radius.regular,
   },
 ])
 

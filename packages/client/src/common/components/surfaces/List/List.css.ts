@@ -6,7 +6,7 @@ import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 export const wrapper = style([
   surfaces.flat,
   {
-    borderRadius: dt.vars.borderRadius.primary,
+    borderRadius: dt.vars.border.radius.regular,
   },
 ])
 

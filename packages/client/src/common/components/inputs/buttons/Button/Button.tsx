@@ -23,6 +23,7 @@ const Button: FC<ButtonProps> = ({
   return (
     <BaseButton
       className={cn(s.wrapper, large && s.large, className)}
+      innerClassName={s.inner}
       onClick={handleClick}
       {...rest}
     >
