@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 import { FavoriteIcon, UserIcon } from 'client/src/common/components/icons'
 import { cn } from 'client/src/common/helpers/classNames'
@@ -13,19 +13,6 @@ import * as s from './ProductCard.css'
 const ProductCard: FC<ProductCardProps> = ({ className, variant, style, price, onClick }) => {
   return (
     <div className={cn(s.wrapper, className)} style={style} onClick={onClick}>
-      <div className={s.header}>
-        <RoundedButton className={s.collectionAvatar} variant={ButtonVariants.OUTLINE}>
-          <UserIcon variant={IconVariants.ACCENT} />
-        </RoundedButton>
-        <div>
-          <span className={s.collectionName}>Collection Name</span>
-          <span className={s.username}>@username</span>
-        </div>
-        <RoundedButton className={s.favoriteIcon}>
-          <FavoriteIcon />
-        </RoundedButton>
-        <span className={s.likesCounter}>123</span>
-      </div>
       <MockProduct className={s.imageBox} variant={variant} />
       <div className={s.itemInfo}>
         <span className={s.title}>The quick brown fox jumps over the lazy dog</span>
@@ -37,8 +24,20 @@ const ProductCard: FC<ProductCardProps> = ({ className, variant, style, price, o
           </div>
         </div>
       </div>
+      <div className={s.header}>
+        <RoundedButton className={s.collectionAvatar} variant={ButtonVariants.OUTLINE}>
+          <UserIcon variant={IconVariants.ACCENT} />
+        </RoundedButton>
+        <div>
+          <span className={s.collectionName}>Collection Name</span>
+          <span className={s.username}>@username</span>
+        </div>
+        <RoundedButton className={s.favoriteIcon}>
+          <FavoriteIcon />
+        </RoundedButton>
+      </div>
     </div>
   )
 }
 
-export default ProductCard
+export default memo(ProductCard)

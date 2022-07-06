@@ -18,16 +18,12 @@ export const header = style([
     alignItems: 'center',
   }),
   {
-    padding: `${dt.vars.space.s0} ${dt.vars.space.s1}`,
+    padding: `0 ${dt.vars.space.s1} ${dt.vars.space.s1}`,
   },
 ])
 
 export const favoriteIcon = style({
   marginLeft: 'auto',
-})
-
-export const likesCounter = style({
-  whiteSpace: 'nowrap',
 })
 
 export const collectionAvatar = style({
@@ -56,7 +52,7 @@ export const imageBox = style({
 
 export const itemInfo = style({
   position: 'relative',
-  padding: `${dt.vars.space.s0} ${dt.vars.space.s1} ${dt.vars.space.s1}`,
+  padding: dt.vars.space.s1,
   borderRadius: dt.vars.borderRadius.primary,
 })
 
