@@ -7,7 +7,7 @@ const gridStyles = defineProperties({
     flexGrow: [1],
     flexShrink: [0],
     flexWrap: ['wrap'],
-    justifyContent: ['center', 'space-between', 'flex-start', 'flex-end'],
+    justifyContent: ['center', 'space-around', 'space-between', 'flex-start', 'flex-end'],
     alignItems: ['center'],
     alignSelf: ['center'],
     marginTop: ['auto'],

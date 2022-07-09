@@ -7,9 +7,11 @@ import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 
 export const wrapper = style([
   surfaces.glass,
-  {
+  gridAtom({
     display: 'flex',
     justifyContent: 'space-around',
+  }),
+  {
     padding: `${dt.vars.space.s0} ${dt.vars.space.s1}`,
     borderTop: `${dt.vars.border.width.regular} solid ${dt.vars.theme.color.border}`,
   },

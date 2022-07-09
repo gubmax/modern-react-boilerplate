@@ -5,10 +5,11 @@ import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
 
 export const wrapper = style({
-  background: dt.vars.theme.color.surface0,
+  minWidth: dt.vars.size.screen.min,
   padding: `0 ${dt.vars.space.s1} ${dt.vars.space.s2}`,
   marginBottom: dt.vars.space.s3,
   borderBottom: `${dt.vars.border.width.regular} solid ${dt.vars.theme.color.border}`,
+  background: dt.vars.theme.color.surface0,
 })
 
 export const header = style([
