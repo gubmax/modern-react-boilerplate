@@ -79,12 +79,13 @@ export class RenderService {
         res.setHeader('Content-type', 'text/html')
 
         //  Initial data
-        const initialDataTag = `
-          <script type="text/javascript">
-            window.${CLIENT_CONFIG} = ${JSON.stringify(clientConfig)};
-            window.${SERVER_SIDE_PROPS} = ${JSON.stringify(serverSideProps)};
-          </script>
-        `
+        const initialDataTag =
+          `<script id="${CLIENT_CONFIG}" type="application/json"> ${JSON.stringify(
+            clientConfig,
+          )}</script>` +
+          `<script id="${SERVER_SIDE_PROPS}" type="application/json"> ${JSON.stringify(
+            serverSideProps,
+          )}</script>`
 
         // Assets
         html = html.replace(HtmlMarks.ASSETS, `${HtmlMarks.ASSETS}${initialDataTag}`)
@@ -95,7 +96,6 @@ export class RenderService {
 
         res.write(batches[0])
         stream.pipe(res)
-        res.write(batches[1])
       },
       onShellError(error) {
         res.statusCode = 500

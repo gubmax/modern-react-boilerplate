@@ -4,12 +4,13 @@ import { hydrateRoot } from 'react-dom/client'
 import { CLIENT_CONFIG, ClientConfig } from 'shared/constants/clientConfig'
 import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/utils/serverSideProps'
 import { reportWebVitals } from './browser/http/reportWebVitals'
+import { getJSONData } from './common/helpers/getJSONData'
 import { renderTemplate } from './entries/main.entry'
 
 // Initial data
 
-const clientConfig: ClientConfig = window[CLIENT_CONFIG] ?? {}
-const serverSideProps: ServerSideProps = window[SERVER_SIDE_PROPS] ?? {}
+const clientConfig = getJSONData<ClientConfig>(CLIENT_CONFIG)
+const serverSideProps = getJSONData<ServerSideProps>(SERVER_SIDE_PROPS)
 
 // Bootstrap
 
