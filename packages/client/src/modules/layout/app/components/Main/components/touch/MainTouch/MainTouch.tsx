@@ -1,5 +1,6 @@
 import { FC } from 'react'
 
+import { ID_CONTENT } from 'client/src/common/components/addons/Modal'
 import { ChildrenProp } from 'client/src/common/typings'
 import { Footer } from 'client/src/modules/layout/app/components/Footer'
 import { HeaderTouch } from '../HeaderTouch'
@@ -10,7 +11,7 @@ const MainTouch: FC<ChildrenProp> = ({ children }) => {
   return (
     <>
       <HeaderTouch />
-      <main id="main" className={s.main}>
+      <main id={ID_CONTENT} className={s.main}>
         {children}
       </main>
       <Footer />

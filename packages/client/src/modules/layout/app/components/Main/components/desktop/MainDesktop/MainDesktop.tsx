@@ -1,5 +1,6 @@
 import { FC } from 'react'
 
+import { ID_CONTENT } from 'client/src/common/components/addons/Modal'
 import { ChildrenProp } from 'client/src/common/typings'
 import { Footer } from '../../../../Footer'
 import { HeaderDesktop } from '../HeaderDesktop'
@@ -11,7 +12,7 @@ const MainDesktop: FC<ChildrenProp> = ({ children }) => {
     <>
       <HeaderDesktop className={s.header} />
       <div className={s.wrapper}>
-        <div className={s.page} id="main">
+        <div className={s.page} id={ID_CONTENT}>
           <aside className={s.aside}>
             <NavigationMenuDesktop />
           </aside>

@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useMemo, useState } from 'react'
 
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
 
@@ -7,7 +7,7 @@ interface Options {
   fadeOut?: string
 }
 
-interface FadeProps {
+export interface FadeProps {
   className?: string
   onAnimationEnd: () => false | void
 }
@@ -31,10 +31,13 @@ export function useFadeTransition(
     transition && setVisible(true)
   }, [transition])
 
-  const fadeProps: FadeProps = {
-    className: transition ? fadeIn : fadeOut,
-    onAnimationEnd: () => !transition && setVisible(false),
-  }
+  const fadeProps = useMemo<FadeProps>(
+    () => ({
+      className: transition ? fadeIn : fadeOut,
+      onAnimationEnd: () => !transition && setVisible(false),
+    }),
+    [fadeIn, fadeOut, transition],
+  )
 
   return [fadeProps, isVisible, setTransition]
 }
