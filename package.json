@@ -41,22 +41,23 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "5.30.0",
-    "@typescript-eslint/parser": "5.30.0",
+    "@typescript-eslint/eslint-plugin": "5.30.6",
+    "@typescript-eslint/parser": "5.30.6",
     "autoprefixer": "10.4.7",
     "chalk": "4.1.2",
     "chokidar": "3.5.3",
     "critical": "4.0.1",
     "esbuild-jest": "0.5.0",
-    "eslint": "8.18.0",
-    "eslint-plugin-prettier": "4.1.0",
+    "eslint": "8.19.0",
+    "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-react": "7.30.1",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-simple-import-sort": "7.0.0",
     "husky": "8.0.1",
-    "jest": "28.1.1",
+    "jest": "28.1.2",
     "lint-staged": "13.0.3",
     "prettier": "2.7.1",
+    "ts-node": "10.8.2",
     "typescript": "4.7.4"
   }
 }
