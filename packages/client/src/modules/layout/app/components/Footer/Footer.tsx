@@ -1,7 +1,9 @@
 import { FC, memo } from 'react'
 
 import { PageRoutes } from 'client/src/browser/http/constants'
+import { SELECTOR_CONTENT } from 'client/src/common/components/addons/Modal'
 import { A } from 'client/src/common/components/typography/Anchor'
+import { cn } from 'client/src/common/helpers/classNames'
 import { typography } from 'client/src/common/styles/shared/typography.css'
 import { LinksGroup } from './components/LinksGroup'
 import {
@@ -15,7 +17,7 @@ import * as s from './Footer.css'
 
 const Footer: FC = () => {
   return (
-    <footer className={s.footer}>
+    <footer className={cn(SELECTOR_CONTENT, s.footer)}>
       <div className={s.wrapper}>
         <div className={s.topSection}>
           <div className={s.description}>

@@ -11,18 +11,19 @@ import { useFocusTrap } from 'client/src/common/hooks/useFocusTrap'
 import { useIsomorphicLayoutEffect } from 'client/src/common/hooks/useIsomorphicLayoutEffect'
 import { useUnmount } from 'client/src/common/hooks/useUnmount'
 import { Portal } from '../Portal'
-import { ID_CONTENT } from './Modal.constants'
+import { SELECTOR_CONTENT } from './Modal.constants'
 import { ModalProps, ModalTransitionProps } from './Modal.types'
 import * as s from './Modal.css'
 
 function toggleStyle(active: boolean) {
   const { scrollTop, scrollLeft } = document.documentElement
-  const contentEl = document.getElementById(ID_CONTENT)
+  const contentEls = document.getElementsByClassName(SELECTOR_CONTENT)
 
-  if (contentEl !== null) {
-    contentEl.classList.toggle(s.content, active)
-    contentEl.style.top = active ? `-${scrollTop}px` : ''
-    contentEl.style.left = active ? `-${scrollLeft}px` : ''
+  for (const el of contentEls) {
+    const htmlEl = el as HTMLElement
+    htmlEl.classList.toggle(s.content, active)
+    htmlEl.style.top = active ? `-${scrollTop}px` : ''
+    htmlEl.style.left = active ? `-${scrollLeft}px` : ''
   }
 
   document.body.classList.toggle(s.noScroll, active)
@@ -102,9 +103,10 @@ const ModalTransition: FC<ModalTransitionProps> = ({ active = false, ...rest }) 
     if (active) {
       toggleStyle(true)
     } else {
-      const contentEl = document.getElementById(ID_CONTENT)
-      const top = Math.abs(parseInt(contentEl?.style.top ?? '0'))
-      const left = Math.abs(parseInt(contentEl?.style.left ?? '0'))
+      const [contentEl] = document.getElementsByClassName(SELECTOR_CONTENT)
+      const htmlEl = contentEl as HTMLElement | undefined
+      const top = Math.abs(parseInt(htmlEl?.style.top ?? '0'))
+      const left = Math.abs(parseInt(htmlEl?.style.left ?? '0'))
 
       toggleStyle(false)
 
