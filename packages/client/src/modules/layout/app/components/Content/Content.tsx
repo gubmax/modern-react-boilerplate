@@ -1,25 +1,26 @@
-import { FC, memo, useCallback } from 'react'
+import { FC, memo, useCallback, useEffect, useRef } from 'react'
 import { useLocation, useNavigate, useRoutes } from 'react-router'
-import { Action } from 'history'
 
 import { PageRoutes } from 'client/src/browser/http/constants'
 import { Modal } from 'client/src/common/components/addons/Modal'
-import { useAction } from 'client/src/common/hooks/useAction'
 import { NavigationState } from 'client/src/common/typings'
 import { BACKGROUND_ROUTES, ROUTES } from './Content.constants'
 
 const Content: FC = () => {
-  const action = useAction()
+  const isMountedRef = useRef(false)
   const location = useLocation()
   const navigate = useNavigate()
 
   const { backgroundLocation } = (location.state as NavigationState | undefined) ?? {}
-  const routes = backgroundLocation && action === Action.Push ? BACKGROUND_ROUTES : ROUTES
+  const withTransition = isMountedRef.current && !!backgroundLocation
+  const routes = withTransition ? BACKGROUND_ROUTES : ROUTES
 
   const routeEl = useRoutes(routes, location)
   const backgroundRouteEl = useRoutes(ROUTES, backgroundLocation)
 
-  const withTransition = action === Action.Push && !!backgroundLocation
+  useEffect(() => {
+    isMountedRef.current = true
+  }, [])
 
   const navigateBack = useCallback(() => navigate(-1), [navigate])
 
