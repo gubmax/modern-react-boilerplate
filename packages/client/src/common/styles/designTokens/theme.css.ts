@@ -23,7 +23,7 @@ export const lightThemeVars = assignVars(themeVars, {
     primary: '#1a1a1a',
     secondary: '#919191',
     accent: '#3f51b5',
-    accentLight: '#d0d6e7',
+    accentLight: '#d9e0f2',
     bg0: '#f2f2f2',
     transparentBg0: '#ffffffd9',
     surface0: '#ffffff',

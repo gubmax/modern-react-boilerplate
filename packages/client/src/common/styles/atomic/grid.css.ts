@@ -9,7 +9,7 @@ const gridStyles = defineProperties({
     flexWrap: ['wrap'],
     justifyContent: ['center', 'space-around', 'space-between', 'flex-start', 'flex-end'],
     alignItems: ['center'],
-    alignSelf: ['center'],
+    alignSelf: ['center', 'flex-start'],
     marginTop: ['auto'],
     marginRight: ['auto'],
     marginLeft: ['auto'],

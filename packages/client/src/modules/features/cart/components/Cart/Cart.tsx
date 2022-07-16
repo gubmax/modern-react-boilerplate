@@ -1,6 +1,7 @@
 import { FC } from 'react'
 
 import { Price } from 'client/src/common/components/elements/Price'
+import { Tip } from 'client/src/common/components/surfaces/Tip'
 import { useBehaviorSubjectSubscription } from 'client/src/common/hooks/useBehaviorSubjectSubscription'
 import { useInject } from 'client/src/common/hooks/useInject'
 import { typography } from 'client/src/common/styles/shared/typography.css'
@@ -18,7 +19,10 @@ const Cart: FC<CartProps> = ({ loading }) => {
   if (loading) return <CartSkeleton />
 
   const listTemplate = products.length ? (
-    <ProductList className={s.list} products={products} />
+    <>
+      <Tip className={s.block}>The quick brown fox jumps over the lazy dog</Tip>
+      <ProductList className={s.block} products={products} />
+    </>
   ) : (
     <EmptyMessage />
   )

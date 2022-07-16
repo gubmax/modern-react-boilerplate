@@ -7,6 +7,6 @@ export const wrapper = style({
   maxWidth: pxToRem(620),
 })
 
-export const list = style({
+export const block = style({
   marginBottom: dt.vars.space.s2,
 })
