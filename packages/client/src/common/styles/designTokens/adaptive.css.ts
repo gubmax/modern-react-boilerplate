@@ -40,7 +40,7 @@ export const desktopVars = assignVars(adaptiveVarsContract, {
   },
   space: {
     s0: pxToRem(8),
-    s1: pxToRem(14),
+    s1: pxToRem(12),
     s2: pxToRem(16),
     s3: pxToRem(24),
     s4: pxToRem(42),
@@ -62,7 +62,7 @@ export const tabletVars = assignVars(adaptiveVarsContract, {
   },
   space: {
     s0: pxToRem(4),
-    s1: pxToRem(10),
+    s1: pxToRem(8),
     s2: pxToRem(12),
     s3: pxToRem(20),
     s4: pxToRem(38),
@@ -84,7 +84,7 @@ export const mobileVars = assignVars(adaptiveVarsContract, {
   },
   space: {
     s0: pxToRem(4),
-    s1: pxToRem(10),
+    s1: pxToRem(8),
     s2: pxToRem(12),
     s3: pxToRem(20),
     s4: pxToRem(38),
