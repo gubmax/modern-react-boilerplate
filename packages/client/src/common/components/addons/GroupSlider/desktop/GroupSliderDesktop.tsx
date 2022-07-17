@@ -5,7 +5,7 @@ import { ButtonVariants } from 'client/src/common/components/inputs/buttons/Base
 import { RoundedButton } from 'client/src/common/components/inputs/buttons/RoundedButton'
 import { useEvent } from 'client/src/common/hooks/useEvent'
 import { useSlideTransition } from 'client/src/common/hooks/useSlideTransition'
-import { typography } from 'client/src/common/styles/shared/typography.css'
+import { dt } from 'client/src/common/styles/designTokens'
 import { GroupSliderProps } from '../GroupSlider.types'
 import * as s from './GroupSliderDesktop.css'
 
@@ -23,7 +23,7 @@ const GroupSlider: FC<GroupSliderProps> = ({ className, style, title, children }
   return (
     <div className={className} style={style}>
       <div className={s.header}>
-        <h2 className={typography.h2}>{title}</h2>
+        <h2 className={dt.style.typography.h2}>{title}</h2>
         <div className={s.buttonsGroup}>
           <RoundedButton
             variant={ButtonVariants.FLAT}

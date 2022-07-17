@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { EmptyShoppingCartIcon } from 'client/src/common/components/icons'
 import { IconSizes, IconVariants } from 'client/src/common/hocs/withIcon'
-import { typography } from 'client/src/common/styles/shared/typography.css'
+import { dt } from 'client/src/common/styles/designTokens'
 import * as s from './EmptyMessage.css'
 
 const EmptyMessage: FC = () => {
@@ -13,7 +13,7 @@ const EmptyMessage: FC = () => {
         size={IconSizes.HUGE}
         variant={IconVariants.SECONDARY}
       />
-      <h2 className={typography.h2}>Your cart is empty</h2>
+      <h2 className={dt.style.typography.h2}>Your cart is empty</h2>
     </div>
   )
 }

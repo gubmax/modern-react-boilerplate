@@ -2,7 +2,6 @@ import { keyframes, style } from '@vanilla-extract/css'
 
 import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { dt } from 'client/src/common/styles/designTokens'
-import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
 import { TRANSITION_TIMEOUT } from './Modal.constants'
 
 export const noScroll = style({
@@ -17,7 +16,7 @@ export const content = style({
 })
 
 export const background = style([
-  surfaces.glass,
+  dt.style.surfaces.glass,
   {
     position: 'fixed',
     display: 'flex',
@@ -34,7 +33,7 @@ export const background = style([
 ])
 
 export const wrapper = style([
-  surfaces.flat,
+  dt.style.surfaces.flat,
   {
     border: `${dt.vars.border.width.regular} solid ${dt.vars.theme.color.borderLight}`,
     borderRadius: `${dt.vars.border.radius.regular} ${dt.vars.border.radius.regular} 0 0`,

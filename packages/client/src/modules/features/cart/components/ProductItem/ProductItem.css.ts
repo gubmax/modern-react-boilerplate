@@ -3,7 +3,6 @@ import { style } from '@vanilla-extract/css'
 import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
-import { typography } from 'client/src/common/styles/shared/typography.css'
 
 export const wrapper = style([
   gridAtom({ display: 'flex' }),
@@ -20,7 +19,7 @@ export const wrapper = style([
 ])
 
 export const title = style([
-  typography.h3,
+  dt.style.typography.h3,
   {
     marginRight: dt.vars.space.s3,
 
@@ -64,7 +63,7 @@ export const productBox = style({
 
 export const price = style([
   gridAtom({ marginLeft: 'auto', flexShrink: 0 }),
-  typography.subtitle1,
+  dt.style.typography.subtitle1,
   {
     minWidth: pxToRem(72),
     textAlign: 'end',
@@ -74,7 +73,7 @@ export const price = style([
 
 export const amount = style([
   gridAtom({ alignSelf: 'center' }),
-  typography.subtitle1,
+  dt.style.typography.subtitle1,
   {
     width: pxToRem(36),
     textAlign: 'center',

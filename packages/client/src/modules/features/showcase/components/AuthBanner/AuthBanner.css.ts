@@ -3,7 +3,6 @@ import { style } from '@vanilla-extract/css'
 import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
-import { typography } from 'client/src/common/styles/shared/typography.css'
 
 export const wrapper = style({
   backgroundColor: '#7f53ac',
@@ -31,7 +30,7 @@ export const content = style([
 export const buttonsGroup = style([gridAtom({ marginTop: 'auto' }), group])
 
 export const title = style([
-  typography.h1,
+  dt.style.typography.h1,
   {
     marginBottom: dt.vars.space.s1,
     color: dt.vars.color.white,
@@ -39,7 +38,7 @@ export const title = style([
 ])
 
 export const subtitle = style([
-  typography.h2,
+  dt.style.typography.h2,
   {
     marginBottom: dt.vars.space.s3,
     color: dt.vars.color.white,

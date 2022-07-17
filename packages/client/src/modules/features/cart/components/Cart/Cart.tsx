@@ -4,7 +4,7 @@ import { Price } from 'client/src/common/components/elements/Price'
 import { Tip } from 'client/src/common/components/surfaces/Tip'
 import { useBehaviorSubjectSubscription } from 'client/src/common/hooks/useBehaviorSubjectSubscription'
 import { useInject } from 'client/src/common/hooks/useInject'
-import { typography } from 'client/src/common/styles/shared/typography.css'
+import { dt } from 'client/src/common/styles/designTokens'
 import { CartModel } from '../../models/cart.model'
 import { EmptyMessage } from '../EmptyMessage'
 import { ProductList } from '../ProductList'
@@ -31,7 +31,7 @@ const Cart: FC<CartProps> = ({ loading }) => {
     <section className={s.wrapper}>
       {listTemplate}
       {!!products.length && (
-        <span className={typography.h3}>
+        <span className={dt.style.typography.h3}>
           <span>Total price: </span>
           <Price value={totalPrice} />
         </span>

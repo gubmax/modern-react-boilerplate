@@ -1,6 +1,6 @@
 import { SCREEN_SIZES } from '../constants/screens'
 
-export const MEDIA = {
+export const media = {
   minWidth: {
     mobile: `screen and (min-width: ${SCREEN_SIZES.mobile})`,
     tablet: `screen and (min-width: ${SCREEN_SIZES.tablet})`,

@@ -4,7 +4,6 @@ import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
 import { hideScrollbar } from 'client/src/common/styles/shared/hideScrollbar.css'
-import { typography } from 'client/src/common/styles/shared/typography.css'
 
 export const wrapper = style([
   gridAtom({ display: 'flex' }),
@@ -20,7 +19,7 @@ export const wrapper = style([
 ])
 
 export const title = style([
-  typography.h2,
+  dt.style.typography.h2,
   {
     marginBottom: dt.vars.space.s1,
   },

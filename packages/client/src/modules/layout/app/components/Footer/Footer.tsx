@@ -4,7 +4,7 @@ import { PageRoutes } from 'client/src/browser/http/constants'
 import { SELECTOR_CONTENT } from 'client/src/common/components/addons/Modal'
 import { A } from 'client/src/common/components/typography/Anchor'
 import { cn } from 'client/src/common/helpers/classNames'
-import { typography } from 'client/src/common/styles/shared/typography.css'
+import { dt } from 'client/src/common/styles/designTokens'
 import { LinksGroup } from './components/LinksGroup'
 import {
   TEXT_COPYRIGHT,
@@ -22,7 +22,7 @@ const Footer: FC = () => {
         <div className={s.topSection}>
           <div className={s.description}>
             <span className={s.title}>{TEXT_TITLE}</span>
-            <p className={typography.subtitle1}>{TEXT_DESCRIPTION}</p>
+            <p className={dt.style.typography.subtitle1}>{TEXT_DESCRIPTION}</p>
           </div>
           <LinksGroup />
         </div>

@@ -1,20 +1,21 @@
 import { style } from '@vanilla-extract/css'
 
 import { pxToRem } from 'client/src/common/helpers/pxToRem'
-import { dt } from '../designTokens'
+import { systemVars } from '../system.css'
+import { themeVars } from '../theme.css'
 
 export const scrollbar = style({
   scrollbarColor: 'red blue',
   scrollbarWidth: 'thin',
 
   '::-webkit-scrollbar-thumb': {
-    backgroundColor: dt.vars.theme.color.border,
-    borderRadius: dt.vars.border.radius.regular,
+    backgroundColor: themeVars.color.border,
+    borderRadius: systemVars.border.radius.regular,
   },
 
   '::-webkit-scrollbar-track': {
-    backgroundColor: dt.vars.theme.color.surface0,
-    borderRadius: dt.vars.border.radius.regular,
+    backgroundColor: themeVars.color.surface0,
+    borderRadius: systemVars.border.radius.regular,
   },
 
   '::-webkit-scrollbar': {
@@ -24,7 +25,7 @@ export const scrollbar = style({
 
   selectors: {
     '&::-webkit-scrollbar-thumb:active': {
-      backgroundColor: dt.vars.theme.color.accentLight,
+      backgroundColor: themeVars.color.accentLight,
     },
   },
 })

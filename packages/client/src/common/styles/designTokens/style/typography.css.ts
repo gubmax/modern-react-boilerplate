@@ -1,6 +1,6 @@
 import { style, styleVariants } from '@vanilla-extract/css'
 
-import { dt } from '../designTokens'
+import { adaptiveVarsContract } from '../adaptive.css'
 
 const heading = style(
   {
@@ -14,7 +14,7 @@ export const typography = styleVariants({
   h1: [
     heading,
     {
-      fontSize: dt.vars.fontSize.h1,
+      fontSize: adaptiveVarsContract.fontSize.h1,
       fontWeight: 500,
       letterSpacing: 0.25,
     },
@@ -22,7 +22,7 @@ export const typography = styleVariants({
   h2: [
     heading,
     {
-      fontSize: dt.vars.fontSize.h2,
+      fontSize: adaptiveVarsContract.fontSize.h2,
       fontWeight: 500,
       letterSpacing: 0,
     },
@@ -30,11 +30,11 @@ export const typography = styleVariants({
   h3: [
     heading,
     {
-      fontSize: dt.vars.fontSize.h3,
+      fontSize: adaptiveVarsContract.fontSize.h3,
       letterSpacing: 0.15,
     },
   ],
-  subtitle1: { fontSize: dt.vars.fontSize.subtitle1, lineHeight: 1.5 },
-  body1: { fontSize: dt.vars.fontSize.body1 },
-  body2: { fontSize: dt.vars.fontSize.body2 },
+  subtitle1: { fontSize: adaptiveVarsContract.fontSize.subtitle1, lineHeight: 1.5 },
+  body1: { fontSize: adaptiveVarsContract.fontSize.body1 },
+  body2: { fontSize: adaptiveVarsContract.fontSize.body2 },
 })

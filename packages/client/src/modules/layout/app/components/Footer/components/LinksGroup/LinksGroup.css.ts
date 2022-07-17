@@ -2,7 +2,6 @@ import { style } from '@vanilla-extract/css'
 
 import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
-import { typography } from 'client/src/common/styles/shared/typography.css'
 
 export const wrapper = style([
   gridAtom({
@@ -35,7 +34,7 @@ export const column = style([
 ])
 
 export const title = style([
-  typography.subtitle1,
+  dt.style.typography.subtitle1,
   {
     marginBottom: dt.vars.space.s3,
     fontWeight: 500,

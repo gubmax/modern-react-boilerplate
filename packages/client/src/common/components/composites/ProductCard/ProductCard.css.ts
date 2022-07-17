@@ -3,11 +3,9 @@ import { style } from '@vanilla-extract/css'
 import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
-import { surfaces } from 'client/src/common/styles/shared/surfaces.css'
-import { typography } from 'client/src/common/styles/shared/typography.css'
 
 export const wrapper = style([
-  surfaces.flat,
+  dt.style.surfaces.flat,
   {
     padding: dt.vars.space.s1,
     fontWeight: 500,
@@ -62,14 +60,14 @@ export const footer = style([
   }),
 ])
 
-export const timer = typography.subtitle1
+export const timer = dt.style.typography.subtitle1
 
 export const cost = style({
   marginLeft: 'auto',
 })
 
 export const hint = style([
-  typography.subtitle1,
+  dt.style.typography.subtitle1,
   {
     color: dt.vars.theme.color.secondary,
   },
