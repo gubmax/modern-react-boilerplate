@@ -4,7 +4,7 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 
 import { renderToString } from 'react-dom/server'
-import { cyan, dim, green } from 'chalk'
+import { cyan, dim, green } from 'picocolors'
 import { Manifest } from 'vite'
 
 import { CONFIG_ENTRIES, CONFIG_SSG_ROUTES } from 'server/config'

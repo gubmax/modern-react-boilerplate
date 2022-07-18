@@ -30,10 +30,10 @@
   },
   "peerDependencies": {
     "@types/react-dom": "*",
-    "chalk": "*",
     "esbuild-register": "*",
+    "picocolors": "*",
     "react-router": "*",
-    "typescript": "*",
-    "react-router-dom": "*"
+    "react-router-dom": "*",
+    "typescript": "*"
   }
 }

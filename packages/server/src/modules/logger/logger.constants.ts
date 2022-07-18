@@ -1,4 +1,4 @@
-import { ForegroundColor } from 'chalk'
+import { Colors } from 'picocolors/types'
 
 export const loggerServiceSymbol = 'LoggerService'
 
@@ -20,7 +20,7 @@ export enum LogLevelWeights {
   FATAL = 60,
 }
 
-export const colorByType: Record<string, typeof ForegroundColor> = {
+export const colorByType: Record<string, keyof Colors> = {
   [LogLevelTexts.TRACE]: 'cyan',
   [LogLevelTexts.DEBUG]: 'green',
   [LogLevelTexts.INFO]: 'blue',

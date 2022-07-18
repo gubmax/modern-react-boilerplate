@@ -1,5 +1,5 @@
-import { cyan, dim, green } from 'chalk'
 import { build } from 'esbuild'
+import { cyan, dim, green } from 'picocolors'
 
 import clientPackage from 'client/package.json'
 import serverPackage from 'server/package.json'

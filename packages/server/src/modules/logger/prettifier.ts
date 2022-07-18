@@ -1,8 +1,9 @@
-import chalk, { cyan, dim, green, red, yellow } from 'chalk'
+import picocolors, { cyan, dim, green, red, yellow } from 'picocolors'
 import { PinoPretty } from 'pino-pretty'
 
 import { TransportMarks } from 'server/src/common/constants/transports'
 import { HttpExceptions, HttpStatus } from 'shared/exceptions'
+import { assert } from 'shared/helpers/assert'
 import { colorByType, levelByNumber, LogLevelWeights } from './logger.constants'
 
 interface Transport {
@@ -33,7 +34,10 @@ interface InputData extends Partial<ErrorData & HttpTransportData> {
 
 const baseColor = (level: string | number, description: string) => {
   const levelText = levelByNumber[level]
-  const baseColorFn = chalk[colorByType[levelText]]
+  const baseColorFn = picocolors[colorByType[levelText]]
+
+  assert(typeof baseColorFn === 'function')
+
   return baseColorFn(description)
 }
 
