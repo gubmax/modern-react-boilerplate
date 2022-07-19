@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 import { Price } from 'client/src/common/components/elements/Price'
 import { Tip } from 'client/src/common/components/surfaces/Tip'
@@ -16,28 +16,25 @@ const Cart: FC<CartProps> = ({ loading }) => {
   const { products$, totalPrice } = useInject(CartModel)
   const products = useBehaviorSubjectSubscription(products$)
 
-  if (loading) return <CartSkeleton />
+  let contentTemplate = null
 
-  const listTemplate = products.length ? (
-    <>
-      <Tip className={s.block}>The quick brown fox jumps over the lazy dog</Tip>
-      <ProductList className={s.block} products={products} />
-    </>
-  ) : (
-    <EmptyMessage />
-  )
+  if (loading) contentTemplate = <CartSkeleton />
+  else if (products.length)
+    contentTemplate = <ProductList className={s.block} products={products} />
+  else contentTemplate = <EmptyMessage />
 
   return (
     <section className={s.wrapper}>
-      {listTemplate}
-      {!!products.length && (
+      <Tip className={s.block}>The quick brown fox jumps over the lazy dog</Tip>
+      {contentTemplate}
+      {(!!products.length || loading) && (
         <span className={dt.style.typography.h3}>
           <span>Total price: </span>
-          <Price value={totalPrice} />
+          {loading ? null : <Price value={totalPrice} />}
         </span>
       )}
     </section>
   )
 }
 
-export default Cart
+export default memo(Cart)

@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 import { EmptyShoppingCartIcon } from 'client/src/common/components/icons'
 import { IconSizes, IconVariants } from 'client/src/common/hocs/withIcon'
@@ -18,4 +18,4 @@ const EmptyMessage: FC = () => {
   )
 }
 
-export default EmptyMessage
+export default memo(EmptyMessage)

@@ -6,7 +6,7 @@ import * as s from './Cart.css'
 
 export const CartSkeleton: FC = () => {
   return (
-    <List as="section" className={s.wrapper}>
+    <List as="section" className={s.block}>
       <ProductItemSkeleton />
       <ProductItemSkeleton />
       <ProductItemSkeleton />

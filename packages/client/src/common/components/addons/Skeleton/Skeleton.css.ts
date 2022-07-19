@@ -4,6 +4,7 @@ import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { dt } from 'client/src/common/styles/designTokens'
 
 export const wrapper = style({
+  display: 'inline-block',
   width: '100%',
   height: pxToRem(20),
   background: dt.vars.theme.color.bg0,
