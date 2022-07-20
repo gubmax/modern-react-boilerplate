@@ -14,9 +14,10 @@ export const systemVars = createGlobalTheme(':root', {
     },
   },
   color: {
-    transparentBorder: 'rgba(0, 0, 0, 0.01)',
-    white: 'rgb(245, 245, 245)',
     black: 'rgb(64, 64, 64)',
+    transparentBorder: 'rgba(0, 0, 0, 0.01)',
+    transparentWhite: 'rgba(245, 245, 245, 0.4)',
+    white: 'rgb(245, 245, 245)',
   },
   fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,

@@ -18,7 +18,6 @@ export const page = style([
     minWidth: dt.vars.size.screen.tablet,
     maxWidth: dt.vars.size.screen.desktop,
     margin: '0 auto',
-    padding: `0 ${dt.vars.space.s4}`,
   },
 ])
 
@@ -33,7 +32,7 @@ export const header = style({
 
 export const main = style({
   width: '100%',
-  padding: `${PADDING_TOP} 0 ${PADDING_BOTTOM} ${dt.vars.space.s3}`,
+  padding: `${PADDING_TOP} ${dt.vars.space.s4} ${PADDING_BOTTOM} ${dt.vars.space.s3}`,
   zIndex: 0,
   overflow: 'hidden',
 })
@@ -44,12 +43,11 @@ export const aside = style([
     position: 'sticky',
     top: 0,
     padding: `${PADDING_TOP} 0 ${PADDING_BOTTOM}`,
+    marginLeft: dt.vars.space.s4,
     height: '100%',
 
     '@media': {
-      [dt.media.minWidth.tablet]: {
-        width: pxToRem(244),
-      },
+      [dt.media.minWidth.tablet]: { width: pxToRem(244) },
     },
   },
 ])

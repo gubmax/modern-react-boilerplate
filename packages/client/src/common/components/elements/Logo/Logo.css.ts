@@ -5,7 +5,7 @@ import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
 
 export const text = style([
-  dt.style.focus.bordered,
+  dt.style.focusVisible.primary,
   gridAtom({ display: 'inline-flex', alignItems: 'center' }),
   {
     height: pxToRem(58),
@@ -15,6 +15,7 @@ export const text = style([
     fontSize: dt.vars.fontSize.h2,
     fontWeight: 500,
     whiteSpace: 'nowrap',
+    borderRadius: dt.vars.border.radius.regular,
 
     '@media': {
       [dt.media.maxWidth.mobile]: { height: pxToRem(48) },

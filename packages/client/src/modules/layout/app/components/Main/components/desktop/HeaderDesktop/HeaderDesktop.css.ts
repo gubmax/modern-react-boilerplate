@@ -31,9 +31,7 @@ export const linkWrapper = style([
     width: pxToRem(244),
 
     '@media': {
-      [dt.media.maxWidth.tablet]: {
-        width: 'unset',
-      },
+      [dt.media.maxWidth.tablet]: { width: 'unset' },
     },
   },
 ])

@@ -5,7 +5,7 @@ import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
 
 export const wrapper = style([
-  dt.style.focus.bordered,
+  dt.style.focusVisible.primary,
   gridAtom({
     display: 'flex',
     flexDirection: 'column',
@@ -15,6 +15,7 @@ export const wrapper = style([
   {
     height: pxToRem(58),
     padding: `0 ${dt.vars.space.s0}`,
+    borderRadius: dt.vars.border.radius.regular,
     cursor: 'pointer',
   },
 ])

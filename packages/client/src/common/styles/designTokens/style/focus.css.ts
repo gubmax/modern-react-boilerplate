@@ -1,48 +1,37 @@
-import { styleVariants } from '@vanilla-extract/css'
+import { style } from '@vanilla-extract/css'
 
 import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { systemVars } from '../system.css'
 import { themeVars } from '../theme.css'
 
-export const focus = styleVariants(
-  {
-    regular: {
-      position: 'relative',
-      overflow: 'hidden',
-      zIndex: 0,
+const WIDTH_BORDER = pxToRem(4)
 
-      ':after': {
-        background: themeVars.color.accentLight,
-        borderRadius: '50%',
-        content: '""',
-        display: 'block',
-        left: '50%',
-        opacity: 0,
-        paddingTop: 0,
-        position: 'absolute',
-        top: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 0,
-        zIndex: -1,
-      },
+const focusVisibleBase = style({
+  border: `${systemVars.border.width.regular} solid transparent`,
+})
 
-      selectors: {
-        '&:focus:after, &:active:after': {
-          opacity: 1,
-          paddingTop: '120%',
-          width: '120%',
-        },
-      },
-    },
-    bordered: {
-      border: `${systemVars.border.width.regular} solid transparent`,
-      borderRadius: systemVars.border.radius.regular,
-
+export const focusVisiblePrimary = style(
+  [
+    focusVisibleBase,
+    {
       ':focus-visible': {
-        boxShadow: `0 0 0 ${pxToRem(4)} ${themeVars.color.accentLight}`,
+        boxShadow: `0 0 0 ${WIDTH_BORDER} ${themeVars.color.accentLight}`,
         borderColor: themeVars.color.accent,
       },
     },
-  },
-  'focus',
+  ],
+  'focusVisiblePrimary',
+)
+
+export const focusVisibleWhite = style(
+  [
+    focusVisibleBase,
+    {
+      ':focus-visible': {
+        boxShadow: `0 0 0 ${WIDTH_BORDER} ${systemVars.color.transparentWhite}`,
+        borderColor: systemVars.color.white,
+      },
+    },
+  ],
+  'focusVisibleWhite',
 )

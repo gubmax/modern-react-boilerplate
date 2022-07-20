@@ -46,6 +46,12 @@ globalStyle('body', {
   WebkitTapHighlightColor: 'transparent',
 })
 
+globalStyle('a', {
+  color: 'unset',
+  cursor: 'pointer',
+  textDecoration: 'none',
+})
+
 globalStyle(':root', {
   colorScheme: 'light',
   vars: { ...mobileVars, ...lightThemeVars },
@@ -63,10 +69,8 @@ globalStyle(':focus', {
   outline: 0,
 })
 
-globalStyle('a', {
-  color: 'unset',
-  cursor: 'pointer',
-  textDecoration: 'none',
+globalStyle(':focus-visible', {
+  outlineWidth: 0,
 })
 
 const autofill = keyframes({
