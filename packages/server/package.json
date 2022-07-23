@@ -11,21 +11,21 @@
     "debug": "node -r esbuild-register --inspect-brk src/main"
   },
   "dependencies": {
-    "@nestjs/common": "9.0.2",
+    "@nestjs/common": "9.0.5",
     "@nestjs/config": "2.2.0",
-    "@nestjs/core": "9.0.2",
-    "@nestjs/platform-express": "9.0.2",
+    "@nestjs/core": "9.0.5",
+    "@nestjs/platform-express": "9.0.5",
     "@nestjs/serve-static": "3.0.0",
     "compression": "1.7.4",
-    "pino": "8.1.0",
+    "pino": "8.3.0",
     "pino-pretty": "8.1.0",
     "reflect-metadata": "0.1.13",
     "ua-parser-js": "1.0.2",
-    "undici": "5.6.1"
+    "undici": "5.8.0"
   },
   "devDependencies": {
     "@types/compression": "1.7.2",
-    "@types/node": "18.0.3",
+    "@types/node": "18.0.6",
     "@types/ua-parser-js": "0.7.36"
   },
   "peerDependencies": {
