@@ -9,7 +9,6 @@ const PADDING_BOTTOM = pxToRem(64)
 
 export const wrapper = style({
   position: 'relative',
-  minHeight: '100vh',
 })
 
 export const page = style([
@@ -32,6 +31,7 @@ export const header = style({
 
 export const main = style({
   width: '100%',
+  minHeight: '100vh',
   padding: `${PADDING_TOP} ${dt.vars.space.s4} ${PADDING_BOTTOM} ${dt.vars.space.s3}`,
   zIndex: 0,
   overflow: 'hidden',
