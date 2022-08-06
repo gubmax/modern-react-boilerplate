@@ -1,5 +1,6 @@
 import { MutableRefObject, useCallback, useRef } from 'react'
 
+import { assert } from 'client/src/utils/assert'
 import { TRANSITON_DELAY_MS } from './useSlideTransition.constants'
 import * as s from './useSlideTransition.css'
 
@@ -15,7 +16,9 @@ export function useSlideTransition(
       const innerEl = innerRef.current
       const transition = transitionRef.current
 
-      if (transition || wrapperEl === null || innerEl === null) return
+      if (transition) return
+
+      assert(wrapperEl !== null && innerEl !== null)
 
       const { offsetWidth } = wrapperEl
       let offset = reverse ? -offsetWidth : offsetWidth

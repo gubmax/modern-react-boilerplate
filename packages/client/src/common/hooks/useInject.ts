@@ -1,15 +1,13 @@
 import { useContext, useMemo } from 'react'
 import { InjectionToken } from 'tsyringe'
 
-import { FatalException } from 'client/src/common/domain/exceptions'
+import { assert } from 'client/src/utils/assert'
 import { IocContainerContext } from '../contexts/IocContainerContext'
 
 export function useInject<T>(identifier: InjectionToken<T>): T {
   const container = useContext(IocContainerContext)
 
-  if (!container) {
-    throw new FatalException({ message: 'IoC container not found' })
-  }
+  assert(container, 'IoC container not found')
 
   return useMemo(() => container.resolve<T>(identifier), [container, identifier])
 }

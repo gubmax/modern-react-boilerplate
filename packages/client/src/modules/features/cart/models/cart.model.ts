@@ -3,6 +3,7 @@ import { inject, singleton } from 'tsyringe'
 
 import { UpdateAmountQueryModel } from 'client/src/common/models/queries/updateAmount'
 import { CartSspQueryModel } from 'client/src/modules/pages/cart/models/cartSspQuery.model'
+import { assert } from 'client/src/utils/assert'
 import { JSONPatchOperations } from 'shared/http/jsonPatch'
 import { UpdateAmountPaths } from 'shared/http/requests/updateAmount.request'
 import type { ServerSideProps } from 'shared/utils/serverSideProps'
@@ -45,7 +46,7 @@ export class CartModel {
   #setAmount = (id: string, path: UpdateAmountPaths): void => {
     const prevAmount = this.cartService.getProductAmount(id)
 
-    if (prevAmount === undefined) return
+    assert(prevAmount !== undefined)
 
     const nextAmount = {
       [UpdateAmountPaths.increase]: prevAmount + 1,
