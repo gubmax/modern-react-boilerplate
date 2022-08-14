@@ -15,4 +15,16 @@ export class RenderController {
   async render(@Req() req: Request, @Res() res: Response): Promise<void> {
     return this.renderService.renderMainEntry(req, res)
   }
+
+  @Get(PageRoutes.SIGN_IN)
+  @UseFilters(RenderExceptionsFilter)
+  async renderSignIn(@Req() req: Request, @Res() res: Response): Promise<void> {
+    return this.renderService.renderSignInEntry(req, res)
+  }
+
+  @Get(PageRoutes.SIGN_UP)
+  @UseFilters(RenderExceptionsFilter)
+  async renderSignUp(@Req() req: Request, @Res() res: Response): Promise<void> {
+    return this.renderService.renderSignUpEntry(req, res)
+  }
 }

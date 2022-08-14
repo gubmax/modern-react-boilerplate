@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { useOutlet } from 'react-router-dom'
+import { useOutlet } from 'react-router'
 
 import { useComponentVariant } from 'client/src/common/hooks/useComponentVariant'
 import { MainDesktop } from './components/desktop/MainDesktop'

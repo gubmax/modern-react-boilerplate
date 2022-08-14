@@ -1,9 +1,10 @@
 import { FC, memo } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { RoundedButton } from 'client/src/common/components/inputs/buttons/RoundedButton'
 import { cn } from 'client/src/common/helpers/classNames'
 import { IconVariants } from 'client/src/common/hocs/withIcon'
+import { useLocation } from 'client/src/common/hooks/history/useLocation'
 import { StyledProps } from 'client/src/common/typings'
 import { ROUTES } from './NavigationMenuTouch.constants'
 import * as s from './NavigationMenuTouch.css'

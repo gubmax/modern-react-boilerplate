@@ -11,5 +11,4 @@ export const CONFIG_SSG_ROUTES: Record<string, string> = {
   [PageRoutes.SALES]: 'sales',
   [PageRoutes.SCHEDULE]: 'schedule',
   [PageRoutes.SETTINGS]: 'settings',
-  [PageRoutes.SIGN_IN]: 'sign-in',
 }

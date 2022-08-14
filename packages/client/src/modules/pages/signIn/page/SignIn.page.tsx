@@ -1,19 +1,18 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
-import { Logo } from 'client/src/common/components/elements/Logo'
 import { useDocumentTitle } from 'client/src/common/hooks/useDocumentTitle'
 import { SignIn } from 'client/src/modules/features/auth'
+import { AuthPageLayout } from 'client/src/modules/features/auth'
 import { PAGE_TITLE } from './SignIn.constants'
-import * as s from './SignIn.css'
 
 const SignInPage: FC = () => {
   useDocumentTitle(PAGE_TITLE)
+
   return (
-    <div className={s.wrapper}>
-      <Logo className={s.logo} />
-      <SignIn className={s.form} />
-    </div>
+    <AuthPageLayout>
+      <SignIn />
+    </AuthPageLayout>
   )
 }
 
-export default SignInPage
+export default memo(SignInPage)

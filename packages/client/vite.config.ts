@@ -13,6 +13,8 @@ import manifest from './public/manifest.json'
 const VISUALIZE_MODE = !!process.env.VISUALIZE_MODE
 
 const ENTRY_PATH_MAIN = `./src/${HtmlEntries.MAIN}.tsx`
+const ENTRY_PATH_SIGN_IN = `./src/${HtmlEntries.SIGN_IN}.tsx`
+const ENTRY_PATH_SIGN_UP = `./src/${HtmlEntries.SIGN_UP}.tsx`
 const ENTRY_PATH_INTERNAL_ERROR = `./src/${HtmlEntries.INTERNAL_ERROR}.tsx`
 const ENTRY_PATH_NOT_FOUND = `./src/${HtmlEntries.NOT_FOUND}.tsx`
 
@@ -46,6 +48,8 @@ const config: UserConfig = {
     rollupOptions: {
       input: {
         [HtmlEntries.MAIN]: ENTRY_PATH_MAIN,
+        [HtmlEntries.SIGN_IN]: ENTRY_PATH_SIGN_IN,
+        [HtmlEntries.SIGN_UP]: ENTRY_PATH_SIGN_UP,
         [HtmlEntries.INTERNAL_ERROR]: ENTRY_PATH_INTERNAL_ERROR,
         [HtmlEntries.NOT_FOUND]: ENTRY_PATH_NOT_FOUND,
       },

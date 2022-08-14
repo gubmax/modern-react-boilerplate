@@ -165,6 +165,14 @@ export class RenderService {
     return this.renderBaseEntry(200, HtmlEntries.MAIN)(req, res)
   }
 
+  async renderSignInEntry(req: Request, res: Response): Promise<void> {
+    return this.renderBaseEntry(200, HtmlEntries.SIGN_IN)(req, res)
+  }
+
+  async renderSignUpEntry(req: Request, res: Response): Promise<void> {
+    return this.renderBaseEntry(200, HtmlEntries.SIGN_UP)(req, res)
+  }
+
   async renderInternalErrorEntry(req: Request, res: Response): Promise<void> {
     return this.renderBaseEntry(500, HtmlEntries.INTERNAL_ERROR)(req, res)
   }

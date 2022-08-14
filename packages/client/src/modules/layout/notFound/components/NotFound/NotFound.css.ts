@@ -12,7 +12,6 @@ export const wrapper = style([
     alignItems: 'center',
   }),
   {
-    height: '100vh',
     padding: dt.vars.space.s3,
     textAlign: 'center',
     overflow: 'hidden',

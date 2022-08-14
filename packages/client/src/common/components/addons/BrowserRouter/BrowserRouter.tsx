@@ -3,6 +3,7 @@ import { Router } from 'react-router-dom'
 import { createBrowserHistory, Update } from 'history'
 
 import { HistoryContext } from 'client/src/common/contexts/HistoryContext'
+import { LocationContext } from 'client/src/common/contexts/LocationContext'
 import { useInject } from 'client/src/common/hooks/useInject'
 import { PreloadChunksModel } from 'client/src/common/models/preloadChunks.model'
 import { ChildrenProp } from 'client/src/common/typings'
@@ -32,7 +33,9 @@ const BrowserRouter: FC<ChildrenProp> = ({ children }) => {
 
   return (
     <Router location={location} navigator={history}>
-      <HistoryContext.Provider value={history}>{children}</HistoryContext.Provider>
+      <HistoryContext.Provider value={history}>
+        <LocationContext.Provider value={location}>{children}</LocationContext.Provider>
+      </HistoryContext.Provider>
     </Router>
   )
 }

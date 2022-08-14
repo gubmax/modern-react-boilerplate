@@ -100,6 +100,8 @@ void (async () => {
   await renderMainEntry(indexHtml, assetCollector)
   await renderBaseEntry(HtmlEntries.INTERNAL_ERROR, indexHtml, assetCollector)
   await renderBaseEntry(HtmlEntries.NOT_FOUND, indexHtml, assetCollector)
+  await renderBaseEntry(HtmlEntries.SIGN_IN, indexHtml, assetCollector)
+  await renderBaseEntry(HtmlEntries.SIGN_UP, indexHtml, assetCollector)
 
   console.log(`\n${cyan('critical')} ${green('inlining critical CSS to HTML...')}`)
 

@@ -5,6 +5,5 @@ export interface NavigationState {
 }
 
 export interface NavigateOptions extends Options {
-  replace?: boolean
   state?: NavigationState
 }

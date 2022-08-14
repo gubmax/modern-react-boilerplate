@@ -1,11 +1,11 @@
 import { FC, memo, useCallback } from 'react'
-import { useLocation } from 'react-router-dom'
 
 import { PageRoutes } from 'client/src/browser/http/constants'
 import { NavigationIcon } from 'client/src/common/components/elements/NavigationIcon'
 import { NotificationIcon, ShoppingCardIcon, UserIcon } from 'client/src/common/components/icons'
 import { cn } from 'client/src/common/helpers/classNames'
 import { IconVariants } from 'client/src/common/hocs/withIcon'
+import { useLocation } from 'client/src/common/hooks/history/useLocation'
 import { useComponentVariant } from 'client/src/common/hooks/useComponentVariant'
 import { useLink } from 'client/src/common/hooks/useLink'
 import { StyledProps } from 'client/src/common/typings'
