@@ -7,11 +7,12 @@ import { UserConfig } from 'vite'
 import { HtmlEntries } from '../shared/constants/entries'
 import { PATH_SERVER } from '../shared/constants/paths'
 
-const ENTRY_PATH_MAIN = `./src/entries/${HtmlEntries.MAIN}.server.entry.tsx`
-const ENTRY_PATH_SIGN_IN = `./src/entries/${HtmlEntries.SIGN_IN}.entry.tsx`
-const ENTRY_PATH_SIGN_UP = `./src/entries/${HtmlEntries.SIGN_UP}.entry.tsx`
-const ENTRY_PATH_INTERNAL_ERROR = `./src/entries/${HtmlEntries.INTERNAL_ERROR}.entry.tsx`
-const ENTRY_PATH_NOT_FOUND = `./src/entries/${HtmlEntries.NOT_FOUND}.entry.tsx`
+const PATH_ENTRIES = './src/entries'
+const PATH_ENTRY_MAIN = `${PATH_ENTRIES}/${HtmlEntries.MAIN}/${HtmlEntries.MAIN}.render.server.tsx`
+const PATH_ENTRY_SIGN_IN = `${PATH_ENTRIES}/${HtmlEntries.SIGN_IN}/${HtmlEntries.SIGN_IN}.render.tsx`
+const PATH_ENTRY_SIGN_UP = `${PATH_ENTRIES}/${HtmlEntries.SIGN_UP}/${HtmlEntries.SIGN_UP}.render.tsx`
+const PATH_ENTRY_INTERNAL_ERROR = `${PATH_ENTRIES}/${HtmlEntries.INTERNAL_ERROR}/${HtmlEntries.INTERNAL_ERROR}.render.tsx`
+const PATH_ENTRY_NOT_FOUND = `${PATH_ENTRIES}/${HtmlEntries.NOT_FOUND}/${HtmlEntries.NOT_FOUND}.render.tsx`
 
 /**
  * @link https://vitejs.dev/config/
@@ -33,11 +34,11 @@ const config: UserConfig = {
     outDir: `../../dist/${PATH_SERVER}`,
     rollupOptions: {
       input: {
-        [HtmlEntries.MAIN]: ENTRY_PATH_MAIN,
-        [HtmlEntries.SIGN_IN]: ENTRY_PATH_SIGN_IN,
-        [HtmlEntries.SIGN_UP]: ENTRY_PATH_SIGN_UP,
-        [HtmlEntries.INTERNAL_ERROR]: ENTRY_PATH_INTERNAL_ERROR,
-        [HtmlEntries.NOT_FOUND]: ENTRY_PATH_NOT_FOUND,
+        [HtmlEntries.MAIN]: PATH_ENTRY_MAIN,
+        [HtmlEntries.SIGN_IN]: PATH_ENTRY_SIGN_IN,
+        [HtmlEntries.SIGN_UP]: PATH_ENTRY_SIGN_UP,
+        [HtmlEntries.INTERNAL_ERROR]: PATH_ENTRY_INTERNAL_ERROR,
+        [HtmlEntries.NOT_FOUND]: PATH_ENTRY_NOT_FOUND,
       },
     },
   },

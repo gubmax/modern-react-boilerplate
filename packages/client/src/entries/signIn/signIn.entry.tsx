@@ -1,6 +1,6 @@
 import { hydrateRoot } from 'react-dom/client'
 
-import { renderTemplate } from './entries/internalError.entry'
+import { renderTemplate } from './signIn.render'
 
 // Bootstrap
 
