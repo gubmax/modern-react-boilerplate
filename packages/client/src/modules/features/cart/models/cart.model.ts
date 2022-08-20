@@ -1,7 +1,6 @@
 import { BehaviorSubject } from 'rxjs'
 import { inject, singleton } from 'tsyringe'
 
-import { UpdateAmountQueryModel } from 'client/src/common/models/queries/updateAmount'
 import { CartSspQueryModel } from 'client/src/modules/pages/cart/models/cartSspQuery.model'
 import { assert } from 'client/src/utils/assert'
 import { JSONPatchOperations } from 'shared/http/jsonPatch'
@@ -10,6 +9,7 @@ import type { ServerSideProps } from 'shared/utils/serverSideProps'
 import { SERVER_SIDE_PROPS } from 'shared/utils/serverSideProps'
 import { Product } from '../domain/entities/product.entity'
 import { CartService } from '../domain/services/cart.service'
+import { UpdateAmountQueryModel } from './updateAmountQuery.model'
 
 @singleton()
 export class CartModel {
