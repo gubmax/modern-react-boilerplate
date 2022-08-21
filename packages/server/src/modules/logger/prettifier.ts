@@ -2,7 +2,7 @@ import picocolors, { cyan, dim, green, red, yellow } from 'picocolors'
 import { PinoPretty } from 'pino-pretty'
 
 import { TransportMarks } from 'server/src/common/constants/transports'
-import { HttpExceptions, HttpStatus } from 'shared/exceptions'
+import { HttpExceptions } from 'shared/exceptions'
 import { assert } from 'shared/helpers/assert'
 import { colorByType, levelByNumber, LogLevelWeights } from './logger.constants'
 
@@ -24,7 +24,7 @@ interface ErrorData {
 }
 
 interface InputData extends Partial<ErrorData & HttpTransportData> {
-  status: HttpStatus
+  status: number
   time: number
   level: LogLevelWeights
   msg: string

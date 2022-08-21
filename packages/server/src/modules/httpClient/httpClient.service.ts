@@ -41,8 +41,8 @@ export class HttpClientService implements HttpClientImpl {
       })
 
       return data
-    } catch (error: unknown) {
-      throw new InternalServerException(error instanceof Error ? error.message : '')
+    } catch (error) {
+      throw new InternalServerException(error)
     }
   }
 }

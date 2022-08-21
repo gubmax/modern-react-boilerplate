@@ -3,9 +3,3 @@ export enum HttpExceptions {
   NOT_FOUND = 'NOT_FOUND',
   BAD_REQUEST = 'BAD_REQUEST',
 }
-
-export enum HttpStatus {
-  BAD_REQUEST_ERROR = 400,
-  NOT_FOUND_ERROR = 404,
-  INTERNAL_SERVER_ERROR = 500,
-}

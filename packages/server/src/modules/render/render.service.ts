@@ -72,22 +72,23 @@ export class RenderService {
     serverSideProps = {},
   }: WriteTemplateOptions): void {
     const logger = this.logger
+    let didError = false
 
     const stream = renderToPipeableStream(app, {
       onShellReady() {
-        res.statusCode = statusCode
+        res.statusCode = didError ? 500 : statusCode
         res.setHeader('Content-type', 'text/html')
 
         //  Initial data
+
         const initialDataTag =
-          `<script id="${CLIENT_CONFIG}" type="application/json"> ${JSON.stringify(
+          `<script id="${CLIENT_CONFIG}" type="application/json">${JSON.stringify(
             clientConfig,
           )}</script>` +
-          `<script id="${SERVER_SIDE_PROPS}" type="application/json"> ${JSON.stringify(
+          `<script id="${SERVER_SIDE_PROPS}" type="application/json">${JSON.stringify(
             serverSideProps,
           )}</script>`
 
-        // Assets
         html = html.replace(HtmlMarks.ASSETS, `${HtmlMarks.ASSETS}${initialDataTag}`)
 
         //  Writing
@@ -99,20 +100,12 @@ export class RenderService {
       },
       onShellError(error) {
         res.statusCode = 500
-        res.setHeader('Content-type', 'text/html')
-        res.sendFile(`${PATH_RESOLVED_CLIENT}/${HtmlEntries.MAIN}.html`)
-        logger.error(
-          new InternalServerException(
-            'WriteTemplate shell error',
-            error instanceof Error ? error.stack : undefined,
-          ),
-        )
+        res.send(`${PATH_RESOLVED_CLIENT}/${HtmlEntries.MAIN}.html`)
+        logger.error(new InternalServerException(error, 'WriteTemplate shell error'))
       },
       onError(error) {
-        throw new InternalServerException(
-          'WriteTemplate fatal error',
-          error instanceof Error ? error.stack : undefined,
-        )
+        didError = true
+        logger.error(new InternalServerException(error, 'WriteTemplate fatal error'))
       },
     })
   }

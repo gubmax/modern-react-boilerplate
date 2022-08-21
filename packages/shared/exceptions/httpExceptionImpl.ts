@@ -10,16 +10,19 @@ export class HttpExceptionImpl extends Error {
     status: number,
     type: HttpExceptions,
     description: string,
-    message: string,
-    stack?: string,
+    error: unknown,
+    priorityMessage?: string,
   ) {
-    super(message)
+    const isErrorImpl = error instanceof Error
+
+    super(priorityMessage ?? (isErrorImpl ? error.message : ''))
     this.status = status
     this.type = type
     this.description = description
 
-    if (stack) {
-      super.stack = stack
+    if (error) {
+      if (isErrorImpl) super.stack = error.stack
+      else if (typeof error === 'string') super.stack = error
     }
   }
 }
