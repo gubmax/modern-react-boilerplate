@@ -8,6 +8,7 @@ import { createServer, ModuleNode, ViteDevServer } from 'vite'
 
 import viteDevServerConfig from 'client/vite.config.server'
 import { CONFIG_ENTRIES } from 'server/config'
+import { HtmlMarks } from 'server/src/common/constants/html'
 import { HtmlEntries } from 'shared/constants/entries'
 import { PATH_RESOLVED_INDEX_HTML } from 'shared/constants/paths'
 import { InternalServerException } from 'shared/exceptions/exceptions'
@@ -43,22 +44,33 @@ export class DevelopmentRenderService extends RenderService {
    * Development render function.
    * Before use, you need to call fn setupDevServer once.
    */
-  private async renderTemplate<RenderModule extends Record<string, unknown>>(
+  private async renderFn(
     url: string,
-    entryDevPath: string,
-    html: string,
-  ): Promise<[string, ModuleNode | undefined, RenderModule]> {
+    entry: HtmlEntries,
+  ): Promise<[string, ModuleNode | undefined, { renderTemplate: RenderTemplate }]> {
     const { devServer } = this
+    const { entryDevPath, moduleDevPath } = CONFIG_ENTRIES[entry]
 
     if (!devServer) {
       throw new InternalServerException('Vite dev server has not been initialized')
     }
 
+    //  Prepare development HTML
+
+    const preparedAssets = this.assetCollector.collectByEntryUrls(moduleDevPath)
+
+    const preparedHtml = this.readHtmlSync().replace(
+      HtmlMarks.ASSETS,
+      `${HtmlMarks.ASSETS}${preparedAssets}`,
+    )
+
+    //  Render
+
     try {
       const [template, appModule, templateModule] = await Promise.all([
-        devServer.transformIndexHtml(url, html),
+        devServer.transformIndexHtml(url, preparedHtml),
         devServer.moduleGraph.getModuleByUrl(entryDevPath),
-        devServer.ssrLoadModule(entryDevPath) as Promise<RenderModule>,
+        devServer.ssrLoadModule(entryDevPath) as Promise<{ renderTemplate: RenderTemplate }>,
       ])
 
       return [template, appModule, templateModule]
@@ -67,7 +79,7 @@ export class DevelopmentRenderService extends RenderService {
         devServer.ssrFixStacktrace(error)
       }
 
-      throw error
+      throw new InternalServerException(error)
     }
   }
 
@@ -75,7 +87,7 @@ export class DevelopmentRenderService extends RenderService {
     return readFileSync(PATH_RESOLVED_INDEX_HTML, 'utf-8')
   }
 
-  protected renderBaseEntry(statusCode: number, entry: HtmlEntries) {
+  renderEntry(statusCode: number, entry: HtmlEntries) {
     return async (req: Request, res: Response): Promise<void> => {
       // Client config
 
@@ -83,27 +95,28 @@ export class DevelopmentRenderService extends RenderService {
 
       // Render client
 
-      const { entryDevPath, moduleDevPath } = CONFIG_ENTRIES[entry]
-
-      let html = this.readHtmlSync()
-      html = this.assetCollector.injectUrls(html, [{ url: moduleDevPath, isEntry: true }])
-
-      const [serverSideProps, [template, appModule, { renderTemplate }]] = await Promise.all([
+      const [serverSideProps, [html, appModule, { renderTemplate }]] = await Promise.all([
         this.fetchPageProps(req.url, this.httpClient),
-        this.renderTemplate<{
-          renderTemplate: RenderTemplate
-        }>(req.url, entryDevPath, html),
+        this.renderFn(req.url, entry),
       ])
 
       const app = renderTemplate({ url: req.url, clientConfig, serverSideProps })
 
-      // Inject assets
+      // Collect assets
 
-      html = this.assetCollector.injectByModule(template, appModule)
+      const assets = this.assetCollector.collectByModule(appModule)
 
       // Write
 
-      this.writeTemplate({ statusCode, html, app, res, clientConfig, serverSideProps })
+      this.writeTemplate({
+        app,
+        assets,
+        clientConfig,
+        html,
+        res,
+        serverSideProps,
+        statusCode,
+      })
     }
   }
 }

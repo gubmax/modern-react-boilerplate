@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { Manifest } from 'vite'
 
-import { HtmlMarks } from 'server/src/common/constants/html'
+import { InternalServerException } from 'shared/exceptions'
 
 export interface PreloadUrl {
   url: string
@@ -10,8 +10,7 @@ export interface PreloadUrl {
 
 @Injectable()
 export class AssetCollectorService {
-  #manifest: Manifest = {}
-  #mark = HtmlMarks.ASSETS
+  #manifest?: Manifest
 
   set manifest(val: Manifest) {
     this.#manifest = val
@@ -20,10 +19,10 @@ export class AssetCollectorService {
   protected isCssLink = (url: string) => url.endsWith('.css')
   protected isJsLink = (url: string) => url.endsWith('.js')
 
-  protected inject(html: string, preloadUrls: Set<PreloadUrl>): string {
+  protected joinTags(preloadUrls: Set<PreloadUrl>): string {
     let tags = ''
 
-    preloadUrls.forEach(({ url, isEntry }) => {
+    for (const { url, isEntry } of preloadUrls) {
       if (this.isCssLink(url)) {
         tags += `<link rel="stylesheet" href="${url}">`
       } else if (this.isJsLink(url)) {
@@ -31,16 +30,12 @@ export class AssetCollectorService {
           ? `<script type="module" crossorigin src="${url}"></script>`
           : `<link rel="modulepreload" as="script" crossorigin href="${url}">`
       }
-    })
+    }
 
-    return tags ? html.replace(this.#mark, `${this.#mark}${tags}`) : html
+    return tags
   }
 
-  injectUrls(html: string, preloadUrls: PreloadUrl[]): string {
-    return this.inject(html, new Set(preloadUrls))
-  }
-
-  protected collect(
+  protected collectAssets(
     modulePath: string,
     preloadUrls: Set<PreloadUrl>,
     visitedModules: Set<string>,
@@ -49,7 +44,7 @@ export class AssetCollectorService {
 
     visitedModules.add(modulePath)
 
-    const { file, imports = [], css, isEntry } = this.#manifest[modulePath]
+    const { file, imports = [], css, isEntry } = this.#manifest?.[modulePath] ?? {}
 
     if (file) {
       preloadUrls.add({ url: `/${file}`, isEntry })
@@ -60,18 +55,22 @@ export class AssetCollectorService {
     }
 
     for (const assetPath of imports) {
-      this.collect(assetPath, preloadUrls, visitedModules)
+      this.collectAssets(assetPath, preloadUrls, visitedModules)
     }
   }
 
-  injectByModulePaths(html: string, modulePaths: string[]): string {
+  collectByManifest(...modulePaths: string[]): string {
+    if (!this.#manifest) {
+      throw new InternalServerException('Assets Collector manifest has not been setted')
+    }
+
     const preloadUrls = new Set<PreloadUrl>()
     const visitedModules = new Set<string>()
 
     for (const path of modulePaths) {
-      this.collect(path, preloadUrls, visitedModules)
+      this.collectAssets(path, preloadUrls, visitedModules)
     }
 
-    return this.inject(html, preloadUrls)
+    return this.joinTags(preloadUrls)
   }
 }

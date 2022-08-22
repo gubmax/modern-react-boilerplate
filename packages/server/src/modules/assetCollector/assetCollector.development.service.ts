@@ -25,11 +25,16 @@ export class DevelopmentAssetCollectorService extends AssetCollectorService {
     })
   }
 
-  injectByModule(html: string, mod?: ModuleNode): string {
+  collectByEntryUrls(...urls: string[]): string {
+    const preloadUrls = urls.map((url) => ({ url, isEntry: true }))
+    return super.joinTags(new Set(preloadUrls))
+  }
+
+  collectByModule(mod?: ModuleNode): string {
     const preloadUrls = new Set<PreloadUrl>()
     const visitedModules = new Set<string>()
 
     this.collectCss(mod, preloadUrls, visitedModules)
-    return this.inject(html, preloadUrls)
+    return this.joinTags(preloadUrls)
   }
 }

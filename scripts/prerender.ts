@@ -40,7 +40,8 @@ function writeEntry({
   const ssrOutlet = renderToString(app)
 
   let html = indexHtml.replace(HtmlMarks.SSR_OUTLET, ssrOutlet)
-  html = assetCollector.injectByModulePaths(html, [modulePath])
+  const assets = assetCollector.collectByManifest(modulePath)
+  html = html.replace(HtmlMarks.ASSETS, `${HtmlMarks.ASSETS}${assets}`)
 
   writeFileSync(`${PATH_RESOLVED_CLIENT}/${fileName}`, html)
 
@@ -66,7 +67,7 @@ async function renderMainEntry(indexHtml: string, assetCollector: AssetCollector
   }
 }
 
-async function renderBaseEntry(
+async function renderEntry(
   entry: HtmlEntries,
   indexHtml: string,
   assetCollector: AssetCollectorService,
@@ -98,10 +99,10 @@ void (async () => {
   console.log(`${cyan('pre-render script')} ${green('generating HTML files...')}`)
 
   await renderMainEntry(indexHtml, assetCollector)
-  await renderBaseEntry(HtmlEntries.INTERNAL_ERROR, indexHtml, assetCollector)
-  await renderBaseEntry(HtmlEntries.NOT_FOUND, indexHtml, assetCollector)
-  await renderBaseEntry(HtmlEntries.SIGN_IN, indexHtml, assetCollector)
-  await renderBaseEntry(HtmlEntries.SIGN_UP, indexHtml, assetCollector)
+  await renderEntry(HtmlEntries.INTERNAL_ERROR, indexHtml, assetCollector)
+  await renderEntry(HtmlEntries.NOT_FOUND, indexHtml, assetCollector)
+  await renderEntry(HtmlEntries.SIGN_IN, indexHtml, assetCollector)
+  await renderEntry(HtmlEntries.SIGN_UP, indexHtml, assetCollector)
 
   console.log(`\n${cyan('critical')} ${green('inlining critical CSS to HTML...')}`)
 

@@ -3,28 +3,27 @@ import type { Request, Response } from 'express'
 
 import { PageRoutes } from 'client/src/browser/http/constants'
 import { RenderExceptionsFilter } from 'server/src/common/filters'
+import { HtmlEntries } from 'shared/constants/entries'
 import { renderServiceSymbol } from './render.constants'
 import { RenderService } from './render.service'
 
 @Controller(Object.values<string>(PageRoutes))
+@UseFilters(RenderExceptionsFilter)
 export class RenderController {
   constructor(@Inject(renderServiceSymbol) private readonly renderService: RenderService) {}
 
   @Get()
-  @UseFilters(RenderExceptionsFilter)
   async render(@Req() req: Request, @Res() res: Response): Promise<void> {
-    return this.renderService.renderMainEntry(req, res)
+    return this.renderService.renderEntry(200, HtmlEntries.MAIN)(req, res)
   }
 
   @Get(PageRoutes.SIGN_IN)
-  @UseFilters(RenderExceptionsFilter)
   async renderSignIn(@Req() req: Request, @Res() res: Response): Promise<void> {
-    return this.renderService.renderSignInEntry(req, res)
+    return this.renderService.renderEntry(200, HtmlEntries.SIGN_IN)(req, res)
   }
 
   @Get(PageRoutes.SIGN_UP)
-  @UseFilters(RenderExceptionsFilter)
   async renderSignUp(@Req() req: Request, @Res() res: Response): Promise<void> {
-    return this.renderService.renderSignUpEntry(req, res)
+    return this.renderService.renderEntry(200, HtmlEntries.SIGN_UP)(req, res)
   }
 }

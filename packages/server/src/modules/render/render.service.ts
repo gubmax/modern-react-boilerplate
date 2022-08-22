@@ -25,12 +25,13 @@ import { ClientConfigService } from '../clientConfig'
 import { HttpClientService } from '../httpClient'
 
 interface WriteTemplateOptions {
-  statusCode?: number
-  html: string
   app: JSX.Element
-  res: Response
+  assets: string
   clientConfig: ClientConfig
+  html: string
+  res: Response
   serverSideProps: ServerSideProps
+  statusCode?: number
 }
 
 @Injectable()
@@ -52,26 +53,16 @@ export class RenderService {
     this.indexHtml = readFileSync(PATH_RESOLVED_INDEX_HTML, 'utf-8')
   }
 
-  private sendPreRenderedTemplate(url: string, res: Response): boolean {
-    for (const route in CONFIG_SSG_ROUTES) {
-      if (matchPath(route, url)) {
-        res.sendFile(`${PATH_RESOLVED_CLIENT}/${CONFIG_SSG_ROUTES[route]}.html`)
-        return true
-      }
-    }
-
-    return false
-  }
-
   protected writeTemplate({
-    statusCode = 200,
-    html,
     app,
-    res,
+    assets,
     clientConfig = {},
+    html,
+    res,
     serverSideProps = {},
+    statusCode = 200,
   }: WriteTemplateOptions): void {
-    const logger = this.logger
+    const { logger } = this
     let didError = false
 
     const stream = renderToPipeableStream(app, {
@@ -81,7 +72,7 @@ export class RenderService {
 
         //  Initial data
 
-        const initialDataTag =
+        const initialData =
           `<script id="${CLIENT_CONFIG}" type="application/json">${JSON.stringify(
             clientConfig,
           )}</script>` +
@@ -89,7 +80,9 @@ export class RenderService {
             serverSideProps,
           )}</script>`
 
-        html = html.replace(HtmlMarks.ASSETS, `${HtmlMarks.ASSETS}${initialDataTag}`)
+        // Inject assets
+
+        html = html.replace(HtmlMarks.ASSETS, `${HtmlMarks.ASSETS}${initialData}${assets}`)
 
         //  Writing
 
@@ -122,10 +115,16 @@ export class RenderService {
   /**
    * Production render function.
    */
-  protected renderBaseEntry(statusCode: number, entry: HtmlEntries) {
+  renderEntry(statusCode: number, entry: HtmlEntries) {
     return async (req: Request, res: Response): Promise<void> => {
-      const hasBeenSent = this.sendPreRenderedTemplate(req.url, res)
-      if (hasBeenSent) return
+      // Send rerendered emplate
+
+      for (const route in CONFIG_SSG_ROUTES) {
+        if (matchPath(route, req.url)) {
+          res.sendFile(`${PATH_RESOLVED_CLIENT}/${CONFIG_SSG_ROUTES[route]}.html`)
+          return
+        }
+      }
 
       // Client config
 
@@ -144,33 +143,21 @@ export class RenderService {
 
       const app = renderTemplate({ url: req.url, clientConfig, serverSideProps })
 
-      // Inject assets
+      // Collect assets
 
-      const html = this.assetCollector.injectByModulePaths(this.indexHtml, [modulePath])
+      const assets = this.assetCollector.collectByManifest(modulePath)
 
       // Write
 
-      this.writeTemplate({ statusCode, html, app, res, clientConfig, serverSideProps })
+      this.writeTemplate({
+        app,
+        assets,
+        clientConfig,
+        html: this.indexHtml,
+        res,
+        serverSideProps,
+        statusCode,
+      })
     }
-  }
-
-  async renderMainEntry(req: Request, res: Response): Promise<void> {
-    return this.renderBaseEntry(200, HtmlEntries.MAIN)(req, res)
-  }
-
-  async renderSignInEntry(req: Request, res: Response): Promise<void> {
-    return this.renderBaseEntry(200, HtmlEntries.SIGN_IN)(req, res)
-  }
-
-  async renderSignUpEntry(req: Request, res: Response): Promise<void> {
-    return this.renderBaseEntry(200, HtmlEntries.SIGN_UP)(req, res)
-  }
-
-  async renderInternalErrorEntry(req: Request, res: Response): Promise<void> {
-    return this.renderBaseEntry(500, HtmlEntries.INTERNAL_ERROR)(req, res)
-  }
-
-  async renderNotFoundEntry(req: Request, res: Response): Promise<void> {
-    return this.renderBaseEntry(404, HtmlEntries.NOT_FOUND)(req, res)
   }
 }
