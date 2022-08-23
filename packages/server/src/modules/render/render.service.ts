@@ -117,7 +117,7 @@ export class RenderService {
    */
   renderEntry(statusCode: number, entry: HtmlEntries) {
     return async (req: Request, res: Response): Promise<void> => {
-      // Send rerendered emplate
+      // Send prerendered template
 
       for (const route in CONFIG_SSG_ROUTES) {
         if (matchPath(route, req.url)) {
