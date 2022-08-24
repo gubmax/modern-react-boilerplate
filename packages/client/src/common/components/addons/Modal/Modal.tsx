@@ -87,7 +87,7 @@ const Modal: FC<ModalProps> = ({
   )
 }
 
-const ModalTransition: FC<ModalTransitionProps> = ({ active = false, ...rest }) => {
+const ModalTransition: FC<ModalTransitionProps> = ({ active = false, children, ...rest }) => {
   const wrapperFadeTransitionOptions = useMemo(() => ({ fadeIn: s.animateWrapper }), [])
   const [wrapperFadeProps, , setVisible] = useFadeTransition(active, wrapperFadeTransitionOptions)
 
@@ -118,7 +118,9 @@ const ModalTransition: FC<ModalTransitionProps> = ({ active = false, ...rest }) 
 
   return (
     <Portal disabled={!isVisible}>
-      <Modal {...rest} bgFadeProps={bgFadeProps} wrapperFadeProps={wrapperFadeProps} />
+      <Modal {...rest} bgFadeProps={bgFadeProps} wrapperFadeProps={wrapperFadeProps}>
+        {children}
+      </Modal>
     </Portal>
   )
 }

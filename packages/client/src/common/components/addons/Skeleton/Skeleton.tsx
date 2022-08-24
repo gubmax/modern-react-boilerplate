@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 import { cn } from 'client/src/common/helpers/classNames'
 import { SkeletonProps } from './Skeleton.types'
@@ -13,4 +13,4 @@ const Skeleton: FC<SkeletonProps> = ({ width, height, withoutMargin, className, 
   )
 }
 
-export default Skeleton
+export default memo(Skeleton)

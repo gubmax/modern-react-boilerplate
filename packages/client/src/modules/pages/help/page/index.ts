@@ -1,1 +1,1 @@
-export { default as HelpPage } from './Help'
+export { default as HelpPage } from './Help.page'

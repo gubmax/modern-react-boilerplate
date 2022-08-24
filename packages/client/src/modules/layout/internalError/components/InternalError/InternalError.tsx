@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 import { dt } from 'client/src/common/styles/designTokens'
 import * as s from './InternalError.css'
@@ -14,4 +14,4 @@ const InternalError: FC = () => {
   )
 }
 
-export default InternalError
+export default memo(InternalError)

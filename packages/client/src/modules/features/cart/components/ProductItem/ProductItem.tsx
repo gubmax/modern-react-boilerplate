@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 import { MockProduct } from 'client/src/common/components/elements/MockProduct'
 import { Price } from 'client/src/common/components/elements/Price'
@@ -47,4 +47,4 @@ const ProductItem: FC<ProductItemProps> = ({ product: { id, variant, title, pric
   )
 }
 
-export default ProductItem
+export default memo(ProductItem)

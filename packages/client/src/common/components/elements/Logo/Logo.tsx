@@ -1,18 +1,16 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
-import { PageRoutes } from 'client/src/browser/http/constants'
 import { cn } from 'client/src/common/helpers/classNames'
-import { noop } from 'client/src/common/helpers/noop'
-import { LogoProps } from './Logo.types'
+import { StyledProps } from 'client/src/common/typings'
 import * as s from './Logo.css'
 
-const Logo: FC<LogoProps> = ({ className, style, onClick = noop }) => {
+const Logo: FC<StyledProps> = ({ className, style }) => {
   return (
-    <a className={cn(s.text, className)} style={style} href={PageRoutes.ROOT} onClick={onClick}>
+    <div className={cn(s.text, className)} style={style}>
       <span className={s.highlight}>UI</span>
       <span className={s.title}>Boilerplate</span>
-    </a>
+    </div>
   )
 }
 
-export default Logo
+export default memo(Logo)

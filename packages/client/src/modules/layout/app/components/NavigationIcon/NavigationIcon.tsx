@@ -7,10 +7,10 @@ import * as s from './NavigationIcon.css'
 const NavigationIcon: FC<NavigationIconProps> = ({
   children,
   className,
-  style,
-  text,
   onClick,
   onKeyPress,
+  style,
+  text,
 }) => {
   return (
     <div

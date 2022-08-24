@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 import * as s from './CommonSvg.css'
 
@@ -17,4 +17,4 @@ const CommonSvg: FC = () => (
   </svg>
 )
 
-export default CommonSvg
+export default memo(CommonSvg)

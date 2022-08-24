@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 import { cn } from 'client/src/common/helpers/classNames'
 import { useBehaviorSubjectSubscription } from 'client/src/common/hooks/useBehaviorSubjectSubscription'
@@ -24,4 +24,4 @@ const ProgressBar: FC = () => {
   )
 }
 
-export default ProgressBar
+export default memo(ProgressBar)

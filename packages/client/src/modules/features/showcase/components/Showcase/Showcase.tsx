@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 import { GroupSlider } from 'client/src/common/components/addons/GroupSlider'
 import { ProductCard } from 'client/src/common/components/composites/ProductCard'
@@ -25,4 +25,4 @@ const Showcase: FC = () => {
   )
 }
 
-export default Showcase
+export default memo(Showcase)

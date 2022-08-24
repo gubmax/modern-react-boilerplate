@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 import { List } from 'client/src/common/components/surfaces/List'
 import { ProductItem } from '../ProductItem'
@@ -14,4 +14,4 @@ const ProductList: FC<ProductListProps> = ({ className, style, products }) => {
   )
 }
 
-export default ProductList
+export default memo(ProductList)

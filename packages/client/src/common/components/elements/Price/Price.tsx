@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 import { PriceProps } from './Price.types'
 import * as s from './Price.css'
@@ -12,4 +12,4 @@ const Price: FC<PriceProps> = ({ value }) => {
   )
 }
 
-export default Price
+export default memo(Price)

@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 import { cn } from 'client/src/common/helpers/classNames'
 import { StyledProps } from 'client/src/common/typings'
@@ -24,4 +24,4 @@ const Diamond: FC<StyledProps> = ({ className, style }) => {
   )
 }
 
-export default Diamond
+export default memo(Diamond)

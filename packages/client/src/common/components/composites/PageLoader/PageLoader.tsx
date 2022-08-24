@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, memo, useEffect, useState } from 'react'
 
 import { Loader } from 'client/src/common/components/elements/Loader'
 import * as s from './PageLoader.css'
@@ -17,4 +17,4 @@ const PageLoader: FC = () => {
   return hide ? null : <Loader className={s.wrapper} />
 }
 
-export default PageLoader
+export default memo(PageLoader)

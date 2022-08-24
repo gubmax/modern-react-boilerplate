@@ -5,9 +5,9 @@ import { GroupSliderDesktop } from './desktop'
 import { GroupSliderProps } from './GroupSlider.types'
 import { GroupSliderTouch } from './touch'
 
-const GroupSlider: FC<GroupSliderProps> = (props) => {
+const GroupSlider: FC<GroupSliderProps> = ({ children, ...rest }) => {
   const Component = useComponentVariant(GroupSliderTouch, GroupSliderDesktop)
-  return <Component {...props} />
+  return <Component {...rest}>{children}</Component>
 }
 
 export default GroupSlider

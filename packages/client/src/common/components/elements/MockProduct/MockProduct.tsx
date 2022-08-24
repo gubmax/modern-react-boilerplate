@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 import { cn } from 'client/src/common/helpers/classNames'
 import { productVariants } from './MockProduct.constants'
@@ -14,4 +14,4 @@ const MockProduct: FC<MockProductProps> = ({ className, style, variant }) => {
   )
 }
 
-export default MockProduct
+export default memo(MockProduct)

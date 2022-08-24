@@ -7,10 +7,11 @@ import * as s from './BaseButton.css'
 
 const BaseButton: FC<BaseButtonProps> = ({
   as: Tag = 'button',
-  variant = ButtonVariants.DEFAULT,
+  children,
   className,
   innerClassName,
   style,
+  variant = ButtonVariants.DEFAULT,
   ...rest
 }) => {
   return (
@@ -19,7 +20,9 @@ const BaseButton: FC<BaseButtonProps> = ({
         className={cn(s.baseButton, s.buttonVariants[variant], innerClassName)}
         tabIndex={Tag === 'a' ? 0 : undefined}
         {...rest}
-      />
+      >
+        {children}
+      </Tag>
     </div>
   )
 }

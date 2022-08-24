@@ -9,10 +9,10 @@ import * as s from './Button.css'
 
 const Button: FC<ButtonProps> = ({
   children,
+  className,
   large,
   loading,
   onClick = noop,
-  className,
   ...rest
 }) => {
   function handleClick<T extends MouseEvent>(event: T) {
