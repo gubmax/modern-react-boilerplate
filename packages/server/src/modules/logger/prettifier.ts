@@ -44,7 +44,7 @@ const baseColor = (level: string | number, description: string) => {
 export const timePrettifier: PinoPretty.Prettifier = (time) => {
   if (typeof time === 'object') return ''
 
-  return dim(new Date(time).toLocaleTimeString())
+  return dim(time)
 }
 
 export const levelPrettifier: PinoPretty.Prettifier = (level) => {
