@@ -14,6 +14,7 @@ import { UpdateAmountQueryModel } from './updateAmountQuery.model'
 @singleton()
 export class CartModel {
   products$: BehaviorSubject<Product[]>
+  totalPrice = 0
 
   constructor(
     @inject(SERVER_SIDE_PROPS)
@@ -27,24 +28,18 @@ export class CartModel {
   ) {
     this.products$ = new BehaviorSubject(serverSideProps.products ?? [])
 
-    cartSspQueryModel.query$.subscribe(({ response: { products } = {} }) => {
-      products && this.products$.next(products)
+    cartSspQueryModel.query$.subscribe(({ response }) => {
+      const { products } = response ?? {}
+      if (products) this.products$.next(products)
     })
 
     this.products$.subscribe((products) => {
-      this.cartService.products = products
-      this.cartService.calcTotalPrice()
+      this.totalPrice = this.cartService.calcTotalPrice(products)
     })
   }
 
-  get totalPrice() {
-    return this.cartService.totalPrice
-  }
-
-  #updateProducts = () => this.products$.next([...this.cartService.products])
-
   #setAmount = (id: string, path: UpdateAmountPaths): void => {
-    const prevAmount = this.cartService.getProductAmount(id)
+    const prevAmount = this.cartService.getProductAmount(this.products$.value, id)
 
     invariant(prevAmount !== undefined)
 
@@ -53,11 +48,10 @@ export class CartModel {
       [UpdateAmountPaths.decrease]: prevAmount - 1,
     }[path]
 
-    const amount = this.cartService.setProductAmount(id, nextAmount)
+    const updatedProducts = this.cartService.setProductAmount(this.products$.value, id, nextAmount)
 
-    if (amount === -1) return
+    this.products$.next(updatedProducts)
 
-    this.#updateProducts()
     void this.updateAmountQueryModel.send({
       op: JSONPatchOperations.replace,
       path,
@@ -69,7 +63,7 @@ export class CartModel {
   decreaseAmount = (id: string): void => this.#setAmount(id, UpdateAmountPaths.decrease)
 
   remove = (id: string): void => {
-    this.cartService.removeProduct(id)
-    this.#updateProducts()
+    const updatedProducts = this.cartService.removeProduct(this.products$.value, id)
+    this.products$.next(updatedProducts)
   }
 }

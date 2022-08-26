@@ -14,7 +14,9 @@ import { DeleteButton } from './components/DeleteButton'
 import { ProductItemProps } from './ProductItem.types'
 import * as s from './ProductItem.css'
 
-const ProductItem: FC<ProductItemProps> = ({ product: { id, variant, title, price, amount } }) => {
+const ProductItem: FC<ProductItemProps> = ({ product }) => {
+  const { id, variant, title, price, amount } = product
+
   const { increaseAmount, decreaseAmount, remove } = useInject(CartModel)
   const { roundAmount } = useInject(CartService)
 

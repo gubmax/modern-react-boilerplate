@@ -12,7 +12,7 @@ import { CartSkeleton } from './Cart.skeleton'
 import { CartProps } from './Cart.types'
 import * as s from './Cart.css'
 
-const Cart: FC<CartProps> = ({ loading }) => {
+const Cart: FC<CartProps> = ({ loading = false }) => {
   const { products$, totalPrice } = useInject(CartModel)
   const products = useBehaviorSubjectSubscription(products$)
 
@@ -30,7 +30,7 @@ const Cart: FC<CartProps> = ({ loading }) => {
       {(!!products.length || loading) && (
         <span className={dt.style.typography.h3}>
           <span>Total price: </span>
-          {loading ? null : <Price value={totalPrice} />}
+          {!loading && <Price value={totalPrice} />}
         </span>
       )}
     </section>

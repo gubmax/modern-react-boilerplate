@@ -1,6 +1,6 @@
 import { Product } from './product.entity'
 
 export interface Cart {
-  products: Product[]
-  totalPrice: number
+  readonly products: Product[]
+  readonly totalPrice: number
 }
