@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useMemo, useState } from 'react'
 
-import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
+import { useEnhancedEffect } from './useEnhancedEffect'
 
 interface Options {
   fadeIn?: string
@@ -22,12 +22,12 @@ export function useFadeTransition(
   const [isVisible, setVisible] = useState(transition)
 
   // Update visibility immediately if fadeOut is not defined
-  useIsomorphicLayoutEffect(() => {
+  useEnhancedEffect(() => {
     !fadeOut && setVisible(false)
   }, [transition, fadeOut])
 
   // Update visibility when transition changes
-  useIsomorphicLayoutEffect(() => {
+  useEnhancedEffect(() => {
     transition && setVisible(true)
   }, [transition])
 

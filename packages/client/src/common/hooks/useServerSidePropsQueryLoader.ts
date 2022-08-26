@@ -4,8 +4,8 @@ import { Action } from 'history'
 import { ServerSidePropsQueryModel } from 'client/src/common/models/queries/serverSideProps'
 import { SERVER_SIDE_PROPS, ServerSideProps } from 'shared/utils/serverSideProps'
 import { useAction } from './history/useAction'
+import { useEnhancedEffect } from './useEnhancedEffect'
 import { useInject } from './useInject'
-import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
 
 export function useServerSidePropsQueryLoader<T>(
   sspQueryModel: ServerSidePropsQueryModel<T>,
@@ -14,7 +14,7 @@ export function useServerSidePropsQueryLoader<T>(
   const action = useAction()
   const serverSideProps = useInject<ServerSideProps>(SERVER_SIDE_PROPS)
 
-  useIsomorphicLayoutEffect(() => {
+  useEnhancedEffect(() => {
     const shouldSetInitialLoading =
       action === Action.Push ||
       // If page reload with Service Worker cache

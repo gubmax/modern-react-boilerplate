@@ -1,6 +1,6 @@
 import { useCallback, useRef } from 'react'
 
-import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
+import { useEnhancedEffect } from './useEnhancedEffect'
 
 /**
  * It lets you define event handlers that can read the latest props/state
@@ -11,7 +11,7 @@ import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
 export function useEvent<T extends (...args: any[]) => void>(handler: T): T {
   const handlerRef = useRef(handler)
 
-  useIsomorphicLayoutEffect(() => {
+  useEnhancedEffect(() => {
     handlerRef.current = handler
   })
 

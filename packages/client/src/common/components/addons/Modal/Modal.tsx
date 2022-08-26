@@ -5,10 +5,10 @@ import { ButtonVariants } from 'client/src/common/components/inputs/buttons/Base
 import { RoundedButton } from 'client/src/common/components/inputs/buttons/RoundedButton'
 import { cn } from 'client/src/common/helpers/classNames'
 import { noop } from 'client/src/common/helpers/noop'
+import { useEnhancedEffect } from 'client/src/common/hooks/useEnhancedEffect'
 import { useEvent } from 'client/src/common/hooks/useEvent'
 import { useFadeTransition } from 'client/src/common/hooks/useFadeTransition'
 import { useFocusTrap } from 'client/src/common/hooks/useFocusTrap'
-import { useIsomorphicLayoutEffect } from 'client/src/common/hooks/useIsomorphicLayoutEffect'
 import { useUnmount } from 'client/src/common/hooks/useUnmount'
 import { Portal } from '../Portal'
 import { SELECTOR_CONTENT } from './Modal.constants'
@@ -94,12 +94,12 @@ const ModalTransition: FC<ModalTransitionProps> = ({ active = false, children, .
   const bgFadeTransitionOptions = useMemo(() => ({ fadeIn: s.animateBg }), [])
   const [bgFadeProps, isVisible, setBgVisible] = useFadeTransition(active, bgFadeTransitionOptions)
 
-  useIsomorphicLayoutEffect(() => {
+  useEnhancedEffect(() => {
     setVisible(active)
     setBgVisible(active)
   }, [active, setBgVisible, setVisible])
 
-  useIsomorphicLayoutEffect(() => {
+  useEnhancedEffect(() => {
     if (active) {
       toggleStyle(true)
     } else {

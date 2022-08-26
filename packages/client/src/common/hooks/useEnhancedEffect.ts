@@ -2,4 +2,4 @@ import { useEffect, useLayoutEffect } from 'react'
 
 import { isBrowser } from '../helpers/environment'
 
-export const useIsomorphicLayoutEffect = isBrowser ? useLayoutEffect : useEffect
+export const useEnhancedEffect = isBrowser ? useLayoutEffect : useEffect
