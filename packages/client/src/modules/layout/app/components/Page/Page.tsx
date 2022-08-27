@@ -3,9 +3,9 @@ import { useNavigate, useRoutes } from 'react-router'
 
 import { Modal } from 'client/src/common/components/addons/Modal'
 import { useLocation } from 'client/src/common/hooks/history/useLocation'
-import { BACKGROUND_ROUTES, ROUTES } from './Content.constants'
+import { BACKGROUND_ROUTES, ROUTES } from './Page.constants'
 
-const Content: FC = () => {
+const Page: FC = () => {
   const isMountedRef = useRef(false)
   const location = useLocation()
   const navigate = useNavigate()
@@ -36,4 +36,4 @@ const Content: FC = () => {
   )
 }
 
-export default memo(Content)
+export default memo(Page)

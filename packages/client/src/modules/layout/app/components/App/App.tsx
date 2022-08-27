@@ -1,14 +1,14 @@
 import { FC, StrictMode } from 'react'
 
 import { CommonSvg } from '../CommonSvg'
-import { Content } from '../Content'
+import { Page } from '../Page'
 import { ProgressBar } from '../ProgressBar'
 
 const App: FC = () => {
   return (
     <StrictMode>
       <ProgressBar />
-      <Content />
+      <Page />
       <CommonSvg />
     </StrictMode>
   )

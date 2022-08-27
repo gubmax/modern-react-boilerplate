@@ -5,8 +5,8 @@ import { Link } from 'client/src/common/components/addons/Link'
 import { Logo } from 'client/src/common/components/elements/Logo'
 import { cn } from 'client/src/common/helpers/classNames'
 import { StyledProps } from 'client/src/common/typings'
-import { NavigationMenu } from 'client/src/modules/layout/app/components/NavigationMenu'
-import { SearchField } from 'client/src/modules/layout/app/components/SearchField'
+import { NavigationMenu } from '../../NavigationMenu'
+import { SearchField } from '../../SearchField'
 import * as s from './HeaderDesktop.css'
 
 const Header: FC<StyledProps> = ({ className, ...rest }) => {

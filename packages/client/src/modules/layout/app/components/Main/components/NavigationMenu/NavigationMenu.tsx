@@ -2,14 +2,14 @@ import { FC, memo, useCallback } from 'react'
 
 import { PageRoutes } from 'client/src/browser/http/constants'
 import { NotificationIcon, ShoppingCardIcon, UserIcon } from 'client/src/common/components/icons'
+import { RoundedButton } from 'client/src/common/components/inputs/buttons/RoundedButton'
 import { cn } from 'client/src/common/helpers/classNames'
 import { IconVariants } from 'client/src/common/hocs/withIcon'
 import { useLocation } from 'client/src/common/hooks/history/useLocation'
 import { useComponentVariant } from 'client/src/common/hooks/useComponentVariant'
 import { useLink } from 'client/src/common/hooks/useLink'
 import { StyledProps } from 'client/src/common/typings'
-import { NavigationIcon } from 'client/src/modules/layout/app/components/NavigationIcon'
-import { RoundedButton } from '../../../../../common/components/inputs/buttons/RoundedButton'
+import { NavigationIcon } from './components/NavigationIcon'
 import * as s from './NavigationMenu.css'
 
 const NavigationMenu: FC<StyledProps> = ({ className, style }) => {

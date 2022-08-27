@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import { useOutlet } from 'react-router'
 
 import { useComponentVariant } from 'client/src/common/hooks/useComponentVariant'
@@ -11,4 +11,4 @@ const Main: FC = () => {
   return <Component>{element}</Component>
 }
 
-export default Main
+export default memo(Main)
