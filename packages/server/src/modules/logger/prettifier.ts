@@ -23,13 +23,14 @@ interface ErrorData {
   stack: string
 }
 
-interface InputData extends Partial<ErrorData & HttpTransportData> {
-  status: number
-  time: number
+interface InputData extends Partial<HttpTransportData> {
+  err?: ErrorData
+  hostname: string
   level: LogLevelWeights
   msg: string
   pid: number
-  hostname: string
+  status: number
+  time: number
 }
 
 const baseColor = (level: string | number, description: string) => {
@@ -88,19 +89,16 @@ export const messageFormat: PinoPretty.MessageFormatFunc = (log, messageKey) => 
   }
 
   // Error
-  if (input.stack) {
-    const { level, type = HttpExceptions.INTERNAL, description = 'Uncaught error', stack } = input
+  if (input.err) {
+    const {
+      level,
+      err: { type = HttpExceptions.INTERNAL, description = 'Uncaught error', stack },
+    } = input
 
     const prettyType = dim(type)
     const prettyDesc = baseColor(level, description)
 
-    let stackStr = ''
-    stack.split('\n').forEach((line, index) => {
-      if (index === 0) return
-      stackStr = `${stackStr}${line}\n`
-    })
-
-    return joinMsg(prettyType, prettyDesc, msg).concat(stackStr)
+    return joinMsg(prettyType, prettyDesc, msg).concat('\n', stack)
   }
 
   // Info
