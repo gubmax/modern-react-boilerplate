@@ -1,9 +1,10 @@
+import assert from 'node:assert'
+
 import picocolors, { cyan, dim, green, red, yellow } from 'picocolors'
 import { PinoPretty } from 'pino-pretty'
 
 import { TransportMarks } from 'server/src/common/constants/transports'
 import { HttpExceptions } from 'shared/exceptions'
-import { assert } from 'shared/helpers/assert'
 import { colorByType, levelByNumber, LogLevelWeights } from './logger.constants'
 
 interface Transport {
