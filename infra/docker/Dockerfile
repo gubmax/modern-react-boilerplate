@@ -3,7 +3,9 @@ FROM node:16-alpine
 COPY ./packages/client ./packages/client
 COPY ./packages/server ./packages/server
 COPY ./packages/shared ./packages/shared
+COPY ./scripts/criticalCss ./scripts/criticalCss
 COPY ./scripts/build.ts ./scripts
+COPY ./scripts/prerender.ts ./scripts
 COPY ./package*.json .
 COPY ./tsconfig.json .
 

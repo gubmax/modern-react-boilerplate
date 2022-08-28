@@ -18,14 +18,14 @@
     "@nestjs/serve-static": "3.0.0",
     "compression": "1.7.4",
     "pino": "8.4.2",
-    "pino-pretty": "9.0.1",
+    "pino-pretty": "9.1.0",
     "reflect-metadata": "0.1.13",
     "ua-parser-js": "1.0.2",
-    "undici": "5.9.1"
+    "undici": "5.10.0"
   },
   "devDependencies": {
     "@types/compression": "1.7.2",
-    "@types/node": "18.7.8",
+    "@types/node": "18.7.13",
     "@types/ua-parser-js": "0.7.36"
   }
 }
