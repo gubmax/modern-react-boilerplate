@@ -1,10 +1,9 @@
-import { resolve } from 'node:path'
-
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 import react from '@vitejs/plugin-react'
 import { visualizer } from 'rollup-plugin-visualizer'
-import { UserConfig } from 'vite'
+import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
+import tsconfigPaths from 'vite-tsconfig-paths'
 
 import { HtmlEntries } from '../shared/constants/entries'
 import { PATH_CLIENT } from '../shared/constants/paths'
@@ -22,11 +21,12 @@ const PATH_ENTRY_NOT_FOUND = `${PATH_ENTRIES}/${HtmlEntries.NOT_FOUND}/${HtmlEnt
 /**
  * @link https://vitejs.dev/config/
  */
-const config: UserConfig = {
+export default defineConfig({
   publicDir: 'public',
   plugins: [
     react(),
     vanillaExtractPlugin(),
+    tsconfigPaths(),
     !VISUALIZE_MODE && VitePWA({ manifest, registerType: 'autoUpdate' }),
     VISUALIZE_MODE &&
       visualizer({
@@ -36,12 +36,6 @@ const config: UserConfig = {
         projectRoot: '../',
       }),
   ].filter(Boolean),
-  resolve: {
-    alias: {
-      client: __dirname,
-      shared: resolve(__dirname, '../shared'),
-    },
-  },
   build: {
     manifest: !VISUALIZE_MODE,
     emptyOutDir: !VISUALIZE_MODE,
@@ -56,6 +50,4 @@ const config: UserConfig = {
       },
     },
   },
-}
-
-export default config
+})

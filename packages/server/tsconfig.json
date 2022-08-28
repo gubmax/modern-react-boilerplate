@@ -4,6 +4,7 @@
     "types": [
       "react-dom",
       "reflect-metadata",
+      "vitest/globals",
     ]
   }
 }

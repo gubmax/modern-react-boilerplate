@@ -27,13 +27,5 @@
     "@types/compression": "1.7.2",
     "@types/node": "18.7.8",
     "@types/ua-parser-js": "0.7.36"
-  },
-  "peerDependencies": {
-    "@types/react-dom": "*",
-    "esbuild-register": "*",
-    "picocolors": "*",
-    "react-router": "*",
-    "react-router-dom": "*",
-    "typescript": "*"
   }
 }

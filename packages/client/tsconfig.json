@@ -4,9 +4,10 @@
     "types": [
       "react",
       "react-dom",
-      "vite/client",
+      "reflect-metadata",
       "vite-plugin-pwa/client",
-      "reflect-metadata"
+      "vite/client",
+      "vitest/globals"
     ],
   }
 }

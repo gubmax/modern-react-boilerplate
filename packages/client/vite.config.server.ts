@@ -1,8 +1,7 @@
-import { resolve } from 'node:path'
-
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 import react from '@vitejs/plugin-react'
-import { UserConfig } from 'vite'
+import { InlineConfig } from 'vite'
+import tsconfigPaths from 'vite-tsconfig-paths'
 
 import { HtmlEntries } from '../shared/constants/entries'
 import { PATH_SERVER } from '../shared/constants/paths'
@@ -17,17 +16,10 @@ const PATH_ENTRY_NOT_FOUND = `${PATH_ENTRIES}/${HtmlEntries.NOT_FOUND}/${HtmlEnt
 /**
  * @link https://vitejs.dev/config/
  */
-const config: UserConfig = {
+const inlineConfig: InlineConfig = {
   publicDir: false,
   clearScreen: false,
-  plugins: [react(), vanillaExtractPlugin()],
-  resolve: {
-    alias: {
-      client: __dirname,
-      server: resolve(__dirname, '../server'),
-      shared: resolve(__dirname, '../shared'),
-    },
-  },
+  plugins: [react(), vanillaExtractPlugin(), tsconfigPaths()],
   build: {
     ssr: true,
     emptyOutDir: true,
@@ -44,8 +36,7 @@ const config: UserConfig = {
   },
   server: {
     middlewareMode: 'ssr',
-    fs: { strict: true },
   },
 }
 
-export default config
+export default inlineConfig
