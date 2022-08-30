@@ -6,10 +6,9 @@ import * as s from './Logo.css'
 
 const Logo: FC<StyledProps> = ({ className, style }) => {
   return (
-    <div className={cn(s.text, className)} style={style}>
-      <span className={s.highlight}>UI</span>
-      <span className={s.title}>Boilerplate</span>
-    </div>
+    <span className={cn(s.highlight, className)} style={style}>
+      UI
+    </span>
   )
 }
 

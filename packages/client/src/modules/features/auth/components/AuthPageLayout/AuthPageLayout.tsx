@@ -10,6 +10,7 @@ const AuthPageLayout: FC<ChildrenProp> = ({ children }) => {
     <div className={s.wrapper}>
       <a className={s.logo} href={PageRoutes.ROOT}>
         <Logo />
+        <span className={s.title}>Boilerplate</span>
       </a>
       <div className={s.form}>{children}</div>
     </div>
