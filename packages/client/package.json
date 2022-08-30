@@ -30,7 +30,7 @@
     "web-vitals": "3.0.0"
   },
   "devDependencies": {
-    "@types/react": "18.0.17",
+    "@types/react": "18.0.18",
     "@types/react-dom": "18.0.6"
   }
 }
