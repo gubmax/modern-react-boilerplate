@@ -11,7 +11,9 @@ const Header: FC<StyledProps> = ({ className, ...rest }) => {
   return (
     <div className={cn(s.wrapper, className)} {...rest}>
       <div className={s.bar}>
-        <LogoWithText />
+        <div className={s.linkWrapper}>
+          <LogoWithText />
+        </div>
         <SearchField className={s.search} />
         <NavigationMenu className={s.navigationMenu} />
       </div>
