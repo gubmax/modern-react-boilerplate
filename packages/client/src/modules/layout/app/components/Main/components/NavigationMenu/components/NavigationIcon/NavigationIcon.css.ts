@@ -13,7 +13,7 @@ export const wrapper = style([
     alignItems: 'center',
   }),
   {
-    height: pxToRem(58),
+    height: pxToRem(56),
     padding: `0 ${dt.vars.space.s0}`,
     borderRadius: dt.vars.border.radius.regular,
     cursor: 'pointer',

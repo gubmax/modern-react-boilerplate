@@ -4,11 +4,13 @@ import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
 import { hideScrollbar } from 'client/src/common/styles/shared/hideScrollbar.css'
 
+const ITEM_PADDING = dt.vars.space.s1
+
 export const wrapper = style([
   hideScrollbar,
   {
     overflow: 'auto hidden',
-    marginLeft: `calc(-1 * ${dt.vars.space.s1})`,
+    marginLeft: `calc(-1 * ${ITEM_PADDING})`,
   },
 ])
 
@@ -17,7 +19,7 @@ export const box = gridAtom({ display: 'flex' })
 export const item = style({
   width: '33.333%',
   minWidth: '33.333%',
-  paddingLeft: dt.vars.space.s1,
+  paddingLeft: ITEM_PADDING,
 
   '@media': {
     [dt.media.maxWidth.laptop]: {

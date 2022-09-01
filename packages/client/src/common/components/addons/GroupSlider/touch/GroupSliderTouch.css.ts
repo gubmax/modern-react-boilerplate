@@ -5,11 +5,13 @@ import { gridAtom } from 'client/src/common/styles/atomic/grid.css'
 import { dt } from 'client/src/common/styles/designTokens'
 import { hideScrollbar } from 'client/src/common/styles/shared/hideScrollbar.css'
 
+const ITEM_PADDING = dt.vars.space.s1
+
 export const wrapper = style([
   gridAtom({ display: 'flex' }),
   hideScrollbar,
   {
-    margin: `0 calc(-1 * ${dt.vars.space.s1})`,
+    margin: `0 calc(-1 * ${ITEM_PADDING})`,
     overflowX: 'auto',
     overscrollBehaviorX: 'contain',
     scrollBehavior: 'smooth',
@@ -27,11 +29,11 @@ export const title = style([
 
 export const item = style({
   maxWidth: pxToRem(310),
-  paddingLeft: dt.vars.space.s1,
+  paddingLeft: ITEM_PADDING,
   scrollSnapAlign: 'center',
   width: '100%',
 
   ':last-of-type': {
-    paddingRight: dt.vars.space.s1,
+    paddingRight: ITEM_PADDING,
   },
 })

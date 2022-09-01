@@ -4,7 +4,7 @@ import { pxToRem } from 'client/src/common/helpers/pxToRem'
 import { dt } from 'client/src/common/styles/designTokens'
 
 export const input = style({
-  height: pxToRem(46),
+  height: pxToRem(40),
   fontSize: dt.vars.fontSize.subtitle1,
   lineHeight: 1,
   width: '100%',
@@ -25,8 +25,8 @@ export const input = style({
 })
 
 export const withLabel = style({
-  padding: `${dt.vars.space.s2} ${dt.vars.space.s2} 0`,
-  height: pxToRem(64),
+  padding: `${dt.vars.space.s3} ${dt.vars.space.s2} 0`,
+  height: pxToRem(60),
 })
 
 export const label = style({

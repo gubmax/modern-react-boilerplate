@@ -31,7 +31,7 @@ export const adaptiveVarsContract = createThemeContract({
 
 export const desktopVars = assignVars(adaptiveVarsContract, {
   fontSize: {
-    h1: pxToRem(48),
+    h1: pxToRem(40),
     h2: pxToRem(24),
     h3: pxToRem(20),
     subtitle1: pxToRem(16),
@@ -42,8 +42,8 @@ export const desktopVars = assignVars(adaptiveVarsContract, {
     s0: pxToRem(8),
     s1: pxToRem(12),
     s2: pxToRem(16),
-    s3: pxToRem(24),
-    s4: pxToRem(42),
+    s3: pxToRem(20),
+    s4: pxToRem(32),
   },
   icons: {
     small: pxToRem(24),
@@ -53,7 +53,7 @@ export const desktopVars = assignVars(adaptiveVarsContract, {
 
 export const tabletVars = assignVars(adaptiveVarsContract, {
   fontSize: {
-    h1: pxToRem(34),
+    h1: pxToRem(32),
     h2: pxToRem(24),
     h3: pxToRem(20),
     subtitle1: pxToRem(16),
@@ -61,11 +61,11 @@ export const tabletVars = assignVars(adaptiveVarsContract, {
     body2: pxToRem(13),
   },
   space: {
-    s0: pxToRem(4),
-    s1: pxToRem(8),
-    s2: pxToRem(12),
+    s0: pxToRem(8),
+    s1: pxToRem(12),
+    s2: pxToRem(16),
     s3: pxToRem(20),
-    s4: pxToRem(38),
+    s4: pxToRem(32),
   },
   icons: {
     small: pxToRem(24),
@@ -75,7 +75,7 @@ export const tabletVars = assignVars(adaptiveVarsContract, {
 
 export const mobileVars = assignVars(adaptiveVarsContract, {
   fontSize: {
-    h1: pxToRem(34),
+    h1: pxToRem(32),
     h2: pxToRem(24),
     h3: pxToRem(20),
     subtitle1: pxToRem(16),

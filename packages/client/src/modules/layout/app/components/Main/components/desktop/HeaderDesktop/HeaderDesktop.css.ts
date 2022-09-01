@@ -19,7 +19,6 @@ export const bar = style([
   }),
   {
     width: 'inherit',
-    height: pxToRem(64),
     maxWidth: dt.vars.size.screen.desktop,
     padding: `0 ${dt.vars.space.s4}`,
   },
