@@ -8,7 +8,6 @@ import {
 import { Request, Response } from 'express'
 
 import { RenderService, renderServiceSymbol } from 'server/src/modules/render'
-import { HtmlEntries } from 'shared/constants/entries'
 import { NotFoundException } from 'shared/exceptions'
 
 @Catch(NotFoundException, NestNotFoundException)
@@ -21,6 +20,6 @@ export class NotFoundExceptionFilter implements ExceptionFilter {
     const req = ctx.getRequest<Request>()
     const res = ctx.getResponse<Response>()
 
-    void this.renderService.renderEntry(404, HtmlEntries.NOT_FOUND)(req, res)
+    this.renderService.renderNotFoundEntry(req, res)
   }
 }

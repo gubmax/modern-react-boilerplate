@@ -1,21 +1,18 @@
-import { readFileSync } from 'node:fs'
+import assert from 'node:assert'
+import { createReadStream, readFileSync } from 'node:fs'
 
 import { renderToPipeableStream } from 'react-dom/server'
-import { matchPath } from 'react-router'
 import { Injectable, Logger } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import type { Request, Response } from 'express'
 import { Manifest } from 'vite'
 
-import { CONFIG_ENTRIES, CONFIG_SSG_ROUTES, CONFIG_SSR_ROUTES } from 'server/config'
+import { CONFIG_ENTRIES } from 'server/config'
+import { CONFIG_PAGES } from 'server/config/pages.config'
 import { HtmlMarks } from 'server/src/common/constants/html'
 import { CLIENT_CONFIG, ClientConfig } from 'shared/constants/clientConfig'
 import { HtmlEntries } from 'shared/constants/entries'
-import {
-  PATH_RESOLVED_CLIENT,
-  PATH_RESOLVED_CLIENT_MANIFEST,
-  PATH_RESOLVED_INDEX_HTML,
-} from 'shared/constants/paths'
+import { PATH_RESOLVED_CLIENT, PATH_RESOLVED_CLIENT_MANIFEST } from 'shared/constants/paths'
 import { InternalServerException } from 'shared/exceptions'
 import { HttpClientImpl } from 'shared/http/types'
 import { RenderTemplate } from 'shared/typings/renderTemplate'
@@ -46,11 +43,11 @@ export class RenderService {
     protected readonly httpClient: HttpClientService,
   ) {}
 
-  init(): void {
+  async init(): Promise<void> {
     const manifest = JSON.parse(readFileSync(PATH_RESOLVED_CLIENT_MANIFEST, 'utf-8')) as Manifest
 
     this.assetCollector.manifest = manifest
-    this.indexHtml = readFileSync(PATH_RESOLVED_INDEX_HTML, 'utf-8')
+    this.indexHtml = await this.readHtmlFile(`${PATH_RESOLVED_CLIENT}/index.html`)
   }
 
   protected writeTemplate({
@@ -62,7 +59,6 @@ export class RenderService {
     serverSideProps = {},
     statusCode = 200,
   }: WriteTemplateOptions): void {
-    const { logger } = this
     let didError = false
 
     const stream = renderToPipeableStream(app, {
@@ -94,11 +90,11 @@ export class RenderService {
       onShellError(error) {
         res.statusCode = 500
         res.send(`${PATH_RESOLVED_CLIENT}/${HtmlEntries.MAIN}.html`)
-        logger.error(new InternalServerException(error, 'WriteTemplate shell error'))
+        new InternalServerException(error, 'WriteTemplate shell error')
       },
       onError(error) {
         didError = true
-        logger.error(new InternalServerException(error, 'WriteTemplate fatal error'))
+        new InternalServerException(error, 'WriteTemplate fatal error')
       },
     })
   }
@@ -107,23 +103,40 @@ export class RenderService {
     url: string,
     httpClient: HttpClientImpl,
   ): Promise<ServerSideProps> {
-    const { getServerSideProps } = CONFIG_SSR_ROUTES[url] ?? {}
+    const { getServerSideProps } = CONFIG_PAGES[url] ?? {}
 
     return getServerSideProps?.(httpClient) ?? {}
+  }
+
+  protected readHtmlFile(filePath: string): Promise<string> {
+    return new Promise((resolve) => {
+      let data = ''
+
+      createReadStream(filePath, { encoding: 'utf-8' })
+        .on('data', (chunk: string) => (data += chunk))
+        .on('end', () => resolve(data))
+        .on('error', (error) => {
+          throw new InternalServerException(
+            error,
+            `An error occured while reading file "${filePath}"`,
+          )
+        })
+    })
   }
 
   /**
    * Production render function.
    */
-  renderEntry(statusCode: number, entry: HtmlEntries) {
+  renderEntry(statusCode: number) {
     return async (req: Request, res: Response): Promise<void> => {
       // Send prerendered template
 
-      for (const route in CONFIG_SSG_ROUTES) {
-        if (matchPath(route, req.url)) {
-          res.sendFile(`${PATH_RESOLVED_CLIENT}/${CONFIG_SSG_ROUTES[route]}.html`)
-          return
-        }
+      const config = CONFIG_PAGES[req.url]
+
+      assert(config, `Config for url "${req.url}" not found`)
+
+      if (!config.getServerSideProps) {
+        return res.sendFile(`${PATH_RESOLVED_CLIENT}/${config.name}.html`)
       }
 
       // Client config
@@ -132,7 +145,7 @@ export class RenderService {
 
       // Render client
 
-      const { entryPath, modulePath } = CONFIG_ENTRIES[entry]
+      const { entryPath, modulePath } = CONFIG_ENTRIES[config.entry]
 
       const [serverSideProps, { renderTemplate }] = await Promise.all([
         this.fetchPageProps(req.url, this.httpClient),
@@ -159,5 +172,15 @@ export class RenderService {
         statusCode,
       })
     }
+  }
+
+  renderNotFoundEntry(req: Request, res: Response): void {
+    res.statusCode = 404
+    res.sendFile(`${PATH_RESOLVED_CLIENT}/${HtmlEntries.NOT_FOUND}.html`)
+  }
+
+  renderInternalErrorEntry(req: Request, res: Response): void {
+    res.statusCode = 500
+    res.sendFile(`${PATH_RESOLVED_CLIENT}/${HtmlEntries.INTERNAL_ERROR}.html`)
   }
 }

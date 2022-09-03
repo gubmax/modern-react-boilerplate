@@ -32,7 +32,7 @@ export async function bootstrap(): Promise<NestExpressApplication> {
 
     app.use(compression())
 
-    render.init()
+    await render.init()
     await app.listen(port)
 
     return app

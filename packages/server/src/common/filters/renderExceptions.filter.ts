@@ -2,7 +2,6 @@ import { ArgumentsHost, Catch, ExceptionFilter, Inject, Logger } from '@nestjs/c
 import { Request, Response } from 'express'
 
 import { RenderService } from 'server/src/modules/render'
-import { HtmlEntries } from 'shared/constants/entries'
 import { InternalServerException } from 'shared/exceptions'
 
 @Catch()
@@ -21,6 +20,6 @@ export class RenderExceptionsFilter implements ExceptionFilter {
 
     this.logger.error(error)
 
-    void this.renderService.renderEntry(500, HtmlEntries.INTERNAL_ERROR)(req, res)
+    this.renderService.renderInternalErrorEntry(req, res)
   }
 }

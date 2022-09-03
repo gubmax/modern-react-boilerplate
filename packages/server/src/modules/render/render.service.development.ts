@@ -1,3 +1,4 @@
+import assert from 'node:assert'
 import { readFileSync } from 'node:fs'
 
 import { Injectable } from '@nestjs/common'
@@ -8,6 +9,7 @@ import { createServer, ModuleNode, ViteDevServer } from 'vite'
 
 import viteDevServerConfig from 'client/vite.config.server'
 import { CONFIG_ENTRIES } from 'server/config'
+import { CONFIG_PAGES } from 'server/config/pages.config'
 import { HtmlMarks } from 'server/src/common/constants/html'
 import { HtmlEntries } from 'shared/constants/entries'
 import { PATH_RESOLVED_INDEX_HTML } from 'shared/constants/paths'
@@ -41,28 +43,35 @@ export class DevelopmentRenderService extends RenderService {
   }
 
   /**
-   * Development render function.
+   * Returns render function to develop.
    * Before use, you need to call fn setupDevServer once.
    */
-  private async renderFn(
+  private async getTemplateRenderer(
     url: string,
-    entry: HtmlEntries,
+    entry?: HtmlEntries,
   ): Promise<[string, ModuleNode | undefined, { renderTemplate: RenderTemplate }]> {
     const { devServer } = this
-    const { entryDevPath, moduleDevPath } = CONFIG_ENTRIES[entry]
 
     if (!devServer) {
       throw new InternalServerException('Vite dev server has not been initialized')
     }
 
+    let currEntry = entry
+    if (!currEntry) {
+      const { entry } = CONFIG_PAGES[url] ?? {}
+      currEntry = entry
+    }
+
+    assert(currEntry, 'Entry for render function not found')
+
+    const { entryDevPath, moduleDevPath } = CONFIG_ENTRIES[currEntry]
+
     //  Prepare development HTML
 
     const preparedAssets = this.assetCollector.collectByEntryUrls(moduleDevPath)
 
-    const preparedHtml = this.readHtmlSync().replace(
-      HtmlMarks.ASSETS,
-      `${HtmlMarks.ASSETS}${preparedAssets}`,
-    )
+    let preparedHtml = await this.readHtmlFile(PATH_RESOLVED_INDEX_HTML)
+    preparedHtml = preparedHtml.replace(HtmlMarks.ASSETS, `${HtmlMarks.ASSETS}${preparedAssets}`)
 
     //  Render
 
@@ -83,11 +92,7 @@ export class DevelopmentRenderService extends RenderService {
     }
   }
 
-  private readHtmlSync(): string {
-    return readFileSync(PATH_RESOLVED_INDEX_HTML, 'utf-8')
-  }
-
-  renderEntry(statusCode: number, entry: HtmlEntries) {
+  renderEntry(statusCode: number, options?: { entry: HtmlEntries }) {
     return async (req: Request, res: Response): Promise<void> => {
       // Client config
 
@@ -97,7 +102,7 @@ export class DevelopmentRenderService extends RenderService {
 
       const [serverSideProps, [html, appModule, { renderTemplate }]] = await Promise.all([
         this.fetchPageProps(req.url, this.httpClient),
-        this.renderFn(req.url, entry),
+        this.getTemplateRenderer(req.url, options?.entry),
       ])
 
       const app = renderTemplate({ url: req.url, clientConfig, serverSideProps })
@@ -118,5 +123,13 @@ export class DevelopmentRenderService extends RenderService {
         statusCode,
       })
     }
+  }
+
+  renderInternalErrorEntry(req: Request, res: Response): Promise<void> {
+    return this.renderEntry(500, { entry: HtmlEntries.INTERNAL_ERROR })(req, res)
+  }
+
+  renderNotFoundEntry(req: Request, res: Response): Promise<void> {
+    return this.renderEntry(404, { entry: HtmlEntries.NOT_FOUND })(req, res)
   }
 }

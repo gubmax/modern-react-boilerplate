@@ -2,8 +2,8 @@ import { FactoryProvider, Module } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 
 import { assetCollectorSymbol } from './assetCollector.constants'
-import { DevelopmentAssetCollectorService } from './assetCollector.development.service'
 import { AssetCollectorService } from './assetCollector.service'
+import { DevelopmentAssetCollectorService } from './assetCollector.service.development'
 
 const assetsCollectorFactory: FactoryProvider<AssetCollectorService> = {
   provide: assetCollectorSymbol,

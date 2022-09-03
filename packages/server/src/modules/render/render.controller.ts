@@ -3,7 +3,6 @@ import type { Request, Response } from 'express'
 
 import { PageRoutes } from 'client/src/browser/http/constants'
 import { RenderExceptionsFilter } from 'server/src/common/filters'
-import { HtmlEntries } from 'shared/constants/entries'
 import { renderServiceSymbol } from './render.constants'
 import { RenderService } from './render.service'
 
@@ -12,18 +11,53 @@ import { RenderService } from './render.service'
 export class RenderController {
   constructor(@Inject(renderServiceSymbol) private readonly renderService: RenderService) {}
 
-  @Get()
-  async render(@Req() req: Request, @Res() res: Response): Promise<void> {
-    return this.renderService.renderEntry(200, HtmlEntries.MAIN)(req, res)
+  @Get(PageRoutes.ROOT)
+  renderRoot(@Req() req: Request, @Res() res: Response): Promise<void> {
+    return this.renderService.renderEntry(200)(req, res)
+  }
+
+  @Get(PageRoutes.ABOUT)
+  renderAbout(@Req() req: Request, @Res() res: Response): Promise<void> {
+    return this.renderService.renderEntry(200)(req, res)
+  }
+
+  @Get(PageRoutes.CART)
+  renderCart(@Req() req: Request, @Res() res: Response): Promise<void> {
+    return this.renderService.renderEntry(200)(req, res)
+  }
+
+  @Get(PageRoutes.COLLECTION)
+  renderCollection(@Req() req: Request, @Res() res: Response): Promise<void> {
+    return this.renderService.renderEntry(200)(req, res)
+  }
+
+  @Get(PageRoutes.HELP)
+  renderHelp(@Req() req: Request, @Res() res: Response): Promise<void> {
+    return this.renderService.renderEntry(200)(req, res)
+  }
+
+  @Get(PageRoutes.SALES)
+  renderSales(@Req() req: Request, @Res() res: Response): Promise<void> {
+    return this.renderService.renderEntry(200)(req, res)
+  }
+
+  @Get(PageRoutes.SCHEDULE)
+  renderSchedule(@Req() req: Request, @Res() res: Response): Promise<void> {
+    return this.renderService.renderEntry(200)(req, res)
+  }
+
+  @Get(PageRoutes.SETTINGS)
+  renderSettings(@Req() req: Request, @Res() res: Response): Promise<void> {
+    return this.renderService.renderEntry(200)(req, res)
   }
 
   @Get(PageRoutes.SIGN_IN)
-  async renderSignIn(@Req() req: Request, @Res() res: Response): Promise<void> {
-    return this.renderService.renderEntry(200, HtmlEntries.SIGN_IN)(req, res)
+  renderSignIn(@Req() req: Request, @Res() res: Response): Promise<void> {
+    return this.renderService.renderEntry(200)(req, res)
   }
 
   @Get(PageRoutes.SIGN_UP)
-  async renderSignUp(@Req() req: Request, @Res() res: Response): Promise<void> {
-    return this.renderService.renderEntry(200, HtmlEntries.SIGN_UP)(req, res)
+  renderSignUp(@Req() req: Request, @Res() res: Response): Promise<void> {
+    return this.renderService.renderEntry(200)(req, res)
   }
 }

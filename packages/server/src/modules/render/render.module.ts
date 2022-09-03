@@ -5,19 +5,20 @@ import {
   AssetCollectorModule,
   AssetCollectorService,
   assetCollectorSymbol,
+  DevelopmentAssetCollectorService,
 } from '../assetCollector'
 import { ClientConfigService } from '../clientConfig'
 import { HttpClientService } from '../httpClient'
 import { UserAgentParserModule } from '../userAgentParser'
 import { renderServiceSymbol } from './render.constants'
 import { RenderController } from './render.controller'
-import { DevelopmentRenderService } from './render.development.service'
 import { RenderService } from './render.service'
+import { DevelopmentRenderService } from './render.service.development'
 
 const renderServiceFactory: FactoryProvider<RenderService> = {
   provide: renderServiceSymbol,
   useFactory: (
-    assetCollector: AssetCollectorService,
+    assetCollector: AssetCollectorService & DevelopmentAssetCollectorService,
     clientConfig: ClientConfigService,
     configService: ConfigService,
     httpClientService: HttpClientService,
