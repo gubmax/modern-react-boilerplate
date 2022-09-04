@@ -1,5 +1,4 @@
 import assert from 'node:assert'
-import { readFileSync } from 'node:fs'
 
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
@@ -118,6 +117,7 @@ export class DevelopmentRenderService extends RenderService {
         assets,
         clientConfig,
         html,
+        req,
         res,
         serverSideProps,
         statusCode,

@@ -26,6 +26,7 @@ interface WriteTemplateOptions {
   assets: string
   clientConfig: ClientConfig
   html: string
+  req: Request
   res: Response
   serverSideProps: ServerSideProps
   statusCode?: number
@@ -55,11 +56,14 @@ export class RenderService {
     assets,
     clientConfig = {},
     html,
+    req,
     res,
     serverSideProps = {},
     statusCode = 200,
   }: WriteTemplateOptions): void {
+    const { logger } = this
     let didError = false
+    const renderErrorTemplate = () => this.renderInternalErrorEntry(req, res)
 
     const stream = renderToPipeableStream(app, {
       onShellReady() {
@@ -88,13 +92,13 @@ export class RenderService {
         stream.pipe(res)
       },
       onShellError(error) {
+        logger.error(new InternalServerException(error, 'WriteTemplate shell error'))
         res.statusCode = 500
-        res.send(`${PATH_RESOLVED_CLIENT}/${HtmlEntries.MAIN}.html`)
-        new InternalServerException(error, 'WriteTemplate shell error')
+        renderErrorTemplate()
       },
       onError(error) {
         didError = true
-        new InternalServerException(error, 'WriteTemplate fatal error')
+        logger.error(new InternalServerException(error, 'WriteTemplate fatal error'))
       },
     })
   }
@@ -167,6 +171,7 @@ export class RenderService {
         assets,
         clientConfig,
         html: this.indexHtml,
+        req,
         res,
         serverSideProps,
         statusCode,
